@@ -1,0 +1,620 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UpgradeLog>
+    <Settings>
+        <Setting
+            Name = "ログ ファイル (/LogFile)"
+            Value = "分子模型.log"
+        />
+        <Setting
+            Name = "クラス用に生成されたインターフェイス (/GenerateInterfaces)"
+            Value = "FALSE"
+        />
+        <Setting
+            Name = "プロジェクト名"
+            Value = "分子模型"
+        />
+        <Setting
+            Name = "プロジェクト出力"
+            Value = "分子模型.vbproj"
+        />
+        <Setting
+            Name = "ターゲット ディレクトリ (/Out) "
+            Value = "C:\Documents and Settings\功一\デスクトップ\VB\分子模型.NET"
+        />
+        <Setting
+            Name = "プロジェクト パス"
+            Value = "C:\Documents and Settings\功一\デスクトップ\VB\分子模型.vbp"
+        />
+        <Setting
+            Name = "アップグレードされたファイルの種類"
+            Value = "0"
+        />
+    </Settings>
+    <File
+        OldPath = "C:\Documents and Settings\功一\デスクトップ\VB\分子模型frm.frm"
+        NewPath = "C:\Documents and Settings\功一\デスクトップ\VB\分子模型.NET\分子模型frm.vb"
+        FileType = "Form"
+        Upgraded = "True"
+    >
+        <Section Name = "(レイアウト)" >
+            <Issue
+                Type = "Design"
+                Number = "2064"
+                ObjectName = "Form1"
+                ObjectType = "Form"
+                PME = "AutoRedraw"
+            >Form プロパティ Form1.AutoRedraw はアップグレードされませんでした。</Issue>
+        </Section>
+        <Section Name = "Form_Load" >
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト xsee の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト ysee の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト zsee の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト two(0, 0) の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト two(0, 1) の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト two(1, 0) の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト two(1, 1) の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト two(2, 0) の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト two(2, 1) の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト win(a, b, 1) の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト a の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト b の既定プロパティを解決できませんでした。</Issue>
+        </Section>
+        <Section Name = "Form_Unload" >
+            <Issue
+                Type = "Runtime"
+                Number = "2065"
+                ObjectName = "Form1"
+                ObjectType = "Form"
+                PME = "Unload"
+            >Form イベント Form1.Unload には新しい動作が含まれます。</Issue>
+        </Section>
+        <Section Name = "表示" >
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト atonum の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト r の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト c の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト stx の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト sty の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト stz の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト strd の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト stgr の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト stbl の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト aa の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト a の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト zz の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト xy の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト bb の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト b の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト xx の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト yy の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト red の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト gre の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト blu の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト xo の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト yo の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト zo の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト old() の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト old(b * 200 - 1, 0) の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト old(b * 200, 0) の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト old(b * 200, 1) の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト old(b * 200, 2) の既定プロパティを解決できませんでした。</Issue>
+        </Section>
+        <Section Name = "draw3dline" >
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト bx2 の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト thrd() の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト bx の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト thrd(1, 0) の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト by の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト thrd(2, 0) の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト bz の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト by2 の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト thrd(1, 1) の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト thrd(2, 1) の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト bz2 の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト thrd(1, 2) の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト thrd(2, 2) の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト ex2 の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト ex の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト ey の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト ez の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト ey2 の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト ez2 の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト xdis の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト xsee の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト ydis の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト ysee の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト zdis の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト zsee の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト dist の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト sx の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト two() の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト two(1, 0) の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト two(2, 0) の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト sy の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト two(1, 1) の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト two(2, 1) の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト fx の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト fy の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト leng の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト dx の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト n の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト dy の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト win(500, 500, 1) の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト win(dx, dy, 0) の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト co の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト win(dx, dy, 2) の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト win(dx, dy, 1) の既定プロパティを解決できませんでした。</Issue>
+        </Section>
+        <Section Name = "showing" >
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト win(a, b, 2) の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト a の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト b の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Compile"
+                Number = "2064"
+                ObjectName = "Form1"
+                ObjectType = "Form"
+                PME = "PSet"
+            >Form メソッド Form1.PSet はアップグレードされませんでした。</Issue>
+        </Section>
+        <Section Name = "移動thrd" >
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト thrd(0, 0) の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト a の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト thrd(0, 1) の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト b の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト thrd(0, 2) の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト c の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト thrd(1, 0) の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト d の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト thrd(1, 1) の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト e の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト thrd(1, 2) の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト f の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト thrd(2, 0) の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト g の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト thrd(2, 1) の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト h の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト thrd(2, 2) の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト i の既定プロパティを解決できませんでした。</Issue>
+        </Section>
+    </File>
+    <File
+        OldPath = "C:\Documents and Settings\功一\デスクトップ\VB\分子模型.frm"
+        NewPath = "C:\Documents and Settings\功一\デスクトップ\VB\分子模型.NET\分子模型.vb"
+        FileType = "Form"
+        Upgraded = "True"
+    />
+    <File
+        OldPath = "C:\Documents and Settings\功一\デスクトップ\VB\見る角度.frm"
+        NewPath = "C:\Documents and Settings\功一\デスクトップ\VB\分子模型.NET\見る角度.vb"
+        FileType = "Form"
+        Upgraded = "True"
+    >
+        <Section Name = "(レイアウト)" >
+            <Issue
+                Type = "Design"
+                Number = "2067"
+                ObjectName = "_Shape1_2"
+                ObjectType = "Shape"
+            >Shape コントロール _Shape1_2 はアップグレードされませんでした。</Issue>
+            <Issue
+                Type = "Design"
+                Number = "2067"
+                ObjectName = "_Shape1_1"
+                ObjectType = "Shape"
+            >Shape コントロール _Shape1_1 はアップグレードされませんでした。</Issue>
+            <Issue
+                Type = "Design"
+                Number = "2067"
+                ObjectName = "_Shape1_0"
+                ObjectType = "Shape"
+            >Shape コントロール _Shape1_0 はアップグレードされませんでした。</Issue>
+            <Issue
+                Type = "Design"
+                Number = "2068"
+            >Shape オブジェクト はアップグレードされませんでした。</Issue>
+        </Section>
+        <Section Name = "Form_Load" >
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト r の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト Index の既定プロパティを解決できませんでした。</Issue>
+        </Section>
+        <Section Name = "SpinButton1_Change" >
+            <Issue
+                Type = "Compile"
+                Number = "2064"
+                ObjectName = "Form3"
+                ObjectType = "Form"
+                PME = "Cls"
+            >Form メソッド Form3.Cls はアップグレードされませんでした。</Issue>
+            <Issue
+                Type = "Compile"
+                Number = "2064"
+                ObjectName = "Form3"
+                ObjectType = "Form"
+                PME = "Line"
+            >Form メソッド Form3.Line はアップグレードされませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト a の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト th(a) の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト cosine(a) の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+                PME = "Cos"
+            >オブジェクト th() の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト sine(a) の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト thrd(a, 1) の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト thrd() の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト cosine(2) の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト thrd(a, 2) の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト sine(2) の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト thrd(a, 0) の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト cosine(1) の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト sine(1) の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト cosine(0) の既定プロパティを解決できませんでした。</Issue>
+            <Issue
+                Type = "Runtime"
+                Number = "1037"
+            >オブジェクト sine(0) の既定プロパティを解決できませんでした。</Issue>
+        </Section>
+    </File>
+</UpgradeLog>
+
