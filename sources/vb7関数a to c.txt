@@ -1,0 +1,65 @@
+math.abs  絶対値
+math.atan
+math.cos
+math.exp
+math.log
+math.round
+math.sign
+math.sin
+math.sqr
+math.tan
+microsoft.visualbasic.appactivate( ActiveにするWindowの { Titlebarの文字列 | ProcessID } )
+microsoft.visualbasic.shell( "パス" , appwinstyle.--- )
+microsoft.visualbasic.asc( 文字列 ) { SBCS | DBCS } を返す
+microsoft.visualbasic.ascw( 文字列 ) Unicodeを返す
+microsoft.visualbasic.beep
+microsoft.visualbasic.callbyname( Object , "Method" , calltype.--- )
+cbool( 変数 ) to boolean
+cbyte( 変数 ) to byte
+cchar( 変数 ) to char(文字列型)
+cdate( 変数 ) to date
+cdbl( 変数 ) to double
+cdec( 変数 ) to decimal
+cint( 変数 ) to integer
+clng( 変数 ) to long
+cobj( 変数 ) to object
+cshort( 変数 ) to short
+csng( 変数 ) to single
+cstr( 変数 ) to string
+ctype( 変数 , type ) to type
+microsoft.visualbasic.chdir( "パス" ) 既定ディレクトリの変更
+microsoft.visualbasic.chdrive( "パス" ) 既定ドライブの変更
+microsoft.visualbasic.curdir() 既定ディレクトリのパス取得
+microsoft.visualbasic.choose( 選ぶ項目のIndex , 選ぶ本の配列 )
+microsoft.visualbasic.chr( code )
+microsoft.visualbasic.chrw( unicode )
+microsoft.visualbasic.hex( 数 )
+microsoft.visualbasic.oct( 数 )
+microsoft.visualbasic.str( 数 ) to string
+microsoft.visualbasic.val( 文字列 ) to 数
+microsoft.visualbasic.format( 変数 , 書式 )
+ : 時刻の区切り
+ / 日付の区切り
+ % 一文字だけの指定の時にその前につける
+ d 日付 ; dd 日付 ; ddd 曜日(短縮) ; dddd 曜日
+ M 月 ; MM 月 ; MMM 月名(短縮) ; MMMM 月名
+ gg { AD | BC }
+ h 12時間制時 ; hh 12時間制時
+ H 24時間制時 ; HH 24時間制時
+ m 分 ; mm 分
+ s 秒 ; ss 秒
+ F 秒の小数点以下1桁 ; FF 〃2桁 ; FFF 〃3桁 ; FFFF 〃4桁 ; FFFFF 〃5桁 ; FFFFFF 〃6桁 ; FFFFFFF 〃7桁
+ T 午前/午後{ P | A } ; tt { AM | PM }
+ y 年 ; yy 年 ; yyy 年 ; yyyy 年
+ z 標準時との時差(+-?) ; zz 標準時との時差(+-0?) ; zzz 標準時との時差(+-??:??)
+ 
+ # 数 | 省略
+ 0 数 | 0
+ . 小数点
+ % 百分率
+ , 桁区切り
+ e+ ; e- ; E+ ; E-
+ - ; + ; $ ; ( ; )
+ \ 後の一文字を直接表示
+ " & chr(34) & "文字列" & chr(34) " 文字を直接表示
+microsoft.visualbasic.createobject( objectのprogramID , { "" | Server(Computer)の名前)
