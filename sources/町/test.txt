@@ -1,0 +1,9 @@
+
+// private ??? imgd(0To5,0To5);
+// private ??? a;
+// private ??? b;
+private int ka;
+private int kb;
+private int kd;
+private int kdd;
+private int ke;
