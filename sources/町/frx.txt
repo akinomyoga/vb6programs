@@ -1,0 +1,14 @@
+nUnit1
+
+
+Unit1{
+1word 3e08(bmp) 9e27(ico)
+1word
+1word 6C74
+1word
+1word サイズ
+1word
+nByte 本体
+
+}
+
