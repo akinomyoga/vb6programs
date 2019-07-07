@@ -1,23 +1,41 @@
 VERSION 5.00
-Object = "{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0"; "richtx32.ocx"
+Object = "{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0"; "richtx32.Ocx"
 Begin VB.Form Form1 
    AutoRedraw      =   -1  'True
-   BorderStyle     =   3  '固定ﾀﾞｲｱﾛｸﾞ
+   BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Binary Viewer"
    ClientHeight    =   6120
    ClientLeft      =   45
    ClientTop       =   330
    ClientWidth     =   8610
+   BeginProperty Font 
+      Name            =   "ＭＳ Ｐゴシック"
+      Size            =   8.25
+      Charset         =   128
+      Weight          =   400
+      Underline       =   0   'False
+      Italic          =   0   'False
+      Strikethrough   =   0   'False
+   EndProperty
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   408
-   ScaleMode       =   3  'ﾋﾟｸｾﾙ
+   ScaleMode       =   3  'Pixel
    ScaleWidth      =   574
    ShowInTaskbar   =   0   'False
-   StartUpPosition =   3  'Windows の既定値
+   StartUpPosition =   3  'Windows Default
    Begin VB.CommandButton bTab 
       Caption         =   "ログ"
+      BeginProperty Font 
+         Name            =   "ＭＳ Ｐゴシック"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Index           =   3
       Left            =   2160
@@ -27,6 +45,15 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton bTab 
       Caption         =   "数値"
+      BeginProperty Font 
+         Name            =   "ＭＳ Ｐゴシック"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Index           =   2
       Left            =   1440
@@ -36,6 +63,15 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton bTab 
       Caption         =   "画像"
+      BeginProperty Font 
+         Name            =   "ＭＳ Ｐゴシック"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Index           =   1
       Left            =   720
@@ -45,6 +81,15 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton bTab 
       Caption         =   "file"
+      BeginProperty Font 
+         Name            =   "ＭＳ Ｐゴシック"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Index           =   0
       Left            =   0
@@ -54,6 +99,15 @@ Begin VB.Form Form1
    End
    Begin VB.Frame TabPage 
       Caption         =   "binary データ"
+      BeginProperty Font 
+         Name            =   "ＭＳ Ｐゴシック"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   5175
       Index           =   2
       Left            =   120
@@ -63,6 +117,15 @@ Begin VB.Form Form1
       Width           =   8415
       Begin VB.CommandButton bRead 
          Caption         =   "読込(&R)"
+         BeginProperty Font 
+            Name            =   "ＭＳ Ｐゴシック"
+            Size            =   8.25
+            Charset         =   128
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   375
          Left            =   120
          TabIndex        =   29
@@ -70,6 +133,15 @@ Begin VB.Form Form1
          Width           =   1215
       End
       Begin VB.ComboBox Combo2 
+         BeginProperty Font 
+            Name            =   "ＭＳ Ｐゴシック"
+            Size            =   8.25
+            Charset         =   128
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   300
          Left            =   120
          TabIndex        =   28
@@ -86,6 +158,7 @@ Begin VB.Form Form1
          _ExtentX        =   12091
          _ExtentY        =   8493
          _Version        =   393217
+         Enabled         =   -1  'True
          ScrollBars      =   3
          TextRTF         =   $"binary_main.frx":0000
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -100,6 +173,15 @@ Begin VB.Form Form1
       End
    End
    Begin VB.Frame TabPage 
+      BeginProperty Font 
+         Name            =   "ＭＳ Ｐゴシック"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   5175
       Index           =   1
       Left            =   120
@@ -176,6 +258,15 @@ Begin VB.Form Form1
          Width           =   255
       End
       Begin VB.ComboBox lstPixel 
+         BeginProperty Font 
+            Name            =   "ＭＳ Ｐゴシック"
+            Size            =   8.25
+            Charset         =   128
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   300
          ItemData        =   "binary_main.frx":00BE
          Left            =   120
@@ -187,6 +278,15 @@ Begin VB.Form Form1
       End
       Begin VB.CheckBox chkInv 
          Caption         =   "左右反転"
+         BeginProperty Font 
+            Name            =   "ＭＳ Ｐゴシック"
+            Size            =   8.25
+            Charset         =   128
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Left            =   120
          TabIndex        =   22
@@ -211,6 +311,15 @@ Begin VB.Form Form1
          Width           =   255
       End
       Begin VB.ComboBox lstBit 
+         BeginProperty Font 
+            Name            =   "ＭＳ Ｐゴシック"
+            Size            =   8.25
+            Charset         =   128
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   300
          ItemData        =   "binary_main.frx":00F7
          Left            =   120
@@ -223,6 +332,15 @@ Begin VB.Form Form1
       Begin VB.CommandButton bStop 
          Caption         =   "停止(&S)"
          Enabled         =   0   'False
+         BeginProperty Font 
+            Name            =   "ＭＳ Ｐゴシック"
+            Size            =   8.25
+            Charset         =   128
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   375
          Left            =   120
          TabIndex        =   11
@@ -231,6 +349,15 @@ Begin VB.Form Form1
       End
       Begin VB.CommandButton bAnaly 
          Caption         =   "表示(&V)"
+         BeginProperty Font 
+            Name            =   "ＭＳ Ｐゴシック"
+            Size            =   8.25
+            Charset         =   128
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   375
          Left            =   120
          TabIndex        =   8
@@ -238,15 +365,24 @@ Begin VB.Form Form1
          Width           =   1215
       End
       Begin VB.PictureBox Picture1 
-         Appearance      =   0  'ﾌﾗｯﾄ
+         Appearance      =   0  'Flat
          AutoRedraw      =   -1  'True
          BackColor       =   &H80000001&
-         BorderStyle     =   0  'なし
+         BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "ＭＳ Ｐゴシック"
+            Size            =   8.25
+            Charset         =   128
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H80000008&
          Height          =   4815
          Left            =   1440
          ScaleHeight     =   321
-         ScaleMode       =   3  'ﾋﾟｸｾﾙ
+         ScaleMode       =   3  'Pixel
          ScaleWidth      =   457
          TabIndex        =   10
          Top             =   240
@@ -254,6 +390,15 @@ Begin VB.Form Form1
       End
       Begin VB.Label lLst2 
          Caption         =   "px幅"
+         BeginProperty Font 
+            Name            =   "ＭＳ Ｐゴシック"
+            Size            =   8.25
+            Charset         =   128
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Left            =   840
          TabIndex        =   24
@@ -262,6 +407,15 @@ Begin VB.Form Form1
       End
       Begin VB.Label lLst1 
          Caption         =   "bit"
+         BeginProperty Font 
+            Name            =   "ＭＳ Ｐゴシック"
+            Size            =   8.25
+            Charset         =   128
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Left            =   840
          TabIndex        =   19
@@ -271,6 +425,15 @@ Begin VB.Form Form1
    End
    Begin VB.Frame TabPage 
       Caption         =   "読み込むファイルの設定"
+      BeginProperty Font 
+         Name            =   "ＭＳ Ｐゴシック"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   5175
       Index           =   0
       Left            =   120
@@ -279,6 +442,15 @@ Begin VB.Form Form1
       Width           =   8415
       Begin VB.CommandButton bDir1 
          Caption         =   "デスクトップ"
+         BeginProperty Font 
+            Name            =   "ＭＳ Ｐゴシック"
+            Size            =   8.25
+            Charset         =   128
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   375
          Left            =   120
          TabIndex        =   9
@@ -287,6 +459,15 @@ Begin VB.Form Form1
          Width           =   1215
       End
       Begin VB.ComboBox Combo1 
+         BeginProperty Font 
+            Name            =   "ＭＳ Ｐゴシック"
+            Size            =   8.25
+            Charset         =   128
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   300
          ItemData        =   "binary_main.frx":013B
          Left            =   2880
@@ -297,13 +478,31 @@ Begin VB.Form Form1
          Width           =   5415
       End
       Begin VB.FileListBox File1 
-         Height          =   4410
+         BeginProperty Font 
+            Name            =   "ＭＳ Ｐゴシック"
+            Size            =   8.25
+            Charset         =   128
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   4380
          Left            =   2880
          TabIndex        =   4
          Top             =   600
          Width           =   5415
       End
       Begin VB.DirListBox Dir1 
+         BeginProperty Font 
+            Name            =   "ＭＳ Ｐゴシック"
+            Size            =   8.25
+            Charset         =   128
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   3870
          Left            =   120
          TabIndex        =   3
@@ -311,6 +510,15 @@ Begin VB.Form Form1
          Width           =   2655
       End
       Begin VB.DriveListBox Drive1 
+         BeginProperty Font 
+            Name            =   "ＭＳ Ｐゴシック"
+            Size            =   8.25
+            Charset         =   128
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   300
          Left            =   120
          TabIndex        =   2
@@ -320,6 +528,15 @@ Begin VB.Form Form1
    End
    Begin VB.Frame TabPage 
       Caption         =   "ログ(処理の記録)"
+      BeginProperty Font 
+         Name            =   "ＭＳ Ｐゴシック"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   5175
       Index           =   3
       Left            =   120
@@ -336,14 +553,22 @@ Begin VB.Form Form1
          _ExtentX        =   14420
          _ExtentY        =   8493
          _Version        =   393217
-         Enabled         =   -1  'True
          ScrollBars      =   3
          TextRTF         =   $"binary_main.frx":0160
       End
    End
    Begin VB.Label lFilename 
-      BorderStyle     =   1  '実線
+      BorderStyle     =   1  'Fixed Single
       Caption         =   "(ファイルはまだ選択されていません。)"
+      BeginProperty Font 
+         Name            =   "ＭＳ Ｐゴシック"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Left            =   120
       TabIndex        =   12
@@ -357,143 +582,143 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Private Sub bAnaly_Click()
-message lFilename.Caption
-If lFilename.Caption = "(ファイルはまだ選択されていません。)" Then
-    message "ファイルが選択されていません。ファイルを選択してから再度実行してください。"
-    Exit Sub
-End If
-
-
-bStop.Enabled = True
-
-message openfile(lFilename.Caption)
-
-Picture1.Cls
-Picture1.Left = 1440
-Select Case unitBit
-Case 1
-    Call readImage1bt
-Case 2
-    Call readImage2bt
-Case 4
-    Call readImage4bt
-Case 24
-    Call readImage24bt
-Case 777
-    Call readImagePoke
-Case 778
-    Call readImagePoke2
-Case Else
-    Call readImage
-End Select
-
-message closefile
+    message lFilename.Caption
+    If lFilename.Caption = "(ファイルはまだ選択されていません。)" Then
+        message "ファイルが選択されていません。ファイルを選択してから再度実行してください。"
+        Exit Sub
+    End If
+    
+    
+    bStop.Enabled = True
+    
+    message openfile(lFilename.Caption)
+    
+    Picture1.Cls
+    Picture1.Left = 1440
+    Select Case unitBit
+    Case 1
+        Call readImage1bt
+    Case 2
+        Call readImage2bt
+    Case 4
+        Call readImage4bt
+    Case 24
+        Call readImage24bt
+    Case 777
+        Call readImagePoke
+    Case 778
+        Call readImagePoke2
+    Case Else
+        Call readImage
+    End Select
+    
+    message closefile
 End Sub
 
 Private Sub bCenter_Click()
-Picture1.Left = 1440
-Picture1.Top = 240
+    Picture1.Left = 1440
+    Picture1.Top = 240
 End Sub
 
 Private Sub bDir1_Click()
-Dir1.Path = "C:\Documents and Settings\murase\デスクトップ"
+    Dir1.Path = CreateObject("WScript.Shell").SpecialFolders("Desktop")
 End Sub
 
 Private Sub bDown_Click()
-Picture1.Top = Picture1.Top - 1350
+    Picture1.Top = Picture1.Top - 1350
 End Sub
 
 Private Sub bLeft_Click()
-Picture1.Left = Picture1.Left + 1350
+    Picture1.Left = Picture1.Left + 1350
 End Sub
 
 Private Sub bRead_Click()
-readStringH (lFilename.Caption)
+    readStringH (lFilename.Caption)
 End Sub
 
 Private Sub bRight_Click()
-Picture1.Left = Picture1.Left - 1350
+    Picture1.Left = Picture1.Left - 1350
 End Sub
 
 Private Sub bStop_Click()
-bStop.Enabled = False
+    bStop.Enabled = False
 End Sub
 
 Private Sub bTab_Click(index As Integer)
-For Each i In TabPage()
- i.Visible = False
-Next i
-TabPage(index).Visible = True
+    For Each i In TabPage()
+        i.Visible = False
+    Next i
+    TabPage(index).Visible = True
 End Sub
 
 Private Sub bUp_Click()
-Picture1.Top = Picture1.Top + 1350
+    Picture1.Top = Picture1.Top + 1350
 End Sub
 
 Private Sub Combo1_Change()
-File1.Pattern = Combo1.Text
+    File1.Pattern = Combo1.Text
 End Sub
 
 Private Sub Combo1_Click()
-File1.Pattern = Combo1.Text
+    File1.Pattern = Combo1.Text
 End Sub
 
 Private Sub Dir1_Change()
-File1.Path = Dir1.Path
+    File1.Path = Dir1.Path
 End Sub
 
 Private Sub Drive1_Change()
-On Error GoTo err1
-Dir1.Path = Left(Drive1.Drive, 1) & ":\"
-Exit Sub
+    On Error GoTo err1
+    Dir1.Path = Left(Drive1.Drive, 1) & ":\"
+    Exit Sub
 err1:
-Select Case Err.number
-Case 68
-MsgBox "ドライブが用意されていない可能性があります。今一度ドライブをご確認ください"
-Drive1.Drive = Left(Dir1.Path, 2)
-Case Else
-MsgBox "予期せぬエラー - " & Err.number
-End Select
+    Select Case Err.number
+    Case 68
+        MsgBox "ドライブが用意されていない可能性があります。今一度ドライブをご確認ください"
+        Drive1.Drive = Left(Dir1.Path, 2)
+    Case Else
+        MsgBox "予期せぬエラー - " & Err.number
+    End Select
 End Sub
 
 Private Sub File1_Click()
-If File1.ListIndex >= 0 Then
-path1 = File1.Path
-If Right(path1, 1) <> "\" Then path1 = path1 + "\"
-lFilename.Caption = path1 & File1.filename
-End If
+    If File1.ListIndex >= 0 Then
+        path1 = File1.Path
+        If Right(path1, 1) <> "\" Then path1 = path1 + "\"
+        lFilename.Caption = path1 & File1.filename
+    End If
 End Sub
 
 Private Sub Form_Load()
-Call bDir1_Click
+    Call bDir1_Click
 End Sub
 
 Public Sub message(x)
-Select Case x
+    Select Case x
     Case "ファイルサイズ超過"
         Log1.Text = Log1.Text & "ファイルサイズが 1MB を超えています。実行に移すと処理しきれない恐れがありますので中止いたします。" & Chr(13)
     Case "成功"
         Log1.Text = Log1.Text & "ファイルの読み取りに無事に成功しました。" & Chr(13) & "****************************************************************" & Chr(13)
     Case Else
         Log1.Text = Log1.Text & x & Chr(13)
-End Select
+    End Select
 End Sub
 
 Private Sub lstBit_Click()
-Select Case lstBit.Text
-Case "1", "2", "4", "8", "16", "24"
-unitBit = lstBit.Text
-unitBit2 = 2 ^ unitBit
-Case "Poke縦"
-unitBit = 777
-Case "Poke横"
-unitBit = 778
-End Select
+    Select Case lstBit.Text
+    Case "1", "2", "4", "8", "16", "24"
+        unitBit = lstBit.Text
+        unitBit2 = 2 ^ unitBit
+    Case "Poke縦"
+        unitBit = 777
+    Case "Poke横"
+        unitBit = 778
+    End Select
 End Sub
 
 Private Sub lstPixel_Click()
-Select Case lstPixel.Text
-Case "8", "16", "24", "32", "48", "64", "128"
-pxWidth = lstPixel.Text
-End Select
+    Select Case lstPixel.Text
+    Case "8", "16", "24", "32", "48", "64", "128"
+        pxWidth = lstPixel.Text
+    End Select
 End Sub
