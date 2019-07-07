@@ -1,11 +1,20 @@
 VERSION 5.00
 Begin VB.Form Form1 
-   BorderStyle     =   1  'å≈íË(é¿ê¸)
+   BorderStyle     =   1  'Fixed Single
    Caption         =   "âÒì]ëÃ"
    ClientHeight    =   9900
    ClientLeft      =   765
    ClientTop       =   900
    ClientWidth     =   13965
+   BeginProperty Font 
+      Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+      Size            =   8.25
+      Charset         =   128
+      Weight          =   400
+      Underline       =   0   'False
+      Italic          =   0   'False
+      Strikethrough   =   0   'False
+   EndProperty
    Icon            =   "âÒì]ëÃ.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
@@ -32,15 +41,33 @@ Begin VB.Form Form1
    End
    Begin VB.CheckBox Check2 
       Caption         =   "éÂÇ»ê¸Çï\é¶"
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Left            =   10320
       TabIndex        =   14
       Top             =   5520
-      Value           =   1  '¡™Ø∏
+      Value           =   1  'Checked
       Width           =   1335
    End
    Begin VB.CheckBox Check1 
       Caption         =   "ÇÌÇ¡Ç©Ç‡ï\é¶"
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Left            =   10320
       TabIndex        =   13
@@ -69,6 +96,15 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command4 
       Caption         =   "è¡Ç∑"
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   12120
       TabIndex        =   6
@@ -77,6 +113,15 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command3 
       Caption         =   "èIóπ"
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   12360
       TabIndex        =   5
@@ -102,6 +147,15 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command1 
       Caption         =   "Ç‚ÇËíºÇ∑"
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   10200
       TabIndex        =   1
@@ -110,6 +164,15 @@ Begin VB.Form Form1
    End
    Begin VB.PictureBox Picture1 
       BackColor       =   &H00FFFFFF&
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   3495
       Left            =   10200
       ScaleHeight     =   3435
@@ -120,6 +183,15 @@ Begin VB.Form Form1
    End
    Begin VB.Label Label6 
       Caption         =   "å©ÇÈäpìx"
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Left            =   10200
       TabIndex        =   12
