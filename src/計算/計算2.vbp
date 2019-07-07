@@ -1,9 +1,11 @@
 Type=Exe
 Form=ŒvŽZ2.frm
 Reference=*\G{00020430-0000-0000-C000-000000000046}#2.0#0#..\..\..\..\..\..\..\Windows\SysWOW64\stdole2.tlb#OLE Automation
-Object=*\AŒvŽZctl.vbp
+Object={16A10515-4811-4195-9646-638EC1F09FF9}#6.0#0; kmath.ocx
 IconForm="Form1"
 Startup="Form1"
+ExeName32="ŒvŽZ2.exe"
+Path32="..\..\bin\Œ÷ˆê“d‘ì"
 Command32=""
 Name="ŒvŽZ2"
 HelpContextID="0"

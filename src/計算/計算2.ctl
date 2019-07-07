@@ -15,55 +15,55 @@ Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = True
 Public Type Rational
-num As Double
-den As Double
-sig As Byte
-pnt As Integer
+    num As Double
+    den As Double
+    sig As Byte
+    pnt As Integer
 End Type
 
 Public Type Complex
-Re As Rational
-Im As Rational
+    Re As Rational
+    Im As Rational
 End Type
 
 '/////Rational/////
 
 Public Function rtarang(number As Rational) As Rational 'ä˘ñÒï™êî
-rtarang = number
-If rtarang.den = 0 Then
-MsgBox "rtarang:ï™ïÍ0Ç≈èúéZ//0Çï‘ÇµÇ‹Ç∑"
-rtarang.num = 0
-rtarang.den = 1
-rtarang.sig = 0
-rtarang.pnt = 0
-Exit Function
-End If
-If rtarang.den < 0 Then rtarang.sig = rtarang.sig + 1: rtarang.den = -rtarang.den
-If rtarang.num < 0 Then rtarang.sig = rtarang.sig + 1: rtarang.num = -rtarang.num
-rtarang.sig = rtarang Mod 2
-xx = rtarang.num / 10
-While xx = Int(xx)
-rtarang.num = xx
-rtarang.pnt = rtarang.pnt + 1
-xx = xx / 10
-Wend
-While (rtarang.num * 10) Mod 10
-rtarang.num = rtarang.num * 10
-rtarang.pnt = rtarang.pnt - 1
-Wend
-xx = rtarang.den / 10
-While xx = Int(xx)
-rtarang.num = rtarang.den / 10
-rtarang.pnt = rtarang.pnt - 1
-xx = xx / 10
-Wend
-While (rtarang.den * 10) Mod 10
-rtarang.pnt = rtarang.pnt + 1
-rtarang.den = rtarang.den * 10
-Wend
-l = LCM(rtarang.num, rtarang.den)
-rtarang.num = rtarang.num / l
-rtarang.den = rtarang.den / l
+    rtarang = number
+    If rtarang.den = 0 Then
+        MsgBox "rtarang:ï™ïÍ0Ç≈èúéZ//0Çï‘ÇµÇ‹Ç∑"
+        rtarang.num = 0
+        rtarang.den = 1
+        rtarang.sig = 0
+        rtarang.pnt = 0
+        Exit Function
+    End If
+    If rtarang.den < 0 Then rtarang.sig = rtarang.sig + 1: rtarang.den = -rtarang.den
+    If rtarang.num < 0 Then rtarang.sig = rtarang.sig + 1: rtarang.num = -rtarang.num
+    rtarang.sig = rtarang.sig Mod 2
+    xx = rtarang.num / 10
+    While xx = Int(xx)
+        rtarang.num = xx
+        rtarang.pnt = rtarang.pnt + 1
+        xx = xx / 10
+    Wend
+    While (rtarang.num * 10) Mod 10
+        rtarang.num = rtarang.num * 10
+        rtarang.pnt = rtarang.pnt - 1
+    Wend
+    xx = rtarang.den / 10
+    While xx = Int(xx)
+        rtarang.num = rtarang.den / 10
+        rtarang.pnt = rtarang.pnt - 1
+        xx = xx / 10
+    Wend
+    While (rtarang.den * 10) Mod 10
+        rtarang.pnt = rtarang.pnt + 1
+        rtarang.den = rtarang.den * 10
+    Wend
+    l = LCM(rtarang.num, rtarang.den)
+    rtarang.num = rtarang.num / l
+    rtarang.den = rtarang.den / l
 End Function
 
 Public Function rtdec(number As Rational) As Double 'rt:dec
@@ -78,32 +78,33 @@ MsgBox "rtdec:µ∞ ﬁ∞Ã€∞//ïÇìÆè¨êîì_e" & number.pnt
 End If
 End Function
 
-Public Function decrt(number As Double) As Rational  'dec:rt
-decrt.num = number
-decrt.den = 1
-decrt = rtarang(decrt)
+Public Function decrt(ByVal number As Double) As Rational  'dec:rt
+    decrt.num = number
+    decrt.den = 1
+    decrt = rtarang(decrt)
 End Function
 
-Public Function rtgen(num As Double, den As Double) As Rational 'dec / dec:rt
-rtgen.num = num
-rtgen.den = den
-rtgen = rtarang(rtgen)
+Public Function rtgen(ByVal num As Double, ByVal den As Double) As Rational 'dec / dec:rt
+    rtgen.num = num
+    rtgen.den = den
+    rtgen = rtarang(rtgen)
 End Function
 
 Public Function rtstring(number As Rational) 'rt:"dec / dec"
-If number.num = 0 Then rtstring = "0": Exit Function '//
-If sig Then rtstring = "-"
-a = number.num
-b = number.den
-If number.pnt < 0 Then b = b & stringprod("0", -pnt)
-ElseIf number.pnt > 0 Then
-a = a & stringprod("0", pnt)
-End If
-If b = "1" Then
-rtstring = rtstring & a
-Else
-rtstring = rtstring & a & "/" & b
-End If
+    If number.num = 0 Then rtstring = "0": Exit Function '//
+    If sig Then rtstring = "-"
+    a = number.num
+    b = number.den
+    If number.pnt < 0 Then
+        b = b & stringprod("0", -number.pnt)
+    ElseIf number.pnt > 0 Then
+        a = a & stringprod("0", number.pnt)
+    End If
+    If b = "1" Then
+        rtstring = rtstring & a
+    Else
+        rtstring = rtstring & a & "/" & b
+    End If
 End Function
 
 Public Function rtsum(num1 As Rational, num2 As Rational) As Rational 'rt + rt
@@ -173,143 +174,147 @@ rtabs.sig = 0
 End Function
 
 Public Function rtlog(number As Rational) As Rational 'log
-Dim a As Rational, num0 As Rational
-u = (number.num - number.den) / (number.num + number.den)
-uu = u * u
-a = decrt(0)
-n = 1
-num0 = decrt(2.30258509299405 * number.pnt)
-Do
-num0 = rtsum(num0, a)
-a = rtgen(u, n)
-n = n + 2
-u = u * uu
-Loop While rtdec(a)
-rtlog = num0
+    Dim a As Rational, num0 As Rational
+    u = (number.num - number.den) / (number.num + number.den)
+    uu = u * u
+    a = decrt(0)
+    n = 1
+    num0 = decrt(2.30258509299405 * number.pnt)
+    Do
+        num0 = rtsum(num0, a)
+        a = rtgen(u, n)
+        n = n + 2
+        u = u * uu
+    Loop While rtdec(a)
+    rtlog = num0
 End Function
 
 Public Function rtexp(number As Rational) As Rational 'exp
-If number.sig = 1 Then
-n = 0: x1 = 1: x2 = 1
-Do
-rtexp = rtplus(rtexp, rtgen(x1, x2))
-n = n + 1
-x1 = x1 * number.num
-x2 = x2 * number.den * n
-While x1 / x2
-rtexp = rtconv(rtbeki(rtexp, decrt(10 ^ number.ptn)))
-Else
-n = 0: x1 = 1: x2 = 1
-Do
-rtexp = rtplus(rtexp, rtgen(x1, x2))
-n = n + 1
-x1 = x1 * number.num
-x2 = x2 * number.den * n
-While x1 / x2
-rtexp = rtbeki(rtexp, decrt(10 ^ number.ptn))
-End If
+    If number.sig = 1 Then
+        n = 0: x1 = 1: x2 = 1
+        Do
+            rtexp = rtsum(rtexp, rtgen(x1, x2))
+            n = n + 1
+            x1 = x1 * number.num
+            x2 = x2 * number.den * n
+        Loop While x1 / x2
+        rtexp = rtconv(rtbeki(rtexp, decrt(10 ^ number.pnt)))
+    Else
+        n = 0: x1 = 1: x2 = 1
+        Do
+            rtexp = rtsum(rtexp, rtgen(x1, x2))
+            n = n + 1
+            x1 = x1 * number.num
+            x2 = x2 * number.den * n
+        Loop While x1 / x2
+        rtexp = rtbeki(rtexp, decrt(10 ^ number.pnt))
+    End If
 End Function
 
 Public Function rtatn(number0 As Rational) As Rational 'atn
-Dim number As Rational: number = number0
-a = 0
-Do While Abs(rtdec(number)) > 0.414213562373095
-number = rtquot(rtdiff(decrt(1), number), rtsum(decrt(1), number))
-a = a + 1
-Loop
-rtatn = decrt(0.785398163397448 * a)
-a0 = a Mod 2
-a = 1: b = decrt(0): nn = number: nn0 = rtprod(number, number)
-Do
-rtatn = rtsum(rtatn, b)
-nn = rtprod(nn, nn0)
-a = a + 2
-b = rtquot(nn, decrt(a))
-If a Mod 4 = 3 Then b.sig = (b.sig + 1 + a0) Mod 2 Else b.sig = (b.sig + a0) Mod 2
-Loop
+    Dim number As Rational: number = number0
+    Dim b As Rational
+    Dim nn As Rational
+    Dim nn0 As Rational
+    
+    a = 0
+    Do While Abs(rtdec(number)) > 0.414213562373095
+        number = rtquot(rtdiff(decrt(1), number), rtsum(decrt(1), number))
+        a = a + 1
+    Loop
+    rtatn = decrt(0.785398163397448 * a)
+    a0 = a Mod 2
+    a = 1: b = decrt(0): nn = number: nn0 = rtprod(number, number)
+    Do
+        rtatn = rtsum(rtatn, b)
+        nn = rtprod(nn, nn0)
+        a = a + 2
+        b = rtquot(nn, decrt(a))
+        If a Mod 4 = 3 Then b.sig = (b.sig + 1 + a0) Mod 2 Else b.sig = (b.sig + a0) Mod 2
+    Loop
 End Function
 
 Public Function rttan(number As Rational) As Rational 'tan
-num0 = number.num / number.den * 10 ^ number.pnt
-If number.sig Then num0 = -num0
-rttan = decrt(Tan(num0))
+    num0 = number.num / number.den * 10 ^ number.pnt
+    If number.sig Then num0 = -num0
+    rttan = decrt(Tan(num0))
 End Function
 
 Public Function rtsin(number As Rational) As Rational 'sin
-num0 = number.num / number.den * 10 ^ number.pnt
-If number.sig Then num0 = -num0
-rtsin = decrt(Sin(num0))
+    num0 = number.num / number.den * 10 ^ number.pnt
+    If number.sig Then num0 = -num0
+    rtsin = decrt(Sin(num0))
 End Function
 
 Public Function rtcos(number As Rational) As Rational 'cos
-num0 = number.num / number.den * 10 ^ number.pnt
-If number.sig Then num0 = -num0
-rtcos = decrt(Cos(num0))
+    num0 = number.num / number.den * 10 ^ number.pnt
+    If number.sig Then num0 = -num0
+    rtcos = decrt(Cos(num0))
 End Function
 
 '/////Complex/////
 
 Public Function cxgen(Re As Rational, Im As Rational) As Complex 'rt + rt i:cx
-cxgen.Re = Re
-cxgen.Im = Im
+    cxgen.Re = Re
+    cxgen.Im = Im
 End Function
 
 Public Function rtcx(number As Rational) As Complex 'rt:cx
-cxgen.Re = number
-cxgen.Im = decrt(0)
+    rtcx.Re = number
+    rtcx.Im = decrt(0)
 End Function
 
 Public Function cxdecgen(Re As Double, Im As Double) As Complex 'dec + dec i:cx
-cxdecgen.Re = decrt(Re)
-cxdecgen.Im = decrt(Im)
+    cxdecgen.Re = decrt(Re)
+    cxdecgen.Im = decrt(Im)
 End Function
 
 Public Function deccx(number As Double) As Complex 'dec:cx
-cxgen.Re = decrt(number)
-cxgen.Im = decrt(0)
+    deccx.Re = decrt(number)
+    deccx.Im = decrt(0)
 End Function
 
 Public Function cxstring(number As Complex) 'cx:"dec / dec + dec / dec i"
-cxstring = rtstring(number.Re) & "+" & rtstring(number.Im) & "i"
+    cxstring = rtstring(number.Re) & "+" & rtstring(number.Im) & "i"
 End Function
 
 Public Function cxconj(number As Complex) As Complex 'cx*
-cxconj = number
-cxconj.Im.sig = (cxconj.Im.sig + 1) Mod 2
+    cxconj = number
+    cxconj.Im.sig = (cxconj.Im.sig + 1) Mod 2
 End Function
 
 Public Function cxconv(number As Complex) As Complex '1 / cx
-Dim r2 As Rational
-r2 = rtsum(rtprod(number.Re, number.Re), rtprod(number.Im, number, Im))
-cxconv.Re = rtquot(number.Re, r2)
-cxconv.Im = rtquot(rtprod(decrt(-1), number).Im, r2)
+    Dim r2 As Rational
+    r2 = rtsum(rtprod(number.Re, number.Re), rtprod(number.Im, number.Im))
+    cxconv.Re = rtquot(number.Re, r2)
+    cxconv.Im = rtquot(rtprod(decrt(-1), number.Im), r2)
 End Function
 
 Public Function cxsum(num1 As Complex, num2 As Complex) As Complex 'cx + cx
-cxsum.Re = rtsum(num1.Re, num2.Re)
-cxsum.Im = rtsum(num1.Im, num2.Im)
+    cxsum.Re = rtsum(num1.Re, num2.Re)
+    cxsum.Im = rtsum(num1.Im, num2.Im)
 End Function
 
 Public Function cxdiff(num1 As Complex, num2 As Complex) As Complex 'cx - cx
-cxdiff.Re = rtdiff(num1.Re, num2.Re)
-cxdiff.Im = rtdiff(num1.Im, num2.Im)
+    cxdiff.Re = rtdiff(num1.Re, num2.Re)
+    cxdiff.Im = rtdiff(num1.Im, num2.Im)
 End Function
 
 Public Function cxprod(num1 As Complex, num2 As Complex) As Complex 'cx * cx
-cxprod.Re = rtdiff(rtprod(num1.Re, num2.Re), rtprod(num1.Im, num2.Im))
-cxprod.Im = rtsum(rtprod(num1.Re, num2.Im), rtprod(num1.Im, num2.Re))
+    cxprod.Re = rtdiff(rtprod(num1.Re, num2.Re), rtprod(num1.Im, num2.Im))
+    cxprod.Im = rtsum(rtprod(num1.Re, num2.Im), rtprod(num1.Im, num2.Re))
 End Function
 
 Public Function cxquot(num1 As Complex, num2 As Complex) As Complex ' cx / cx
-Dim r2 As Rational
-r2 = rtsum(rtprod(num2.Re, num2.Re), rtprod(num2.Im, num2.Im))
-cxquot.Re = rtquot(rtsum(rtprod(num1.Re, num2.Re), rtprod(num1.Im, num2.Im)), r2)
-cxquot.Im = rtquot(rtdiff(rtprod(num1.Im, num2.Re), rtprod(num1.Re, num2.Im)), r2)
+    Dim r2 As Rational
+    r2 = rtsum(rtprod(num2.Re, num2.Re), rtprod(num2.Im, num2.Im))
+    cxquot.Re = rtquot(rtsum(rtprod(num1.Re, num2.Re), rtprod(num1.Im, num2.Im)), r2)
+    cxquot.Im = rtquot(rtdiff(rtprod(num1.Im, num2.Re), rtprod(num1.Re, num2.Im)), r2)
 End Function
 
 Public Function arg(number As Complex) As Complex 'arg
-arg.Re = decrt(Atn(rtdec(number.Im) / rtdec(number.Re)))
-arg.Im = 0
+    arg.Re = decrt(Atn(rtdec(number.Im) / rtdec(number.Re)))
+    arg.Im = decrt(0)
 End Function
 
 Public Function cxbeki(num As Complex, exp As Complex) As Complex
@@ -317,53 +322,53 @@ Public Function cxbeki(num As Complex, exp As Complex) As Complex
 End Function
 
 Public Function cxsin(number As Complex) As Complex 'sin
-cxsin = cxdecgen(Sin(rtdec(number.Re)) * cosh(rtdec(number.Im)), Cos(rtdec(number.Re)) * sinh(rtdec(number.Im)))
+    cxsin = cxdecgen(Sin(rtdec(number.Re)) * cosh(rtdec(number.Im)), Cos(rtdec(number.Re)) * sinh(rtdec(number.Im)))
 End Function
 
 Public Function cxcos(number As Complex) As Complex 'cos
-cxcos = cxdecgen(Sin(rtdec(number.Re)) * cosh(rtdec(number.Im)), Cos(rtdec(number.Re)) * sinh(rtdec(number.Im)))
+    cxcos = cxdecgen(Sin(rtdec(number.Re)) * cosh(rtdec(number.Im)), Cos(rtdec(number.Re)) * sinh(rtdec(number.Im)))
 End Function
 
 Public Function cxtan(number As Complex) As Complex 'tan
-cxtan = cxdecgen(Sin(2 * rtdec(number.Re)), sinh(2 * rtdec(number.Im)))
-cxtan = cxquot(cxtan, deccx(Cos(2 * rtdec(number.Re)) + cosh(2 * rtdec(number.Im))))
+    cxtan = cxdecgen(Sin(2 * rtdec(number.Re)), sinh(2 * rtdec(number.Im)))
+    cxtan = cxquot(cxtan, deccx(Cos(2 * rtdec(number.Re)) + cosh(2 * rtdec(number.Im))))
 End Function
 
 Public Function cxsinh(number As Complex) As Complex 'sinh
-cxsinh = cxdecgen(sinh(rtdec(number.Re)) * Cos(rtdec(number.Im)), cosh(rtdec(number.Re)) * Sin(rtdec(number.Im)))
+    cxsinh = cxdecgen(sinh(rtdec(number.Re)) * Cos(rtdec(number.Im)), cosh(rtdec(number.Re)) * Sin(rtdec(number.Im)))
 End Function
 
 Public Function cxcosh(number As Complex) As Complex 'cosh
-cxcosh = cxdecgen(cosh(rtdec(number.Re)) * Cos(rtdec(number.Im)), sinh(rtdec(number.Re)) * Sin(rtdec(number.Im)))
+    cxcosh = cxdecgen(cosh(rtdec(number.Re)) * Cos(rtdec(number.Im)), sinh(rtdec(number.Re)) * Sin(rtdec(number.Im)))
 End Function
 
 Public Function cxtanh(number As Complex) As Complex 'tanh
-cxtanh = cxdecgen(sinh(2 * rtdec(number.Re)), Sin(2 * rtdec(number.Im)))
-cxtanh = cxquot(cxtanh, deccx(cosh(2 * rtdec(number.Re)) + Cos(2 * rtdec(number.Im))))
+    cxtanh = cxdecgen(sinh(2 * rtdec(number.Re)), Sin(2 * rtdec(number.Im)))
+    cxtanh = cxquot(cxtanh, deccx(cosh(2 * rtdec(number.Re)) + Cos(2 * rtdec(number.Im))))
 End Function
 
 Public Function cxcot(number As Complex) As Complex 'cot
-cxcot = cxconv(cxtan(number))
+    cxcot = cxconv(cxtan(number))
 End Function
 
 Public Function cxsec(number As Complex) As Complex 'sec
-cxsec = cxconv(cxcos(number))
+    cxsec = cxconv(cxcos(number))
 End Function
 
 Public Function cxcosec(number As Complex) As Complex 'cosec
-cxcosec = cxconv(cxsin(number))
+    cxcosec = cxconv(cxsin(number))
 End Function
 
 Public Function cxcoth(number As Complex) As Complex 'coth
-cxcoth = cxconv(cxtanh(number))
+    cxcoth = cxconv(cxtanh(number))
 End Function
 
 Public Function cxsech(number As Complex) As Complex 'sech
-cxsech = cxconv(cxcosh(number))
+    cxsech = cxconv(cxcosh(number))
 End Function
 
 Public Function cxcosech(number As Complex) As Complex 'cosech
-cxcosech = cxconv(cxsinh(number))
+    cxcosech = cxconv(cxsinh(number))
 End Function
 
 '/////Ex/////
