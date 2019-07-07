@@ -1,8 +1,8 @@
 VERSION 5.00
-Object = "{0D452EE1-E08F-101A-852E-02608C4D0BB4}#2.0#0"; "FM20.DLL"
+Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomct2.ocx"
 Begin VB.Form Form1 
    BackColor       =   &H00000000&
-   BorderStyle     =   3  '固定ﾀﾞｲｱﾛｸﾞ
+   BorderStyle     =   3  'Fixed Dialog
    Caption         =   "重力"
    ClientHeight    =   8850
    ClientLeft      =   45
@@ -111,19 +111,35 @@ Begin VB.Form Form1
       Top             =   6840
       Width           =   1575
    End
-   Begin MSForms.SpinButton SpinButton2 
+   Begin MSComCtl2.UpDown SpinButton2 
       Height          =   255
       Left            =   4320
       TabIndex        =   11
-      Top             =   8280
+      Top             =   8400
       Width           =   255
-      Size            =   "450;450"
-      Min             =   1
+      _ExtentX        =   450
+      _ExtentY        =   450
+      _Version        =   393216
+      Value           =   1
       Max             =   50
-      Position        =   1
+      Min             =   1
+      Enabled         =   -1  'True
+   End
+   Begin MSComCtl2.UpDown SpinButton1 
+      Height          =   255
+      Left            =   4320
+      TabIndex        =   7
+      Top             =   8040
+      Width           =   255
+      _ExtentX        =   450
+      _ExtentY        =   450
+      _Version        =   393216
+      Value           =   3
+      Max             =   20
+      Enabled         =   -1  'True
    End
    Begin VB.Label Label2 
-      Alignment       =   1  '右揃え
+      Alignment       =   1  'Right Justify
       BackColor       =   &H00000000&
       Caption         =   "表示回数1/1"
       BeginProperty Font 
@@ -143,7 +159,7 @@ Begin VB.Form Form1
       Width           =   1095
    End
    Begin VB.Label Label1 
-      Alignment       =   1  '右揃え
+      Alignment       =   1  'Right Justify
       BackColor       =   &H00000000&
       Caption         =   "速度 3"
       BeginProperty Font 
@@ -162,16 +178,6 @@ Begin VB.Form Form1
       Top             =   8040
       Width           =   855
    End
-   Begin MSForms.SpinButton SpinButton1 
-      Height          =   255
-      Left            =   4320
-      TabIndex        =   7
-      Top             =   8040
-      Width           =   255
-      Size            =   "450;450"
-      Max             =   20
-      Position        =   3
-   End
 End
 Attribute VB_Name = "Form1"
 Attribute VB_GlobalNameSpace = False
@@ -180,152 +186,153 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Dim xx(1, 80) As Double, yy(1, 80) As Double, zz(1, 80) As Double
 Dim ox As Integer, oy As Integer
+
 Public Sub drawpoint(x As Double, y As Double, z As Double)
-X1 = (x - y) * Sqr(3) / 2 + ox
-Y1 = z - (x + y) / 2 + oy
-PSet (X1, Y1), Form1.ForeColor
+    X1 = (x - y) * Sqr(3) / 2 + ox
+    Y1 = z - (x + y) / 2 + oy
+    PSet (X1, Y1), Form1.ForeColor
 End Sub
 
 Private Sub Command1_Click()
-For a1 = 0 To 8
-For a2 = 0 To 8
-xx(0, a1 * 9 + a2) = a2 * 100
-yy(0, a1 * 9 + a2) = 2000
-zz(0, a1 * 9 + a2) = a1 * 100
-xx(1, a1 * 9 + a2) = 0
-yy(1, a1 * 9 + a2) = -SpinButton1.Value
-zz(1, a1 * 9 + a2) = 0
-Next a2
-Next a1
-Timer1.Interval = 1
+    For a1 = 0 To 8
+        For a2 = 0 To 8
+            xx(0, a1 * 9 + a2) = a2 * 100
+            yy(0, a1 * 9 + a2) = 2000
+            zz(0, a1 * 9 + a2) = a1 * 100
+            xx(1, a1 * 9 + a2) = 0
+            yy(1, a1 * 9 + a2) = -SpinButton1.Value
+            zz(1, a1 * 9 + a2) = 0
+        Next a2
+    Next a1
+    Timer1.Interval = 1
 End Sub
 
 Private Sub Command2_Click()
-Cls
+    Cls
 End Sub
 
 Private Sub Command3_Click()
-a1 = 300 '球の大きさ
-a2 = 15 '刻み値
-For a = 0 To 90 Step a2
-z = a1 * Sin(a / 180 * 3.14159265)
-c = a1 * Cos(a / 180 * 3.14159265)
-For b = 0 To 90 Step a2
-x = c * Cos(b / 180 * 3.14159265)
-y = c * Sin(b / 180 * 3.14159265)
-Call drawpoint(x * 1, y * 1, z * 1)
-Call drawpoint(x * 1, y * 1, z * -1)
-Call drawpoint(x * 1, y * -1, z * 1)
-Call drawpoint(x * 1, y * -1, z * -1)
-Call drawpoint(x * -1, y * 1, z * 1)
-Call drawpoint(x * -1, y * 1, z * -1)
-Call drawpoint(x * -1, y * -1, z * 1)
-Call drawpoint(x * -1, y * -1, z * -1)
-Next b
-Next a
+    a1 = 300 '球の大きさ
+    a2 = 15 '刻み値
+    For a = 0 To 90 Step a2
+        z = a1 * Sin(a / 180 * 3.14159265)
+        c = a1 * Cos(a / 180 * 3.14159265)
+        For b = 0 To 90 Step a2
+            x = c * Cos(b / 180 * 3.14159265)
+            y = c * Sin(b / 180 * 3.14159265)
+            Call drawpoint(x * 1, y * 1, z * 1)
+            Call drawpoint(x * 1, y * 1, z * -1)
+            Call drawpoint(x * 1, y * -1, z * 1)
+            Call drawpoint(x * 1, y * -1, z * -1)
+            Call drawpoint(x * -1, y * 1, z * 1)
+            Call drawpoint(x * -1, y * 1, z * -1)
+            Call drawpoint(x * -1, y * -1, z * 1)
+            Call drawpoint(x * -1, y * -1, z * -1)
+        Next b
+    Next a
 End Sub
 
 Private Sub Command4_Click()
-Timer1.Interval = 0
+    Timer1.Interval = 0
 End Sub
 
 Private Sub Command5_Click()
-For a1 = 0 To 80
-xx(0, a1) = -1000
-yy(0, a1) = 1000
-zz(0, a1) = a1 * 30 + 500
-xx(1, a1) = SpinButton1.Value
-yy(1, a1) = -SpinButton1.Value
-zz(1, a1) = 0
-Next a1
-Timer1.Interval = 1
+    For a1 = 0 To 80
+        xx(0, a1) = -1000
+        yy(0, a1) = 1000
+        zz(0, a1) = a1 * 30 + 500
+        xx(1, a1) = SpinButton1.Value
+        yy(1, a1) = -SpinButton1.Value
+        zz(1, a1) = 0
+    Next a1
+    Timer1.Interval = 1
 End Sub
 
 Private Sub Command6_Click()
-For a1 = 0 To 80
-xx(0, a1) = 0
-yy(0, a1) = 0
-zz(0, a1) = a1 * 30 + 500
-xx(1, a1) = SpinButton1.Value
-yy(1, a1) = -SpinButton1.Value
-zz(1, a1) = 0
-Next a1
-Timer1.Interval = 1
+    For a1 = 0 To 80
+        xx(0, a1) = 0
+        yy(0, a1) = 0
+        zz(0, a1) = a1 * 30 + 500
+        xx(1, a1) = SpinButton1.Value
+        yy(1, a1) = -SpinButton1.Value
+        zz(1, a1) = 0
+    Next a1
+    Timer1.Interval = 1
 End Sub
 
 Private Sub Command7_Click()
-xx(0, a1) = 200
-yy(0, a1) = 200
-zz(0, a1) = 2800
-xx(1, a1) = 2
-yy(1, a1) = -2
-zz(1, a1) = 0
-Timer1.Interval = 1
+    xx(0, a1) = 200
+    yy(0, a1) = 200
+    zz(0, a1) = 2800
+    xx(1, a1) = 2
+    yy(1, a1) = -2
+    zz(1, a1) = 0
+    Timer1.Interval = 1
 End Sub
 
 Private Sub Command8_Click()
-Timer1.Interval = 1
+    Timer1.Interval = 1
 End Sub
 
 Private Sub Form_Load()
-Form2.Show
-ox = 7200
-oy = 4800
+    Form2.Show
+    ox = 7200
+    oy = 4800
 End Sub
 
 Private Sub Form_Unload(Cancel As Integer)
-End
+    End
 End Sub
 
 Private Sub SpinButton1_Change()
-Label1.Caption = "速度 " & SpinButton1.Value
+    Label1.Caption = "速度 " & SpinButton1.Value
 End Sub
 
 Private Sub SpinButton2_Change()
-Label2.Caption = "表示回数1/" & SpinButton2.Value
+    Label2.Caption = "表示回数1/" & SpinButton2.Value
 End Sub
 
 Private Sub Timer1_Timer()
-b2 = Form2.ScaleHeight
-For b1 = 1 To SpinButton2.Value
-Form2.Cls
-For a1 = 0 To 80
-a2 = Sqr(xx(0, a1) ^ 2 + yy(0, a1) ^ 2 + zz(0, a1) ^ 2) 'distance
-a3 = Sqr(xx(1, a1) ^ 2 + yy(1, a1) ^ 2 + zz(1, a1) ^ 2) '速さ
-Form2.Line (a1 * 15, b2)-(a1 * 15, b2 - a3 * 75)
-If a2 <= 300 Then
-ForeColor = RGB(255, 0, 0)
-Call drawcircle(xx(0, a1), yy(0, a1), zz(0, a1))
-ForeColor = RGB(255, 255, 255)
-xx(0, a1) = 0
-yy(0, a1) = 0
-zz(0, a1) = 0
-xx(1, a1) = 0
-yy(1, a1) = 0
-zz(1, a1) = 0
-End If
-On Error GoTo Err
-If a2 <> 0 Then
-a3 = 1 / a2 ^ 2.1 / a2 * 100000 '距離に対する速度変化量の割合
-xx(1, a1) = xx(1, a1) - xx(0, a1) * a3
-yy(1, a1) = yy(1, a1) - yy(0, a1) * a3
-zz(1, a1) = zz(1, a1) - zz(0, a1) * a3
-End If
+    b2 = Form2.ScaleHeight
+    For b1 = 1 To SpinButton2.Value
+        Form2.Cls
+        For a1 = 0 To 80
+            a2 = Sqr(xx(0, a1) ^ 2 + yy(0, a1) ^ 2 + zz(0, a1) ^ 2) 'distance
+            a3 = Sqr(xx(1, a1) ^ 2 + yy(1, a1) ^ 2 + zz(1, a1) ^ 2) '速さ
+            Form2.Line (a1 * 15, b2)-(a1 * 15, b2 - a3 * 75)
+            If a2 <= 300 Then
+                ForeColor = RGB(255, 0, 0)
+                Call drawcircle(xx(0, a1), yy(0, a1), zz(0, a1))
+                ForeColor = RGB(255, 255, 255)
+                xx(0, a1) = 0
+                yy(0, a1) = 0
+                zz(0, a1) = 0
+                xx(1, a1) = 0
+                yy(1, a1) = 0
+                zz(1, a1) = 0
+            End If
+            On Error GoTo Err
+            If a2 <> 0 Then
+                a3 = 1 / a2 ^ 2.1 / a2 * 100000 '距離に対する速度変化量の割合
+                xx(1, a1) = xx(1, a1) - xx(0, a1) * a3
+                yy(1, a1) = yy(1, a1) - yy(0, a1) * a3
+                zz(1, a1) = zz(1, a1) - zz(0, a1) * a3
+            End If
 Err:
-xx(0, a1) = xx(0, a1) + xx(1, a1)
-yy(0, a1) = yy(0, a1) + yy(1, a1)
-zz(0, a1) = zz(0, a1) + zz(1, a1)
-Next a1
-Next b1
-If Check1.Value = 0 Then Cls
-For a1 = 0 To 80
-Call drawpoint(xx(0, a1), yy(0, a1), zz(0, a1))
-Next a1
-Call Command3_Click
+            xx(0, a1) = xx(0, a1) + xx(1, a1)
+            yy(0, a1) = yy(0, a1) + yy(1, a1)
+            zz(0, a1) = zz(0, a1) + zz(1, a1)
+        Next a1
+    Next b1
+    If Check1.Value = 0 Then Cls
+    For a1 = 0 To 80
+        Call drawpoint(xx(0, a1), yy(0, a1), zz(0, a1))
+    Next a1
+    Call Command3_Click
 End Sub
 
 Public Sub drawcircle(x As Double, y As Double, z As Double)
-X1 = (x - y) * Sqr(3) / 2 + ox
-Y1 = z - (x + y) / 2 + oy
-Circle (X1, Y1), 150, Form1.ForeColor
+    X1 = (x - y) * Sqr(3) / 2 + ox
+    Y1 = z - (x + y) / 2 + oy
+    Circle (X1, Y1), 150, Form1.ForeColor
 End Sub
