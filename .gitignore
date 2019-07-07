@@ -1,0 +1,9 @@
+# gitignore
+
+*.suo
+*.user
+bin
+obj
+_UpgradeReport*
+
+*.exe
