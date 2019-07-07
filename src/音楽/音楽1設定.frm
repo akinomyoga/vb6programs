@@ -1,12 +1,21 @@
 VERSION 5.00
-Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
+Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TabCtl32.Ocx"
 Begin VB.Form Form3 
-   BorderStyle     =   4  'å≈íË¬∞Ÿ ≥®›ƒﬁ≥
+   BorderStyle     =   4  'Fixed ToolWindow
    Caption         =   "Ç±ÇÃã»ÇÃê›íË"
    ClientHeight    =   2535
    ClientLeft      =   4815
    ClientTop       =   1845
    ClientWidth     =   2610
+   BeginProperty Font 
+      Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+      Size            =   8.25
+      Charset         =   128
+      Weight          =   400
+      Underline       =   0   'False
+      Italic          =   0   'False
+      Strikethrough   =   0   'False
+   EndProperty
    LinkTopic       =   "Form3"
    MaxButton       =   0   'False
    MinButton       =   0   'False
@@ -16,6 +25,15 @@ Begin VB.Form Form3
    Begin VB.CommandButton Command3 
       Cancel          =   -1  'True
       Caption         =   "∑¨›æŸ"
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   1800
       TabIndex        =   6
@@ -24,6 +42,15 @@ Begin VB.Form Form3
    End
    Begin VB.CommandButton Command2 
       Caption         =   "ìKóp"
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   960
       TabIndex        =   5
@@ -32,6 +59,15 @@ Begin VB.Form Form3
    End
    Begin VB.CommandButton Command1 
       Caption         =   "OK"
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   0
       TabIndex        =   4
@@ -74,12 +110,21 @@ Begin VB.Form Form3
       TabCaption(2)   =   "ã»èÓïÒ"
       TabPicture(2)   =   "âπäy1ê›íË.frx":0224
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "Text2"
-      Tab(2).Control(1)=   "Text1"
-      Tab(2).Control(2)=   "Label2"
-      Tab(2).Control(3)=   "Label1"
+      Tab(2).Control(0)=   "Label1"
+      Tab(2).Control(1)=   "Label2"
+      Tab(2).Control(2)=   "Text1"
+      Tab(2).Control(3)=   "Text2"
       Tab(2).ControlCount=   4
       Begin VB.ComboBox Combo1 
+         BeginProperty Font 
+            Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+            Size            =   8.25
+            Charset         =   128
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   300
          ItemData        =   "âπäy1ê›íË.frx":0240
          Left            =   -73920
@@ -90,6 +135,15 @@ Begin VB.Form Form3
          Width           =   1335
       End
       Begin VB.TextBox Text2 
+         BeginProperty Font 
+            Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+            Size            =   8.25
+            Charset         =   128
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   270
          Left            =   -74400
          TabIndex        =   11
@@ -97,6 +151,15 @@ Begin VB.Form Form3
          Width           =   1815
       End
       Begin VB.TextBox Text1 
+         BeginProperty Font 
+            Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+            Size            =   8.25
+            Charset         =   128
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   270
          Left            =   -74400
          TabIndex        =   9
@@ -105,6 +168,15 @@ Begin VB.Form Form3
       End
       Begin VB.CheckBox Check1 
          Caption         =   "éOòAïÑÇégÇ§"
+         BeginProperty Font 
+            Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+            Size            =   8.25
+            Charset         =   128
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Left            =   240
          TabIndex        =   3
@@ -113,6 +185,15 @@ Begin VB.Form Form3
       End
       Begin VB.Frame Frame1 
          Caption         =   "ç≈è¨âπïÑ(àÍè°ÇÃí∑Ç≥)"
+         BeginProperty Font 
+            Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+            Size            =   8.25
+            Charset         =   128
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   1095
          Left            =   120
          TabIndex        =   1
@@ -120,6 +201,15 @@ Begin VB.Form Form3
          Width           =   1935
          Begin VB.OptionButton Option1 
             Caption         =   "è\òZï™"
+            BeginProperty Font 
+               Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+               Size            =   8.25
+               Charset         =   128
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   180
             Index           =   2
             Left            =   240
@@ -130,6 +220,15 @@ Begin VB.Form Form3
          End
          Begin VB.OptionButton Option1 
             Caption         =   "î™ï™"
+            BeginProperty Font 
+               Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+               Size            =   8.25
+               Charset         =   128
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   180
             Index           =   1
             Left            =   240
@@ -139,6 +238,15 @@ Begin VB.Form Form3
          End
          Begin VB.OptionButton Option1 
             Caption         =   "élï™"
+            BeginProperty Font 
+               Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+               Size            =   8.25
+               Charset         =   128
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   180
             Index           =   0
             Left            =   240
@@ -149,6 +257,15 @@ Begin VB.Form Form3
       End
       Begin VB.Label Label2 
          Caption         =   "çÏé“"
+         BeginProperty Font 
+            Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+            Size            =   8.25
+            Charset         =   128
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Left            =   -74880
          TabIndex        =   12
@@ -157,6 +274,15 @@ Begin VB.Form Form3
       End
       Begin VB.Label Label1 
          Caption         =   "ã»ñº"
+         BeginProperty Font 
+            Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+            Size            =   8.25
+            Charset         =   128
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Left            =   -74880
          TabIndex        =   10

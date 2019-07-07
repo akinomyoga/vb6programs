@@ -1,20 +1,29 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "mscomctl.OCX"
 Begin VB.Form Form2 
-   BorderStyle     =   3  'å≈íË¿ﬁ≤±€∏ﬁ
+   BorderStyle     =   3  'Fixed Dialog
    Caption         =   "âπäyÇP"
    ClientHeight    =   3315
    ClientLeft      =   45
    ClientTop       =   330
    ClientWidth     =   4275
    Enabled         =   0   'False
+   BeginProperty Font 
+      Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+      Size            =   8.25
+      Charset         =   128
+      Weight          =   400
+      Underline       =   0   'False
+      Italic          =   0   'False
+      Strikethrough   =   0   'False
+   EndProperty
    LinkTopic       =   "Form2"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   3315
    ScaleWidth      =   4275
    ShowInTaskbar   =   0   'False
-   StartUpPosition =   3  'Windows ÇÃä˘íËíl
+   StartUpPosition =   3  'Windows Default
    Begin MSComctlLib.ProgressBar ProgressBar1 
       Height          =   180
       Left            =   120
@@ -85,6 +94,15 @@ Begin VB.Form Form2
    End
    Begin VB.Label Label4 
       Caption         =   "âπÇÃì«çû"
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Left            =   0
       TabIndex        =   6
@@ -112,6 +130,15 @@ Begin VB.Form Form2
    End
    Begin VB.Label Label3 
       Caption         =   "Å¶ã÷â¸ïœ"
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       ForeColor       =   &H000000FF&
       Height          =   255
       Left            =   0
@@ -121,6 +148,15 @@ Begin VB.Form Form2
    End
    Begin VB.Label Label2 
       Caption         =   "Copy RightÅFë∫ê£"
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Left            =   2880
       TabIndex        =   1
