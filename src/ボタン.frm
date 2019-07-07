@@ -6,11 +6,29 @@ Begin VB.Form Form1
    ClientLeft      =   2700
    ClientTop       =   1230
    ClientWidth     =   9810
+   BeginProperty Font 
+      Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+      Size            =   8.25
+      Charset         =   128
+      Weight          =   400
+      Underline       =   0   'False
+      Italic          =   0   'False
+      Strikethrough   =   0   'False
+   EndProperty
    LinkTopic       =   "Form1"
    ScaleHeight     =   8655
    ScaleWidth      =   9810
    Begin VB.CommandButton Command5 
       Caption         =   "Command5"
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   7320
       TabIndex        =   6
@@ -19,6 +37,15 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command4 
       Caption         =   "form2.show"
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Left            =   6240
       TabIndex        =   5
@@ -27,6 +54,15 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command3 
       Caption         =   "ëSêFï\é¶"
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Left            =   2520
       TabIndex        =   4
@@ -35,6 +71,15 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command2 
       Caption         =   "êFï\é¶ 255;1"
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Left            =   120
       TabIndex        =   1
@@ -64,6 +109,15 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command1 
       Caption         =   "Command1"
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Left            =   2520
       TabIndex        =   0

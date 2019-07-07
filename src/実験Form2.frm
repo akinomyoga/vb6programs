@@ -5,11 +5,29 @@ Begin VB.Form Form2
    ClientLeft      =   5325
    ClientTop       =   4335
    ClientWidth     =   7875
+   BeginProperty Font 
+      Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+      Size            =   8.25
+      Charset         =   128
+      Weight          =   400
+      Underline       =   0   'False
+      Italic          =   0   'False
+      Strikethrough   =   0   'False
+   EndProperty
    LinkTopic       =   "Form2"
    ScaleHeight     =   3330
    ScaleWidth      =   7875
    Begin VB.CommandButton Command8 
       Caption         =   "åvéZ"
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Left            =   5520
       TabIndex        =   21
@@ -17,7 +35,16 @@ Begin VB.Form Form2
       Width           =   2055
    End
    Begin VB.TextBox Text3 
-      Alignment       =   1  'âEëµÇ¶
+      Alignment       =   1  'Right Justify
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   270
       Index           =   8
       Left            =   6960
@@ -27,7 +54,16 @@ Begin VB.Form Form2
       Width           =   615
    End
    Begin VB.TextBox Text3 
-      Alignment       =   1  'âEëµÇ¶
+      Alignment       =   1  'Right Justify
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   270
       Index           =   7
       Left            =   6240
@@ -37,7 +73,16 @@ Begin VB.Form Form2
       Width           =   615
    End
    Begin VB.TextBox Text3 
-      Alignment       =   1  'âEëµÇ¶
+      Alignment       =   1  'Right Justify
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   270
       Index           =   6
       Left            =   5520
@@ -47,7 +92,16 @@ Begin VB.Form Form2
       Width           =   615
    End
    Begin VB.TextBox Text3 
-      Alignment       =   1  'âEëµÇ¶
+      Alignment       =   1  'Right Justify
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   270
       Index           =   5
       Left            =   6960
@@ -57,7 +111,16 @@ Begin VB.Form Form2
       Width           =   615
    End
    Begin VB.TextBox Text3 
-      Alignment       =   1  'âEëµÇ¶
+      Alignment       =   1  'Right Justify
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   270
       Index           =   4
       Left            =   6240
@@ -67,7 +130,16 @@ Begin VB.Form Form2
       Width           =   615
    End
    Begin VB.TextBox Text3 
-      Alignment       =   1  'âEëµÇ¶
+      Alignment       =   1  'Right Justify
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   270
       Index           =   3
       Left            =   5520
@@ -77,7 +149,16 @@ Begin VB.Form Form2
       Width           =   615
    End
    Begin VB.TextBox Text3 
-      Alignment       =   1  'âEëµÇ¶
+      Alignment       =   1  'Right Justify
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   270
       Index           =   2
       Left            =   6960
@@ -87,7 +168,16 @@ Begin VB.Form Form2
       Width           =   615
    End
    Begin VB.TextBox Text3 
-      Alignment       =   1  'âEëµÇ¶
+      Alignment       =   1  'Right Justify
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   270
       Index           =   1
       Left            =   6240
@@ -97,7 +187,16 @@ Begin VB.Form Form2
       Width           =   615
    End
    Begin VB.TextBox Text3 
-      Alignment       =   1  'âEëµÇ¶
+      Alignment       =   1  'Right Justify
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   270
       Index           =   0
       Left            =   5505
@@ -108,6 +207,15 @@ Begin VB.Form Form2
    End
    Begin VB.CommandButton Command7 
       Caption         =   "a1.txt Ç…ï€ë∂"
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   3960
       TabIndex        =   11
@@ -115,7 +223,7 @@ Begin VB.Form Form2
       Width           =   1335
    End
    Begin VB.TextBox Text2 
-      BorderStyle     =   0  'Ç»Çµ
+      BorderStyle     =   0  'None
       BeginProperty Font 
          Name            =   "ÇlÇr Çoñæí©"
          Size            =   8.25
@@ -133,7 +241,7 @@ Begin VB.Form Form2
       Width           =   1095
    End
    Begin VB.TextBox Text1 
-      BorderStyle     =   0  'Ç»Çµ
+      BorderStyle     =   0  'None
       BeginProperty Font 
          Name            =   "Small Fonts"
          Size            =   6
@@ -152,6 +260,15 @@ Begin VB.Form Form2
    End
    Begin VB.CommandButton Command5 
       Caption         =   "a.     Å@Å@Çï€ë∂"
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   3960
       TabIndex        =   7
@@ -160,6 +277,15 @@ Begin VB.Form Form2
    End
    Begin VB.CommandButton Command4 
       Caption         =   "end"
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Left            =   5400
       TabIndex        =   6
@@ -168,6 +294,15 @@ Begin VB.Form Form2
    End
    Begin VB.CommandButton Command3 
       Caption         =   "form1"
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Left            =   5400
       TabIndex        =   5
@@ -177,6 +312,15 @@ Begin VB.Form Form2
    Begin VB.CommandButton Command2 
       Caption         =   "î‘çÜÇ…íuä∑"
       Enabled         =   0   'False
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Left            =   2760
       TabIndex        =   4
@@ -186,6 +330,15 @@ Begin VB.Form Form2
    Begin VB.CommandButton Command1 
       Caption         =   "î‘çÜèáÇ…ÉRÉsÅ["
       Enabled         =   0   'False
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Left            =   120
       TabIndex        =   3
@@ -193,13 +346,31 @@ Begin VB.Form Form2
       Width           =   2535
    End
    Begin VB.FileListBox File1 
-      Height          =   2970
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   2820
       Left            =   2160
       TabIndex        =   2
       Top             =   0
       Width           =   1695
    End
    Begin VB.DriveListBox Drive1 
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   300
       Left            =   120
       TabIndex        =   1
@@ -207,6 +378,15 @@ Begin VB.Form Form2
       Width           =   1935
    End
    Begin VB.DirListBox Dir1 
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   2610
       Left            =   120
       TabIndex        =   0
@@ -215,6 +395,15 @@ Begin VB.Form Form2
    End
    Begin VB.CommandButton Command6 
       Caption         =   "êVÇµÇ¢ÉtÉHÉãÉ_   "
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   3960
       TabIndex        =   9
