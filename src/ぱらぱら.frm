@@ -1,9 +1,9 @@
 VERSION 5.00
-Object = "{0D452EE1-E08F-101A-852E-02608C4D0BB4}#2.0#0"; "FM20.DLL"
-Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "comdlg32.ocx"
+Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "ComDlg32.OCX"
+Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomct2.ocx"
 Begin VB.Form Form1 
    AutoRedraw      =   -1  'True
-   BorderStyle     =   3  'å≈íË¿ﬁ≤±€∏ﬁ
+   BorderStyle     =   3  'Fixed Dialog
    Caption         =   "ÇœÇÁÇœÇÁ"
    ClientHeight    =   3825
    ClientLeft      =   5445
@@ -145,8 +145,32 @@ Begin VB.Form Form1
       Top             =   120
       Width           =   735
    End
+   Begin MSComCtl2.UpDown SpinButton2 
+      Height          =   375
+      Left            =   4320
+      TabIndex        =   9
+      Top             =   480
+      Width           =   255
+      _ExtentX        =   450
+      _ExtentY        =   661
+      _Version        =   393216
+      Max             =   99
+      Enabled         =   -1  'True
+   End
+   Begin MSComCtl2.UpDown SpinButton1 
+      Height          =   375
+      Left            =   4320
+      TabIndex        =   8
+      Top             =   120
+      Width           =   255
+      _ExtentX        =   450
+      _ExtentY        =   661
+      _Version        =   393216
+      Max             =   99
+      Enabled         =   -1  'True
+   End
    Begin VB.Label Label2 
-      Alignment       =   2  'íÜâõëµÇ¶
+      Alignment       =   2  'Center
       Caption         =   "çƒê∂ë¨ìx100"
       BeginProperty Font 
          Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
@@ -164,7 +188,7 @@ Begin VB.Form Form1
       Width           =   975
    End
    Begin VB.Label Label1 
-      Alignment       =   2  'íÜâõëµÇ¶
+      Alignment       =   2  'Center
       Caption         =   "99"
       BeginProperty Font 
          Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
@@ -180,24 +204,6 @@ Begin VB.Form Form1
       TabIndex        =   16
       Top             =   3240
       Width           =   255
-   End
-   Begin MSForms.SpinButton SpinButton2 
-      Height          =   255
-      Left            =   4320
-      TabIndex        =   9
-      Top             =   480
-      Width           =   255
-      Size            =   "450;450"
-      Max             =   99
-   End
-   Begin MSForms.SpinButton SpinButton1 
-      Height          =   255
-      Left            =   4320
-      TabIndex        =   8
-      Top             =   120
-      Width           =   255
-      Size            =   "450;450"
-      Max             =   99
    End
 End
 Attribute VB_Name = "Form1"
@@ -219,7 +225,7 @@ End Sub
 
 Private Sub Command3_Click()
 CommonDialog1.ShowSave
-aa = CommonDialog1.filename
+aa = CommonDialog1.FileName
 If aa = "" Then Exit Sub
 Open aa For Output As 1
 For aa0 = 0 To 99
@@ -250,7 +256,7 @@ End Sub
 
 Private Sub Command4_Click()
 CommonDialog1.ShowOpen
-aa = CommonDialog1.filename
+aa = CommonDialog1.FileName
 If aa = "" Then Exit Sub
 Open aa For Input As 1
 For aa0 = 0 To 99
