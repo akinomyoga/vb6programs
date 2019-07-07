@@ -1,21 +1,39 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "mscomctl.OCX"
 Begin VB.Form Form3 
    BackColor       =   &H00FFC0C0&
-   BorderStyle     =   3  'å≈íË¿ﬁ≤±€∏ﬁ
+   BorderStyle     =   3  'Fixed Dialog
    Caption         =   "éOäpå`í≤Ç◊"
    ClientHeight    =   5340
    ClientLeft      =   45
    ClientTop       =   330
    ClientWidth     =   6135
+   BeginProperty Font 
+      Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+      Size            =   8.25
+      Charset         =   128
+      Weight          =   400
+      Underline       =   0   'False
+      Italic          =   0   'False
+      Strikethrough   =   0   'False
+   EndProperty
    LinkTopic       =   "Form3"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   5340
    ScaleWidth      =   6135
    ShowInTaskbar   =   0   'False
-   StartUpPosition =   3  'Windows ÇÃä˘íËíl
+   StartUpPosition =   3  'Windows Default
    Begin VB.TextBox Text2 
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   270
       Index           =   2
       Left            =   2280
@@ -24,6 +42,15 @@ Begin VB.Form Form3
       Width           =   1215
    End
    Begin VB.TextBox Text2 
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   270
       Index           =   1
       Left            =   2280
@@ -32,6 +59,15 @@ Begin VB.Form Form3
       Width           =   1215
    End
    Begin VB.TextBox Text2 
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   270
       Index           =   0
       Left            =   2280
@@ -40,7 +76,7 @@ Begin VB.Form Form3
       Width           =   1215
    End
    Begin MSComctlLib.StatusBar StatusBar1 
-      Align           =   2  'â∫ëµÇ¶
+      Align           =   2  'Align Bottom
       Height          =   300
       Left            =   0
       TabIndex        =   43
@@ -70,6 +106,15 @@ Begin VB.Form Form3
       EndProperty
    End
    Begin VB.TextBox Text1 
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   270
       Index           =   5
       Left            =   480
@@ -78,6 +123,15 @@ Begin VB.Form Form3
       Width           =   1215
    End
    Begin VB.TextBox Text1 
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   270
       Index           =   4
       Left            =   480
@@ -86,6 +140,15 @@ Begin VB.Form Form3
       Width           =   1215
    End
    Begin VB.TextBox Text1 
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   270
       Index           =   3
       Left            =   480
@@ -94,6 +157,15 @@ Begin VB.Form Form3
       Width           =   1215
    End
    Begin VB.TextBox Text1 
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   270
       Index           =   2
       Left            =   480
@@ -102,6 +174,15 @@ Begin VB.Form Form3
       Width           =   1215
    End
    Begin VB.TextBox Text1 
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   270
       Index           =   1
       Left            =   480
@@ -110,6 +191,15 @@ Begin VB.Form Form3
       Width           =   1215
    End
    Begin VB.TextBox Text1 
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   270
       Index           =   0
       Left            =   480
@@ -119,7 +209,16 @@ Begin VB.Form Form3
    End
    Begin VB.Label Label5 
       BackColor       =   &H00FFC0C0&
-      BorderStyle     =   1  'é¿ê¸
+      BorderStyle     =   1  'Fixed Single
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Index           =   12
       Left            =   3840
@@ -130,6 +229,15 @@ Begin VB.Form Form3
    Begin VB.Label Label4 
       BackColor       =   &H00FFC0C0&
       Caption         =   "ñ êœ"
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Index           =   11
       Left            =   3360
@@ -139,7 +247,16 @@ Begin VB.Form Form3
    End
    Begin VB.Label Label5 
       BackColor       =   &H00FFC0C0&
-      BorderStyle     =   1  'é¿ê¸
+      BorderStyle     =   1  'Fixed Single
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Index           =   11
       Left            =   1920
@@ -150,6 +267,15 @@ Begin VB.Form Form3
    Begin VB.Label Label4 
       BackColor       =   &H00FFC0C0&
       Caption         =   "ëŒC ñTê⁄â~     îºåa"
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Index           =   5
       Left            =   240
@@ -159,7 +285,16 @@ Begin VB.Form Form3
    End
    Begin VB.Label Label5 
       BackColor       =   &H00FFC0C0&
-      BorderStyle     =   1  'é¿ê¸
+      BorderStyle     =   1  'Fixed Single
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Index           =   10
       Left            =   3840
@@ -170,6 +305,15 @@ Begin VB.Form Form3
    Begin VB.Label Label4 
       BackColor       =   &H00FFC0C0&
       Caption         =   "ñ êœ"
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Index           =   10
       Left            =   3360
@@ -179,7 +323,16 @@ Begin VB.Form Form3
    End
    Begin VB.Label Label5 
       BackColor       =   &H00FFC0C0&
-      BorderStyle     =   1  'é¿ê¸
+      BorderStyle     =   1  'Fixed Single
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Index           =   8
       Left            =   3840
@@ -190,6 +343,15 @@ Begin VB.Form Form3
    Begin VB.Label Label4 
       BackColor       =   &H00FFC0C0&
       Caption         =   "ñ êœ"
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Index           =   9
       Left            =   3360
@@ -199,7 +361,16 @@ Begin VB.Form Form3
    End
    Begin VB.Label Label5 
       BackColor       =   &H00FFC0C0&
-      BorderStyle     =   1  'é¿ê¸
+      BorderStyle     =   1  'Fixed Single
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Index           =   9
       Left            =   1920
@@ -210,6 +381,15 @@ Begin VB.Form Form3
    Begin VB.Label Label4 
       BackColor       =   &H00FFC0C0&
       Caption         =   "ëŒB ñTê⁄â~     îºåa"
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Index           =   4
       Left            =   240
@@ -219,7 +399,16 @@ Begin VB.Form Form3
    End
    Begin VB.Label Label5 
       BackColor       =   &H00FFC0C0&
-      BorderStyle     =   1  'é¿ê¸
+      BorderStyle     =   1  'Fixed Single
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Index           =   7
       Left            =   1920
@@ -230,6 +419,15 @@ Begin VB.Form Form3
    Begin VB.Label Label4 
       BackColor       =   &H00FFC0C0&
       Caption         =   "ëŒA ñTê⁄â~     îºåa"
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Index           =   3
       Left            =   240
@@ -239,7 +437,16 @@ Begin VB.Form Form3
    End
    Begin VB.Label Label5 
       BackColor       =   &H00FFC0C0&
-      BorderStyle     =   1  'é¿ê¸
+      BorderStyle     =   1  'Fixed Single
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Index           =   2
       Left            =   3840
@@ -250,6 +457,15 @@ Begin VB.Form Form3
    Begin VB.Label Label4 
       BackColor       =   &H00FFC0C0&
       Caption         =   "é¸"
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Index           =   6
       Left            =   3360
@@ -259,7 +475,16 @@ Begin VB.Form Form3
    End
    Begin VB.Label Label5 
       BackColor       =   &H00FFC0C0&
-      BorderStyle     =   1  'é¿ê¸
+      BorderStyle     =   1  'Fixed Single
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Index           =   6
       Left            =   3840
@@ -270,6 +495,15 @@ Begin VB.Form Form3
    Begin VB.Label Label4 
       BackColor       =   &H00FFC0C0&
       Caption         =   "ñ êœ"
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Index           =   8
       Left            =   3360
@@ -279,7 +513,16 @@ Begin VB.Form Form3
    End
    Begin VB.Label Label5 
       BackColor       =   &H00FFC0C0&
-      BorderStyle     =   1  'é¿ê¸
+      BorderStyle     =   1  'Fixed Single
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Index           =   4
       Left            =   3840
@@ -290,6 +533,15 @@ Begin VB.Form Form3
    Begin VB.Label Label4 
       BackColor       =   &H00FFC0C0&
       Caption         =   "ñ êœ"
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Index           =   7
       Left            =   3360
@@ -299,7 +551,16 @@ Begin VB.Form Form3
    End
    Begin VB.Label Label5 
       BackColor       =   &H00FFC0C0&
-      BorderStyle     =   1  'é¿ê¸
+      BorderStyle     =   1  'Fixed Single
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Index           =   5
       Left            =   1920
@@ -310,6 +571,15 @@ Begin VB.Form Form3
    Begin VB.Label Label4 
       BackColor       =   &H00FFC0C0&
       Caption         =   "ì‡ê⁄â~           îºåa"
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Index           =   2
       Left            =   240
@@ -319,7 +589,16 @@ Begin VB.Form Form3
    End
    Begin VB.Label Label5 
       BackColor       =   &H00FFC0C0&
-      BorderStyle     =   1  'é¿ê¸
+      BorderStyle     =   1  'Fixed Single
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Index           =   3
       Left            =   1920
@@ -330,6 +609,15 @@ Begin VB.Form Form3
    Begin VB.Label Label4 
       BackColor       =   &H00FFC0C0&
       Caption         =   "äOê⁄â~           îºåa"
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Index           =   1
       Left            =   240
@@ -339,7 +627,16 @@ Begin VB.Form Form3
    End
    Begin VB.Label Label5 
       BackColor       =   &H00FFC0C0&
-      BorderStyle     =   1  'é¿ê¸
+      BorderStyle     =   1  'Fixed Single
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Index           =   1
       Left            =   1920
@@ -350,6 +647,15 @@ Begin VB.Form Form3
    Begin VB.Label Label4 
       BackColor       =   &H00FFC0C0&
       Caption         =   "ñ êœ"
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Index           =   0
       Left            =   1440
@@ -360,6 +666,15 @@ Begin VB.Form Form3
    Begin VB.Label Label3 
       BackColor       =   &H00FFC0C0&
       Caption         =   "ÉâÉWÉAÉì"
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Left            =   2280
       TabIndex        =   9
@@ -431,9 +746,18 @@ Begin VB.Form Form3
       Width           =   375
    End
    Begin VB.Label Label1 
-      Alignment       =   1  'âEëµÇ¶
+      Alignment       =   1  'Right Justify
       BackColor       =   &H00FFC0C0&
       Caption         =   "c"
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Index           =   5
       Left            =   120
@@ -442,9 +766,18 @@ Begin VB.Form Form3
       Width           =   255
    End
    Begin VB.Label Label1 
-      Alignment       =   1  'âEëµÇ¶
+      Alignment       =   1  'Right Justify
       BackColor       =   &H00FFC0C0&
       Caption         =   "b"
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Index           =   4
       Left            =   120
@@ -453,9 +786,18 @@ Begin VB.Form Form3
       Width           =   255
    End
    Begin VB.Label Label1 
-      Alignment       =   1  'âEëµÇ¶
+      Alignment       =   1  'Right Justify
       BackColor       =   &H00FFC0C0&
       Caption         =   "a"
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Index           =   3
       Left            =   120
@@ -464,9 +806,18 @@ Begin VB.Form Form3
       Width           =   255
    End
    Begin VB.Label Label1 
-      Alignment       =   1  'âEëµÇ¶
+      Alignment       =   1  'Right Justify
       BackColor       =   &H00FFC0C0&
       Caption         =   "C"
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Index           =   2
       Left            =   120
@@ -475,9 +826,18 @@ Begin VB.Form Form3
       Width           =   255
    End
    Begin VB.Label Label1 
-      Alignment       =   1  'âEëµÇ¶
+      Alignment       =   1  'Right Justify
       BackColor       =   &H00FFC0C0&
       Caption         =   "B"
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Index           =   1
       Left            =   120
@@ -486,9 +846,18 @@ Begin VB.Form Form3
       Width           =   255
    End
    Begin VB.Label Label1 
-      Alignment       =   1  'âEëµÇ¶
+      Alignment       =   1  'Right Justify
       BackColor       =   &H00FFC0C0&
       Caption         =   "A"
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Index           =   0
       Left            =   120

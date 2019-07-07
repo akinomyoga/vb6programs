@@ -1,0 +1,73 @@
+
+
+
+------------------------------------------------------------------------------
+  VB6 Note
+------------------------------------------------------------------------------
+
+UserControl を自分で作るという事。
+
+* 描画処理は UserControl_Paint にかけば良い。
+  表示内容の変化があったら UserControl.Refresh() を呼び出す。
+
+* デザイナの UserControl のプロパティがそのまま
+  作成しているコントロールのプロパティになるのかと思っていたら違う様だ。
+  作成しているコントロールの中に UserControl がある様である。
+  従って、プロパティを自分で定義して中の UserControl に橋渡しする必要がある。
+
+  Ref: [[RESOLVED] Custom control - Font and color properties-VBForums](http://www.vbforums.com/showthread.php?463202-RESOLVED-Custom-control-Font-and-color-properties)
+
+* UserControl にプロパティを追加する方法は以下に書かれていた。
+
+  Ref: [properties - Add property to user control in vb6 - Stack Overflow](https://stackoverflow.com/questions/41087947/add-property-to-user-control-in-vb6)
+
+* プロパティを作成する為には以下のような感じにする。
+
+  * 値型のプロパティの場合
+
+    Dim m_Value As Boolean
+
+    Public Property Let Value(ByVal new_Value As Boolean)
+        m_Value = new_Value
+        PropertyChanged "Value"
+    End Property
+
+    Public Property Get Value() As Boolean
+        Value = m_Value
+    End Property
+
+  * 参照型のプロパティの場合
+
+    参照型と値型でプロパティの作成の仕方が異なる様だ。
+    フォントのプロパティ等参照型の場合には以下の様にする。
+
+    Public Property Set Font(ByRef new_Font As StdFont)
+        Set UserControl.Font = new_Font
+        PropertyChanged "Font"
+    End Property
+
+    Public Property Get Font() As StdFont
+        Set Font = UserControl.Font
+    End Property
+
+    初め値型と同じ様にフォントのプロパティを作成してみたら、
+    Wrong number of argauments or invalid property と言った具合のエラーメッセージが出た。
+
+    Ref: [[RESOLVED] User Control Picture Error Problem-VBForums](http://www.vbforums.com/showthread.php?744107-RESOLVED-User-Control-Picture-Error-Problem)
+
+  * 更にデザイナでユーザの設定したプロパティが正しく保存される為に以下の様に記述する。
+
+    Private Sub UserControl_InitProperties()
+        m_Value = default_Value
+        Set default_Font = UserControl.Font
+    End Sub
+
+    Private Sub UserControl_ReadProperties(PropBag As PropertyBag)
+        m_Value = PropBag.ReadProperty("Value", default_Value)
+        Set UserControl.Font = PropBag.ReadProperty("Font", getDefaultFont())
+    End Sub
+
+    Private Sub UserControl_WriteProperties(PropBag As PropertyBag)
+        Call PropBag.WriteProperty("Value", m_Value, default_Value)
+        Call PropBag.WriteProperty("Font", UserControl.Font, getDefaultFont())
+    End Sub

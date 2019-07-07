@@ -1,12 +1,21 @@
 VERSION 5.00
 Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "ComDlg32.OCX"
 Begin VB.Form Form2 
-   BorderStyle     =   3  'å≈íË¿ﬁ≤±€∏ﬁ
+   BorderStyle     =   3  'Fixed Dialog
    Caption         =   "íPà ÇÃïœä∑"
    ClientHeight    =   8190
    ClientLeft      =   4440
    ClientTop       =   1950
    ClientWidth     =   6045
+   BeginProperty Font 
+      Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+      Size            =   8.25
+      Charset         =   128
+      Weight          =   400
+      Underline       =   0   'False
+      Italic          =   0   'False
+      Strikethrough   =   0   'False
+   EndProperty
    Icon            =   "íPà ÇÃïœä∑.frx":0000
    LinkTopic       =   "Form2"
    MaxButton       =   0   'False
@@ -16,6 +25,15 @@ Begin VB.Form Form2
    ShowInTaskbar   =   0   'False
    Begin VB.CommandButton Command1 
       Caption         =   "Å®ï€ë∂"
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   300
       Left            =   3360
       TabIndex        =   7
@@ -31,6 +49,15 @@ Begin VB.Form Form2
       Filter          =   "*.íPà 1"
    End
    Begin VB.ListBox List2 
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   7080
       ItemData        =   "íPà ÇÃïœä∑.frx":030A
       Left            =   2160
@@ -40,6 +67,15 @@ Begin VB.Form Form2
       Width           =   3855
    End
    Begin VB.TextBox Text1 
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   120
       TabIndex        =   1
@@ -47,6 +83,15 @@ Begin VB.Form Form2
       Width           =   5895
    End
    Begin VB.ListBox List1 
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   7080
       ItemData        =   "íPà ÇÃïœä∑.frx":030E
       Left            =   120
@@ -56,7 +101,16 @@ Begin VB.Form Form2
       Width           =   1935
    End
    Begin VB.Label Label4 
-      Alignment       =   1  'âEëµÇ¶
+      Alignment       =   1  'Right Justify
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Left            =   1320
       TabIndex        =   6
@@ -64,6 +118,15 @@ Begin VB.Form Form2
       Width           =   735
    End
    Begin VB.Label Label3 
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Left            =   120
       TabIndex        =   5
@@ -72,6 +135,15 @@ Begin VB.Form Form2
    End
    Begin VB.Label Label2 
       Caption         =   "ïœä∑å„ÇÃêîíl"
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Left            =   2160
       TabIndex        =   4
@@ -80,6 +152,15 @@ Begin VB.Form Form2
    End
    Begin VB.Label Label1 
       Caption         =   "ïœä∑ëOÇÃíPà "
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Left            =   120
       TabIndex        =   2
@@ -132,7 +213,7 @@ CommonDialog1.ShowSave
 b = CommonDialog1.FileName
 If Right(b, 4) <> ".txt" Then b = b & ".txt"
 Open b For Output As 1
-Print #1, Text1.Text & List1.List(List1.ListIndex)
+Print #1, Text1.text & List1.List(List1.ListIndex)
 For a = 0 To List2.ListCount - 1
 Print #1, "=" & List2.List(a)
 Next a
@@ -390,7 +471,7 @@ If List1.ListIndex >= 0 Then '1f
 b0 = cdat(0, List1.ListIndex) 'b0=ëOÇÃx/
 b1 = cdat(1, List1.ListIndex): If b1 = 0 Then b1 = 1 'b1=ëOÇÃ/x
 b2 = cdat(2, List1.ListIndex) 'b2=ëOÇÃè¨êîì_
-On Error GoTo ERRH2: c = Text1.Text: On Error GoTo errh: Text1.Text = c 'c=ïœä∑ëOÇÃêîíl
+On Error GoTo ERRH2: c = Text1.text: On Error GoTo errh: Text1.text = c 'c=ïœä∑ëOÇÃêîíl
 List2.Clear
 For a = 0 To itemcnt - 1 '2f
 Dim cda0 As Double, cda1 As Double
