@@ -1,0 +1,11 @@
+
+
+   Begin VB.CommandButton Command7 
+      Height          =   615
+      Left            =   4440
+      Picture         =   "’¬.frx":27A2
+      Style           =   1  '¸Þ×Ì¨¯¸½
+      TabIndex        =   36
+      Top             =   4680
+      Width           =   615
+   End
