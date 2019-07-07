@@ -1,7 +1,7 @@
 VERSION 5.00
-Object = "{0D452EE1-E08F-101A-852E-02608C4D0BB4}#2.0#0"; "FM20.DLL"
+Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomct2.ocx"
 Begin VB.Form Form1 
-   BorderStyle     =   0  '‚È‚µ
+   BorderStyle     =   0  'None
    Caption         =   "Form1"
    ClientHeight    =   2175
    ClientLeft      =   720
@@ -63,6 +63,18 @@ Begin VB.Form Form1
       TabIndex        =   0
       Top             =   0
       Width           =   375
+   End
+   Begin MSComCtl2.UpDown ToggleButton1 
+      Height          =   255
+      Left            =   2520
+      TabIndex        =   2
+      Top             =   0
+      Width           =   255
+      _ExtentX        =   450
+      _ExtentY        =   450
+      _Version        =   393216
+      Value           =   1
+      Enabled         =   -1  'True
    End
    Begin VB.Label Label2 
       BackColor       =   &H0000FF00&
@@ -315,23 +327,6 @@ Begin VB.Form Form1
       Top             =   240
       Width           =   480
    End
-   Begin MSForms.ToggleButton ToggleButton1 
-      Height          =   255
-      Left            =   2520
-      TabIndex        =   2
-      Top             =   0
-      Width           =   255
-      BackColor       =   -2147483633
-      ForeColor       =   -2147483630
-      DisplayStyle    =   6
-      Size            =   "450;450"
-      Value           =   "1"
-      FontName        =   "Small Fonts"
-      FontHeight      =   120
-      FontCharSet     =   128
-      FontPitchAndFamily=   2
-      ParagraphAlign  =   3
-   End
    Begin VB.Label Label1 
       BackColor       =   &H80000002&
       Caption         =   "Label1"
@@ -349,25 +344,25 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Private Sub Command1_Click()
-End
+    End
 End Sub
 
 Private Sub Image1_Click(Index As Integer)
-Select Case Index
-Case 0
-b = "c:\WINDOWS\ÃÞ½¸Ä¯Ìß\Œ÷ˆê\Program Files\Cube\Wcube\WCUBE.EXE"
-a = Shell(b, vbNormalFocus)
-Case 1
-Case 3
-Case 4
-Case 5
-Case 6
-Case 7
-Case 8
-Case 9
-End Select
+    Select Case Index
+    Case 0
+        b = "c:\WINDOWS\ÃÞ½¸Ä¯Ìß\Œ÷ˆê\Program Files\Cube\Wcube\WCUBE.EXE"
+        a = Shell(b, vbNormalFocus)
+    Case 1
+    Case 3
+    Case 4
+    Case 5
+    Case 6
+    Case 7
+    Case 8
+    Case 9
+    End Select
 End Sub
 
 Private Sub Image1_MouseMove(Index As Integer, Button As Integer, Shift As Integer, X As Single, Y As Single)
-Label1.Caption = Image1(Index).ToolTipText
+    Label1.Caption = Image1(Index).ToolTipText
 End Sub
