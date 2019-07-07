@@ -5,10 +5,19 @@ Begin VB.Form Form1
    ClientLeft      =   60
    ClientTop       =   345
    ClientWidth     =   1620
+   BeginProperty Font 
+      Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
+      Size            =   8.25
+      Charset         =   128
+      Weight          =   400
+      Underline       =   0   'False
+      Italic          =   0   'False
+      Strikethrough   =   0   'False
+   EndProperty
    LinkTopic       =   "Form1"
    ScaleHeight     =   5340
    ScaleWidth      =   1620
-   StartUpPosition =   3  'Windows ‚ÌŠù’è’l
+   StartUpPosition =   3  'Windows Default
    Begin VB.Timer Timer1 
       Interval        =   30
       Left            =   600
@@ -16,10 +25,19 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command1 
       Caption         =   "‚Ü‚½—Ž‚Æ‚·"
+      BeginProperty Font 
+         Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   240
       Picture         =   "ƒoƒEƒ“ƒh.frx":0000
-      Style           =   1  '¸Þ×Ì¨¯¸½
+      Style           =   1  'Graphical
       TabIndex        =   0
       Top             =   0
       Width           =   1095

@@ -1,20 +1,38 @@
 VERSION 5.00
 Begin VB.Form Form1 
-   BorderStyle     =   3  'ŒÅ’èÀÞ²±Û¸Þ
+   BorderStyle     =   3  'Fixed Dialog
    Caption         =   "UNKNOWN"
    ClientHeight    =   3570
    ClientLeft      =   45
    ClientTop       =   330
    ClientWidth     =   7365
+   BeginProperty Font 
+      Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
+      Size            =   8.25
+      Charset         =   128
+      Weight          =   400
+      Underline       =   0   'False
+      Italic          =   0   'False
+      Strikethrough   =   0   'False
+   EndProperty
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   3570
    ScaleWidth      =   7365
    ShowInTaskbar   =   0   'False
-   StartUpPosition =   3  'Windows ‚ÌŠù’è’l
+   StartUpPosition =   3  'Windows Default
    Begin VB.CommandButton Command6 
       Caption         =   "•ÏŠ·"
+      BeginProperty Font 
+         Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   120
       TabIndex        =   32
@@ -22,6 +40,15 @@ Begin VB.Form Form1
       Width           =   975
    End
    Begin VB.TextBox Text2 
+      BeginProperty Font 
+         Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   270
       Left            =   840
       TabIndex        =   31
@@ -31,6 +58,15 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command5 
       Caption         =   "end"
+      BeginProperty Font 
+         Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   1560
       TabIndex        =   30
@@ -39,6 +75,15 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command4 
       Caption         =   "save                 "
+      BeginProperty Font 
+         Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   120
       TabIndex        =   29
@@ -47,6 +92,15 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command3 
       Caption         =   "ent"
+      BeginProperty Font 
+         Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   1920
       TabIndex        =   28
@@ -55,6 +109,15 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command2 
       Caption         =   "spc"
+      BeginProperty Font 
+         Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   1320
       TabIndex        =   27
@@ -75,13 +138,22 @@ Begin VB.Form Form1
       ForeColor       =   &H00FFFFFF&
       Height          =   495
       Left            =   2520
-      ScrollBars      =   3  '—¼•û
+      ScrollBars      =   3  'Both
       TabIndex        =   26
       Top             =   120
       Width           =   4815
    End
    Begin VB.CommandButton Command1 
       Caption         =   "z"
+      BeginProperty Font 
+         Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Index           =   25
       Left            =   1680
@@ -91,6 +163,15 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command1 
       Caption         =   "y"
+      BeginProperty Font 
+         Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Index           =   24
       Left            =   1320
@@ -100,6 +181,15 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command1 
       Caption         =   "x"
+      BeginProperty Font 
+         Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Index           =   23
       Left            =   2040
@@ -109,6 +199,15 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command1 
       Caption         =   "w"
+      BeginProperty Font 
+         Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Index           =   22
       Left            =   1680
@@ -118,6 +217,15 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command1 
       Caption         =   "v"
+      BeginProperty Font 
+         Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Index           =   21
       Left            =   1320
@@ -127,6 +235,15 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command1 
       Caption         =   "u"
+      BeginProperty Font 
+         Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Index           =   20
       Left            =   2040
@@ -136,6 +253,15 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command1 
       Caption         =   "t"
+      BeginProperty Font 
+         Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Index           =   19
       Left            =   1680
@@ -145,6 +271,15 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command1 
       Caption         =   "s"
+      BeginProperty Font 
+         Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Index           =   18
       Left            =   1320
@@ -154,6 +289,15 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command1 
       Caption         =   "r"
+      BeginProperty Font 
+         Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Index           =   17
       Left            =   2040
@@ -163,6 +307,15 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command1 
       Caption         =   "q"
+      BeginProperty Font 
+         Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Index           =   16
       Left            =   1680
@@ -172,6 +325,15 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command1 
       Caption         =   "p"
+      BeginProperty Font 
+         Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Index           =   15
       Left            =   1320
@@ -181,6 +343,15 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command1 
       Caption         =   "o"
+      BeginProperty Font 
+         Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Index           =   14
       Left            =   840
@@ -190,6 +361,15 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command1 
       Caption         =   "n"
+      BeginProperty Font 
+         Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Index           =   13
       Left            =   480
@@ -199,6 +379,15 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command1 
       Caption         =   "m"
+      BeginProperty Font 
+         Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Index           =   12
       Left            =   120
@@ -208,6 +397,15 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command1 
       Caption         =   "l"
+      BeginProperty Font 
+         Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Index           =   11
       Left            =   840
@@ -217,6 +415,15 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command1 
       Caption         =   "k"
+      BeginProperty Font 
+         Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Index           =   10
       Left            =   480
@@ -226,6 +433,15 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command1 
       Caption         =   "j"
+      BeginProperty Font 
+         Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Index           =   9
       Left            =   120
@@ -235,6 +451,15 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command1 
       Caption         =   "i"
+      BeginProperty Font 
+         Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Index           =   8
       Left            =   840
@@ -244,6 +469,15 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command1 
       Caption         =   "h"
+      BeginProperty Font 
+         Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Index           =   7
       Left            =   480
@@ -253,6 +487,15 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command1 
       Caption         =   "g"
+      BeginProperty Font 
+         Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Index           =   6
       Left            =   120
@@ -262,6 +505,15 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command1 
       Caption         =   "f"
+      BeginProperty Font 
+         Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Index           =   5
       Left            =   840
@@ -271,6 +523,15 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command1 
       Caption         =   "e"
+      BeginProperty Font 
+         Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Index           =   4
       Left            =   480
@@ -280,6 +541,15 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command1 
       Caption         =   "d"
+      BeginProperty Font 
+         Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Index           =   3
       Left            =   120
@@ -289,6 +559,15 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command1 
       Caption         =   "c"
+      BeginProperty Font 
+         Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Index           =   2
       Left            =   840
@@ -298,6 +577,15 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command1 
       Caption         =   "b"
+      BeginProperty Font 
+         Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Index           =   1
       Left            =   480
@@ -307,6 +595,15 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command1 
       Caption         =   "a"
+      BeginProperty Font 
+         Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Index           =   0
       Left            =   120
