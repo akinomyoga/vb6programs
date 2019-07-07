@@ -1,8 +1,8 @@
 VERSION 5.00
-Object = "{0D452EE1-E08F-101A-852E-02608C4D0BB4}#2.0#0"; "FM20.DLL"
+Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomct2.ocx"
 Begin VB.Form Form3 
    BackColor       =   &H00000000&
-   BorderStyle     =   3  'ŒÅ’èÀÞ²±Û¸Þ
+   BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Œ©‚éŠp“x"
    ClientHeight    =   4410
    ClientLeft      =   510
@@ -15,16 +15,41 @@ Begin VB.Form Form3
    ScaleHeight     =   4410
    ScaleWidth      =   4410
    ShowInTaskbar   =   0   'False
-   Begin MSForms.SpinButton SpinButton1 
+   Begin MSComCtl2.UpDown SpinButton1 
       Height          =   735
       Index           =   2
-      Left            =   840
+      Left            =   960
       TabIndex        =   5
       Top             =   960
-      Width           =   495
-      Size            =   "873;1296"
+      Width           =   255
+      _ExtentX        =   450
+      _ExtentY        =   1296
+      _Version        =   393216
       Max             =   1001
-      SmallChange     =   5
+   End
+   Begin MSComCtl2.UpDown SpinButton1 
+      Height          =   735
+      Index           =   1
+      Left            =   3120
+      TabIndex        =   3
+      Top             =   960
+      Width           =   255
+      _ExtentX        =   450
+      _ExtentY        =   1296
+      _Version        =   393216
+      Max             =   1001
+   End
+   Begin MSComCtl2.UpDown SpinButton1 
+      Height          =   735
+      Index           =   0
+      Left            =   960
+      TabIndex        =   0
+      Top             =   3120
+      Width           =   255
+      _ExtentX        =   450
+      _ExtentY        =   1296
+      _Version        =   393216
+      Max             =   1001
    End
    Begin VB.Label Label1 
       BackColor       =   &H00000000&
@@ -46,17 +71,6 @@ Begin VB.Form Form3
       Top             =   600
       Width           =   255
    End
-   Begin MSForms.SpinButton SpinButton1 
-      Height          =   735
-      Index           =   1
-      Left            =   3000
-      TabIndex        =   3
-      Top             =   960
-      Width           =   495
-      Size            =   "873;1296"
-      Max             =   1001
-      SmallChange     =   5
-   End
    Begin VB.Label Label1 
       BackColor       =   &H00000000&
       Caption         =   "Y"
@@ -76,17 +90,6 @@ Begin VB.Form Form3
       TabIndex        =   2
       Top             =   600
       Width           =   255
-   End
-   Begin MSForms.SpinButton SpinButton1 
-      Height          =   735
-      Index           =   0
-      Left            =   840
-      TabIndex        =   0
-      Top             =   3120
-      Width           =   495
-      Size            =   "873;1296"
-      Max             =   1001
-      SmallChange     =   5
    End
    Begin VB.Label Label1 
       BackColor       =   &H00000000&
@@ -113,7 +116,7 @@ Begin VB.Form Form3
       Height          =   2175
       Index           =   2
       Left            =   0
-      Shape           =   2  '‘È‰~
+      Shape           =   2  'Oval
       Top             =   0
       Width           =   2175
    End
@@ -122,7 +125,7 @@ Begin VB.Form Form3
       Height          =   2175
       Index           =   1
       Left            =   2160
-      Shape           =   2  '‘È‰~
+      Shape           =   2  'Oval
       Top             =   0
       Width           =   2175
    End
@@ -131,7 +134,7 @@ Begin VB.Form Form3
       Height          =   2175
       Index           =   0
       Left            =   0
-      Shape           =   2  '‘È‰~
+      Shape           =   2  'Oval
       Top             =   2160
       Width           =   2175
    End
