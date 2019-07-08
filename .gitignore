@@ -2,8 +2,13 @@
 
 *.suo
 *.user
+*.vbw
 bin
 obj
 _UpgradeReport*
 
 *.exe
+*.exp
+*.ocx
+*.lib
+*.oca
