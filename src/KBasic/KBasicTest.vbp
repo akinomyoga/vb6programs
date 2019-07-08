@@ -1,7 +1,7 @@
 Type=Exe
 Form=KBasicForm.frm
 Reference=*\G{00020430-0000-0000-C000-000000000046}#2.0#0#..\..\..\..\..\..\..\Windows\SysWOW64\stdole2.tlb#OLE Automation
-Object={B30B7ED4-9187-4EC4-9CD3-5155839C07F7}#2.0#0; KBasic.ocx
+Object={B30B7ED4-9187-4EC4-9CD3-5155839C07F7}#3.0#0; KBasic.ocx
 IconForm="KBasicForm"
 Startup="KBasicForm"
 Command32=""

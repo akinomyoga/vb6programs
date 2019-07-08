@@ -132,7 +132,7 @@ Private Sub UserControl_KeyDown(KeyCode As Integer, Shift As Integer)
 End Sub
 
 Private Sub UserControl_KeyPress(KeyAscii As Integer)
-    RaiseEvent KeyPress(KeyCode)
+    RaiseEvent KeyPress(KeyAscii)
 End Sub
 
 Private Sub UserControl_KeyUp(KeyCode As Integer, Shift As Integer)
@@ -173,13 +173,13 @@ Private Sub UserControl_Paint()
     UserControl.Print m_Caption
 
     If m_Mouse Then
-        Call Graphics.DrawBorder(Me, ButtonPressed, 0, 0, w, h)
-        Call Graphics.DrawBorder(Me, ButtonFocus, 0, 0, w, h)
+        Call Graphics.DrawBorder(Me, kbBorderButtonPressed, 0, 0, w, h)
+        Call Graphics.DrawBorder(Me, kbBorderButtonFocus, 0, 0, w, h)
     ElseIf m_hasFocus Then
-        Call Graphics.DrawBorder(Me, ButtonOutsetBold, 0, 0, w, h)
-        Call Graphics.DrawBorder(Me, ButtonFocus, 0, 0, w, h)
+        Call Graphics.DrawBorder(Me, kbBorderButtonOutsetBold, 0, 0, w, h)
+        Call Graphics.DrawBorder(Me, kbBorderButtonFocus, 0, 0, w, h)
     Else
-        Call Graphics.DrawBorder(Me, ButtonOutset, 0, 0, w, h)
+        Call Graphics.DrawBorder(Me, kbBorderButtonOutset, 0, 0, w, h)
     End If
 End Sub
 

@@ -94,6 +94,8 @@ End Function
 Private Sub UserControl_Initialize()
     m_Mouse = False
     m_hasFocus = False
+    m_Value = default_Value
+    m_Caption = default_Caption
 End Sub
 
 Private Sub UserControl_InitProperties()
@@ -101,7 +103,9 @@ Private Sub UserControl_InitProperties()
     m_Caption = default_Caption
     UserControl.BackColor = default_BackColor
     UserControl.ForeColor = default_ForeColor
-    Set default_Font = UserControl.Font
+    If default_Font Is Nothing Then
+        Set default_Font = UserControl.Font
+    End If
 End Sub
 
 Private Sub UserControl_ReadProperties(PropBag As PropertyBag)
@@ -162,7 +166,7 @@ Private Sub UserControl_KeyDown(KeyCode As Integer, Shift As Integer)
 End Sub
 
 Private Sub UserControl_KeyPress(KeyAscii As Integer)
-    RaiseEvent KeyPress(KeyCode)
+    RaiseEvent KeyPress(KeyAscii)
 End Sub
 
 Private Sub UserControl_KeyUp(KeyCode As Integer, Shift As Integer)
@@ -204,18 +208,18 @@ Private Sub UserControl_Paint()
 
     If Value Or m_Mouse Then
         If m_hasFocus Then
-            Call Graphics.DrawBorder(Me, ButtonPressed, 0, 0, w, h)
-            Call Graphics.DrawBorder(Me, ButtonFocus, 0, 0, w, h)
+            Call Graphics.DrawBorder(Me, kbBorderButtonPressed, 0, 0, w, h)
+            Call Graphics.DrawBorder(Me, kbBorderButtonFocus, 0, 0, w, h)
         Else
-            Call Graphics.DrawBorder(Me, ButtonPressed, 0, 0, w, h)
+            Call Graphics.DrawBorder(Me, kbBorderButtonPressed, 0, 0, w, h)
             UserControl.Line (4, 4)-(w - 5, h - 5), SystemColorConstants.vb3DDKShadow, B
         End If
     Else
         If m_hasFocus Then
-            Call Graphics.DrawBorder(Me, ButtonOutsetBold, 0, 0, w, h)
-            Call Graphics.DrawBorder(Me, ButtonFocus, 0, 0, w, h)
+            Call Graphics.DrawBorder(Me, kbBorderButtonOutsetBold, 0, 0, w, h)
+            Call Graphics.DrawBorder(Me, kbBorderButtonFocus, 0, 0, w, h)
         Else
-            Call Graphics.DrawBorder(Me, ButtonOutset, 0, 0, w, h)
+            Call Graphics.DrawBorder(Me, kbBorderButtonOutset, 0, 0, w, h)
         End If
     End If
 End Sub
