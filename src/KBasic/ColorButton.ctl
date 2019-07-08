@@ -41,24 +41,24 @@ Public Property Get Caption() As String
     Caption = m_Caption
 End Property
 
+Public Property Get BackColor() As OLE_COLOR
+    BackColor = UserControl.BackColor
+End Property
+
 Public Property Let BackColor(ByVal new_BackColor As OLE_COLOR)
     UserControl.BackColor = new_BackColor
     UserControl.Refresh
     PropertyChanged "BackColor"
 End Property
 
-Public Property Get BackColor() As OLE_COLOR
-    BackColor = UserControl.BackColor
+Public Property Get ForeColor() As OLE_COLOR
+    ForeColor = UserControl.ForeColor
 End Property
 
 Public Property Let ForeColor(ByVal new_ForeColor As OLE_COLOR)
     UserControl.ForeColor = new_ForeColor
     UserControl.Refresh
     PropertyChanged "ForeColor"
-End Property
-
-Public Property Get ForeColor() As OLE_COLOR
-    ForeColor = UserControl.ForeColor
 End Property
 
 Public Property Set Font(ByRef new_Font As StdFont)

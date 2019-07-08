@@ -1,6 +1,7 @@
 VERSION 5.00
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "mscomctl.OCX"
 Object = "{C1A8AF28-1257-101B-8FB0-0020AF039CA3}#1.1#0"; "mci32.Ocx"
+Object = "{B30B7ED4-9187-4EC4-9CD3-5155839C07F7}#4.0#0"; "KBasic.ocx"
 Begin VB.Form Form1 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "âπäyÇP"
@@ -23,15 +24,6 @@ Begin VB.Form Form1
    ScaleHeight     =   8910
    ScaleWidth      =   10170
    Begin VB.TextBox Text3 
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   390
       Left            =   7080
       TabIndex        =   80
@@ -71,15 +63,6 @@ Begin VB.Form Form1
       AutoRedraw      =   -1  'True
       BackColor       =   &H00FFFFFF&
       BorderStyle     =   0  'None
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   3855
       Left            =   120
       MousePointer    =   99  'Custom
@@ -152,16 +135,7 @@ Begin VB.Form Form1
       Width           =   375
    End
    Begin VB.FileListBox File1 
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   7110
+      Height          =   7020
       Left            =   7680
       Pattern         =   "*.kon"
       TabIndex        =   22
@@ -169,15 +143,6 @@ Begin VB.Form Form1
       Width           =   2415
    End
    Begin VB.TextBox Text2 
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   375
       Left            =   7680
       TabIndex        =   21
@@ -187,15 +152,6 @@ Begin VB.Form Form1
    Begin VB.CommandButton Command3 
       BackColor       =   &H000000FF&
       Caption         =   "ì«çû"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   495
       Left            =   7680
       TabIndex        =   20
@@ -235,15 +191,6 @@ Begin VB.Form Form1
       Width           =   375
    End
    Begin VB.TextBox Text1 
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   375
       Left            =   120
       TabIndex        =   14
@@ -252,15 +199,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command2 
       Caption         =   "ï€ë∂"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   255
       Left            =   7680
       TabIndex        =   19
@@ -1039,28 +977,20 @@ Begin VB.Form Form1
       DeviceType      =   ""
       FileName        =   "C:\WINDOWS\√ﬁΩ∏ƒØÃﬂ\å˜àÍ\My documents\âπ\do.wav"
    End
-   Begin VB.CommandButton CommandButton1 
-      BackColor       =   &H00000000&
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
+   Begin KBasic.ColorButton CommandButton1 
       Height          =   735
       Index           =   29
       Left            =   6240
       TabIndex        =   73
+      TabStop         =   0   'False
       ToolTipText     =   "Å™ÅÚ◊"
       Top             =   2160
       Width           =   255
-   End
-   Begin VB.CommandButton CommandButton1 
-      BackColor       =   &H00000000&
-      BeginProperty Font 
+      _ExtentX        =   0
+      _ExtentY        =   0
+      Caption         =   ""
+      BackColor       =   0
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
          Size            =   8.25
          Charset         =   128
@@ -1069,17 +999,21 @@ Begin VB.Form Form1
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+   End
+   Begin KBasic.ColorButton CommandButton1 
       Height          =   735
       Index           =   27
       Left            =   5880
       TabIndex        =   71
+      TabStop         =   0   'False
       ToolTipText     =   "Å™ÅÚø"
       Top             =   2160
       Width           =   255
-   End
-   Begin VB.CommandButton CommandButton1 
-      BackColor       =   &H00000000&
-      BeginProperty Font 
+      _ExtentX        =   0
+      _ExtentY        =   0
+      Caption         =   ""
+      BackColor       =   0
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
          Size            =   8.25
          Charset         =   128
@@ -1088,17 +1022,21 @@ Begin VB.Form Form1
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+   End
+   Begin KBasic.ColorButton CommandButton1 
       Height          =   735
       Index           =   25
       Left            =   5520
       TabIndex        =   69
+      TabStop         =   0   'False
       ToolTipText     =   "Å™ÅÚÃß"
       Top             =   2160
       Width           =   255
-   End
-   Begin VB.CommandButton CommandButton1 
-      BackColor       =   &H00FFFFFF&
-      BeginProperty Font 
+      _ExtentX        =   0
+      _ExtentY        =   0
+      Caption         =   ""
+      BackColor       =   0
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
          Size            =   8.25
          Charset         =   128
@@ -1107,17 +1045,21 @@ Begin VB.Form Form1
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+   End
+   Begin KBasic.ColorButton CommandButton1 
       Height          =   1095
       Index           =   31
       Left            =   6720
       TabIndex        =   75
+      TabStop         =   0   'False
       ToolTipText     =   "Å™Å™ƒﬁ"
       Top             =   2160
       Width           =   375
-   End
-   Begin VB.CommandButton CommandButton1 
-      BackColor       =   &H00FFFFFF&
-      BeginProperty Font 
+      _ExtentX        =   0
+      _ExtentY        =   0
+      Caption         =   ""
+      BackColor       =   16777215
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
          Size            =   8.25
          Charset         =   128
@@ -1126,17 +1068,21 @@ Begin VB.Form Form1
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+   End
+   Begin KBasic.ColorButton CommandButton1 
       Height          =   1095
       Index           =   30
       Left            =   6360
       TabIndex        =   74
+      TabStop         =   0   'False
       ToolTipText     =   "Å™º"
       Top             =   2160
       Width           =   375
-   End
-   Begin VB.CommandButton CommandButton1 
-      BackColor       =   &H00FFFFFF&
-      BeginProperty Font 
+      _ExtentX        =   0
+      _ExtentY        =   0
+      Caption         =   ""
+      BackColor       =   16777215
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
          Size            =   8.25
          Charset         =   128
@@ -1145,17 +1091,21 @@ Begin VB.Form Form1
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+   End
+   Begin KBasic.ColorButton CommandButton1 
       Height          =   1095
       Index           =   28
       Left            =   6000
       TabIndex        =   72
+      TabStop         =   0   'False
       ToolTipText     =   "Å™◊"
       Top             =   2160
       Width           =   375
-   End
-   Begin VB.CommandButton CommandButton1 
-      BackColor       =   &H00FFFFFF&
-      BeginProperty Font 
+      _ExtentX        =   0
+      _ExtentY        =   0
+      Caption         =   ""
+      BackColor       =   16777215
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
          Size            =   8.25
          Charset         =   128
@@ -1164,17 +1114,21 @@ Begin VB.Form Form1
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+   End
+   Begin KBasic.ColorButton CommandButton1 
       Height          =   1095
       Index           =   26
       Left            =   5640
       TabIndex        =   70
+      TabStop         =   0   'False
       ToolTipText     =   "Å™ø"
       Top             =   2160
       Width           =   375
-   End
-   Begin VB.CommandButton CommandButton1 
-      BackColor       =   &H00FFFFFF&
-      BeginProperty Font 
+      _ExtentX        =   0
+      _ExtentY        =   0
+      Caption         =   ""
+      BackColor       =   16777215
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
          Size            =   8.25
          Charset         =   128
@@ -1183,17 +1137,21 @@ Begin VB.Form Form1
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+   End
+   Begin KBasic.ColorButton CommandButton1 
       Height          =   1095
       Index           =   24
       Left            =   5280
       TabIndex        =   68
+      TabStop         =   0   'False
       ToolTipText     =   "Å™Ãß"
       Top             =   2160
       Width           =   375
-   End
-   Begin VB.CommandButton CommandButton1 
-      BackColor       =   &H00000000&
-      BeginProperty Font 
+      _ExtentX        =   0
+      _ExtentY        =   0
+      Caption         =   ""
+      BackColor       =   16777215
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
          Size            =   8.25
          Charset         =   128
@@ -1202,17 +1160,21 @@ Begin VB.Form Form1
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+   End
+   Begin KBasic.ColorButton CommandButton1 
       Height          =   735
       Index           =   22
       Left            =   4800
       TabIndex        =   66
+      TabStop         =   0   'False
       ToolTipText     =   "Å™ÅÚ⁄"
       Top             =   2160
       Width           =   255
-   End
-   Begin VB.CommandButton CommandButton1 
-      BackColor       =   &H00000000&
-      BeginProperty Font 
+      _ExtentX        =   0
+      _ExtentY        =   0
+      Caption         =   ""
+      BackColor       =   0
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
          Size            =   8.25
          Charset         =   128
@@ -1221,17 +1183,21 @@ Begin VB.Form Form1
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+   End
+   Begin KBasic.ColorButton CommandButton1 
       Height          =   735
       Index           =   20
       Left            =   4440
       TabIndex        =   64
+      TabStop         =   0   'False
       ToolTipText     =   "Å™ÅÚƒﬁ"
       Top             =   2160
       Width           =   255
-   End
-   Begin VB.CommandButton CommandButton1 
-      BackColor       =   &H00FFFFFF&
-      BeginProperty Font 
+      _ExtentX        =   0
+      _ExtentY        =   0
+      Caption         =   ""
+      BackColor       =   0
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
          Size            =   8.25
          Charset         =   128
@@ -1240,17 +1206,21 @@ Begin VB.Form Form1
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+   End
+   Begin KBasic.ColorButton CommandButton1 
       Height          =   1095
       Index           =   23
       Left            =   4920
       TabIndex        =   67
+      TabStop         =   0   'False
       ToolTipText     =   "Å™–"
       Top             =   2160
       Width           =   375
-   End
-   Begin VB.CommandButton CommandButton1 
-      BackColor       =   &H00FFFFFF&
-      BeginProperty Font 
+      _ExtentX        =   0
+      _ExtentY        =   0
+      Caption         =   ""
+      BackColor       =   16777215
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
          Size            =   8.25
          Charset         =   128
@@ -1259,17 +1229,21 @@ Begin VB.Form Form1
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+   End
+   Begin KBasic.ColorButton CommandButton1 
       Height          =   1095
       Index           =   21
       Left            =   4560
       TabIndex        =   65
+      TabStop         =   0   'False
       ToolTipText     =   "Å™⁄"
       Top             =   2160
       Width           =   375
-   End
-   Begin VB.CommandButton CommandButton1 
-      BackColor       =   &H00000000&
-      BeginProperty Font 
+      _ExtentX        =   0
+      _ExtentY        =   0
+      Caption         =   ""
+      BackColor       =   16777215
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
          Size            =   8.25
          Charset         =   128
@@ -1278,17 +1252,21 @@ Begin VB.Form Form1
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+   End
+   Begin KBasic.ColorButton CommandButton1 
       Height          =   735
       Index           =   17
       Left            =   3720
       TabIndex        =   61
+      TabStop         =   0   'False
       ToolTipText     =   "ÅÚ◊"
       Top             =   2160
       Width           =   255
-   End
-   Begin VB.CommandButton CommandButton1 
-      BackColor       =   &H00000000&
-      BeginProperty Font 
+      _ExtentX        =   0
+      _ExtentY        =   0
+      Caption         =   ""
+      BackColor       =   0
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
          Size            =   8.25
          Charset         =   128
@@ -1297,17 +1275,21 @@ Begin VB.Form Form1
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+   End
+   Begin KBasic.ColorButton CommandButton1 
       Height          =   735
       Index           =   15
       Left            =   3360
       TabIndex        =   59
+      TabStop         =   0   'False
       ToolTipText     =   "ÅÚø"
       Top             =   2160
       Width           =   255
-   End
-   Begin VB.CommandButton CommandButton1 
-      BackColor       =   &H00FFFFFF&
-      BeginProperty Font 
+      _ExtentX        =   0
+      _ExtentY        =   0
+      Caption         =   ""
+      BackColor       =   0
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
          Size            =   8.25
          Charset         =   128
@@ -1316,17 +1298,21 @@ Begin VB.Form Form1
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+   End
+   Begin KBasic.ColorButton CommandButton1 
       Height          =   1095
       Index           =   19
       Left            =   4200
       TabIndex        =   63
+      TabStop         =   0   'False
       ToolTipText     =   "Å™ƒﬁ"
       Top             =   2160
       Width           =   375
-   End
-   Begin VB.CommandButton CommandButton1 
-      BackColor       =   &H00FFFFFF&
-      BeginProperty Font 
+      _ExtentX        =   0
+      _ExtentY        =   0
+      Caption         =   ""
+      BackColor       =   16777215
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
          Size            =   8.25
          Charset         =   128
@@ -1335,17 +1321,21 @@ Begin VB.Form Form1
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+   End
+   Begin KBasic.ColorButton CommandButton1 
       Height          =   1095
       Index           =   18
       Left            =   3840
       TabIndex        =   62
+      TabStop         =   0   'False
       ToolTipText     =   "º"
       Top             =   2160
       Width           =   375
-   End
-   Begin VB.CommandButton CommandButton1 
-      BackColor       =   &H00FFFFFF&
-      BeginProperty Font 
+      _ExtentX        =   0
+      _ExtentY        =   0
+      Caption         =   ""
+      BackColor       =   16777215
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
          Size            =   8.25
          Charset         =   128
@@ -1354,17 +1344,21 @@ Begin VB.Form Form1
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+   End
+   Begin KBasic.ColorButton CommandButton1 
       Height          =   1095
       Index           =   16
       Left            =   3480
       TabIndex        =   60
+      TabStop         =   0   'False
       ToolTipText     =   "◊"
       Top             =   2160
       Width           =   375
-   End
-   Begin VB.CommandButton CommandButton1 
-      BackColor       =   &H00000000&
-      BeginProperty Font 
+      _ExtentX        =   0
+      _ExtentY        =   0
+      Caption         =   ""
+      BackColor       =   16777215
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
          Size            =   8.25
          Charset         =   128
@@ -1373,17 +1367,21 @@ Begin VB.Form Form1
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+   End
+   Begin KBasic.ColorButton CommandButton1 
       Height          =   735
       Index           =   13
       Left            =   3000
       TabIndex        =   57
+      TabStop         =   0   'False
       ToolTipText     =   "ÅÚÃß"
       Top             =   2160
       Width           =   255
-   End
-   Begin VB.CommandButton CommandButton1 
-      BackColor       =   &H00FFFFFF&
-      BeginProperty Font 
+      _ExtentX        =   0
+      _ExtentY        =   0
+      Caption         =   ""
+      BackColor       =   0
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
          Size            =   8.25
          Charset         =   128
@@ -1392,17 +1390,21 @@ Begin VB.Form Form1
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+   End
+   Begin KBasic.ColorButton CommandButton1 
       Height          =   1095
       Index           =   14
       Left            =   3120
       TabIndex        =   58
+      TabStop         =   0   'False
       ToolTipText     =   "ø"
       Top             =   2160
       Width           =   375
-   End
-   Begin VB.CommandButton CommandButton1 
-      BackColor       =   &H00000000&
-      BeginProperty Font 
+      _ExtentX        =   0
+      _ExtentY        =   0
+      Caption         =   ""
+      BackColor       =   16777215
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
          Size            =   8.25
          Charset         =   128
@@ -1411,17 +1413,21 @@ Begin VB.Form Form1
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+   End
+   Begin KBasic.ColorButton CommandButton1 
       Height          =   735
       Index           =   10
       Left            =   2280
       TabIndex        =   54
+      TabStop         =   0   'False
       ToolTipText     =   "ÅÚ⁄"
       Top             =   2160
       Width           =   255
-   End
-   Begin VB.CommandButton CommandButton1 
-      BackColor       =   &H00000000&
-      BeginProperty Font 
+      _ExtentX        =   0
+      _ExtentY        =   0
+      Caption         =   ""
+      BackColor       =   0
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
          Size            =   8.25
          Charset         =   128
@@ -1430,17 +1436,21 @@ Begin VB.Form Form1
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+   End
+   Begin KBasic.ColorButton CommandButton1 
       Height          =   735
       Index           =   8
       Left            =   1920
       TabIndex        =   52
+      TabStop         =   0   'False
       ToolTipText     =   "ÅÚƒﬁ"
       Top             =   2160
       Width           =   255
-   End
-   Begin VB.CommandButton CommandButton1 
-      BackColor       =   &H00FFFFFF&
-      BeginProperty Font 
+      _ExtentX        =   0
+      _ExtentY        =   0
+      Caption         =   ""
+      BackColor       =   0
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
          Size            =   8.25
          Charset         =   128
@@ -1449,17 +1459,21 @@ Begin VB.Form Form1
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+   End
+   Begin KBasic.ColorButton CommandButton1 
       Height          =   1095
       Index           =   12
       Left            =   2760
       TabIndex        =   56
+      TabStop         =   0   'False
       ToolTipText     =   "Ãß"
       Top             =   2160
       Width           =   375
-   End
-   Begin VB.CommandButton CommandButton1 
-      BackColor       =   &H00FFFFFF&
-      BeginProperty Font 
+      _ExtentX        =   0
+      _ExtentY        =   0
+      Caption         =   ""
+      BackColor       =   16777215
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
          Size            =   8.25
          Charset         =   128
@@ -1468,17 +1482,21 @@ Begin VB.Form Form1
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+   End
+   Begin KBasic.ColorButton CommandButton1 
       Height          =   1095
       Index           =   11
       Left            =   2400
       TabIndex        =   55
+      TabStop         =   0   'False
       ToolTipText     =   "–"
       Top             =   2160
       Width           =   375
-   End
-   Begin VB.CommandButton CommandButton1 
-      BackColor       =   &H00FFFFFF&
-      BeginProperty Font 
+      _ExtentX        =   0
+      _ExtentY        =   0
+      Caption         =   ""
+      BackColor       =   16777215
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
          Size            =   8.25
          Charset         =   128
@@ -1487,17 +1505,21 @@ Begin VB.Form Form1
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+   End
+   Begin KBasic.ColorButton CommandButton1 
       Height          =   1095
       Index           =   9
       Left            =   2040
       TabIndex        =   53
+      TabStop         =   0   'False
       ToolTipText     =   "⁄"
       Top             =   2160
       Width           =   375
-   End
-   Begin VB.CommandButton CommandButton1 
-      BackColor       =   &H00FFFFFF&
-      BeginProperty Font 
+      _ExtentX        =   0
+      _ExtentY        =   0
+      Caption         =   ""
+      BackColor       =   16777215
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
          Size            =   8.25
          Charset         =   128
@@ -1506,17 +1528,21 @@ Begin VB.Form Form1
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+   End
+   Begin KBasic.ColorButton CommandButton1 
       Height          =   1095
       Index           =   7
       Left            =   1680
       TabIndex        =   51
+      TabStop         =   0   'False
       ToolTipText     =   "ƒﬁ"
       Top             =   2160
       Width           =   375
-   End
-   Begin VB.CommandButton CommandButton1 
-      BackColor       =   &H00000000&
-      BeginProperty Font 
+      _ExtentX        =   0
+      _ExtentY        =   0
+      Caption         =   ""
+      BackColor       =   16777215
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
          Size            =   8.25
          Charset         =   128
@@ -1525,17 +1551,21 @@ Begin VB.Form Form1
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+   End
+   Begin KBasic.ColorButton CommandButton1 
       Height          =   735
       Index           =   5
       Left            =   1200
       TabIndex        =   49
+      TabStop         =   0   'False
       ToolTipText     =   "Å´ÅÚ◊"
       Top             =   2160
       Width           =   255
-   End
-   Begin VB.CommandButton CommandButton1 
-      BackColor       =   &H00FFFFFF&
-      BeginProperty Font 
+      _ExtentX        =   0
+      _ExtentY        =   0
+      Caption         =   ""
+      BackColor       =   0
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
          Size            =   8.25
          Charset         =   128
@@ -1544,17 +1574,21 @@ Begin VB.Form Form1
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+   End
+   Begin KBasic.ColorButton CommandButton1 
       Height          =   1095
       Index           =   6
       Left            =   1320
       TabIndex        =   50
+      TabStop         =   0   'False
       ToolTipText     =   "Å´º"
       Top             =   2160
       Width           =   375
-   End
-   Begin VB.CommandButton CommandButton1 
-      BackColor       =   &H00000000&
-      BeginProperty Font 
+      _ExtentX        =   0
+      _ExtentY        =   0
+      Caption         =   ""
+      BackColor       =   16777215
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
          Size            =   8.25
          Charset         =   128
@@ -1563,17 +1597,21 @@ Begin VB.Form Form1
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+   End
+   Begin KBasic.ColorButton CommandButton1 
       Height          =   735
       Index           =   3
       Left            =   840
       TabIndex        =   47
+      TabStop         =   0   'False
       ToolTipText     =   "Å´ÅÚø"
       Top             =   2160
       Width           =   255
-   End
-   Begin VB.CommandButton CommandButton1 
-      BackColor       =   &H00000000&
-      BeginProperty Font 
+      _ExtentX        =   0
+      _ExtentY        =   0
+      Caption         =   ""
+      BackColor       =   0
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
          Size            =   8.25
          Charset         =   128
@@ -1582,17 +1620,21 @@ Begin VB.Form Form1
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+   End
+   Begin KBasic.ColorButton CommandButton1 
       Height          =   735
       Index           =   1
       Left            =   480
       TabIndex        =   45
+      TabStop         =   0   'False
       ToolTipText     =   "Å´ÅÚÃß"
       Top             =   2160
       Width           =   255
-   End
-   Begin VB.CommandButton CommandButton1 
-      BackColor       =   &H00FFFFFF&
-      BeginProperty Font 
+      _ExtentX        =   0
+      _ExtentY        =   0
+      Caption         =   ""
+      BackColor       =   0
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
          Size            =   8.25
          Charset         =   128
@@ -1601,17 +1643,21 @@ Begin VB.Form Form1
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+   End
+   Begin KBasic.ColorButton CommandButton1 
       Height          =   1095
       Index           =   4
       Left            =   960
       TabIndex        =   48
+      TabStop         =   0   'False
       ToolTipText     =   "Å´◊"
       Top             =   2160
       Width           =   375
-   End
-   Begin VB.CommandButton CommandButton1 
-      BackColor       =   &H00FFFFFF&
-      BeginProperty Font 
+      _ExtentX        =   0
+      _ExtentY        =   0
+      Caption         =   ""
+      BackColor       =   16777215
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
          Size            =   8.25
          Charset         =   128
@@ -1620,17 +1666,21 @@ Begin VB.Form Form1
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+   End
+   Begin KBasic.ColorButton CommandButton1 
       Height          =   1095
       Index           =   2
       Left            =   600
       TabIndex        =   46
+      TabStop         =   0   'False
       ToolTipText     =   "Å´ø"
       Top             =   2160
       Width           =   375
-   End
-   Begin VB.CommandButton CommandButton1 
-      BackColor       =   &H00FFFFFF&
-      BeginProperty Font 
+      _ExtentX        =   0
+      _ExtentY        =   0
+      Caption         =   ""
+      BackColor       =   16777215
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
          Size            =   8.25
          Charset         =   128
@@ -1639,13 +1689,29 @@ Begin VB.Form Form1
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+   End
+   Begin KBasic.ColorButton CommandButton1 
       Height          =   1095
       Index           =   0
       Left            =   240
       TabIndex        =   1
+      TabStop         =   0   'False
       ToolTipText     =   "Å´Ãß"
       Top             =   2160
       Width           =   375
+      _ExtentX        =   0
+      _ExtentY        =   0
+      Caption         =   " "
+      BackColor       =   16777215
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
    End
    Begin VB.Image Image1 
       Height          =   330
@@ -1674,15 +1740,6 @@ Begin VB.Form Form1
    End
    Begin VB.Label Label2 
       Caption         =   "ë¨Ç≥  ë¨Ç¢•••••••••••••••••••••••••••íxÇ¢"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   255
       Left            =   4320
       TabIndex        =   18
