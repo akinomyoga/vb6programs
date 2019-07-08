@@ -1,4 +1,5 @@
 VBGROUP 5.0
-Project=ŒvZ‚P.vbp
-StartupProject=ŒvZ2.vbp
+StartupProject=ŒvZ‚P.vbp
+Project=ŒvZ2.vbp
 Project=ŒvZctl.vbp
+Project=..\KBasic\KBasic.vbp

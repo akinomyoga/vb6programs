@@ -1,5 +1,6 @@
 VERSION 5.00
 Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "ComDlg32.OCX"
+Object = "{B30B7ED4-9187-4EC4-9CD3-5155839C07F7}#4.0#0"; "KBasic.ocx"
 Begin VB.Form Form1 
    BackColor       =   &H00404040&
    BorderStyle     =   3  'Fixed Dialog
@@ -34,15 +35,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command8 
       Caption         =   "Å®|"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   375
       Index           =   7
       Left            =   4800
@@ -52,15 +44,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command8 
       Caption         =   "Å®"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   375
       Index           =   6
       Left            =   4800
@@ -70,15 +53,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command8 
       Caption         =   ".H."
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   375
       Index           =   5
       Left            =   4320
@@ -89,15 +63,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command8 
       Caption         =   ".C."
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   375
       Index           =   4
       Left            =   3960
@@ -108,15 +73,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command2 
       Caption         =   "harccot"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   255
       Index           =   29
       Left            =   2280
@@ -127,15 +83,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command2 
       Caption         =   "harcsec"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   255
       Index           =   28
       Left            =   2280
@@ -146,15 +93,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command2 
       Caption         =   "harccosec"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   255
       Index           =   27
       Left            =   2280
@@ -165,15 +103,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command2 
       Caption         =   "harctan"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   255
       Index           =   26
       Left            =   1560
@@ -184,15 +113,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command2 
       Caption         =   "harccos"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   255
       Index           =   25
       Left            =   1560
@@ -203,15 +123,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command2 
       Caption         =   "harcsin"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   255
       Index           =   24
       Left            =   1560
@@ -222,15 +133,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command2 
       Caption         =   "hcot"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   255
       Index           =   23
       Left            =   840
@@ -241,15 +143,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command2 
       Caption         =   "hsec"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   255
       Index           =   22
       Left            =   840
@@ -260,15 +153,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command2 
       Caption         =   "hcosec"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   255
       Index           =   21
       Left            =   840
@@ -279,15 +163,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command2 
       Caption         =   "htan"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   255
       Index           =   20
       Left            =   120
@@ -298,15 +173,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command2 
       Caption         =   "hcos"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   255
       Index           =   19
       Left            =   120
@@ -317,15 +183,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command2 
       Caption         =   "hsin"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   255
       Index           =   18
       Left            =   120
@@ -336,15 +193,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command2 
       Caption         =   "arccot"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   255
       Index           =   17
       Left            =   2280
@@ -355,15 +203,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command2 
       Caption         =   "arcsec"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   255
       Index           =   16
       Left            =   2280
@@ -374,15 +213,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command2 
       Caption         =   "arccosec"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   255
       Index           =   15
       Left            =   2280
@@ -393,15 +223,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command2 
       Caption         =   "arctan"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   255
       Index           =   14
       Left            =   1560
@@ -412,15 +233,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command2 
       Caption         =   "arccos"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   255
       Index           =   13
       Left            =   1560
@@ -431,15 +243,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command2 
       Caption         =   "arcsin"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   255
       Index           =   12
       Left            =   1560
@@ -450,15 +253,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command2 
       Caption         =   "cot"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   255
       Index           =   11
       Left            =   840
@@ -469,15 +263,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command2 
       Caption         =   "sec"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   255
       Index           =   10
       Left            =   840
@@ -488,15 +273,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command2 
       Caption         =   "tan"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   255
       Index           =   8
       Left            =   120
@@ -507,15 +283,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command2 
       Caption         =   "cos"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   255
       Index           =   7
       Left            =   120
@@ -526,15 +293,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command2 
       Caption         =   "| |"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   375
       Index           =   5
       Left            =   1560
@@ -545,15 +303,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command5 
       Caption         =   "Å©"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   375
       Index           =   9
       Left            =   3240
@@ -563,15 +312,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command4 
       Caption         =   "Åc"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   375
       Index           =   9
       Left            =   3000
@@ -582,15 +322,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command2 
       Caption         =   "1/"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   375
       Index           =   4
       Left            =   1560
@@ -601,15 +332,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command4 
       Caption         =   "Åì"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   375
       Index           =   8
       Left            =   3480
@@ -620,15 +342,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command5 
       Caption         =   "CM"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   255
       Index           =   8
       Left            =   5520
@@ -638,15 +351,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command5 
       Caption         =   "CM"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   255
       Index           =   7
       Left            =   5520
@@ -656,15 +360,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command5 
       Caption         =   "CM"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   255
       Index           =   6
       Left            =   5520
@@ -674,15 +369,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command5 
       Caption         =   "CM"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   255
       Index           =   5
       Left            =   5520
@@ -692,15 +378,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command5 
       Caption         =   "RM"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   255
       Index           =   4
       Left            =   5160
@@ -710,15 +387,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command5 
       Caption         =   "RM"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   255
       Index           =   3
       Left            =   5160
@@ -728,15 +396,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command5 
       Caption         =   "RM"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   255
       Index           =   2
       Left            =   5160
@@ -746,15 +405,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command5 
       Caption         =   "RM"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   255
       Index           =   1
       Left            =   5160
@@ -764,15 +414,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command7 
       Caption         =   "M-"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   255
       Index           =   7
       Left            =   4800
@@ -782,15 +423,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command7 
       Caption         =   "M-"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   255
       Index           =   6
       Left            =   4800
@@ -800,15 +432,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command7 
       Caption         =   "M-"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   255
       Index           =   5
       Left            =   4800
@@ -818,15 +441,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command7 
       Caption         =   "M-"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   255
       Index           =   4
       Left            =   4800
@@ -836,15 +450,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command7 
       Caption         =   "M+"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   255
       Index           =   3
       Left            =   4440
@@ -854,15 +459,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command7 
       Caption         =   "M+"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   255
       Index           =   2
       Left            =   4440
@@ -872,15 +468,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command7 
       Caption         =   "M+"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   255
       Index           =   1
       Left            =   4440
@@ -890,15 +477,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command7 
       Caption         =   "M+"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   255
       Index           =   0
       Left            =   4440
@@ -908,15 +486,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command6 
       Caption         =   "M"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   255
       Index           =   3
       Left            =   4080
@@ -926,15 +495,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command6 
       Caption         =   "M"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   255
       Index           =   2
       Left            =   4080
@@ -944,15 +504,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command6 
       Caption         =   "M"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   255
       Index           =   1
       Left            =   4080
@@ -962,15 +513,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command6 
       Caption         =   "M"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   255
       Index           =   0
       Left            =   4080
@@ -980,15 +522,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command2 
       Caption         =   "+-"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   375
       Index           =   3
       Left            =   1560
@@ -999,15 +532,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command5 
       Caption         =   "C"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   375
       Index           =   0
       Left            =   3720
@@ -1018,15 +542,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command4 
       Caption         =   "ÅO"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   375
       Index           =   7
       Left            =   3000
@@ -1037,15 +552,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command4 
       Caption         =   "="
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   375
       Index           =   6
       Left            =   3480
@@ -1056,15 +562,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command4 
       Caption         =   "!"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   375
       Index           =   5
       Left            =   2040
@@ -1075,15 +572,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command2 
       Caption         =   "ÉŒ"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   375
       Index           =   2
       Left            =   1560
@@ -1094,15 +582,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command2 
       Caption         =   "00"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   375
       Index           =   1
       Left            =   600
@@ -1112,15 +591,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command4 
       Caption         =   "Å„"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   375
       Index           =   4
       Left            =   3000
@@ -1131,15 +601,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command4 
       Caption         =   "ÅÄ"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   375
       Index           =   3
       Left            =   2520
@@ -1150,15 +611,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command4 
       Caption         =   "Å~"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   375
       Index           =   2
       Left            =   2520
@@ -1169,15 +621,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command4 
       Caption         =   "Å|"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   375
       Index           =   1
       Left            =   2520
@@ -1188,15 +631,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command4 
       Caption         =   "Å{"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   375
       Index           =   0
       Left            =   2520
@@ -1208,15 +642,6 @@ Begin VB.Form Form1
    Begin VB.CommandButton Command3 
       Cancel          =   -1  'True
       Caption         =   "AC"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   375
       Left            =   4200
       TabIndex        =   12
@@ -1226,15 +651,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command2 
       Caption         =   "."
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   375
       Index           =   0
       Left            =   1080
@@ -1245,15 +661,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command1 
       Caption         =   "9"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   375
       Index           =   9
       Left            =   1080
@@ -1263,15 +670,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command1 
       Caption         =   "8"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   375
       Index           =   8
       Left            =   600
@@ -1281,15 +679,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command1 
       Caption         =   "7"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   375
       Index           =   7
       Left            =   120
@@ -1299,15 +688,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command1 
       Caption         =   "6"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   375
       Index           =   6
       Left            =   1080
@@ -1317,15 +697,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command1 
       Caption         =   "5"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   375
       Index           =   5
       Left            =   600
@@ -1335,15 +706,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command1 
       Caption         =   "4"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   375
       Index           =   4
       Left            =   120
@@ -1353,15 +715,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command1 
       Caption         =   "3"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   375
       Index           =   3
       Left            =   1080
@@ -1371,15 +724,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command1 
       Caption         =   "2"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   375
       Index           =   2
       Left            =   600
@@ -1389,15 +733,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command1 
       Caption         =   "1"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   375
       Index           =   1
       Left            =   120
@@ -1407,15 +742,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command1 
       Caption         =   "0"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   375
       Index           =   0
       Left            =   120
@@ -1425,15 +751,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command2 
       Caption         =   "cosec"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   255
       Index           =   9
       Left            =   840
@@ -1444,15 +761,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command2 
       Caption         =   "sin"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   255
       Index           =   6
       Left            =   120
@@ -1463,15 +771,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command8 
       Caption         =   "Åõ"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   375
       Index           =   2
       Left            =   4320
@@ -1482,15 +781,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command8 
       Caption         =   ";;;;;;;;''''''''"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   375
       Index           =   1
       Left            =   3960
@@ -1501,15 +791,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command8 
       Caption         =   ";;;;;,,,::::  "
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   375
       Index           =   3
       Left            =   3600
@@ -1520,15 +801,6 @@ Begin VB.Form Form1
    End
    Begin VB.CommandButton Command8 
       Caption         =   ".P."
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   375
       Index           =   0
       Left            =   3600
@@ -1537,7 +809,7 @@ Begin VB.Form Form1
       Top             =   3480
       Width           =   375
    End
-   Begin åvéZ1.ToggleButton ToggleButton1 
+   Begin KBasic.ToggleButton ToggleButton1 
       Height          =   315
       Left            =   360
       TabIndex        =   56
@@ -1560,15 +832,6 @@ Begin VB.Form Form1
    Begin VB.Label Label8 
       BackColor       =   &H00404040&
       Caption         =   "éOäpä÷êî"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       ForeColor       =   &H00FFFFFF&
       Height          =   255
       Left            =   1800
@@ -1579,15 +842,6 @@ Begin VB.Form Form1
    Begin VB.Label Label7 
       BackColor       =   &H00404040&
       Caption         =   "èÍçáÇÃêî"
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       ForeColor       =   &H00FFFFFF&
       Height          =   240
       Left            =   3960
@@ -1604,15 +858,6 @@ Begin VB.Form Form1
    End
    Begin VB.Label Label6 
       BorderStyle     =   1  'Fixed Single
-      BeginProperty Font 
-         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
-         Size            =   8.25
-         Charset         =   128
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       Height          =   375
       Left            =   3600
       TabIndex        =   88
@@ -1832,7 +1077,7 @@ Private Sub Command1_Click(Index As Integer)
 End Sub
 
 Private Sub Command2_Click(Index As Integer)
-    Dim x As Double
+    Dim X As Double
     On Error GoTo err
     Select Case Index
     Case 0
@@ -1864,54 +1109,54 @@ Private Sub Command2_Click(Index As Integer)
             Label1.Caption = 1 / Tan(Label1.Caption)
         End Select
     Case 12 To 17
-        x = Label1.Caption
+        X = Label1.Caption
         Select Case Index
         Case 12
-            Label1.Caption = Atn(x / Sqr(-x * x + 1))
+            Label1.Caption = Atn(X / Sqr(-X * X + 1))
         Case 13
-            Label1.Caption = Atn(-x / Sqr(-x * x + 1)) + 2 * Atn(1)
+            Label1.Caption = Atn(-X / Sqr(-X * X + 1)) + 2 * Atn(1)
         Case 14
-            Label1.Caption = Atn(x)
+            Label1.Caption = Atn(X)
         Case 16
-            Label1.Caption = Atn(x / Sqr(x * x - 1)) + Sgn((x) - 1) * (2 * Atn(1))
+            Label1.Caption = Atn(X / Sqr(X * X - 1)) + Sgn((X) - 1) * (2 * Atn(1))
         Case 15
-            Label1.Caption = Atn(x / Sqr(x * x - 1)) + (Sgn(x) - 1) * (2 * Atn(1))
+            Label1.Caption = Atn(X / Sqr(X * X - 1)) + (Sgn(X) - 1) * (2 * Atn(1))
         Case 17
-            Label1.Caption = Atn(x) + 2 * Atn(1)
+            Label1.Caption = Atn(X) + 2 * Atn(1)
         End Select
         If ToggleButton1.Value = True Then Label1.Caption = Label1.Caption * 180 / 3.14159265358979
     Case 18 To 23
         If ToggleButton1.Value = True Then Label1.Caption = Label1.Caption / 180 * 3.14159265358979
-        x = Label.Caption
+        X = Label.Caption
         Select Case Index
         Case 18
-            Label1.Caption = (Exp(x) - Exp(-x)) / 2
+            Label1.Caption = (Exp(X) - Exp(-X)) / 2
         Case 19
-            Label1.Caption = (Exp(x) + Exp(-x)) / 2
+            Label1.Caption = (Exp(X) + Exp(-X)) / 2
         Case 20
-            Label1.Caption = (Exp(x) - Exp(-x)) / (Exp(x) + Exp(-x))
+            Label1.Caption = (Exp(X) - Exp(-X)) / (Exp(X) + Exp(-X))
         Case 22
-            Label1.Caption = 2 / (Exp(x) + Exp(-x))
+            Label1.Caption = 2 / (Exp(X) + Exp(-X))
         Case 21
-            Label1.Caption = 2 / (Exp(x) - Exp(-x))
+            Label1.Caption = 2 / (Exp(X) - Exp(-X))
         Case 23
-            Label1.Caption = (Exp(x) + Exp(-x)) / (Exp(x) - Exp(-x))
+            Label1.Caption = (Exp(X) + Exp(-X)) / (Exp(X) - Exp(-X))
         End Select
     Case 24 To 29
-        x = Label.Caption
+        X = Label.Caption
         Select Case Index
         Case 24
-            Label1.Caption = Log(x + Sqr(x * x + 1))
+            Label1.Caption = Log(X + Sqr(X * X + 1))
         Case 25
-            Label1.Caption = Log(x + Sqr(x * x - 1))
+            Label1.Caption = Log(X + Sqr(X * X - 1))
         Case 26
-            Label1.Caption = Log((1 + x) / (1 - x)) / 2
+            Label1.Caption = Log((1 + X) / (1 - X)) / 2
         Case 28
-            Label1.Caption = Log((Sqr(-x * x + 1) + 1) / x)
+            Label1.Caption = Log((Sqr(-X * X + 1) + 1) / X)
         Case 27
-            Label1.Caption = Log((Sgn(x) * Sqr(x * x + 1) + 1) / x)
+            Label1.Caption = Log((Sgn(X) * Sqr(X * X + 1) + 1) / X)
         Case 29
-            Label1.Caption = Log((x + 1) / (x - 1)) / 2
+            Label1.Caption = Log((X + 1) / (X - 1)) / 2
         End Select
         If ToggleButton1.Value = True Then Label1.Caption = Label1.Caption * 180 / 3.14159265358979
     End Select
