@@ -161,19 +161,19 @@ Private Sub UserControl_Paint()
         UserControl.Line (0, 0)-(0, h - 1), SystemColorConstants.vb3DShadow
         UserControl.Line (1, 1)-(w - 1, 1), SystemColorConstants.vb3DDKShadow
         UserControl.Line (1, 1)-(1, h - 1), SystemColorConstants.vb3DDKShadow
-        UserControl.Line (1, h - 2)-(w - 2, h - 2), SystemColorConstants.vb3DHighlight
-        UserControl.Line (w - 2, 1)-(w - 2, h - 2), SystemColorConstants.vb3DHighlight
-        UserControl.Line (0, h - 1)-(w - 1, h - 1), SystemColorConstants.vb3DLight
-        UserControl.Line (w - 1, 0)-(w - 1, h - 1), SystemColorConstants.vb3DLight
+        UserControl.Line (1, h - 2)-(w - 1, h - 2), SystemColorConstants.vb3DHighlight
+        UserControl.Line (w - 2, 1)-(w - 2, h - 1), SystemColorConstants.vb3DHighlight
+        UserControl.Line (0, h - 1)-(w, h - 1), SystemColorConstants.vb3DLight
+        UserControl.Line (w - 1, 0)-(w - 1, h), SystemColorConstants.vb3DLight
     Else
         UserControl.Line (0, 0)-(w - 1, 0), SystemColorConstants.vb3DHighlight
         UserControl.Line (0, 0)-(0, h - 1), SystemColorConstants.vb3DHighlight
         UserControl.Line (1, 1)-(w - 1, 1), SystemColorConstants.vb3DLight
         UserControl.Line (1, 1)-(1, h - 1), SystemColorConstants.vb3DLight
-        UserControl.Line (1, h - 2)-(w - 2, h - 2), SystemColorConstants.vb3DShadow
-        UserControl.Line (w - 2, 1)-(w - 2, h - 2), SystemColorConstants.vb3DShadow
-        UserControl.Line (0, h - 1)-(w - 1, h - 1), SystemColorConstants.vb3DDKShadow
-        UserControl.Line (w - 1, 0)-(w - 1, h - 1), SystemColorConstants.vb3DDKShadow
+        UserControl.Line (1, h - 2)-(w - 1, h - 2), SystemColorConstants.vb3DShadow
+        UserControl.Line (w - 2, 1)-(w - 2, h - 1), SystemColorConstants.vb3DShadow
+        UserControl.Line (0, h - 1)-(w, h - 1), SystemColorConstants.vb3DDKShadow
+        UserControl.Line (w - 1, 0)-(w - 1, h), SystemColorConstants.vb3DDKShadow
     End If
 End Sub
 
