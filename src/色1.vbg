@@ -1,0 +1,4 @@
+VBGROUP 5.0
+Project=F1.vbp
+Project=KBasic\KBasic.vbp
+StartupProject=F1Test.vbp

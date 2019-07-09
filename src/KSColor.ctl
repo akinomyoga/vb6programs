@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{0D452EE1-E08F-101A-852E-02608C4D0BB4}#2.0#0"; "FM20.DLL"
+Object = "{B30B7ED4-9187-4EC4-9CD3-5155839C07F7}#4.0#0"; "KBasic.ocx"
 Begin VB.UserControl KSColor 
    ClientHeight    =   1320
    ClientLeft      =   0
@@ -44,63 +44,59 @@ Begin VB.UserControl KSColor
       Top             =   120
       Width           =   1215
    End
-   Begin MSForms.SpinButton SpinButton3 
+   Begin KBasic.SpinButton SpinButton3 
       Height          =   255
       Left            =   3120
-      TabIndex        =   10
       Top             =   600
       Width           =   255
+      _ExtentX        =   0
+      _ExtentY        =   0
+      Max             =   255
       ForeColor       =   16711680
-      Size            =   "450;450"
    End
-   Begin MSForms.SpinButton SpinButton2 
+   Begin KBasic.SpinButton SpinButton2 
       Height          =   255
       Left            =   3120
-      TabIndex        =   9
       Top             =   360
       Width           =   255
-      ForeColor       =   65280
-      Size            =   "450;450"
+      _ExtentX        =   0
+      _ExtentY        =   0
       Max             =   255
+      ForeColor       =   65280
    End
-   Begin MSForms.SpinButton SpinButton1 
+   Begin KBasic.SpinButton SpinButton1 
       Height          =   255
       Left            =   3120
-      TabIndex        =   8
       Top             =   120
       Width           =   255
+      _ExtentX        =   0
+      _ExtentY        =   0
+      Max             =   255
       ForeColor       =   255
-      Size            =   "450;450"
    End
-   Begin MSForms.ScrollBar ScrollBar3 
+   Begin VB.HScrollBar ScrollBar3 
       Height          =   255
       Left            =   1320
+      Max             =   255
       TabIndex        =   7
       Top             =   600
       Width           =   1455
-      ForeColor       =   16711680
-      Size            =   "2566;450"
-      Max             =   255
    End
-   Begin MSForms.ScrollBar ScrollBar2 
+   Begin VB.HScrollBar ScrollBar2 
       Height          =   255
       Left            =   1320
+      Max             =   255
       TabIndex        =   6
       Top             =   360
       Width           =   1455
-      ForeColor       =   65280
-      Size            =   "2566;450"
-      Max             =   255
    End
-   Begin MSForms.ScrollBar ScrollBar1 
+   Begin VB.HScrollBar ScrollBar1 
       Height          =   255
       Left            =   1320
+      Max             =   255
       TabIndex        =   5
       Top             =   120
       Width           =   1455
-      ForeColor       =   255
-      Size            =   "2566;450"
-      Max             =   255
    End
    Begin VB.Label Label1 
       Caption         =   "000000"
@@ -118,32 +114,35 @@ Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = True
 
 Private Sub Picture1_Change()
-Label1.Caption = Hex$(scroll1bar.Value) & Hex$(ScrollBar2.Value) & Hex$(ScrollBar3.Value)
+    Label1.Caption = Hex$(scroll1bar.Value) & Hex$(ScrollBar2.Value) & Hex$(ScrollBar3.Value)
 End Sub
 
 Private Sub ScrollBar1_Change()
-Picture1.BackColor = RGB(ScrollBar1.Value, ScrollBar2.Value, ScrollBar3.Value)
-Text1.Text = ScrollBar1.Value
+    Picture1.BackColor = RGB(ScrollBar1.Value, ScrollBar2.Value, ScrollBar3.Value)
+    Text1.Text = ScrollBar1.Value
+    SpinButton1.Value = ScrollBar1.Value
 End Sub
 
 Private Sub ScrollBar2_Change()
-Picture1.BackColor = RGB(ScrollBar1.Value, ScrollBar2.Value, ScrollBar3.Value)
-Text2.Text = ScrollBar2.Value
+    Picture1.BackColor = RGB(ScrollBar1.Value, ScrollBar2.Value, ScrollBar3.Value)
+    Text2.Text = ScrollBar2.Value
+    SpinButton2.Value = ScrollBar2.Value
 End Sub
 
 Private Sub ScrollBar3_Change()
-Picture1.BackColor = RGB(ScrollBar1.Value, ScrollBar2.Value, ScrollBar3.Value)
-Text3.Text = ScrollBar3.Value
+    Picture1.BackColor = RGB(ScrollBar1.Value, ScrollBar2.Value, ScrollBar3.Value)
+    Text3.Text = ScrollBar3.Value
+    SpinButton3.Value = ScrollBar3.Value
 End Sub
 
 Private Sub SpinButton1_Change()
-ScrollBar1.Value = SpinButton1.Value
+    ScrollBar1.Value = SpinButton1.Value
 End Sub
 
 Private Sub SpinButton2_Change()
-ScrollBar2.Value = SpinButton2.Value
+    ScrollBar2.Value = SpinButton2.Value
 End Sub
 
 Private Sub SpinButton3_Change()
-ScrollBar3.Value = SpinButton3.Value
+    ScrollBar3.Value = SpinButton3.Value
 End Sub

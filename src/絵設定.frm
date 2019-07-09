@@ -1,6 +1,6 @@
 VERSION 5.00
-Object = "{0D452EE1-E08F-101A-852E-02608C4D0BB4}#2.0#0"; "FM20.DLL"
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{B30B7ED4-9187-4EC4-9CD3-5155839C07F7}#4.0#0"; "KBasic.ocx"
 Begin VB.Form Form3 
    BorderStyle     =   4  'å≈íË¬∞Ÿ ≥®›ƒﬁ≥
    Caption         =   "ê›íË"
@@ -183,7 +183,7 @@ Begin VB.Form Form3
             Top             =   735
             Width           =   375
          End
-         Begin MSForms.SpinButton SpinButton4 
+         Begin KBasic.SpinButton SpinButton4 
             Height          =   135
             Index           =   0
             Left            =   960
@@ -195,7 +195,7 @@ Begin VB.Form Form3
             Size            =   "450;238"
             Max             =   255
          End
-         Begin MSForms.SpinButton SpinButton4 
+         Begin KBasic.SpinButton SpinButton4 
             Height          =   135
             Index           =   1
             Left            =   960
@@ -207,7 +207,7 @@ Begin VB.Form Form3
             Size            =   "450;238"
             Max             =   255
          End
-         Begin MSForms.SpinButton SpinButton4 
+         Begin KBasic.SpinButton SpinButton4 
             Height          =   135
             Index           =   2
             Left            =   960
@@ -349,7 +349,7 @@ Begin VB.Form Form3
             Top             =   720
             Width           =   615
          End
-         Begin MSForms.SpinButton SpinButton3 
+         Begin KBasic.SpinButton SpinButton3 
             Height          =   210
             Index           =   3
             Left            =   720
@@ -363,7 +363,7 @@ Begin VB.Form Form3
             Position        =   255
             Orientation     =   1
          End
-         Begin MSForms.SpinButton SpinButton3 
+         Begin KBasic.SpinButton SpinButton3 
             Height          =   210
             Index           =   4
             Left            =   720
@@ -377,7 +377,7 @@ Begin VB.Form Form3
             Position        =   255
             Orientation     =   1
          End
-         Begin MSForms.SpinButton SpinButton3 
+         Begin KBasic.SpinButton SpinButton3 
             Height          =   210
             Index           =   5
             Left            =   720
@@ -498,7 +498,7 @@ Begin VB.Form Form3
             Top             =   720
             Width           =   615
          End
-         Begin MSForms.SpinButton SpinButton3 
+         Begin KBasic.SpinButton SpinButton3 
             Height          =   210
             Index           =   1
             Left            =   720
@@ -511,7 +511,7 @@ Begin VB.Form Form3
             Max             =   255
             Orientation     =   1
          End
-         Begin MSForms.SpinButton SpinButton3 
+         Begin KBasic.SpinButton SpinButton3 
             Height          =   210
             Index           =   0
             Left            =   720
@@ -524,7 +524,7 @@ Begin VB.Form Form3
             Max             =   255
             Orientation     =   1
          End
-         Begin MSForms.SpinButton SpinButton3 
+         Begin KBasic.SpinButton SpinButton3 
             Height          =   210
             Index           =   2
             Left            =   720
@@ -761,7 +761,7 @@ Begin VB.Form Form3
          Top             =   960
          Width           =   1815
       End
-      Begin MSForms.SpinButton SpinButton2 
+      Begin KBasic.SpinButton SpinButton2 
          Height          =   195
          Left            =   1680
          TabIndex        =   15
@@ -772,7 +772,7 @@ Begin VB.Form Form3
          Position        =   1
          Orientation     =   1
       End
-      Begin MSForms.SpinButton SpinButton1 
+      Begin KBasic.SpinButton SpinButton1 
          Height          =   195
          Left            =   1680
          TabIndex        =   14

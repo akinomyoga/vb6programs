@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{0D452EE1-E08F-101A-852E-02608C4D0BB4}#2.0#0"; "FM20.DLL"
+Object = "{B30B7ED4-9187-4EC4-9CD3-5155839C07F7}#4.0#0"; "KBasic.ocx"
 Begin VB.Form Form2 
    BorderStyle     =   3  '固定ﾀﾞｲｱﾛｸﾞ
    Caption         =   "ファイルを開く"
@@ -51,7 +51,7 @@ Begin VB.Form Form2
       Top             =   0
       Width           =   2175
    End
-   Begin MSForms.ToggleButton ToggleButton1 
+   Begin KBasic.ToggleButton ToggleButton1 
       Height          =   495
       Left            =   120
       TabIndex        =   5
