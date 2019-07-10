@@ -22,7 +22,8 @@ Attribute VB_Exposed = True
 ''-----------------------------------------------------------------------------
 
 Dim m_hasFocus As Boolean
-Dim m_Mouse As Boolean
+Dim m_leftButton As Boolean
+Dim m_hover As Boolean
 
 ''-----------------------------------------------------------------------------
 ''
@@ -50,9 +51,9 @@ Const default_Tag = ""
 Const default_MousePointer = MousePointerConstants.vbDefault
 Dim default_MouseIcon As IPictureDisp
 
-Public Event MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
-Public Event MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
-Public Event MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Public Event MouseDown(button As Integer, Shift As Integer, X As Single, Y As Single)
+Public Event MouseUp(button As Integer, Shift As Integer, X As Single, Y As Single)
+Public Event MouseMove(button As Integer, Shift As Integer, X As Single, Y As Single)
 Public Event KeyDown(KeyCode As Integer, Shift As Integer)
 Public Event KeyPress(KeyAscii As Integer)
 Public Event KeyUp(KeyCode As Integer, Shift As Integer)
@@ -101,7 +102,7 @@ Public Property Let Enabled(ByVal new_Enabled As Boolean)
         UserControl.Enabled = new_Enabled
         If Not new_Enabled Then
             m_hasFocus = False
-            m_Mouse = False
+            m_leftButton = False
         End If
         UserControl.Refresh
         PropertyChanged "Enabled"
@@ -226,16 +227,24 @@ End Sub
 ''-----------------------------------------------------------------------------
 
 Sub notifyLeftButton(ByVal state As Boolean)
-    If m_Mouse <> state Then
-        m_Mouse = state
+    If m_leftButton <> state Then
+        m_leftButton = state
         Call UserControl.Refresh
-        If Not m_Mouse Then RaiseEvent Click
+        If Not m_leftButton And m_hover Then RaiseEvent Click
     End If
 End Sub
 
 Sub updateFocus(ByVal state As Boolean)
     If m_hasFocus <> state Then
         m_hasFocus = state
+        UserControl.Refresh
+    End If
+End Sub
+
+Sub hover_Update(ByVal X As Single, ByVal Y As Single)
+    oldHover = m_hover
+    m_hover = 0 <= X And X < ScaleWidth And 0 <= Y And Y < ScaleHeight
+    If m_leftButton And m_hover <> oldHover Then
         UserControl.Refresh
     End If
 End Sub
@@ -249,13 +258,13 @@ Sub onPaint()
     CurrentY = (h - text_height) / 2
     
     If UserControl.Enabled Then
-        If m_Mouse Then
+        If m_leftButton And m_hover Then
             CurrentX = CurrentX + 1
             CurrentY = CurrentY + 1
         End If
         UserControl.Print m_Caption
         
-        If m_Mouse Then
+        If m_leftButton And m_hover Then
             Call Graphics.DrawBorder(Me, kbBorderButtonPressed, 0, 0, w, h)
             Call Graphics.DrawBorder(Me, kbBorderButtonFocus, 0, 0, w, h)
         ElseIf m_hasFocus Then
@@ -289,8 +298,9 @@ End Sub
 ''-----------------------------------------------------------------------------
 
 Private Sub UserControl_Initialize()
-    m_Mouse = False
+    m_leftButton = False
     m_hasFocus = False
+    m_hover = False
     Call delegateProperties_ctor
     Call ownProperties_Initialize
     Call delegateProperties_Initialize
@@ -311,18 +321,22 @@ Private Sub UserControl_WriteProperties(PropBag As PropertyBag)
     delegateProperties_Write PropBag
 End Sub
 
-Private Sub UserControl_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
-    If UserControl.Enabled And Button = vbLeftButton Then notifyLeftButton True
-    RaiseEvent MouseDown(Button, Shift, X, Y)
+Private Sub UserControl_MouseDown(button As Integer, Shift As Integer, X As Single, Y As Single)
+    hover_Update X, Y
+    If UserControl.Enabled And button = vbLeftButton Then notifyLeftButton True
+    RaiseEvent MouseDown(button, Shift, X, Y)
 End Sub
 
-Private Sub UserControl_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
-    If UserControl.Enabled And Button = vbLeftButton Then notifyLeftButton False
-    RaiseEvent MouseUp(Button, Shift, X, Y)
+Private Sub UserControl_MouseUp(button As Integer, Shift As Integer, X As Single, Y As Single)
+    Graphics.ReleaseCapture
+    hover_Update X, Y
+    If UserControl.Enabled And button = vbLeftButton Then notifyLeftButton False
+    RaiseEvent MouseUp(button, Shift, X, Y)
 End Sub
 
-Private Sub UserControl_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
-    RaiseEvent MouseMove(Button, Shift, X, Y)
+Private Sub UserControl_MouseMove(button As Integer, Shift As Integer, X As Single, Y As Single)
+    hover_Update X, Y
+    RaiseEvent MouseMove(button, Shift, X, Y)
 End Sub
 
 Private Sub UserControl_KeyDown(KeyCode As Integer, Shift As Integer)
@@ -339,6 +353,7 @@ End Sub
 
 Private Sub UserControl_DblClick()
     If UserControl.Enabled Then notifyLeftButton True
+    Graphics.SetCapture UserControl.hWnd
 End Sub
 
 Private Sub UserControl_GotFocus()

@@ -85,14 +85,65 @@ UserControl を自分で作るという事。
 
 * プロパティを設定する前に前と同じ値になっていないかどうか確認する
 
-* MouseCapture?
-
 
 ------------------------------------------------------------------------------
   Done
 ------------------------------------------------------------------------------
 
 2019-07-10
+
+* MouseCapture?
+
+  * 対応しようとしたら double click の後に
+    領域外に移動してからボタンを離すとボタンが離れたことを検知できない。
+
+    | 検索して調べてみるが使えそうな物はない。
+    | Win API を呼び出して色々しなければならないのだろうか。
+    | 調べてみると ControlStyles.StandardDoubleClick という物があるそう。
+    | https://docs.microsoft.com/ja-jp/dotnet/api/system.windows.forms.controlstyles?view=netframework-4.8
+    | http://wisdom.sakura.ne.jp/system/msnet/msnet_win24.html
+    | 
+    | これは CreateWindow の Window Style に対応していそう。
+    | StandardDoubleClick は 4096 の様である。
+    | https://www.vb-helper.com/howto_change_window_style.html によると
+    | Window Style の設定には Win32 API を呼び出している。
+    | http://hanatyan.sakura.ne.jp/vb6/commandbutton03.htm でもそうしている。
+    | 
+    | うーん。拡張スタイルもスタイルも見てみたが Double Click に関係ありそうな物はない。
+    | https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setwindowlongptra
+    | https://docs.microsoft.com/ja-jp/windows/win32/winmsg/window-styles
+    | https://docs.microsoft.com/ja-jp/windows/win32/winmsg/extended-window-styles
+    | うーん。試しに設定してみたが変化はない。
+    | 
+    |   % Const GWL_STYLE = -16
+    |   % Const GWL_EXSTYLE = -20
+    |   % 
+    |   % Private Declare Function GetWindowLong Lib "user32" _
+    |   %     Alias "GetWindowLongA" (ByVal hwnd As Long, _
+    |   %     ByVal nIndex As Long) As Long
+    |   % 
+    |   % Private Declare Function SetWindowLong Lib "user32" _
+    |   %     Alias "SetWindowLongA" (ByVal hwnd As Long, _
+    |   %     ByVal nIndex As Long, ByVal dwNewLong As Long) As Long
+    |   % 
+    |   % 
+    |   % Dim style As Long
+    |   % style = GetWindowLong(hwnd, GWL_STYLE)
+    |   % style = style And Not 4096
+    |   % Call SetWindowLong(UserControl.hwnd, GWL_EXSTYLE, style)
+    | 
+    | http://cya.sakura.ne.jp/vb/MSHFlexGrid_Event.htm
+    | ここによると気になる事が書かれている。Click を処理すると DblClick が呼び出されなく為る。
+    | しかしこれはグリッドコントロール特有の振る舞いではないだろうか。
+    | 
+    | http://suvaru.com/pg/sampl/Sample100_20.html
+    | ここによると「Visual BasicはMouseDownごとにSetCapture APIを呼び出すが、」と書かれている。
+    | つまり、DblClick で SetCapture を呼び出してしまえば良い?
+    | →結局これで動く様になった。
+
+    [解決法] Win32 API を呼び出す。
+      UserControl_DblClick で SetCapture UserControl.hWnd を呼び出し、
+      UserControl_MouseUp で ReleaseCapture を呼び出す。
 
 * ColorBox の Enabled に対応する
   Enabled に対応しようとしたら無限ループになってしまって全然駄目だ。

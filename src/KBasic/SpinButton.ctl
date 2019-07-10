@@ -28,6 +28,7 @@ Dim m_leftButton As Integer
 Dim m_mouseX As Single
 Dim m_mouseY As Single
 Dim m_button As Integer
+Dim m_hoverButton As Integer
 
 ''-----------------------------------------------------------------------------
 ''
@@ -72,9 +73,9 @@ Const default_Tag = ""
 Const default_MousePointer = MousePointerConstants.vbDefault
 Dim default_MouseIcon As IPictureDisp
 
-Public Event MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
-Public Event MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
-Public Event MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Public Event MouseDown(button As Integer, Shift As Integer, X As Single, Y As Single)
+Public Event MouseUp(button As Integer, Shift As Integer, X As Single, Y As Single)
+Public Event MouseMove(button As Integer, Shift As Integer, X As Single, Y As Single)
 Public Event KeyDown(KeyCode As Integer, Shift As Integer)
 Public Event KeyPress(KeyAscii As Integer)
 Public Event KeyUp(KeyCode As Integer, Shift As Integer)
@@ -334,6 +335,7 @@ Sub leftButton_Update(ByVal state As Boolean, ByVal X As Integer, ByVal Y As Int
     oldButton = m_button
     If state Then
         m_button = hitTest(X, Y)
+        m_hoverButton = m_button
         If m_button <> 0 Then
             oldValue = m_Value
             If m_button = 1 Xor isHorizontal() Then
@@ -362,8 +364,10 @@ Sub onMouseMove(ByVal X As Integer, ByVal Y As Integer)
     m_mouseX = X
     m_mouseY = Y
     If m_button <> 0 Then
-        If m_button <> hitTest(X, Y) Then
-            m_button = 0
+        oldMatch = m_button = m_hoverButton
+        m_hoverButton = hitTest(X, Y)
+        newMatch = m_button = m_hoverButton
+        If oldMatch <> newMatch Then
             UserControl.Refresh
         End If
     End If
@@ -413,9 +417,10 @@ Sub onPaint_PaintArrow(ByVal direction As Integer, ByVal pressed As Boolean, _
     Next i
 End Sub
 
-Sub onPaint_PaintButton(ByVal direction As Integer, ByVal pressed As Boolean, _
+Sub onPaint_PaintButton(ByVal direction As Integer, ByVal button As Integer, _
     ByVal x1 As Integer, ByVal y1 As Integer, ByVal x2 As Integer, ByVal y2 As Integer)
 
+    pressed = m_button = button And m_button = m_hoverButton
     onPaint_PaintArrow direction, pressed, x1, y1, x2, y2
     If pressed Then
         kbb = kbBorderButtonInset
@@ -430,12 +435,12 @@ Sub onPaint()
     h = KMath.CeilI(ScaleHeight, 2)
     If isHorizontal() Then
         m = Int(w / 2)
-        onPaint_PaintButton 3, m_button = 1, 0, 0, m, h
-        onPaint_PaintButton 4, m_button = 2, m, 0, w, h
+        onPaint_PaintButton 3, 1, 0, 0, m, h
+        onPaint_PaintButton 4, 2, m, 0, w, h
     Else
         m = Int(h / 2)
-        onPaint_PaintButton 1, m_button = 1, 0, 0, w, m
-        onPaint_PaintButton 2, m_button = 2, 0, m, w, h
+        onPaint_PaintButton 1, 1, 0, 0, w, m
+        onPaint_PaintButton 2, 2, 0, m, w, h
     End If
 End Sub
 
@@ -447,6 +452,7 @@ End Sub
 
 Private Sub UserControl_DblClick()
     leftButton_Update True, m_mouseX, m_mouseY
+    Graphics.SetCapture UserControl.hWnd
 End Sub
 
 Private Sub UserControl_Initialize()
@@ -454,6 +460,7 @@ Private Sub UserControl_Initialize()
     m_mouseX = 0
     m_mouseY = 0
     m_button = 0
+    m_hoverButton = 0
     Call delegateProperties_ctor
     Call ownProperties_Initialize
     Call delegateProperties_Initialize
@@ -476,19 +483,20 @@ Private Sub UserControl_KeyUp(KeyCode As Integer, Shift As Integer)
     RaiseEvent KeyUp(KeyCode, Shift)
 End Sub
 
-Private Sub UserControl_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub UserControl_MouseDown(button As Integer, Shift As Integer, X As Single, Y As Single)
     leftButton_Update True, X, Y
-    RaiseEvent MouseDown(Button, Shift, X, Y)
+    RaiseEvent MouseDown(button, Shift, X, Y)
 End Sub
 
-Private Sub UserControl_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub UserControl_MouseMove(button As Integer, Shift As Integer, X As Single, Y As Single)
     onMouseMove X, Y
-    RaiseEvent MouseMove(Button, Shift, X, Y)
+    RaiseEvent MouseMove(button, Shift, X, Y)
 End Sub
 
-Private Sub UserControl_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub UserControl_MouseUp(button As Integer, Shift As Integer, X As Single, Y As Single)
+    Graphics.ReleaseCapture
     leftButton_Update False, X, Y
-    RaiseEvent MouseUp(Button, Shift, X, Y)
+    RaiseEvent MouseUp(button, Shift, X, Y)
 End Sub
 
 Private Sub UserControl_Paint()

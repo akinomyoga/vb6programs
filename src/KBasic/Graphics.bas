@@ -16,9 +16,12 @@ Public Enum BorderStyle
     kbBorderRidge
 End Enum
 
-' https://stackoverflow.com/questions/863039/problems-passing-in-a-usercontrol-as-a-parameter-in-vb6
+Public Declare Function SetCapture Lib "user32" (ByVal hWnd As Long) As Long
+Public Declare Function ReleaseCapture Lib "user32" () As Long
+
 Declare Sub CopyMemory Lib "kernel32" Alias "RtlMoveMemory" (Destination As Any, Source As Any, ByVal Length As Long)
 
+' https://stackoverflow.com/questions/863039/problems-passing-in-a-usercontrol-as-a-parameter-in-vb6
 Public Function GetUserControl(ByRef oObj As Object) As UserControl
     Dim pControl As UserControl
     Call CopyMemory(pControl, ObjPtr(oObj), 4)
