@@ -10,6 +10,24 @@ Begin VB.Form KBasicForm
    ScaleHeight     =   3015
    ScaleWidth      =   4560
    StartUpPosition =   3  'Windows Default
+   Begin KBasic.SpinButton SpinButton5 
+      Height          =   375
+      Left            =   3000
+      Top             =   1080
+      Width           =   375
+      _ExtentX        =   661
+      _ExtentY        =   661
+      Enabled         =   0   'False
+   End
+   Begin KBasic.ToggleButton ToggleButton3 
+      Height          =   375
+      Left            =   3000
+      TabIndex        =   7
+      Top             =   600
+      Width           =   1335
+      _ExtentX        =   2355
+      _ExtentY        =   661
+   End
    Begin VB.CommandButton Command2 
       BackColor       =   &H00C0E0FF&
       Caption         =   "Command1"

@@ -217,6 +217,11 @@ End Property
 Public Property Let Enabled(ByVal new_Enabled As Boolean)
     If UserControl.Enabled <> new_Enabled Then
         UserControl.Enabled = new_Enabled
+        If Not new_Enabled Then
+            m_leftButton = False
+            m_button = 0
+            m_hoverButton = 0
+        End If
         UserControl.Refresh
         PropertyChanged "Enabled"
     End If
@@ -328,8 +333,10 @@ Function hitTest(ByVal X As Single, ByVal Y As Integer) As Integer
 End Function
 
 Sub leftButton_Update(ByVal state As Boolean, ByVal X As Integer, ByVal Y As Integer)
+    If Not UserControl.Enabled Then Exit Sub
     m_mouseX = X
     m_mouseY = Y
+
     If m_leftButton = state Then Exit Sub
     m_leftButton = state
     oldButton = m_button
@@ -361,6 +368,7 @@ Sub leftButton_Update(ByVal state As Boolean, ByVal X As Integer, ByVal Y As Int
 End Sub
 
 Sub onMouseMove(ByVal X As Integer, ByVal Y As Integer)
+    If Not UserControl.Enabled Then Exit Sub
     m_mouseX = X
     m_mouseY = Y
     If m_button <> 0 Then
@@ -374,7 +382,7 @@ Sub onMouseMove(ByVal X As Integer, ByVal Y As Integer)
 End Sub
 
 Sub onPaint_PaintArrow(ByVal direction As Integer, ByVal pressed As Boolean, _
-    ByVal x1 As Integer, ByVal y1 As Integer, ByVal x2 As Integer, ByVal y2 As Integer)
+    ByVal x1 As Integer, ByVal y1 As Integer, ByVal x2 As Integer, ByVal y2 As Integer, ByVal color As OLE_COLOR)
 
     Dim w As Integer: w = x2 - x1
     Dim h As Integer: h = y2 - y1
@@ -409,10 +417,10 @@ Sub onPaint_PaintArrow(ByVal direction As Integer, ByVal pressed As Boolean, _
     For i = 0 To aw - 1
         px = x0 + i * vx
         py = y0 + i * vy
-        PSet (px, py), ForeColor
+        PSet (px, py), color
         For j = 1 To i
-            PSet (px + j * ux, py + j * uy), ForeColor
-            PSet (px - j * ux, py - j * uy), ForeColor
+            PSet (px + j * ux, py + j * uy), color
+            PSet (px - j * ux, py - j * uy), color
         Next j
     Next i
 End Sub
@@ -421,7 +429,12 @@ Sub onPaint_PaintButton(ByVal direction As Integer, ByVal button As Integer, _
     ByVal x1 As Integer, ByVal y1 As Integer, ByVal x2 As Integer, ByVal y2 As Integer)
 
     pressed = m_button = button And m_button = m_hoverButton
-    onPaint_PaintArrow direction, pressed, x1, y1, x2, y2
+    If UserControl.Enabled Then
+        onPaint_PaintArrow direction, pressed, x1, y1, x2, y2, ForeColor
+    Else
+        onPaint_PaintArrow direction, True, x1, y1, x2, y2, SystemColorConstants.vb3DHighlight
+        onPaint_PaintArrow direction, False, x1, y1, x2, y2, SystemColorConstants.vb3DShadow
+    End If
     If pressed Then
         kbb = kbBorderButtonInset
     Else
