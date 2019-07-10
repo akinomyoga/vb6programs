@@ -46,6 +46,9 @@ Const default_Enabled = True
 Const default_BackColor = SystemColorConstants.vbButtonFace
 Const default_ForeColor = SystemColorConstants.vbButtonText
 Dim default_Font As StdFont
+Const default_Tag = ""
+Const default_MousePointer = MousePointerConstants.vbDefault
+Dim default_MouseIcon As IPictureDisp
 
 Public Event MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
 Public Event MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
@@ -149,11 +152,51 @@ Private Function getDefaultFont() As StdFont
     End If
 End Function
 
+Public Property Get Tag() As String
+    Tag = UserControl.Tag
+End Property
+
+Public Property Let Tag(ByVal new_Tag As String)
+    If UserControl.Tag <> new_Tag Then
+        UserControl.Tag = new_Tag
+        PropertyChanged "Tag"
+    End If
+End Property
+
+Public Property Get MousePointer() As Integer
+    MousePointer = UserControl.MousePointer
+End Property
+
+Public Property Let MousePointer(ByVal new_MousePointer As Integer)
+    If UserControl.MousePointer <> new_MousePointer Then
+        UserControl.MousePointer = new_MousePointer
+        PropertyChanged "MousePointer"
+    End If
+End Property
+
+Public Property Get MouseIcon() As IPictureDisp
+    Set MouseIcon = UserControl.MouseIcon
+End Property
+
+Public Property Set MouseIcon(ByRef new_MouseIcon As IPictureDisp)
+    If UserControl.MouseIcon <> new_MouseIcon Then
+        Set UserControl.MouseIcon = new_MouseIcon
+        PropertyChanged "MouseIcon"
+    End If
+End Property
+
+Sub delegateProperties_ctor()
+    Set default_MouseIcon = Nothing
+End Sub
+
 Sub delegateProperties_Initialize()
     UserControl.Enabled = default_Enabled
     UserControl.BackColor = default_BackColor
     UserControl.ForeColor = default_ForeColor
     Set default_Font = UserControl.Font
+    UserControl.Tag = default_Tag
+    UserControl.MousePointer = default_MousePointer
+    Set UserControl.MouseIcon = default_MouseIcon
 End Sub
 
 Sub delegateProperties_Read(PropBag As PropertyBag)
@@ -161,6 +204,9 @@ Sub delegateProperties_Read(PropBag As PropertyBag)
     UserControl.BackColor = PropBag.ReadProperty("BackColor", default_BackColor)
     UserControl.ForeColor = PropBag.ReadProperty("ForeColor", default_ForeColor)
     Set UserControl.Font = PropBag.ReadProperty("Font", getDefaultFont())
+    UserControl.Tag = PropBag.ReadProperty("Tag", default_Tag)
+    UserControl.MousePointer = PropBag.ReadProperty("MousePointer", default_MousePointer)
+    Set UserControl.MouseIcon = PropBag.ReadProperty("MouseIcon", default_MouseIcon)
 End Sub
 
 Sub delegateProperties_Write(PropBag As PropertyBag)
@@ -168,6 +214,9 @@ Sub delegateProperties_Write(PropBag As PropertyBag)
     Call PropBag.WriteProperty("BackColor", UserControl.BackColor, default_BackColor)
     Call PropBag.WriteProperty("ForeColor", UserControl.ForeColor, default_ForeColor)
     Call PropBag.WriteProperty("Font", UserControl.Font, getDefaultFont())
+    Call PropBag.WriteProperty("Tag", UserControl.Tag, default_Tag)
+    Call PropBag.WriteProperty("MousePointer", UserControl.MousePointer, default_MousePointer)
+    Call PropBag.WriteProperty("MouseIcon", UserControl.MouseIcon, default_MouseIcon)
 End Sub
 
 ''-----------------------------------------------------------------------------
@@ -242,6 +291,9 @@ End Sub
 Private Sub UserControl_Initialize()
     m_Mouse = False
     m_hasFocus = False
+    Call delegateProperties_ctor
+    Call ownProperties_Initialize
+    Call delegateProperties_Initialize
 End Sub
 
 Private Sub UserControl_InitProperties()
