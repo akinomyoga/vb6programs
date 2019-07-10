@@ -1,6 +1,6 @@
 VERSION 5.00
-Object = "{6B7E6392-850A-101B-AFC0-4210102A8DA7}#1.2#0"; "COMCTL32.OCX"
-Object = "{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0"; "RICHTX32.OCX"
+Object = "{6B7E6392-850A-101B-AFC0-4210102A8DA7}#1.4#0"; "comctl32.Ocx"
+Object = "{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0"; "richtx32.Ocx"
 Begin VB.Form Form1 
    Caption         =   "Form1"
    ClientHeight    =   8535
@@ -11,7 +11,7 @@ Begin VB.Form Form1
    ScaleHeight     =   8535
    ScaleWidth      =   13920
    Begin ComctlLib.Toolbar Toolbar1 
-      Align           =   1  'è„ëµÇ¶
+      Align           =   1  'Align Top
       Height          =   420
       Left            =   0
       TabIndex        =   5
@@ -26,7 +26,6 @@ Begin VB.Form Form1
       BeginProperty Buttons {0713E452-850A-101B-AFC0-4210102A8DA7} 
          NumButtons      =   1
          BeginProperty Button1 {0713F354-850A-101B-AFC0-4210102A8DA7} 
-            Key             =   ""
             Object.Tag             =   ""
          EndProperty
       EndProperty
@@ -35,7 +34,7 @@ Begin VB.Form Form1
       Height          =   375
       Left            =   4800
       Picture         =   "å˜filer.frx":0000
-      Style           =   1  '∏ﬁ◊Ã®Ø∏Ω
+      Style           =   1  'Graphical
       TabIndex        =   14
       ToolTipText     =   "é¿çs"
       Top             =   3720
@@ -46,7 +45,7 @@ Begin VB.Form Form1
       Index           =   3
       Left            =   4320
       Picture         =   "å˜filer.frx":0342
-      Style           =   1  '∏ﬁ◊Ã®Ø∏Ω
+      Style           =   1  'Graphical
       TabIndex        =   12
       Top             =   3720
       Width           =   375
@@ -56,7 +55,7 @@ Begin VB.Form Form1
       Index           =   2
       Left            =   3960
       Picture         =   "å˜filer.frx":0684
-      Style           =   1  '∏ﬁ◊Ã®Ø∏Ω
+      Style           =   1  'Graphical
       TabIndex        =   11
       Top             =   3720
       Width           =   375
@@ -66,7 +65,7 @@ Begin VB.Form Form1
       Index           =   1
       Left            =   3600
       Picture         =   "å˜filer.frx":09C6
-      Style           =   1  '∏ﬁ◊Ã®Ø∏Ω
+      Style           =   1  'Graphical
       TabIndex        =   10
       Top             =   3720
       Width           =   375
@@ -76,7 +75,7 @@ Begin VB.Form Form1
       Index           =   0
       Left            =   3240
       Picture         =   "å˜filer.frx":0D08
-      Style           =   1  '∏ﬁ◊Ã®Ø∏Ω
+      Style           =   1  'Graphical
       TabIndex        =   9
       Top             =   3720
       Width           =   375
@@ -85,13 +84,13 @@ Begin VB.Form Form1
       Height          =   375
       Left            =   0
       Picture         =   "å˜filer.frx":104A
-      Style           =   1  '∏ﬁ◊Ã®Ø∏Ω
+      Style           =   1  'Graphical
       TabIndex        =   7
       Top             =   6360
       Width           =   375
    End
    Begin VB.FileListBox File1 
-      Height          =   450
+      Height          =   285
       Left            =   7080
       TabIndex        =   6
       Top             =   3720
@@ -114,7 +113,7 @@ Begin VB.Form Form1
       Width           =   3135
    End
    Begin ComctlLib.StatusBar StatusBar1 
-      Align           =   2  'â∫ëµÇ¶
+      Align           =   2  'Align Bottom
       Height          =   240
       Left            =   0
       TabIndex        =   3
@@ -129,8 +128,6 @@ Begin VB.Form Form1
          BeginProperty Panel1 {0713E89F-850A-101B-AFC0-4210102A8DA7} 
             Object.Width           =   13231
             MinWidth        =   13231
-            TextSave        =   ""
-            Key             =   ""
             Object.Tag             =   ""
          EndProperty
          BeginProperty Panel2 {0713E89F-850A-101B-AFC0-4210102A8DA7} 
@@ -138,8 +135,7 @@ Begin VB.Form Form1
             Bevel           =   0
             Object.Width           =   1773
             MinWidth        =   1773
-            TextSave        =   "2003/04/20"
-            Key             =   ""
+            TextSave        =   "2019/07/10"
             Object.Tag             =   ""
          EndProperty
          BeginProperty Panel3 {0713E89F-850A-101B-AFC0-4210102A8DA7} 
@@ -147,8 +143,7 @@ Begin VB.Form Form1
             Bevel           =   0
             Object.Width           =   873
             MinWidth        =   873
-            TextSave        =   "11:43"
-            Key             =   ""
+            TextSave        =   "15:05"
             Object.Tag             =   ""
          EndProperty
       EndProperty
@@ -293,7 +288,8 @@ Begin VB.Form Form1
       Width           =   6015
       _ExtentX        =   10610
       _ExtentY        =   7435
-      _Version        =   327680
+      _Version        =   393217
+      Enabled         =   -1  'True
       ScrollBars      =   3
       TextRTF         =   $"å˜filer.frx":138C
    End
@@ -317,75 +313,75 @@ Begin VB.Form Form1
       BeginProperty Images {0713E8C2-850A-101B-AFC0-4210102A8DA7} 
          NumListImages   =   18
          BeginProperty ListImage1 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
-            Picture         =   "å˜filer.frx":179C
+            Picture         =   "å˜filer.frx":1424
             Key             =   "exe1"
          EndProperty
          BeginProperty ListImage2 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
-            Picture         =   "å˜filer.frx":23EE
+            Picture         =   "å˜filer.frx":2076
             Key             =   "adobe1"
          EndProperty
          BeginProperty ListImage3 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
-            Picture         =   "å˜filer.frx":3040
+            Picture         =   "å˜filer.frx":2CC8
             Key             =   "rich1"
          EndProperty
          BeginProperty ListImage4 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
-            Picture         =   "å˜filer.frx":3C92
+            Picture         =   "å˜filer.frx":391A
             Key             =   "lnk1"
          EndProperty
          BeginProperty ListImage5 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
-            Picture         =   "å˜filer.frx":48E4
+            Picture         =   "å˜filer.frx":456C
             Key             =   "dll1"
          EndProperty
          BeginProperty ListImage6 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
-            Picture         =   "å˜filer.frx":5536
+            Picture         =   "å˜filer.frx":51BE
             Key             =   "some1"
          EndProperty
          BeginProperty ListImage7 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
-            Picture         =   "å˜filer.frx":6188
+            Picture         =   "å˜filer.frx":5E10
             Key             =   "press1"
          EndProperty
          BeginProperty ListImage8 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
-            Picture         =   "å˜filer.frx":69DA
+            Picture         =   "å˜filer.frx":6662
             Key             =   "txt1"
          EndProperty
          BeginProperty ListImage9 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
-            Picture         =   "å˜filer.frx":762C
+            Picture         =   "å˜filer.frx":72B4
             Key             =   "w1"
          EndProperty
          BeginProperty ListImage10 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
-            Picture         =   "å˜filer.frx":827E
+            Picture         =   "å˜filer.frx":7F06
             Key             =   "hlp1"
          EndProperty
          BeginProperty ListImage11 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
-            Picture         =   "å˜filer.frx":8ED0
+            Picture         =   "å˜filer.frx":8B58
             Key             =   "ini1"
          EndProperty
          BeginProperty ListImage12 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
-            Picture         =   "å˜filer.frx":9B22
+            Picture         =   "å˜filer.frx":97AA
             Key             =   "htm1"
          EndProperty
          BeginProperty ListImage13 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
-            Picture         =   "å˜filer.frx":A774
+            Picture         =   "å˜filer.frx":A3FC
             Key             =   "pict1"
          EndProperty
          BeginProperty ListImage14 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
-            Picture         =   "å˜filer.frx":B3C6
+            Picture         =   "å˜filer.frx":B04E
             Key             =   "pp1"
          EndProperty
          BeginProperty ListImage15 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
-            Picture         =   "å˜filer.frx":C018
+            Picture         =   "å˜filer.frx":BCA0
             Key             =   "of1"
          EndProperty
          BeginProperty ListImage16 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
-            Picture         =   "å˜filer.frx":CC6A
+            Picture         =   "å˜filer.frx":C8F2
             Key             =   "ol1"
          EndProperty
          BeginProperty ListImage17 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
-            Picture         =   "å˜filer.frx":D8BC
+            Picture         =   "å˜filer.frx":D544
             Key             =   "ax1"
          EndProperty
          BeginProperty ListImage18 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
-            Picture         =   "å˜filer.frx":E50E
+            Picture         =   "å˜filer.frx":E196
             Key             =   "xl1"
          EndProperty
       EndProperty
@@ -419,79 +415,79 @@ Begin VB.Form Form1
       BeginProperty Images {0713E8C2-850A-101B-AFC0-4210102A8DA7} 
          NumListImages   =   19
          BeginProperty ListImage1 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
-            Picture         =   "å˜filer.frx":F160
+            Picture         =   "å˜filer.frx":EDE8
             Key             =   "folder"
          EndProperty
          BeginProperty ListImage2 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
-            Picture         =   "å˜filer.frx":F6B2
+            Picture         =   "å˜filer.frx":F33A
             Key             =   "adobe2"
          EndProperty
          BeginProperty ListImage3 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
-            Picture         =   "å˜filer.frx":FA04
+            Picture         =   "å˜filer.frx":F68C
             Key             =   "lnk2"
          EndProperty
          BeginProperty ListImage4 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
-            Picture         =   "å˜filer.frx":FD56
+            Picture         =   "å˜filer.frx":F9DE
             Key             =   "rich2"
          EndProperty
          BeginProperty ListImage5 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
-            Picture         =   "å˜filer.frx":100A8
+            Picture         =   "å˜filer.frx":FD30
             Key             =   "press2"
          EndProperty
          BeginProperty ListImage6 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
-            Picture         =   "å˜filer.frx":105FA
+            Picture         =   "å˜filer.frx":10282
             Key             =   "ini2"
          EndProperty
          BeginProperty ListImage7 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
-            Picture         =   "å˜filer.frx":1094C
+            Picture         =   "å˜filer.frx":105D4
             Key             =   "htm2"
          EndProperty
          BeginProperty ListImage8 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
-            Picture         =   "å˜filer.frx":10C9E
+            Picture         =   "å˜filer.frx":10926
             Key             =   "hlp2"
          EndProperty
          BeginProperty ListImage9 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
-            Picture         =   "å˜filer.frx":10FF0
+            Picture         =   "å˜filer.frx":10C78
             Key             =   "of2"
          EndProperty
          BeginProperty ListImage10 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
-            Picture         =   "å˜filer.frx":11342
+            Picture         =   "å˜filer.frx":10FCA
             Key             =   "dll2"
          EndProperty
          BeginProperty ListImage11 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
-            Picture         =   "å˜filer.frx":11694
+            Picture         =   "å˜filer.frx":1131C
             Key             =   "ol2"
          EndProperty
          BeginProperty ListImage12 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
-            Picture         =   "å˜filer.frx":119E6
+            Picture         =   "å˜filer.frx":1166E
             Key             =   "pp2"
          EndProperty
          BeginProperty ListImage13 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
-            Picture         =   "å˜filer.frx":11D38
+            Picture         =   "å˜filer.frx":119C0
             Key             =   "xl2"
          EndProperty
          BeginProperty ListImage14 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
-            Picture         =   "å˜filer.frx":1208A
+            Picture         =   "å˜filer.frx":11D12
             Key             =   "w2"
          EndProperty
          BeginProperty ListImage15 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
-            Picture         =   "å˜filer.frx":123DC
+            Picture         =   "å˜filer.frx":12064
             Key             =   "ax2"
          EndProperty
          BeginProperty ListImage16 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
-            Picture         =   "å˜filer.frx":1272E
+            Picture         =   "å˜filer.frx":123B6
             Key             =   "pict2"
          EndProperty
          BeginProperty ListImage17 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
-            Picture         =   "å˜filer.frx":12A80
+            Picture         =   "å˜filer.frx":12708
             Key             =   "exe2"
          EndProperty
          BeginProperty ListImage18 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
-            Picture         =   "å˜filer.frx":12DD2
+            Picture         =   "å˜filer.frx":12A5A
             Key             =   "some2"
          EndProperty
          BeginProperty ListImage19 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
-            Picture         =   "å˜filer.frx":13124
+            Picture         =   "å˜filer.frx":12DAC
             Key             =   "txt2"
          EndProperty
       EndProperty
@@ -503,13 +499,46 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 
+
+Function getParentPath(ByVal path As String) As String
+    Index = InStrRev(path, "\")
+    If Index = 0 Then
+        getParentPath = ""
+    Else
+        getParentPath = Left(path, Index - 1)
+    End If
+End Function
+
+Function endsWith(ByVal str As String, ByVal suffix As String) As Boolean
+    endsWith = Right(str, Len(suffix)) = suffix
+End Function
+
+Function modifyDriveLetter(ByVal path As String) As String
+    If Mid(path, 2, 2) = ":\" Then
+        modifyDriveLetter = LCase(Left(path, 1)) & Right(path, Len(path) - 1)
+    Else
+        modifyDriveLetter = path
+    End If
+End Function
+
+Sub recursiveExpand(ByVal path As String)
+    Parent = getParentPath(path)
+    If Parent = "" Then
+        If endsWith(path, ":") Then
+            Drive1.Drive = path
+            path = LCase(path) & "\"
+        End If
+    Else
+        recursiveExpand Parent
+    End If
+    TreeView1_Expand TreeView1.Nodes(path)
+End Sub
+
 Private Sub Command1_Click()
-Drive1.Drive = "c:"
-Call TreeView1_Expand(TreeView1.Nodes("c:\"))
-Call TreeView1_Expand(TreeView1.Nodes("c:\WINDOWS"))
-Call TreeView1_Expand(TreeView1.Nodes("c:\WINDOWS\√ﬁΩ∏ƒØÃﬂ"))
-TreeView1.SelectedItem = TreeView1.Nodes("c:\WINDOWS\√ﬁΩ∏ƒØÃﬂ")
-Call TreeView1_NodeClick(TreeView1.Nodes("c:\WINDOWS\√ﬁΩ∏ƒØÃﬂ"))
+    desktopPath = modifyDriveLetter(CreateObject("WScript.Shell").SpecialFolders("Desktop"))
+    recursiveExpand desktopPath
+    TreeView1.SelectedItem = TreeView1.Nodes(desktopPath)
+    Call TreeView1_NodeClick(TreeView1.Nodes(desktopPath))
 End Sub
 
 Private Sub Command2_Click(Index As Integer)
@@ -517,7 +546,7 @@ ListView1.View = Index
 End Sub
 
 Private Sub Command3_Click()
-a = File1.Path
+a = File1.path
 If Right(a, 1) <> "\" Then a = a & "\"
 c = ListView1.SelectedItem.Text
 On Error Resume Next
@@ -544,7 +573,7 @@ End Sub
 
 Private Sub File1_PathChange()
 Dim b As ListItem
-c = File1.Path
+c = File1.path
 ListView1.ListItems.Clear
 If Right(c, 1) <> "\" Then c = c & "\"
 For a = 0 To File1.ListCount - 1
@@ -592,14 +621,14 @@ Case "ºÆ∞ƒ∂Øƒ": b.Icon = "lnk1": b.SmallIcon = "lnk2"
 Case Else: b.Icon = "some1": b.SmallIcon = "some2"
 End Select
 Next a
-Label2.Caption = File1.Path
+Label2.Caption = File1.path
 End Sub
 
 Private Sub Form_Load()
 TreeView1.Nodes.Clear
 TreeView1.Nodes.Add , , "c:\", "c:\", 1, 1
 Call treerenew2("c:\")
-File1.Path = "c:\"
+File1.path = "c:\"
 Image1.Tag = Image1.Height
 Form2.Hide
 End Sub
@@ -610,7 +639,7 @@ End Sub
 
 Public Sub treerenew2(path1)
 On Error GoTo ERR1
-Dir1.Path = path1
+Dir1.path = path1
 ll = Len(Dir1.List(-1))
 If Right(path1, 1) <> "\" Then ll = ll + 1
 If Dir1.ListCount > 0 Then
@@ -634,7 +663,7 @@ End Sub
 
 Private Sub ListView1_ItemClick(ByVal Item As ComctlLib.ListItem)
 On Error GoTo ERR1
-a = File1.Path
+a = File1.path
 If Right(a, 1) <> "\" Then a = a & "\"
 b = Item.SubItems(8)
 c = Item.SubItems(7)
@@ -652,7 +681,7 @@ Image1.Width = Image1.Tag
 End If
 End If
 If b = "√∑Ωƒï∂èë" Or b = "ÿØ¡√∑Ωƒï∂èë" Or b = "ê›íËÃß≤Ÿ" Or c = "log" Or c = "LOG" Then
-RichTextBox1.filename = a & Item.Text
+RichTextBox1.FileName = a & Item.Text
 RichTextBox1.ToolTipText = a & Item.Text
 End If
 Exit Sub
@@ -672,7 +701,7 @@ End Sub
 
 Private Sub TreeView1_NodeClick(ByVal Node As ComctlLib.Node)
 On Error GoTo ERR1
-File1.Path = Node.Key
+File1.path = Node.Key
 Exit Sub
 ERR1:
 Select Case err.Number
