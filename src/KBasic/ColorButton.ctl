@@ -194,7 +194,7 @@ Sub delegateProperties_Initialize()
     UserControl.Enabled = default_Enabled
     UserControl.BackColor = default_BackColor
     UserControl.ForeColor = default_ForeColor
-    Set default_Font = UserControl.Font
+    If default_Font Is Nothing Then Set default_Font = UserControl.Font
     UserControl.Tag = default_Tag
     UserControl.MousePointer = default_MousePointer
     Set UserControl.MouseIcon = default_MouseIcon

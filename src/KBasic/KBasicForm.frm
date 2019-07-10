@@ -27,6 +27,17 @@ Begin VB.Form KBasicForm
       Width           =   1335
       _ExtentX        =   2355
       _ExtentY        =   661
+      Value           =   -1  'True
+      Enabled         =   0   'False
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
    End
    Begin VB.CommandButton Command2 
       BackColor       =   &H00C0E0FF&
@@ -186,6 +197,18 @@ Begin VB.Form KBasicForm
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+   End
+   Begin KBasic.SpinButton SpinButton6 
+      Height          =   375
+      Left            =   3360
+      Top             =   1080
+      Width           =   375
+      _ExtentX        =   661
+      _ExtentY        =   661
+      Orientation     =   1
+      BackColor       =   12648384
+      ForeColor       =   32768
+      Enabled         =   0   'False
    End
 End
 Attribute VB_Name = "KBasicForm"
