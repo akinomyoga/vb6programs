@@ -265,13 +265,13 @@ Sub onPaint()
         UserControl.Print m_Caption
         
         If m_leftButton And m_hover Then
-            Call Graphics.DrawBorder(Me, kbBorderButtonPressed, 0, 0, w, h)
-            Call Graphics.DrawBorder(Me, kbBorderButtonFocus, 0, 0, w, h)
+            Call KWin.DrawBorder(Me, kbBorderButtonPressed, 0, 0, w, h)
+            Call KWin.DrawBorder(Me, kbBorderButtonFocus, 0, 0, w, h)
         ElseIf m_hasFocus Then
-            Call Graphics.DrawBorder(Me, kbBorderButtonOutsetBold, 0, 0, w, h)
-            Call Graphics.DrawBorder(Me, kbBorderButtonFocus, 0, 0, w, h)
+            Call KWin.DrawBorder(Me, kbBorderButtonOutsetBold, 0, 0, w, h)
+            Call KWin.DrawBorder(Me, kbBorderButtonFocus, 0, 0, w, h)
         Else
-            Call Graphics.DrawBorder(Me, kbBorderButtonOutset, 0, 0, w, h)
+            Call KWin.DrawBorder(Me, kbBorderButtonOutset, 0, 0, w, h)
         End If
     Else
         oldForeColor = UserControl.ForeColor
@@ -287,7 +287,7 @@ Sub onPaint()
         UserControl.Print m_Caption
         UserControl.ForeColor = oldForeColor
         
-        Call Graphics.DrawBorder(Me, kbBorderButtonOutset, 0, 0, w, h)
+        Call KWin.DrawBorder(Me, kbBorderButtonOutset, 0, 0, w, h)
     End If
 End Sub
 
@@ -328,7 +328,7 @@ Private Sub UserControl_MouseDown(button As Integer, Shift As Integer, X As Sing
 End Sub
 
 Private Sub UserControl_MouseUp(button As Integer, Shift As Integer, X As Single, Y As Single)
-    Graphics.ReleaseCapture
+    KWin.ReleaseCapture
     hover_Update X, Y
     If UserControl.Enabled And button = vbLeftButton Then notifyLeftButton False
     RaiseEvent MouseUp(button, Shift, X, Y)
@@ -353,7 +353,7 @@ End Sub
 
 Private Sub UserControl_DblClick()
     If UserControl.Enabled Then notifyLeftButton True
-    Graphics.SetCapture UserControl.hWnd
+    KWin.SetCapture UserControl.hWnd
 End Sub
 
 Private Sub UserControl_GotFocus()

@@ -298,30 +298,30 @@ Sub onPaint()
 
     If m_leftButton And m_hover Then
         If m_hasFocus Then
-            Call Graphics.DrawBorder(Me, kbBorderButtonInset, 0, 0, w, h)
-            Call Graphics.DrawBorder(Me, kbBorderButtonFocus, 0, 0, w, h)
+            Call KWin.DrawBorder(Me, kbBorderButtonInset, 0, 0, w, h)
+            Call KWin.DrawBorder(Me, kbBorderButtonFocus, 0, 0, w, h)
         Else
-            Call Graphics.DrawBorder(Me, kbBorderButtonInset, 0, 0, w, h)
+            Call KWin.DrawBorder(Me, kbBorderButtonInset, 0, 0, w, h)
             If Value Then UserControl.Line (4, 4)-(w - 5, h - 5), SystemColorConstants.vb3DDKShadow, B
         End If
     ElseIf Value Then
         If m_hasFocus Then
-            Call Graphics.DrawBorder(Me, kbBorderButtonPressed, 0, 0, w, h)
-            Call Graphics.DrawBorder(Me, kbBorderButtonFocus, 0, 0, w, h)
+            Call KWin.DrawBorder(Me, kbBorderButtonPressed, 0, 0, w, h)
+            Call KWin.DrawBorder(Me, kbBorderButtonFocus, 0, 0, w, h)
         Else
-            Call Graphics.DrawBorder(Me, kbBorderButtonPressed, 0, 0, w, h)
+            Call KWin.DrawBorder(Me, kbBorderButtonPressed, 0, 0, w, h)
             If UserControl.Enabled Then
                 UserControl.Line (4, 4)-(w - 5, h - 5), SystemColorConstants.vb3DDKShadow, B
             Else
-                Graphics.DrawBorder Me, kbBorderGroove, 4, 4, w - 3, h - 3
+                KWin.DrawBorder Me, kbBorderGroove, 4, 4, w - 3, h - 3
             End If
         End If
     Else
         If m_hasFocus Then
-            Call Graphics.DrawBorder(Me, kbBorderButtonOutsetBold, 0, 0, w, h)
-            Call Graphics.DrawBorder(Me, kbBorderButtonFocus, 0, 0, w, h)
+            Call KWin.DrawBorder(Me, kbBorderButtonOutsetBold, 0, 0, w, h)
+            Call KWin.DrawBorder(Me, kbBorderButtonFocus, 0, 0, w, h)
         Else
-            Call Graphics.DrawBorder(Me, kbBorderButtonOutset, 0, 0, w, h)
+            Call KWin.DrawBorder(Me, kbBorderButtonOutset, 0, 0, w, h)
         End If
     End If
 End Sub
@@ -364,7 +364,7 @@ Private Sub UserControl_MouseDown(button As Integer, Shift As Integer, X As Sing
 End Sub
 
 Private Sub UserControl_MouseUp(button As Integer, Shift As Integer, X As Single, Y As Single)
-    Graphics.ReleaseCapture
+    KWin.ReleaseCapture
     If button = vbLeftButton Then notifyLeftButton False
     hover_Update X, Y
     RaiseEvent MouseUp(button, Shift, X, Y)
@@ -389,7 +389,7 @@ End Sub
 
 Private Sub UserControl_DblClick()
     notifyLeftButton True
-    Graphics.SetCapture UserControl.hWnd
+    KWin.SetCapture UserControl.hWnd
 End Sub
 
 Private Sub UserControl_GotFocus()

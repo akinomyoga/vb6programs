@@ -1,7 +1,7 @@
-Attribute VB_Name = "Graphics"
+Attribute VB_Name = "KWin"
 
 
-Public Enum BorderStyle
+Public Enum KWinBorderStyle
     kbBorderControlInset
     kbBorderControlOutset
     kbBorderButtonOutset
@@ -42,57 +42,57 @@ Sub DrawBorderDouble(ByRef user As UserControl, _
     user.Line (x2 - 1, y1)-(x2 - 1, y2), rb1
 End Sub
 
-Sub DrawBorderImpl(ByRef user As UserControl, ByVal style As BorderStyle, _
+Sub DrawBorderImpl(ByRef user As UserControl, ByVal style As KWinBorderStyle, _
     ByVal x1 As Single, ByVal y1 As Single, ByVal x2 As Single, ByVal y2 As Single)
 
     Select Case style
-    Case BorderStyle.kbBorderSingleOutset
+    Case KWinBorderStyle.kbBorderSingleOutset
         user.Line (x1, y1)-(x2 - 1, y1), SystemColorConstants.vb3DHighlight
         user.Line (x1, y1)-(x1, y2 - 1), SystemColorConstants.vb3DHighlight
         user.Line (x1, y2 - 1)-(x2, y2 - 1), SystemColorConstants.vb3DDKShadow
         user.Line (x2 - 1, y1)-(x2 - 1, y2), SystemColorConstants.vb3DDKShadow
-    Case BorderStyle.kbBorderSingleInset
+    Case KWinBorderStyle.kbBorderSingleInset
         user.Line (x1, y1)-(x2 - 1, y1), SystemColorConstants.vb3DDKShadow
         user.Line (x1, y1)-(x1, y2 - 1), SystemColorConstants.vb3DDKShadow
         user.Line (x1, y2 - 1)-(x2, y2 - 1), SystemColorConstants.vb3DHighlight
         user.Line (x2 - 1, y1)-(x2 - 1, y2), SystemColorConstants.vb3DHighlight
-    Case BorderStyle.kbBorderButtonOutset
+    Case KWinBorderStyle.kbBorderButtonOutset
         DrawBorderDouble user, x1, y1, x2, y2, _
             SystemColorConstants.vb3DHighlight, _
             SystemColorConstants.vb3DLight, _
             SystemColorConstants.vb3DShadow, _
             SystemColorConstants.vb3DDKShadow
-    Case BorderStyle.kbBorderButtonInset
+    Case KWinBorderStyle.kbBorderButtonInset
         DrawBorderDouble user, x1, y1, x2, y2, _
             SystemColorConstants.vb3DDKShadow, _
             SystemColorConstants.vb3DShadow, _
             SystemColorConstants.vb3DLight, _
             SystemColorConstants.vb3DHighlight
-    Case BorderStyle.kbBorderControlOutset
+    Case KWinBorderStyle.kbBorderControlOutset
         DrawBorderDouble user, x1, y1, x2, y2, _
             SystemColorConstants.vb3DLight, _
             SystemColorConstants.vb3DHighlight, _
             SystemColorConstants.vb3DShadow, _
             SystemColorConstants.vb3DDKShadow
-    Case BorderStyle.kbBorderControlInset
+    Case KWinBorderStyle.kbBorderControlInset
         DrawBorderDouble user, x1, y1, x2, y2, _
             SystemColorConstants.vb3DShadow, _
             SystemColorConstants.vb3DDKShadow, _
             SystemColorConstants.vb3DLight, _
             SystemColorConstants.vb3DHighlight
-    Case BorderStyle.kbBorderButtonPressed
+    Case KWinBorderStyle.kbBorderButtonPressed
         user.FillStyle = FillStyleConstants.vbFSTransparent
         user.Line (x1, y1)-(x2 - 1, y2 - 1), SystemColorConstants.vb3DDKShadow, B
         user.Line (x1 + 1, y1 + 1)-(x2 - 2, y2 - 2), SystemColorConstants.vb3DShadow, B
-    Case BorderStyle.kbBorderButtonInsetBold
+    Case KWinBorderStyle.kbBorderButtonInsetBold
         user.FillStyle = FillStyleConstants.vbFSTransparent
         user.Line (x1, y1)-(x2 - 1, y2 - 1), SystemColorConstants.vb3DDKShadow, B
         Call DrawBorderImpl(user, kbBorderButtonInset, x1 + 1, y1 + 1, x2 - 1, y2 - 1)
-    Case BorderStyle.kbBorderButtonOutsetBold
+    Case KWinBorderStyle.kbBorderButtonOutsetBold
         user.FillStyle = FillStyleConstants.vbFSTransparent
         user.Line (x1, y1)-(x2 - 1, y2 - 1), SystemColorConstants.vb3DDKShadow, B
         Call DrawBorderImpl(user, kbBorderButtonOutset, x1 + 1, y1 + 1, x2 - 1, y2 - 1)
-    Case BorderStyle.kbBorderButtonFocus
+    Case KWinBorderStyle.kbBorderButtonFocus
         For X = x1 + 5 To x2 - 5 Step 2
             user.PSet (X, y1 + 4), user.ForeColor
             user.PSet (X, y2 - 5), user.ForeColor
@@ -101,18 +101,18 @@ Sub DrawBorderImpl(ByRef user As UserControl, ByVal style As BorderStyle, _
             user.PSet (x1 + 4, Y), user.ForeColor
             user.PSet (x2 - 5, Y), user.ForeColor
         Next Y
-    Case BorderStyle.kbBorderGroove
+    Case KWinBorderStyle.kbBorderGroove
         user.FillStyle = FillStyleConstants.vbFSTransparent
         user.Line (x1 + 1, y1 + 1)-(x2 - 1, y2 - 1), SystemColorConstants.vb3DHighlight, B
         user.Line (x1, y1)-(x2 - 2, y2 - 2), SystemColorConstants.vb3DShadow, B
-    Case BorderStyle.kbBorderRidge
+    Case KWinBorderStyle.kbBorderRidge
         user.FillStyle = FillStyleConstants.vbFSTransparent
         user.Line (x1 + 1, y1 + 1)-(x2 - 1, y2 - 1), SystemColorConstants.vb3DShadow, B
         user.Line (x1, y1)-(x2 - 2, y2 - 2), SystemColorConstants.vb3DHighlight, B
     End Select
 End Sub
 
-Public Sub DrawBorder(ByRef ctrl As Object, ByVal style As BorderStyle, _
+Public Sub DrawBorder(ByRef ctrl As Object, ByVal style As KWinBorderStyle, _
     ByVal x1 As Single, ByVal y1 As Single, ByVal x2 As Single, ByVal y2 As Single)
 
     Dim user As UserControl

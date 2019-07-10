@@ -440,7 +440,7 @@ Sub onPaint_PaintButton(ByVal direction As Integer, ByVal button As Integer, _
     Else
         kbb = kbBorderButtonOutset
     End If
-    Graphics.DrawBorder Me, kbb, x1, y1, x2, y2
+    KWin.DrawBorder Me, kbb, x1, y1, x2, y2
 End Sub
 
 Sub onPaint()
@@ -465,7 +465,7 @@ End Sub
 
 Private Sub UserControl_DblClick()
     leftButton_Update True, m_mouseX, m_mouseY
-    Graphics.SetCapture UserControl.hWnd
+    KWin.SetCapture UserControl.hWnd
 End Sub
 
 Private Sub UserControl_Initialize()
@@ -507,7 +507,7 @@ Private Sub UserControl_MouseMove(button As Integer, Shift As Integer, X As Sing
 End Sub
 
 Private Sub UserControl_MouseUp(button As Integer, Shift As Integer, X As Single, Y As Single)
-    Graphics.ReleaseCapture
+    KWin.ReleaseCapture
     leftButton_Update False, X, Y
     RaiseEvent MouseUp(button, Shift, X, Y)
 End Sub

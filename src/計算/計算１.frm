@@ -821,7 +821,7 @@ Begin VB.Form Form1
       Caption         =   "ƒ‰ƒWƒAƒ“"
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
-         Size            =   11.25
+         Size            =   9
          Charset         =   128
          Weight          =   400
          Underline       =   0   'False
