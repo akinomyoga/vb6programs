@@ -345,10 +345,11 @@ Sub leftButton_Update(ByVal state As Boolean, ByVal X As Integer, ByVal Y As Int
         m_hoverButton = m_button
         If m_button <> 0 Then
             oldValue = m_Value
-            If m_button = 1 Xor isHorizontal() Then
-                m_Value = KMath.MinI(m_Value + m_SmallChange, m_Max)
+            isReverted = m_Min > m_Max
+            If m_button = 1 Xor isHorizontal() Xor isReverted Then
+                m_Value = KMath.MinI(m_Value + m_SmallChange, KMath.MaxI(m_Min, m_Max))
             Else
-                m_Value = KMath.MaxI(m_Value - m_SmallChange, m_Min)
+                m_Value = KMath.MaxI(m_Value - m_SmallChange, KMath.MinI(m_Min, m_Max))
             End If
             If m_Value <> oldValue Then
                 If m_Value > oldValue Then

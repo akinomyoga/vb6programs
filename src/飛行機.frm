@@ -1,8 +1,8 @@
 VERSION 5.00
-Object = "{0D452EE1-E08F-101A-852E-02608C4D0BB4}#2.0#0"; "FM20.DLL"
+Object = "{B30B7ED4-9187-4EC4-9CD3-5155839C07F7}#4.0#0"; "KBasic.ocx"
 Begin VB.Form Form1 
    BackColor       =   &H0000FF00&
-   BorderStyle     =   1  'å≈íË(é¿ê¸)
+   BorderStyle     =   1  'Fixed Single
    Caption         =   "îÚçsã@"
    ClientHeight    =   5265
    ClientLeft      =   3180
@@ -26,17 +26,16 @@ Begin VB.Form Form1
       Left            =   840
       Top             =   4800
    End
-   Begin MSForms.SpinButton SpinButton1 
+   Begin KBasic.SpinButton SpinButton1 
       Height          =   5275
       Left            =   0
-      TabIndex        =   0
       Top             =   0
       Width           =   255
-      Size            =   "450;9305"
-      Min             =   4920
-      Max             =   120
-      Position        =   2520
-      SmallChange     =   120
+      _extentx        =   0
+      _extenty        =   0
+      min             =   4920
+      max             =   120
+      smallchange     =   120
    End
    Begin VB.Image Image1 
       Height          =   300
@@ -47,7 +46,7 @@ Begin VB.Form Form1
    End
    Begin VB.Label Label2 
       BackColor       =   &H000000FF&
-      BorderStyle     =   1  'é¿ê¸
+      BorderStyle     =   1  'Fixed Single
       Caption         =   "èIÇÌÇË"
       BeginProperty Font 
          Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
@@ -308,7 +307,7 @@ Begin VB.Form Form1
       ForeColor       =   &H000000FF&
       Height          =   375
       Left            =   4560
-      TabIndex        =   3
+      TabIndex        =   0
       Top             =   4800
       Width           =   375
    End
