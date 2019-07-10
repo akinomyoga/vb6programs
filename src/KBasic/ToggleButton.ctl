@@ -7,6 +7,7 @@ Begin VB.UserControl ToggleButton
    ScaleHeight     =   231
    ScaleMode       =   3  'Pixel
    ScaleWidth      =   301
+   ToolboxBitmap   =   "ToggleButton.ctx":0000
 End
 Attribute VB_Name = "ToggleButton"
 Attribute VB_GlobalNameSpace = False
@@ -200,13 +201,21 @@ Private Sub UserControl_Paint()
     text_height = UserControl.TextHeight(m_Caption)
     CurrentX = (w - text_width) / 2
     CurrentY = (h - text_height) / 2
-    If Value Or m_Mouse Then
+    If m_Mouse Then
         CurrentX = CurrentX + 1
         CurrentY = CurrentY + 1
     End If
     UserControl.Print m_Caption
 
-    If Value Or m_Mouse Then
+    If m_Mouse Then
+        If m_hasFocus Then
+            Call Graphics.DrawBorder(Me, kbBorderButtonInset, 0, 0, w, h)
+            Call Graphics.DrawBorder(Me, kbBorderButtonFocus, 0, 0, w, h)
+        Else
+            Call Graphics.DrawBorder(Me, kbBorderButtonInset, 0, 0, w, h)
+            If Value Then UserControl.Line (4, 4)-(w - 5, h - 5), SystemColorConstants.vb3DDKShadow, B
+        End If
+    ElseIf Value Then
         If m_hasFocus Then
             Call Graphics.DrawBorder(Me, kbBorderButtonPressed, 0, 0, w, h)
             Call Graphics.DrawBorder(Me, kbBorderButtonFocus, 0, 0, w, h)

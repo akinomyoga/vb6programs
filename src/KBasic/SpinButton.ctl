@@ -8,6 +8,7 @@ Begin VB.UserControl SpinButton
    ScaleHeight     =   240
    ScaleMode       =   3  'Pixel
    ScaleWidth      =   320
+   ToolboxBitmap   =   "SpinButton.ctx":0000
 End
 Attribute VB_Name = "SpinButton"
 Attribute VB_GlobalNameSpace = False
@@ -101,8 +102,10 @@ Public Property Get Min() As Integer
 End Property
 
 Public Property Let Min(ByVal new_Min As Integer)
-    m_Min = new_Min
-    PropertyChanged "Min"
+    If m_Min <> new_Min Then
+        m_Min = new_Min
+        PropertyChanged "Min"
+    End If
 End Property
 
 Public Property Get Max() As Integer
@@ -110,8 +113,10 @@ Public Property Get Max() As Integer
 End Property
 
 Public Property Let Max(ByVal new_Max As Integer)
-    m_Max = new_Max
-    PropertyChanged "Max"
+    If m_Max <> new_Max Then
+        m_Max = new_Max
+        PropertyChanged "Max"
+    End If
 End Property
 
 Public Property Get SmallChange() As Integer
@@ -119,8 +124,10 @@ Public Property Get SmallChange() As Integer
 End Property
 
 Public Property Let SmallChange(ByVal new_SmallChange As Integer)
-    m_SmallChange = new_SmallChange
-    PropertyChanged "SmallChange"
+    If m_SmallChange <> new_SmallChange Then
+        m_SmallChange = new_SmallChange
+        PropertyChanged "SmallChange"
+    End If
 End Property
 
 Public Property Get Orientation() As SpinButtonOrientation
@@ -128,8 +135,10 @@ Public Property Get Orientation() As SpinButtonOrientation
 End Property
 
 Public Property Let Orientation(ByVal new_Orientation As SpinButtonOrientation)
-    m_Orientation = new_Orientation
-    PropertyChanged "Orientation"
+    If m_Orientation <> new_Orientation Then
+        m_Orientation = new_Orientation
+        PropertyChanged "Orientation"
+    End If
 End Property
 
 Public Property Get Delay() As Integer
@@ -137,8 +146,10 @@ Public Property Get Delay() As Integer
 End Property
 
 Public Property Let Delay(ByVal new_Delay As Integer)
-    m_Delay = new_Delay
-    PropertyChanged "Delay"
+    If m_Delay <> new_Delay Then
+        m_Delay = new_Delay
+        PropertyChanged "Delay"
+    End If
 End Property
 
 Sub ownProperties_Initialize()
@@ -170,7 +181,7 @@ End Sub
 
 ''-----------------------------------------------------------------------------
 ''
-'' 委譲プロパティ (宣言)
+'' 委譲プロパティ (定義)
 ''
 ''-----------------------------------------------------------------------------
 
@@ -179,9 +190,11 @@ Public Property Get BackColor() As OLE_COLOR
 End Property
 
 Public Property Let BackColor(ByVal new_BackColor As OLE_COLOR)
-    UserControl.BackColor = new_BackColor
-    UserControl.Refresh
-    PropertyChanged "BackColor"
+    If UserControl.BackColor <> new_BackColor Then
+        UserControl.BackColor = new_BackColor
+        UserControl.Refresh
+        PropertyChanged "BackColor"
+    End If
 End Property
 
 Public Property Get ForeColor() As OLE_COLOR
@@ -189,9 +202,11 @@ Public Property Get ForeColor() As OLE_COLOR
 End Property
 
 Public Property Let ForeColor(ByVal new_ForeColor As OLE_COLOR)
-    UserControl.ForeColor = new_ForeColor
-    UserControl.Refresh
-    PropertyChanged "ForeColor"
+    If UserControl.ForeColor <> new_ForeColor Then
+        UserControl.ForeColor = new_ForeColor
+        UserControl.Refresh
+        PropertyChanged "ForeColor"
+    End If
 End Property
 
 Public Property Get Enabled() As Boolean
@@ -199,9 +214,11 @@ Public Property Get Enabled() As Boolean
 End Property
 
 Public Property Let Enabled(ByVal new_Enabled As Boolean)
-    UserControl.Enabled = new_Enabled
-    UserControl.Refresh
-    PropertyChanged "Enabled"
+    If UserControl.Enabled <> new_Enabled Then
+        UserControl.Enabled = new_Enabled
+        UserControl.Refresh
+        PropertyChanged "Enabled"
+    End If
 End Property
 
 Public Property Get Tag() As String
@@ -209,8 +226,10 @@ Public Property Get Tag() As String
 End Property
 
 Public Property Let Tag(ByVal new_Tag As String)
-    UserControl.Tag = new_Tag
-    PropertyChanged "Tag"
+    If UserControl.Tag <> new_Tag Then
+        UserControl.Tag = new_Tag
+        PropertyChanged "Tag"
+    End If
 End Property
 
 Public Property Get MousePointer() As Integer
@@ -218,8 +237,10 @@ Public Property Get MousePointer() As Integer
 End Property
 
 Public Property Let MousePointer(ByVal new_MousePointer As Integer)
-    UserControl.MousePointer = new_MousePointer
-    PropertyChanged "MousePointer"
+    If UserControl.MousePointer <> new_MousePointer Then
+        UserControl.MousePointer = new_MousePointer
+        PropertyChanged "MousePointer"
+    End If
 End Property
 
 Public Property Get MouseIcon() As IPictureDisp
@@ -227,8 +248,10 @@ Public Property Get MouseIcon() As IPictureDisp
 End Property
 
 Public Property Set MouseIcon(ByRef new_MouseIcon As IPictureDisp)
-    Set UserControl.MouseIcon = new_MouseIcon
-    PropertyChanged "MouseIcon"
+    If UserControl.MouseIcon <> new_MouseIcon Then
+        Set UserControl.MouseIcon = new_MouseIcon
+        PropertyChanged "MouseIcon"
+    End If
 End Property
 
 Sub delegateProperties_ctor()
@@ -313,7 +336,7 @@ Sub leftButton_Update(ByVal state As Boolean, ByVal X As Integer, ByVal Y As Int
         m_button = hitTest(X, Y)
         If m_button <> 0 Then
             oldValue = m_Value
-            If m_button = 1 Then
+            If m_button = 1 Xor isHorizontal() Then
                 m_Value = KMath.MinI(m_Value + m_SmallChange, m_Max)
             Else
                 m_Value = KMath.MaxI(m_Value - m_SmallChange, m_Min)

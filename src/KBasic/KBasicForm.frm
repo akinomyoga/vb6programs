@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{B30B7ED4-9187-4EC4-9CD3-5155839C07F7}#2.0#0"; "KBasic.ocx"
+Object = "{B30B7ED4-9187-4EC4-9CD3-5155839C07F7}#4.0#0"; "KBasic.ocx"
 Begin VB.Form KBasicForm 
    Caption         =   "Form1"
    ClientHeight    =   3015
@@ -10,10 +10,20 @@ Begin VB.Form KBasicForm
    ScaleHeight     =   3015
    ScaleWidth      =   4560
    StartUpPosition =   3  'Windows Default
+   Begin VB.CommandButton Command2 
+      BackColor       =   &H00C0E0FF&
+      Caption         =   "Command1"
+      Enabled         =   0   'False
+      Height          =   375
+      Left            =   1560
+      TabIndex        =   5
+      Top             =   120
+      Width           =   1335
+   End
    Begin KBasic.SpinButton SpinButton2 
       Height          =   255
-      Left            =   3240
-      Top             =   600
+      Left            =   480
+      Top             =   1080
       Width           =   255
       _ExtentX        =   450
       _ExtentY        =   450
@@ -21,7 +31,7 @@ Begin VB.Form KBasicForm
    End
    Begin KBasic.SpinButton SpinButton4 
       Height          =   375
-      Left            =   3360
+      Left            =   1920
       Top             =   1080
       Width           =   375
       _ExtentX        =   661
@@ -32,18 +42,18 @@ Begin VB.Form KBasicForm
    End
    Begin KBasic.SpinButton SpinButton1 
       Height          =   255
-      Left            =   3000
-      Top             =   600
+      Left            =   120
+      Top             =   1080
       Width           =   255
       _ExtentX        =   450
       _ExtentY        =   450
    End
    Begin KBasic.ColorButton ColorButton1 
       Height          =   375
-      Left            =   1560
+      Left            =   120
       TabIndex        =   3
       ToolTipText     =   "Color1"
-      Top             =   600
+      Top             =   1560
       Width           =   1335
       _ExtentX        =   2355
       _ExtentY        =   661
@@ -78,10 +88,10 @@ Begin VB.Form KBasicForm
    End
    Begin KBasic.ToggleButton ToggleButton1 
       Height          =   375
-      Left            =   120
+      Left            =   1560
       TabIndex        =   1
       ToolTipText     =   "Toggle1"
-      Top             =   1080
+      Top             =   600
       Width           =   1335
       _ExtentX        =   2355
       _ExtentY        =   661
@@ -108,7 +118,7 @@ Begin VB.Form KBasicForm
    End
    Begin KBasic.SpinButton SpinButton3 
       Height          =   375
-      Left            =   3000
+      Left            =   1560
       Top             =   1080
       Width           =   375
       _ExtentX        =   661
@@ -121,10 +131,32 @@ Begin VB.Form KBasicForm
       Left            =   1560
       TabIndex        =   4
       ToolTipText     =   "Color1"
-      Top             =   1080
+      Top             =   1560
       Width           =   1335
       _ExtentX        =   2355
       _ExtentY        =   661
+      BackColor       =   16761024
+      ForeColor       =   12582912
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+   End
+   Begin KBasic.ColorButton ColorButton3 
+      Height          =   375
+      Left            =   3000
+      TabIndex        =   6
+      ToolTipText     =   "Color1"
+      Top             =   1560
+      Width           =   1335
+      _ExtentX        =   2355
+      _ExtentY        =   661
+      Enabled         =   0   'False
       BackColor       =   16761024
       ForeColor       =   12582912
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 

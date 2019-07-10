@@ -61,10 +61,10 @@ Sub DrawBorderImpl(ByRef user As UserControl, ByVal style As BorderStyle, _
             SystemColorConstants.vb3DDKShadow
     Case BorderStyle.kbBorderButtonInset
         DrawBorderDouble user, x1, y1, x2, y2, _
-            SystemColorConstants.vb3DShadow, _
             SystemColorConstants.vb3DDKShadow, _
-            SystemColorConstants.vb3DHighlight, _
-            SystemColorConstants.vb3DLight
+            SystemColorConstants.vb3DShadow, _
+            SystemColorConstants.vb3DLight, _
+            SystemColorConstants.vb3DHighlight
     Case BorderStyle.kbBorderControlOutset
         DrawBorderDouble user, x1, y1, x2, y2, _
             SystemColorConstants.vb3DLight, _
