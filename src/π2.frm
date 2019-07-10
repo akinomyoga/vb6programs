@@ -1,6 +1,6 @@
 VERSION 5.00
 Begin VB.Form Form1 
-   BorderStyle     =   3  'ŒÅ’èÀÞ²±Û¸Þ
+   BorderStyle     =   3  'Fixed Dialog
    Caption         =   "ƒÎŒvŽZ‚Q"
    ClientHeight    =   5115
    ClientLeft      =   4800
@@ -24,7 +24,7 @@ Begin VB.Form Form1
    Begin VB.PictureBox Picture1 
       BackColor       =   &H00FFFFFF&
       FillColor       =   &H00FFFF00&
-      FillStyle       =   0  '“h‚è‚Â‚Ô‚µ
+      FillStyle       =   0  'Solid
       ForeColor       =   &H00FF0000&
       Height          =   5055
       Left            =   4680
@@ -242,7 +242,7 @@ End If
 Next i
 Next k
 
-Open "c:\windows\ÃÞ½¸Ä¯Ìß\pidat\pi atn" & h & ".txt" For Output As 1
+Open "pi2-atn" & h & ".txt" For Output As 1
 For i = 0 To 13 '3999
 Print #1, a(i)
 Next i
@@ -280,7 +280,7 @@ End If
 
 Next h
 
-Open "c:\windows\ÃÞ½¸Ä¯Ìß\pidat\pi.txt" For Output As 1
+Open "pi2.txt" For Output As 1
 For i = 0 To 13 '3999
 Print #1, a(i)
 Next i
@@ -310,7 +310,7 @@ a1(1) = 4 * 239
 mm2 = 239 ^ 2
 t = 45
 GoSub skip1
-Open "c:\windows\ÃÞ½¸Ä¯Ìß\pidat\pi1.txt" For Output As 1
+Open "pi1.txt" For Output As 1
 Print #1, "ƒÎ=" & p(1) & "."
 For i = 2 To n9
 a2 = p(i)
