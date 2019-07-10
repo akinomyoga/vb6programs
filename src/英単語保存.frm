@@ -1,11 +1,20 @@
 VERSION 5.00
 Begin VB.Form Form4 
-   BorderStyle     =   3  'å≈íË¿ﬁ≤±€∏ﬁ
+   BorderStyle     =   3  'Fixed Dialog
    Caption         =   "âpíPåÍï€ë∂"
    ClientHeight    =   2370
    ClientLeft      =   6195
    ClientTop       =   780
    ClientWidth     =   4680
+   BeginProperty Font 
+      Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+      Size            =   8.25
+      Charset         =   128
+      Weight          =   400
+      Underline       =   0   'False
+      Italic          =   0   'False
+      Strikethrough   =   0   'False
+   EndProperty
    LinkTopic       =   "Form4"
    MaxButton       =   0   'False
    MinButton       =   0   'False
@@ -14,6 +23,15 @@ Begin VB.Form Form4
    ShowInTaskbar   =   0   'False
    Begin VB.CommandButton Command2 
       Caption         =   "ÉLÉÉÉìÉZÉã"
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   2880
       TabIndex        =   5
@@ -22,6 +40,15 @@ Begin VB.Form Form4
    End
    Begin VB.CommandButton Command1 
       Caption         =   "ï€ë∂"
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   2880
       TabIndex        =   4
@@ -29,6 +56,15 @@ Begin VB.Form Form4
       Width           =   1695
    End
    Begin VB.TextBox Text1 
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   2040
       TabIndex        =   2
@@ -36,6 +72,15 @@ Begin VB.Form Form4
       Width           =   2535
    End
    Begin VB.DirListBox Dir1 
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   1980
       Left            =   0
       TabIndex        =   1
@@ -43,6 +88,15 @@ Begin VB.Form Form4
       Width           =   1935
    End
    Begin VB.DriveListBox Drive1 
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   300
       Left            =   0
       TabIndex        =   0
@@ -51,6 +105,15 @@ Begin VB.Form Form4
    End
    Begin VB.Label Label1 
       Caption         =   "ÉtÉ@ÉCÉãñº"
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Left            =   2040
       TabIndex        =   3
@@ -92,5 +155,5 @@ MsgBox "ÉhÉâÉCÉuÇ™å©Ç¬Ç©ÇËÇ‹ÇπÇÒÅI"
 End Sub
 
 Private Sub Form_Load()
-Dir1.Path = "c:\windows\√ﬁΩ∏ƒØÃﬂ\"
+Dir1.Path = "."
 End Sub

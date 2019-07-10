@@ -1,7 +1,7 @@
 VERSION 5.00
 Object = "{B30B7ED4-9187-4EC4-9CD3-5155839C07F7}#4.0#0"; "KBasic.ocx"
 Begin VB.Form Form2 
-   BorderStyle     =   3  '固定ﾀﾞｲｱﾛｸﾞ
+   BorderStyle     =   3  'Fixed Dialog
    Caption         =   "ファイルを開く"
    ClientHeight    =   3825
    ClientLeft      =   1365
@@ -30,7 +30,7 @@ Begin VB.Form Form2
       Width           =   1335
    End
    Begin VB.FileListBox File1 
-      Height          =   3150
+      Height          =   3015
       Left            =   2160
       Pattern         =   "*.功txt"
       TabIndex        =   2
@@ -56,18 +56,20 @@ Begin VB.Form Form2
       Left            =   120
       TabIndex        =   5
       Top             =   3240
-      Width           =   855
-      BackColor       =   -2147483633
-      ForeColor       =   -2147483630
-      DisplayStyle    =   6
-      Size            =   "1508;873"
-      Value           =   "1"
+      Width           =   1335
+      _ExtentX        =   2355
+      _ExtentY        =   873
       Caption         =   "既存の物を削除"
-      FontName        =   "ＭＳ Ｐゴシック"
-      FontHeight      =   165
-      FontCharSet     =   128
-      FontPitchAndFamily=   2
-      ParagraphAlign  =   3
+      Value           =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "ＭＳ Ｐゴシック"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
    End
 End
 Attribute VB_Name = "Form2"
@@ -81,9 +83,9 @@ End Sub
 
 Private Sub Command2_Click()
 If Right(File1.Path, 1) = "\" Then
-filepath = File1.Path & File1.filename
+filepath = File1.Path & File1.FileName
 Else
-filepath = File1.Path & "\" & File1.filename
+filepath = File1.Path & "\" & File1.FileName
 End If
 If ToggleButton1.Value = True Then Form1.List1.Clear
 Form1.fileopen (filepath)
@@ -103,7 +105,7 @@ MsgBox "ドライブが見つかりません！"
 End Sub
 
 Private Sub Form_Load()
-Dir1.Path = "c:\windows\ﾃﾞｽｸﾄｯﾌﾟ\"
+Dir1.Path = "."
 End Sub
 
 Private Sub ToggleButton1_Click()
