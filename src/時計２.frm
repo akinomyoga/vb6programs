@@ -1,21 +1,39 @@
 VERSION 5.00
 Begin VB.Form Form2 
-   BorderStyle     =   3  'å≈íË¿ﬁ≤±€∏ﬁ
+   BorderStyle     =   3  'Fixed Dialog
    Caption         =   "ê›íË"
    ClientHeight    =   2595
    ClientLeft      =   45
    ClientTop       =   330
    ClientWidth     =   6150
+   BeginProperty Font 
+      Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+      Size            =   8.25
+      Charset         =   128
+      Weight          =   400
+      Underline       =   0   'False
+      Italic          =   0   'False
+      Strikethrough   =   0   'False
+   EndProperty
    LinkTopic       =   "Form2"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   2595
    ScaleWidth      =   6150
    ShowInTaskbar   =   0   'False
-   StartUpPosition =   3  'Windows ÇÃä˘íËíl
+   StartUpPosition =   3  'Windows Default
    Begin VB.TextBox Text1 
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   270
-      IMEMode         =   3  'µÃå≈íË
+      IMEMode         =   3  'DISABLE
       Left            =   3000
       PasswordChar    =   "*"
       TabIndex        =   13
@@ -24,6 +42,15 @@ Begin VB.Form Form2
    End
    Begin VB.Frame Frame1 
       Caption         =   "êFÇÃê›íË"
+      BeginProperty Font 
+         Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+         Size            =   8.25
+         Charset         =   128
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   2415
       Left            =   120
       TabIndex        =   0
@@ -31,6 +58,15 @@ Begin VB.Form Form2
       Width           =   2535
       Begin VB.CommandButton Command1 
          Caption         =   "OK"
+         BeginProperty Font 
+            Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+            Size            =   8.25
+            Charset         =   128
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   375
          Left            =   1320
          TabIndex        =   12
@@ -65,6 +101,15 @@ Begin VB.Form Form2
          Width           =   975
       End
       Begin VB.ComboBox Combo1 
+         BeginProperty Font 
+            Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+            Size            =   8.25
+            Charset         =   128
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   300
          ItemData        =   "éûåvÇQ.frx":0000
          Left            =   120
@@ -76,7 +121,16 @@ Begin VB.Form Form2
       End
       Begin VB.Label Label3 
          BackColor       =   &H00000000&
-         BorderStyle     =   1  'é¿ê¸
+         BorderStyle     =   1  'Fixed Single
+         BeginProperty Font 
+            Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+            Size            =   8.25
+            Charset         =   128
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   495
          Left            =   120
          TabIndex        =   11
@@ -84,9 +138,18 @@ Begin VB.Form Form2
          Width           =   1095
       End
       Begin VB.Label Label2 
-         Alignment       =   1  'âEëµÇ¶
-         BorderStyle     =   1  'é¿ê¸
+         Alignment       =   1  'Right Justify
+         BorderStyle     =   1  'Fixed Single
          Caption         =   "0"
+         BeginProperty Font 
+            Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+            Size            =   8.25
+            Charset         =   128
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Index           =   2
          Left            =   600
@@ -95,9 +158,18 @@ Begin VB.Form Form2
          Width           =   735
       End
       Begin VB.Label Label2 
-         Alignment       =   1  'âEëµÇ¶
-         BorderStyle     =   1  'é¿ê¸
+         Alignment       =   1  'Right Justify
+         BorderStyle     =   1  'Fixed Single
          Caption         =   "0"
+         BeginProperty Font 
+            Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+            Size            =   8.25
+            Charset         =   128
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Index           =   1
          Left            =   600
@@ -106,9 +178,18 @@ Begin VB.Form Form2
          Width           =   735
       End
       Begin VB.Label Label2 
-         Alignment       =   1  'âEëµÇ¶
-         BorderStyle     =   1  'é¿ê¸
+         Alignment       =   1  'Right Justify
+         BorderStyle     =   1  'Fixed Single
          Caption         =   "0"
+         BeginProperty Font 
+            Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+            Size            =   8.25
+            Charset         =   128
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Index           =   0
          Left            =   600
@@ -118,6 +199,15 @@ Begin VB.Form Form2
       End
       Begin VB.Label Label1 
          Caption         =   "Blue"
+         BeginProperty Font 
+            Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+            Size            =   8.25
+            Charset         =   128
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Index           =   2
          Left            =   120
@@ -127,6 +217,15 @@ Begin VB.Form Form2
       End
       Begin VB.Label Label1 
          Caption         =   "Green"
+         BeginProperty Font 
+            Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+            Size            =   8.25
+            Charset         =   128
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Index           =   1
          Left            =   120
@@ -136,6 +235,15 @@ Begin VB.Form Form2
       End
       Begin VB.Label Label1 
          Caption         =   "Red"
+         BeginProperty Font 
+            Name            =   "ÇlÇr ÇoÉSÉVÉbÉN"
+            Size            =   8.25
+            Charset         =   128
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Index           =   0
          Left            =   120
