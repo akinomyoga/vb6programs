@@ -9,6 +9,11 @@ Begin VB.UserControl SpinButton
    ScaleMode       =   3  'Pixel
    ScaleWidth      =   320
    ToolboxBitmap   =   "SpinButton.ctx":0000
+   Begin VB.Timer Timer1 
+      Enabled         =   0   'False
+      Left            =   120
+      Top             =   120
+   End
 End
 Attribute VB_Name = "SpinButton"
 Attribute VB_GlobalNameSpace = False
@@ -24,11 +29,11 @@ Attribute VB_Exposed = True
 ''
 ''-----------------------------------------------------------------------------
 
-Dim m_leftButton As Integer
+Dim m_leftButton As Long
 Dim m_mouseX As Single
 Dim m_mouseY As Single
-Dim m_button As Integer
-Dim m_hoverButton As Integer
+Dim m_button As Long
+Dim m_hoverButton As Long
 
 ''-----------------------------------------------------------------------------
 ''
@@ -42,19 +47,21 @@ Public Enum SpinButtonOrientation
     kbOrientationHorizontal = 1
 End Enum
 
+Const INITIAL_DELAY_FACTOR = 5
+
 Const default_Value = 0
 Const default_Min = 0
 Const default_Max = 10
 Const default_SmallChange = 1
 Const default_Orientation = -1
-Const default_Delay = 1000
+Const default_Delay = 100
 
-Dim m_Value As Integer
-Dim m_Min As Integer
-Dim m_Max As Integer
-Dim m_SmallChange As Integer
+Dim m_Value As Long
+Dim m_Min As Long
+Dim m_Max As Long
+Dim m_SmallChange As Long
 Dim m_Orientation As SpinButtonOrientation
-Dim m_Delay As Integer
+Dim m_Delay As Long
 
 Public Event SpinUp()
 Public Event SpinDown()
@@ -86,14 +93,14 @@ Public Event KeyUp(KeyCode As Integer, Shift As Integer)
 ''
 ''-----------------------------------------------------------------------------
 
-Public Property Get Value() As Integer
+Public Property Get Value() As Long
     Value = m_Value
 End Property
 
-Public Property Let Value(ByVal new_Value As Integer)
-    min_Value = KMath.MinI(m_Min, m_Max)
-    max_Value = KMath.MaxI(m_Min, m_Max)
-    new_Value = KMath.ClampI(new_Value, min_Value, max_Value)
+Public Property Let Value(ByVal new_Value As Long)
+    min_Value = KMath.MinL(m_Min, m_Max)
+    max_Value = KMath.MaxL(m_Min, m_Max)
+    new_Value = KMath.ClampL(new_Value, min_Value, max_Value)
     If m_Value <> new_Value Then
         m_Value = new_Value
         PropertyChanged "Value"
@@ -101,11 +108,11 @@ Public Property Let Value(ByVal new_Value As Integer)
     End If
 End Property
 
-Public Property Get Min() As Integer
+Public Property Get Min() As Long
     Min = m_Min
 End Property
 
-Public Property Let Min(ByVal new_Min As Integer)
+Public Property Let Min(ByVal new_Min As Long)
     If m_Min <> new_Min Then
         m_Min = new_Min
         PropertyChanged "Min"
@@ -113,11 +120,11 @@ Public Property Let Min(ByVal new_Min As Integer)
     End If
 End Property
 
-Public Property Get Max() As Integer
+Public Property Get Max() As Long
     Max = m_Max
 End Property
 
-Public Property Let Max(ByVal new_Max As Integer)
+Public Property Let Max(ByVal new_Max As Long)
     If m_Max <> new_Max Then
         m_Max = new_Max
         PropertyChanged "Max"
@@ -125,11 +132,11 @@ Public Property Let Max(ByVal new_Max As Integer)
     End If
 End Property
 
-Public Property Get SmallChange() As Integer
+Public Property Get SmallChange() As Long
     SmallChange = m_SmallChange
 End Property
 
-Public Property Let SmallChange(ByVal new_SmallChange As Integer)
+Public Property Let SmallChange(ByVal new_SmallChange As Long)
     If m_SmallChange <> new_SmallChange Then
         m_SmallChange = new_SmallChange
         PropertyChanged "SmallChange"
@@ -147,11 +154,11 @@ Public Property Let Orientation(ByVal new_Orientation As SpinButtonOrientation)
     End If
 End Property
 
-Public Property Get Delay() As Integer
+Public Property Get Delay() As Long
     Delay = m_Delay
 End Property
 
-Public Property Let Delay(ByVal new_Delay As Integer)
+Public Property Let Delay(ByVal new_Delay As Long)
     If m_Delay <> new_Delay Then
         m_Delay = new_Delay
         PropertyChanged "Delay"
@@ -226,6 +233,7 @@ Public Property Let Enabled(ByVal new_Enabled As Boolean)
             m_leftButton = False
             m_button = 0
             m_hoverButton = 0
+            Timer1.Interval = 0
         End If
         UserControl.Refresh
         PropertyChanged "Enabled"
@@ -313,7 +321,7 @@ Function isHorizontal() As Boolean
     End Select
 End Function
 
-Function hitTest(ByVal X As Single, ByVal Y As Integer) As Integer
+Function hitTest(ByVal X As Single, ByVal Y As Single) As Long
     Dim pos1 As Single, max1 As Single
     Dim pos2 As Single, max2 As Single
     If isHorizontal() Then
@@ -337,7 +345,25 @@ Function hitTest(ByVal X As Single, ByVal Y As Integer) As Integer
     End If
 End Function
 
-Sub leftButton_Update(ByVal state As Boolean, ByVal X As Integer, ByVal Y As Integer)
+Private Sub doSpin()
+    oldValue = m_Value
+    isReverted = m_Min > m_Max
+    If m_button = 1 Xor isHorizontal() Xor isReverted Then
+        m_Value = KMath.MinL(m_Value + m_SmallChange, KMath.MaxL(m_Min, m_Max))
+    Else
+        m_Value = KMath.MaxL(m_Value - m_SmallChange, KMath.MinL(m_Min, m_Max))
+    End If
+    If m_Value <> oldValue Then
+        If m_Value > oldValue Then
+            RaiseEvent SpinUp
+        ElseIf m_Value < oldValue Then
+            RaiseEvent SpinDown
+        End If
+        RaiseEvent Change
+    End If
+End Sub
+
+Sub leftButton_Update(ByVal state As Boolean, ByVal X As Long, ByVal Y As Long)
     If Not UserControl.Enabled Then Exit Sub
     m_mouseX = X
     m_mouseY = Y
@@ -348,32 +374,20 @@ Sub leftButton_Update(ByVal state As Boolean, ByVal X As Integer, ByVal Y As Int
     If state Then
         m_button = hitTest(X, Y)
         m_hoverButton = m_button
-        If m_button <> 0 Then
-            oldValue = m_Value
-            isReverted = m_Min > m_Max
-            If m_button = 1 Xor isHorizontal() Xor isReverted Then
-                m_Value = KMath.MinI(m_Value + m_SmallChange, KMath.MaxI(m_Min, m_Max))
-            Else
-                m_Value = KMath.MaxI(m_Value - m_SmallChange, KMath.MinI(m_Min, m_Max))
-            End If
-            If m_Value <> oldValue Then
-                If m_Value > oldValue Then
-                    RaiseEvent SpinUp
-                ElseIf m_Value < oldValue Then
-                    RaiseEvent SpinDown
-                End If
-                RaiseEvent Change
-            End If
-        End If
+        If m_button <> 0 Then doSpin
+        Timer1.Interval = m_Delay * INITIAL_DELAY_FACTOR
+        Timer1.Enabled = True
     Else
         m_button = 0
+        Timer1.Enabled = False
+        Timer1.Interval = 0
     End If
     If m_button <> oldButton Then
         UserControl.Refresh
     End If
 End Sub
 
-Sub onMouseMove(ByVal X As Integer, ByVal Y As Integer)
+Sub onMouseMove(ByVal X As Long, ByVal Y As Long)
     If Not UserControl.Enabled Then Exit Sub
     m_mouseX = X
     m_mouseY = Y
@@ -387,8 +401,8 @@ Sub onMouseMove(ByVal X As Integer, ByVal Y As Integer)
     End If
 End Sub
 
-Sub onPaint_paintButton2(ByVal flags As Integer, ByVal button As Integer, _
-    ByVal x1 As Integer, ByVal y1 As Integer, ByVal x2 As Integer, ByVal y2 As Integer)
+Sub onPaint_paintButton2(ByVal flags As Long, ByVal button As Long, _
+    ByVal x1 As Long, ByVal y1 As Long, ByVal x2 As Long, ByVal y2 As Long)
     
     flags = flags Or kbArrowInset
     pressed = m_button = button And m_button = m_hoverButton
@@ -398,8 +412,8 @@ Sub onPaint_paintButton2(ByVal flags As Integer, ByVal button As Integer, _
 End Sub
 
 Sub onPaint()
-    w = KMath.FloorI(ScaleWidth, 2)
-    h = KMath.FloorI(ScaleHeight, 2)
+    w = KMath.FloorL(ScaleWidth, 2)
+    h = KMath.FloorL(ScaleHeight, 2)
     If isHorizontal() Then
         m = Int(w / 2)
         onPaint_paintButton2 kbArrowLeft, 1, 0, 0, m, h
@@ -416,6 +430,11 @@ End Sub
 '' ƒCƒxƒ“ƒg“o˜^
 ''
 ''-----------------------------------------------------------------------------
+
+Private Sub Timer1_Timer()
+    If m_button <> 0 And m_button = m_hoverButton Then doSpin
+    Timer1.Interval = m_Delay
+End Sub
 
 Private Sub UserControl_DblClick()
     leftButton_Update True, m_mouseX, m_mouseY
@@ -451,7 +470,9 @@ Private Sub UserControl_KeyUp(KeyCode As Integer, Shift As Integer)
 End Sub
 
 Private Sub UserControl_MouseDown(button As Integer, Shift As Integer, X As Single, Y As Single)
-    leftButton_Update True, X, Y
+    If button = MouseButtonConstants.vbLeftButton Then
+        leftButton_Update True, X, Y
+    End If
     RaiseEvent MouseDown(button, Shift, X, Y)
 End Sub
 
@@ -462,7 +483,9 @@ End Sub
 
 Private Sub UserControl_MouseUp(button As Integer, Shift As Integer, X As Single, Y As Single)
     KWin.ReleaseCapture
-    leftButton_Update False, X, Y
+    If button = MouseButtonConstants.vbLeftButton Then
+        leftButton_Update False, X, Y
+    End If
     RaiseEvent MouseUp(button, Shift, X, Y)
 End Sub
 

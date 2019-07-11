@@ -179,7 +179,7 @@ Private Sub drawArrowButton_arrow(ByRef user As UserControl, ByVal flags As KWin
         vm = w: um = h
         vx = -1: vy = 0: ux = 0: uy = 1
     End Select
-    aw = KMath.MinL(vm - 5, KMath.MinL((um - 7) / 2, CLng((um - 4) * maxArrowRate / 2)))
+    aw = KMath.MinL(vm - 6, KMath.MinL((um - 7) / 2, CLng((um - 4) * maxArrowRate / 2)))
     aw = KMath.ClampL(aw, 2, maxArrowSize)
     
     x0 = x0 - vx * Int(aw / 2)

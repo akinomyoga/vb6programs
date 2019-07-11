@@ -8,7 +8,9 @@ Begin VB.UserControl ScrollBar
    ScaleHeight     =   240
    ScaleMode       =   3  'Pixel
    ScaleWidth      =   320
+   ToolboxBitmap   =   "ScrollBar.ctx":0000
    Begin VB.Timer Timer1 
+      Enabled         =   0   'False
       Left            =   120
       Top             =   120
    End
@@ -62,17 +64,21 @@ End Type
 ''-----------------------------------------------------------------------------
 
 Const BAR_MIN_SIZE = 5
+Const BUTTON_MIN_SIZE = 9
+Const INITIAL_DELAY_FACTOR = 5
 
 Const default_Value = 0
 Const default_Min = 0
 Const default_Max = 10
 Const default_SmallChange = 1
 Const default_Orientation = -1
-Const default_Delay = 1000
+Const default_Delay = 100
 Const default_BarSize = -1
 Const default_BarRange = -1
 Const default_BarMinSize = BAR_MIN_SIZE
 Const default_LargeChange = 1
+Const default_ButtonSize = -1
+Const default_ButtonMinSize = BUTTON_MIN_SIZE
 
 Dim m_Value As Long
 Dim m_Min As Long
@@ -84,6 +90,8 @@ Dim m_BarSize As Long
 Dim m_BarRange As Long
 Dim m_BarMinSize As Long
 Dim m_LargeChange As Long
+Dim m_ButtonSize As Long
+Dim m_ButtonMinSize As Long
 
 Public Event Scroll()
 Public Event Change()
@@ -126,6 +134,7 @@ Public Property Let Value(ByVal new_Value As Long)
         m_Value = new_Value
         PropertyChanged "Value"
         RaiseEvent Change
+        UserControl.Refresh
     End If
 End Property
 
@@ -172,6 +181,7 @@ Public Property Let Orientation(ByVal new_Orientation As SpinButtonOrientation)
     If m_Orientation <> new_Orientation Then
         m_Orientation = new_Orientation
         PropertyChanged "Orientation"
+        UserControl.Refresh
     End If
 End Property
 
@@ -191,9 +201,15 @@ Public Property Get BarSize() As Long
 End Property
 
 Public Property Let BarSize(ByVal new_BarSize As Long)
+    If new_BarSize <= 0 Then
+        new_BarSize = -1
+    ElseIf new_BarSize < m_BarMinSize Then
+        new_BarSize = m_BarMinSize
+    End If
     If m_BarSize <> new_BarSize Then
         m_BarSize = new_BarSize
         PropertyChanged "BarSize"
+        UserControl.Refresh
     End If
 End Property
 
@@ -205,6 +221,7 @@ Public Property Let BarRange(ByVal new_BarRange As Long)
     If m_BarRange <> new_BarRange Then
         m_BarRange = new_BarRange
         PropertyChanged "BarRange"
+        UserControl.Refresh
     End If
 End Property
 
@@ -213,9 +230,12 @@ Public Property Get BarMinSize() As Long
 End Property
 
 Public Property Let BarMinSize(ByVal new_BarMinSize As Long)
+    If new_BarMinSize < BAR_MIN_SIZE Then new_BarMinSize = BAR_MIN_SIZE
     If m_BarMinSize <> new_BarMinSize Then
         m_BarMinSize = new_BarMinSize
         PropertyChanged "BarMinSize"
+        Me.BarSize = m_BarSize
+        UserControl.Refresh
     End If
 End Property
 
@@ -230,6 +250,37 @@ Public Property Let LargeChange(ByVal new_LargeChange As Long)
     End If
 End Property
 
+Public Property Get ButtonSize() As Long
+    ButtonSize = m_ButtonSize
+End Property
+
+Public Property Let ButtonSize(ByVal new_ButtonSize As Long)
+    If new_ButtonSize <= 0 Then
+        new_ButtonSize = -1
+    ElseIf new_ButtonSize < m_ButtonMinSize Then
+        new_ButtonSize = m_ButtonMinSize
+    End If
+    If m_ButtonSize <> new_ButtonSize Then
+        m_ButtonSize = new_ButtonSize
+        PropertyChanged "ButtonSize"
+        UserControl.Refresh
+    End If
+End Property
+
+Public Property Get ButtonMinSize() As Long
+    ButtonMinSize = m_ButtonMinSize
+End Property
+
+Public Property Let ButtonMinSize(ByVal new_ButtonMinSize As Long)
+    If new_ButtonMinSize < BUTTON_MIN_SIZE Then new_ButtonMinSize = BUTTON_MIN_SIZE
+    If m_ButtonMinSize <> new_ButtonMinSize Then
+        m_ButtonMinSize = new_ButtonMinSize
+        PropertyChanged "ButtonMinSize"
+        Me.ButtonSize = m_ButtonSize
+        UserControl.Refresh
+    End If
+End Property
+
 Sub ownProperties_Initialize()
     m_Value = default_Value
     m_Min = 0
@@ -241,6 +292,8 @@ Sub ownProperties_Initialize()
     m_BarRange = default_BarRange
     m_BarMinSize = default_BarMinSize
     m_LargeChange = default_LargeChange
+    m_ButtonSize = default_ButtonSize
+    m_ButtonMinSize = default_ButtonMinSize
 End Sub
 
 Sub ownProperties_Read(PropBag As PropertyBag)
@@ -254,6 +307,8 @@ Sub ownProperties_Read(PropBag As PropertyBag)
     m_BarRange = PropBag.ReadProperty("BarRange", default_BarRange)
     m_BarMinSize = PropBag.ReadProperty("BarMinSize", default_BarMinSize)
     m_LargeChange = PropBag.ReadProperty("LargeChange", default_LargeChange)
+    m_ButtonSize = PropBag.ReadProperty("ButtonSize", default_ButtonSize)
+    m_ButtonMinSize = PropBag.ReadProperty("ButtonMinSize", default_ButtonMinSize)
 End Sub
 
 Sub ownProperties_Write(PropBag As PropertyBag)
@@ -267,6 +322,8 @@ Sub ownProperties_Write(PropBag As PropertyBag)
     Call PropBag.WriteProperty("BarRange", m_BarRange, default_BarRange)
     Call PropBag.WriteProperty("BarMinSize", m_BarMinSize, default_BarMinSize)
     Call PropBag.WriteProperty("LargeChange", m_LargeChange, default_LargeChange)
+    Call PropBag.WriteProperty("ButtonSize", m_ButtonSize, default_ButtonSize)
+    Call PropBag.WriteProperty("ButtonMinSize", m_ButtonMinSize, default_ButtonMinSize)
 End Sub
 
 ''-----------------------------------------------------------------------------
@@ -407,8 +464,15 @@ Private Sub determineGeometry(ByRef geo As ScrollBarGeometry)
         geo.geo_height = ScaleHeight
     End If
     
-    Dim minButtonSize As Long: minButtonSize = KMath.MinL(geo.geo_height / 2, 9)
-    geo.geo_buttonSize = KMath.MaxL(minButtonSize, KMath.MinL(geo.geo_width, geo.geo_height / 4))
+    If m_ButtonSize > 0 Then
+        geo.geo_buttonSize = m_ButtonSize
+    Else
+        geo.geo_buttonSize = KMath.MinL(geo.geo_width, geo.geo_height / 4)
+    End If
+    Dim minButtonSize As Long
+    minButtonSize = KMath.MaxL(m_ButtonMinSize, BUTTON_MIN_SIZE)
+    minButtonSize = KMath.MinL(geo.geo_height / 2, minButtonSize)
+    geo.geo_buttonSize = KMath.MaxL(geo.geo_buttonSize, minButtonSize)
 
     geo.geo_trackSize = geo.geo_height - 2 * geo.geo_buttonSize
     If geo.geo_trackSize < BAR_MIN_SIZE Then
@@ -468,6 +532,29 @@ Function hitTest(ByVal X As Single, ByVal Y As Single) As Long
     End If
 End Function
 
+Private Sub doScroll()
+    oldValue = m_Value
+    isReverted = m_Min > m_Max
+    If m_button = 1 Or m_button = 2 Then
+        If m_button = 1 Xor isReverted Then
+            m_Value = KMath.MaxL(m_Value - m_SmallChange, KMath.MinL(m_Min, m_Max))
+        Else
+            m_Value = KMath.MinL(m_Value + m_SmallChange, KMath.MaxL(m_Min, m_Max))
+        End If
+    ElseIf m_button = 3 Or m_button = 4 Then
+        If m_button = 3 Xor isReverted Then
+            m_Value = KMath.MaxL(m_Value - m_LargeChange, KMath.MinL(m_Min, m_Max))
+        Else
+            m_Value = KMath.MinL(m_Value + m_LargeChange, KMath.MaxL(m_Min, m_Max))
+        End If
+    End If
+    If m_Value <> oldValue Then
+        UserControl.Refresh
+        RaiseEvent Scroll
+        RaiseEvent Change
+    End If
+End Sub
+
 Sub leftButton_Update(ByVal state As Boolean, ByVal X As Long, ByVal Y As Long)
     If Not UserControl.Enabled Then Exit Sub
     m_mouseX = X
@@ -480,32 +567,20 @@ Sub leftButton_Update(ByVal state As Boolean, ByVal X As Long, ByVal Y As Long)
         m_button = hitTest(X, Y)
         m_hoverButton = m_button
         If m_button <> 0 Then
-            oldValue = m_Value
-            isReverted = m_Min > m_Max
-            If m_button = 1 Or m_button = 2 Then
-                If m_button = 1 Xor isReverted Then
-                    m_Value = KMath.MaxL(m_Value - m_SmallChange, KMath.MinL(m_Min, m_Max))
-                Else
-                    m_Value = KMath.MinL(m_Value + m_SmallChange, KMath.MaxL(m_Min, m_Max))
-                End If
-            ElseIf m_button = 3 Or m_button = 4 Then
-                If m_button = 3 Xor isReverted Then
-                    m_Value = KMath.MaxL(m_Value - m_LargeChange, KMath.MinL(m_Min, m_Max))
-                Else
-                    m_Value = KMath.MinL(m_Value + m_LargeChange, KMath.MaxL(m_Min, m_Max))
-                End If
-            Else
+            If m_button = 5 Then
                 m_dragX = X
                 m_dragY = Y
                 m_dragValue = m_Value
-            End If
-            If m_Value <> oldValue Then
-                RaiseEvent Scroll
-                RaiseEvent Change
+            Else
+                doScroll
+                Timer1.Interval = m_Delay * INITIAL_DELAY_FACTOR
+                Timer1.Enabled = True
             End If
         End If
     Else
         m_button = 0
+        Timer1.Enabled = False
+        Timer1.Interval = 0
     End If
     If m_button <> oldButton Then
         UserControl.Refresh
@@ -574,18 +649,26 @@ Private Sub onPaint()
     Dim v1 As Long: v1 = geo.geo_buttonSize
     Dim v4 As Long: v4 = geo.geo_height - geo.geo_buttonSize
     If geo.geo_trackSize > 0 Then
-        Dim v2 As Long: v2 = v1 + geo.geo_barOffset
-        Dim v3 As Long: v3 = v2 + geo.geo_barSize
         onPaint_drawLine geo, 0, v1, 0, v4, SystemColorConstants.vb3DShadow
         onPaint_drawLine geo, w - 1, v1, w - 1, v4, SystemColorConstants.vb3DShadow
-        If geo.geo_horizontal Then
-            KWin.DrawControlBorder Me, kbBorderControlOutset, v2, 0, v3, w
-            KWin.FillChidori Me, v1, 1, v2, w - 1, SystemColorConstants.vb3DHighlight
-            KWin.FillChidori Me, v3, 1, v4, w - 1, SystemColorConstants.vb3DHighlight
+        If Not UserControl.Enabled Then
+            If geo.geo_horizontal Then
+                KWin.FillChidori Me, v1, 1, v4, w - 1, SystemColorConstants.vb3DHighlight
+            Else
+                KWin.FillChidori Me, 1, v1, w - 1, v4, SystemColorConstants.vb3DHighlight
+            End If
         Else
-            KWin.DrawControlBorder Me, kbBorderControlOutset, 0, v2, w, v3
-            KWin.FillChidori Me, 1, v1, w - 1, v2, SystemColorConstants.vb3DHighlight
-            KWin.FillChidori Me, 1, v3, w - 1, v4, SystemColorConstants.vb3DHighlight
+            Dim v2 As Long: v2 = v1 + geo.geo_barOffset
+            Dim v3 As Long: v3 = v2 + geo.geo_barSize
+            If geo.geo_horizontal Then
+                KWin.DrawControlBorder Me, kbBorderControlOutset, v2, 0, v3, w
+                KWin.FillChidori Me, v1, 1, v2, w - 1, SystemColorConstants.vb3DHighlight
+                KWin.FillChidori Me, v3, 1, v4, w - 1, SystemColorConstants.vb3DHighlight
+            Else
+                KWin.DrawControlBorder Me, kbBorderControlOutset, 0, v2, w, v3
+                KWin.FillChidori Me, 1, v1, w - 1, v2, SystemColorConstants.vb3DHighlight
+                KWin.FillChidori Me, 1, v3, w - 1, v4, SystemColorConstants.vb3DHighlight
+            End If
         End If
     End If
     If geo.geo_horizontal Then
@@ -604,7 +687,9 @@ End Sub
 ''-----------------------------------------------------------------------------
 
 Private Sub Timer1_Timer()
-    Timer1.Interval = 4000
+    m_hoverButton = hitTest(m_mouseX, m_mouseY)
+    If m_button <> 0 And m_button = m_hoverButton Then doScroll
+    Timer1.Interval = m_Delay
 End Sub
 
 Private Sub UserControl_DblClick()
