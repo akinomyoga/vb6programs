@@ -17,7 +17,7 @@ Begin VB.UserControl KSColor
       Width           =   375
    End
    Begin VB.TextBox Text2 
-      ForeColor       =   &H0000FF00&
+      ForeColor       =   &H0000C000&
       Height          =   270
       Left            =   2760
       TabIndex        =   2
@@ -62,7 +62,7 @@ Begin VB.UserControl KSColor
       _ExtentX        =   0
       _ExtentY        =   0
       Max             =   255
-      ForeColor       =   65280
+      ForeColor       =   49152
    End
    Begin KBasic.SpinButton SpinButton1 
       Height          =   255
@@ -74,29 +74,35 @@ Begin VB.UserControl KSColor
       Max             =   255
       ForeColor       =   255
    End
-   Begin VB.HScrollBar ScrollBar3 
+   Begin KBasic.ScrollBar ScrollBar3 
       Height          =   255
       Left            =   1320
-      Max             =   255
-      TabIndex        =   7
       Top             =   600
       Width           =   1455
+      _ExtentX        =   0
+      _ExtentY        =   0
+      Max             =   255
+      ForeColor       =   16711680
    End
-   Begin VB.HScrollBar ScrollBar2 
+   Begin KBasic.ScrollBar ScrollBar2 
       Height          =   255
       Left            =   1320
-      Max             =   255
-      TabIndex        =   6
       Top             =   360
       Width           =   1455
+      _ExtentX        =   0
+      _ExtentY        =   0
+      Max             =   255
+      ForeColor       =   49152
    End
-   Begin VB.HScrollBar ScrollBar1 
+   Begin KBasic.ScrollBar ScrollBar1 
       Height          =   255
       Left            =   1320
-      Max             =   255
-      TabIndex        =   5
       Top             =   120
       Width           =   1455
+      _ExtentX        =   0
+      _ExtentY        =   0
+      Max             =   255
+      ForeColor       =   255
    End
    Begin VB.Label Label1 
       Caption         =   "000000"

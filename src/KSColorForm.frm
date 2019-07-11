@@ -16,8 +16,8 @@ Begin VB.Form KSColorForm
       TabIndex        =   0
       Top             =   120
       Width           =   3495
-      _extentx        =   6165
-      _extenty        =   2566
+      _ExtentX        =   6165
+      _ExtentY        =   2566
    End
 End
 Attribute VB_Name = "KSColorForm"
@@ -25,3 +25,6 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+Private Sub KSColor1_GotFocus()
+
+End Sub
