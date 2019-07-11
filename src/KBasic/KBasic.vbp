@@ -5,6 +5,7 @@ UserControl=SpinButton.ctl
 Module=KWin; KWin.bas
 UserControl=ColorButton.ctl
 Module=KMath; KMath.bas
+UserControl=ScrollBar.ctl
 Startup="(None)"
 HelpFile=""
 Title="KBasic"

@@ -1,5 +1,5 @@
 VERSION 5.00
-Begin VB.UserControl SpinButton 
+Begin VB.UserControl ScrollBar 
    CanGetFocus     =   0   'False
    ClientHeight    =   3600
    ClientLeft      =   0
@@ -8,14 +8,13 @@ Begin VB.UserControl SpinButton
    ScaleHeight     =   240
    ScaleMode       =   3  'Pixel
    ScaleWidth      =   320
-   ToolboxBitmap   =   "SpinButton.ctx":0000
 End
-Attribute VB_Name = "SpinButton"
+Attribute VB_Name = "ScrollBar"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = True
-'' SpinButton
+'' ScrollBar
 '' 参考 http://home.att.ne.jp/zeta/gen/excel/c04p38.htm
 
 ''-----------------------------------------------------------------------------
@@ -24,23 +23,43 @@ Attribute VB_Exposed = True
 ''
 ''-----------------------------------------------------------------------------
 
-Dim m_leftButton As Integer
+Dim m_leftButton As Long
 Dim m_mouseX As Single
 Dim m_mouseY As Single
-Dim m_button As Integer
-Dim m_hoverButton As Integer
+Dim m_button As Long
+Dim m_hoverButton As Long
+
+Dim m_barSize As Long
+Dim m_barRange As Long
+Dim m_barMinSize As Long
+Dim m_largeChange As Long
+
+Const BAR_MIN_SIZE = 5
+
+Private Enum HitResult
+    hitNone = 0
+    hitButton1 = 1
+    hitButton2 = 2
+    hitMargin1 = 3
+    hitMargin2 = 4
+    hitBar = 5
+End Enum
+
+Private Type ScrollBarGeometry
+    m_horizontal As Boolean
+    m_width As Long
+    m_height As Long
+    m_buttonSize As Long
+    m_trackSize As Long
+    m_barSize As Long
+    m_barOffset As Long
+End Type
 
 ''-----------------------------------------------------------------------------
 ''
 '' 独自プロパティ (宣言)
 ''
 ''-----------------------------------------------------------------------------
-
-Public Enum SpinButtonOrientation
-    kbOrientationAuto = -1
-    kbOrientationVertical = 0
-    kbOrientationHorizontal = 1
-End Enum
 
 Const default_Value = 0
 Const default_Min = 0
@@ -49,12 +68,12 @@ Const default_SmallChange = 1
 Const default_Orientation = -1
 Const default_Delay = 1000
 
-Dim m_Value As Integer
-Dim m_Min As Integer
-Dim m_Max As Integer
-Dim m_SmallChange As Integer
+Dim m_Value As Long
+Dim m_Min As Long
+Dim m_Max As Long
+Dim m_SmallChange As Long
 Dim m_Orientation As SpinButtonOrientation
-Dim m_Delay As Integer
+Dim m_Delay As Long
 
 Public Event SpinUp()
 Public Event SpinDown()
@@ -86,14 +105,14 @@ Public Event KeyUp(KeyCode As Integer, Shift As Integer)
 ''
 ''-----------------------------------------------------------------------------
 
-Public Property Get Value() As Integer
+Public Property Get Value() As Long
     Value = m_Value
 End Property
 
-Public Property Let Value(ByVal new_Value As Integer)
-    min_Value = KMath.MinI(m_Min, m_Max)
-    max_Value = KMath.MaxI(m_Min, m_Max)
-    new_Value = KMath.ClampI(new_Value, min_Value, max_Value)
+Public Property Let Value(ByVal new_Value As Long)
+    min_Value = KMath.MinL(m_Min, m_Max)
+    max_Value = KMath.MaxL(m_Min, m_Max)
+    new_Value = KMath.ClampL(new_Value, min_Value, max_Value)
     If m_Value <> new_Value Then
         m_Value = new_Value
         PropertyChanged "Value"
@@ -101,11 +120,11 @@ Public Property Let Value(ByVal new_Value As Integer)
     End If
 End Property
 
-Public Property Get Min() As Integer
+Public Property Get Min() As Long
     Min = m_Min
 End Property
 
-Public Property Let Min(ByVal new_Min As Integer)
+Public Property Let Min(ByVal new_Min As Long)
     If m_Min <> new_Min Then
         m_Min = new_Min
         PropertyChanged "Min"
@@ -113,11 +132,11 @@ Public Property Let Min(ByVal new_Min As Integer)
     End If
 End Property
 
-Public Property Get Max() As Integer
+Public Property Get Max() As Long
     Max = m_Max
 End Property
 
-Public Property Let Max(ByVal new_Max As Integer)
+Public Property Let Max(ByVal new_Max As Long)
     If m_Max <> new_Max Then
         m_Max = new_Max
         PropertyChanged "Max"
@@ -125,11 +144,11 @@ Public Property Let Max(ByVal new_Max As Integer)
     End If
 End Property
 
-Public Property Get SmallChange() As Integer
+Public Property Get SmallChange() As Long
     SmallChange = m_SmallChange
 End Property
 
-Public Property Let SmallChange(ByVal new_SmallChange As Integer)
+Public Property Let SmallChange(ByVal new_SmallChange As Long)
     If m_SmallChange <> new_SmallChange Then
         m_SmallChange = new_SmallChange
         PropertyChanged "SmallChange"
@@ -147,11 +166,11 @@ Public Property Let Orientation(ByVal new_Orientation As SpinButtonOrientation)
     End If
 End Property
 
-Public Property Get Delay() As Integer
+Public Property Get Delay() As Long
     Delay = m_Delay
 End Property
 
-Public Property Let Delay(ByVal new_Delay As Integer)
+Public Property Let Delay(ByVal new_Delay As Long)
     If m_Delay <> new_Delay Then
         m_Delay = new_Delay
         PropertyChanged "Delay"
@@ -309,35 +328,82 @@ Function isHorizontal() As Boolean
     Case SpinButtonOrientation.kbOrientationVertical
         isHorizontal = False
     Case Else
-        isHorizontal = Width > Height
+        isHorizontal = ScaleWidth > ScaleHeight
     End Select
 End Function
 
-Function hitTest(ByVal X As Single, ByVal Y As Integer) As Integer
-    Dim pos1 As Single, max1 As Single
-    Dim pos2 As Single, max2 As Single
-    If isHorizontal() Then
-        pos1 = X
-        max1 = ScaleWidth
-        pos2 = Y
-        max2 = ScaleHeight
+Private Sub determineGeometry(ByRef geo As ScrollBarGeometry)
+    geo.m_horizontal = isHorizontal()
+    If geo.m_horizontal Then
+        geo.m_width = ScaleHeight
+        geo.m_height = ScaleWidth
     Else
-        pos1 = Y
-        max1 = ScaleHeight
-        pos2 = X
-        max2 = ScaleWidth
+        geo.m_width = ScaleWidth
+        geo.m_height = ScaleHeight
+    End If
+    
+    Dim minButtonSize As Long: minButtonSize = KMath.MinL(geo.m_height / 2, 9)
+    geo.m_buttonSize = KMath.MaxL(minButtonSize, KMath.MinL(geo.m_width, geo.m_height / 4))
+
+    geo.m_trackSize = geo.m_height - 2 * geo.m_buttonSize
+    If geo.m_trackSize < BAR_MIN_SIZE Then
+        geo.m_buttonSize = geo.m_buttonSize + CLng(geo.m_trackSize / 2)
+        geo.m_trackSize = geo.m_height - 2 * geo.m_buttonSize
+        geo.m_barSize = 0
+        geo.m_barOffset = 0
+        Exit Sub
+    End If
+    
+    Dim range As Long: range = Abs(m_Max - m_Min)
+    If m_barSize > 0 Then
+        geo.m_barSize = m_barSize
+    Else
+        Dim brange As Long
+        If m_barRange > 0 Then
+            brange = m_barRange
+        Else
+            brange = KMath.MaxL(m_largeChange, 1)
+        End If
+        Dim Z As Double: Z = 1 + CDbl(range) / CDbl(brange)
+        geo.m_barSize = 2 + CLng((geo.m_trackSize - 2) / Z)
+    End If
+    geo.m_barSize = KMath.MinL(KMath.MaxL(geo.m_barSize, m_barMinSize), geo.m_trackSize)
+    
+    Dim maxOffset As Long: maxOffset = geo.m_trackSize - geo.m_barSize
+    Dim offset As Long: offset = Abs(m_Value - m_Min)
+    geo.m_barOffset = KMath.ClampL(CLng(maxOffset * offset / range), 0, maxOffset)
+End Sub
+
+Function hitTest(ByVal X As Single, ByVal Y As Single) As Long
+    Dim geo As ScrollBarGeometry
+    determineGeometry geo
+    
+    Dim u As Single
+    Dim v As Single
+    If geo.m_horizontal Then
+        u = Y
+        v = X
+    Else
+        u = X
+        v = Y
     End If
     histTest = 0
-    If 0 <= pos1 And pos1 < max1 And 0 <= pos2 And pos2 < max2 Then
-        If pos1 < Int(max1 / 2) Then
+    If 0 <= v And v < geo.m_height And 0 <= u And u < geo.m_width Then
+        If v < geo.m_buttonSize Then
             hitTest = 1
-        Else
+        ElseIf v >= geo.m_height - geo.m_buttonSize Then
             hitTest = 2
+        ElseIf v < geo.m_buttonSize + geo.m_barOffset Then
+            hitTest = 3
+        ElseIf v >= geo.m_buttonSize + geo.m_barOffset + geo.m_barSize Then
+            hitTest = 4
+        Else
+            hitTest = 5
         End If
     End If
 End Function
 
-Sub leftButton_Update(ByVal state As Boolean, ByVal X As Integer, ByVal Y As Integer)
+Sub leftButton_Update(ByVal state As Boolean, ByVal X As Long, ByVal Y As Long)
     If Not UserControl.Enabled Then Exit Sub
     m_mouseX = X
     m_mouseY = Y
@@ -351,10 +417,12 @@ Sub leftButton_Update(ByVal state As Boolean, ByVal X As Integer, ByVal Y As Int
         If m_button <> 0 Then
             oldValue = m_Value
             isReverted = m_Min > m_Max
-            If m_button = 1 Xor isHorizontal() Xor isReverted Then
-                m_Value = KMath.MinI(m_Value + m_SmallChange, KMath.MaxI(m_Min, m_Max))
-            Else
-                m_Value = KMath.MaxI(m_Value - m_SmallChange, KMath.MinI(m_Min, m_Max))
+            If m_button = 1 Or m_button = 2 Then
+                If m_button = 1 Xor isReverted Then
+                    m_Value = KMath.MaxL(m_Value - m_SmallChange, KMath.MinL(m_Min, m_Max))
+                Else
+                    m_Value = KMath.MinL(m_Value + m_SmallChange, KMath.MaxL(m_Min, m_Max))
+                End If
             End If
             If m_Value <> oldValue Then
                 If m_Value > oldValue Then
@@ -373,7 +441,7 @@ Sub leftButton_Update(ByVal state As Boolean, ByVal X As Integer, ByVal Y As Int
     End If
 End Sub
 
-Sub onMouseMove(ByVal X As Integer, ByVal Y As Integer)
+Sub onMouseMove(ByVal X As Long, ByVal Y As Long)
     If Not UserControl.Enabled Then Exit Sub
     m_mouseX = X
     m_mouseY = Y
@@ -387,27 +455,54 @@ Sub onMouseMove(ByVal X As Integer, ByVal Y As Integer)
     End If
 End Sub
 
-Sub onPaint_paintButton2(ByVal flags As Integer, ByVal button As Integer, _
-    ByVal x1 As Integer, ByVal y1 As Integer, ByVal x2 As Integer, ByVal y2 As Integer)
+Sub onPaint_paintButton(ByVal flags As Long, ByVal button As Long, _
+    ByVal x1 As Long, ByVal y1 As Long, ByVal x2 As Long, ByVal y2 As Long)
     
-    flags = flags Or kbArrowInset
     pressed = m_button = button And m_button = m_hoverButton
     If pressed Then flags = flags Or kbArrowPressed
     If Not UserControl.Enabled Then flags = flags Or kbArrowDisabled
-    KWin.DrawArrowButton Me, flags, x1, y1, x2, y2, UserControl.ForeColor, 5, 1#
+    KWin.DrawArrowButton Me, flags, x1, y1, x2, y2, UserControl.ForeColor, 5, 0.6
 End Sub
 
-Sub onPaint()
-    w = KMath.FloorI(ScaleWidth, 2)
-    h = KMath.FloorI(ScaleHeight, 2)
-    If isHorizontal() Then
-        m = Int(w / 2)
-        onPaint_paintButton2 kbArrowLeft, 1, 0, 0, m, h
-        onPaint_paintButton2 kbArrowRight, 2, m, 0, w, h
+Private Sub onPaint_drawLine(ByRef geo As ScrollBarGeometry, _
+    ByVal x1 As Long, ByVal y1 As Long, ByVal x2 As Long, ByVal y2 As Long, _
+    ByVal color As OLE_COLOR)
+    If geo.m_horizontal Then
+        Line (y1, x1)-(y2, x2), color
     Else
-        m = Int(h / 2)
-        onPaint_paintButton2 kbArrowUp, 1, 0, 0, w, m
-        onPaint_paintButton2 kbArrowDown, 2, 0, m, w, h
+        Line (x1, y1)-(x2, y2), color
+    End If
+End Sub
+
+Private Sub onPaint()
+    Dim geo As ScrollBarGeometry
+    determineGeometry geo
+    
+    Dim w As Long: w = geo.m_width
+    Dim h As Long: h = geo.m_height
+    Dim v1 As Long: v1 = geo.m_buttonSize
+    Dim v4 As Long: v4 = geo.m_height - geo.m_buttonSize
+    If geo.m_trackSize > 0 Then
+        Dim v2 As Long: v2 = v1 + geo.m_barOffset
+        Dim v3 As Long: v3 = v2 + geo.m_barSize
+        onPaint_drawLine geo, 0, v1, 0, v4, SystemColorConstants.vb3DShadow
+        onPaint_drawLine geo, w - 1, v1, w - 1, v4, SystemColorConstants.vb3DShadow
+        If geo.m_horizontal Then
+            KWin.DrawBorder Me, kbBorderControlOutset, v2, 0, v3, w
+            KWin.FillChidori Me, v1, 1, v2, w - 1, SystemColorConstants.vb3DHighlight
+            KWin.FillChidori Me, v3, 1, v4, w - 1, SystemColorConstants.vb3DHighlight
+        Else
+            KWin.DrawBorder Me, kbBorderControlOutset, 0, v2, w, v3
+            KWin.FillChidori Me, 1, v1, w - 1, v2, SystemColorConstants.vb3DHighlight
+            KWin.FillChidori Me, 1, v3, w - 1, v4, SystemColorConstants.vb3DHighlight
+        End If
+    End If
+    If geo.m_horizontal Then
+        onPaint_paintButton kbArrowLeft, 1, 0, 0, v1, w
+        onPaint_paintButton kbArrowRight, 2, v4, 0, h, w
+    Else
+        onPaint_paintButton kbArrowUp, 1, 0, 0, w, v1
+        onPaint_paintButton kbArrowDown, 2, 0, v4, w, h
     End If
 End Sub
 
@@ -479,3 +574,5 @@ Private Sub UserControl_WriteProperties(PropBag As PropertyBag)
     ownProperties_Write PropBag
     delegateProperties_Write PropBag
 End Sub
+
+

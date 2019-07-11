@@ -69,9 +69,11 @@ Public Property Get Value() As Boolean
 End Property
 
 Public Property Let Value(ByVal new_Value As Boolean)
-    m_Value = new_Value
-    UserControl.Refresh
-    PropertyChanged "Value"
+    If m_Value <> new_Value Then
+        m_Value = new_Value
+        UserControl.Refresh
+        PropertyChanged "Value"
+    End If
 End Property
 
 Public Property Get Caption() As String
@@ -79,8 +81,11 @@ Public Property Get Caption() As String
 End Property
 
 Public Property Let Caption(ByVal new_Caption As String)
-    m_Caption = new_Caption
-    PropertyChanged "Caption"
+    If m_Caption <> new_Caption Then
+        m_Caption = new_Caption
+        UserControl.Refresh
+        PropertyChanged "Caption"
+    End If
 End Property
 
 Private Sub ownProperties_Initialize()
@@ -125,9 +130,11 @@ Public Property Get BackColor() As OLE_COLOR
 End Property
 
 Public Property Let BackColor(ByVal new_BackColor As OLE_COLOR)
-    UserControl.BackColor = new_BackColor
-    UserControl.Refresh
-    PropertyChanged "BackColor"
+    If UserControl.BackColor <> new_BackColor Then
+        UserControl.BackColor = new_BackColor
+        UserControl.Refresh
+        PropertyChanged "BackColor"
+    End If
 End Property
 
 Public Property Get ForeColor() As OLE_COLOR
@@ -135,9 +142,11 @@ Public Property Get ForeColor() As OLE_COLOR
 End Property
 
 Public Property Let ForeColor(ByVal new_ForeColor As OLE_COLOR)
-    UserControl.ForeColor = new_ForeColor
-    UserControl.Refresh
-    PropertyChanged "ForeColor"
+    If UserControl.ForeColor <> new_ForeColor Then
+        UserControl.ForeColor = new_ForeColor
+        UserControl.Refresh
+        PropertyChanged "ForeColor"
+    End If
 End Property
 
 Public Property Get Font() As StdFont
@@ -145,9 +154,11 @@ Public Property Get Font() As StdFont
 End Property
 
 Public Property Set Font(ByRef new_Font As StdFont)
-    Set UserControl.Font = new_Font
-    UserControl.Refresh
-    PropertyChanged "Font"
+    If UserControl.Font <> new_Font Then
+        Set UserControl.Font = new_Font
+        UserControl.Refresh
+        PropertyChanged "Font"
+    End If
 End Property
 
 Private Function getDefaultFont() As StdFont

@@ -77,13 +77,9 @@ UserControl を自分で作るという事。
   ToDo
 ------------------------------------------------------------------------------
 
-2019-07-09
-
-* SpinButton の Enabled に対応する
-* ToggleButton の Enabled に対応する
-* ToggleButton を押している時は Inset にする?
-
-* プロパティを設定する前に前と同じ値になっていないかどうか確認する
+* 何と VB6 の Integer は 16bit 整数の様だ。
+  32bit 整数は Long を使う必要がある。
+  後で全体的に Integer から Long に書き換える必要がある。
 
 
 ------------------------------------------------------------------------------
@@ -92,7 +88,15 @@ UserControl を自分で作るという事。
 
 2019-07-10
 
-* MouseCapture?
+* KBasic: プロパティを設定する前に前と同じ値になっていないかどうか確認する [#D0007]
+
+* KBasic: SpinButton の Enabled に対応する [#D0006]
+
+* KBasic: ToggleButton の Enabled に対応する [#D0005]
+
+* KBasic: ToggleButton を押している時は Inset にする? [#D0004]
+
+* KBasic: MouseCapture? [#D0003]
 
   * 対応しようとしたら double click の後に
     領域外に移動してからボタンを離すとボタンが離れたことを検知できない。
@@ -145,7 +149,7 @@ UserControl を自分で作るという事。
       UserControl_DblClick で SetCapture UserControl.hWnd を呼び出し、
       UserControl_MouseUp で ReleaseCapture を呼び出す。
 
-* ColorBox の Enabled に対応する
+* KBasic: ColorBox の Enabled に対応する [#D0002]
   Enabled に対応しようとしたら無限ループになってしまって全然駄目だ。
   どうも UserControl.Refresh を実行すると Enabled が有効化される?
   しかし UserControl.Refresh を実行しないと表示は更新されない。
@@ -158,7 +162,7 @@ UserControl を自分で作るという事。
 
 2019-07-09
 
-* VB6 の UserControl の ToolBoxBitmap の大きさが分からない。
+* KBasic: VB6 の UserControl の ToolBoxBitmap の大きさが分からない。 [#D0001]
   21x21 が最大サイズの様であるが 21x21 のファイルを指定するとぼやけてしまう。
   12x12 でもぼやけてしまう。というか黒が白に変換されている?
   16x16 だと下偏が欠けてしまっている。
