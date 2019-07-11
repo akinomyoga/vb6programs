@@ -140,7 +140,7 @@ Private Sub drawBorder_impl(ByRef user As UserControl, ByVal style As KWinBorder
     End Select
 End Sub
 
-Public Sub DrawBorder(ByRef ctrl As Object, ByVal style As KWinBorderStyle, _
+Public Sub DrawControlBorder(ByRef ctrl As Object, ByVal style As KWinBorderStyle, _
     ByVal x1 As Single, ByVal y1 As Single, ByVal x2 As Single, ByVal y2 As Single)
 
     Dim user As UserControl

@@ -309,30 +309,30 @@ Sub onPaint()
 
     If m_leftButton And m_hover Then
         If m_hasFocus Then
-            Call KWin.DrawBorder(Me, kbBorderButtonInset, 0, 0, w, h)
-            Call KWin.DrawBorder(Me, kbBorderButtonFocus, 0, 0, w, h)
+            Call KWin.DrawControlBorder(Me, kbBorderButtonInset, 0, 0, w, h)
+            Call KWin.DrawControlBorder(Me, kbBorderButtonFocus, 0, 0, w, h)
         Else
-            Call KWin.DrawBorder(Me, kbBorderButtonInset, 0, 0, w, h)
+            Call KWin.DrawControlBorder(Me, kbBorderButtonInset, 0, 0, w, h)
             If Value Then UserControl.Line (4, 4)-(w - 5, h - 5), SystemColorConstants.vb3DDKShadow, B
         End If
     ElseIf Value Then
         If m_hasFocus Then
-            Call KWin.DrawBorder(Me, kbBorderButtonPressed, 0, 0, w, h)
-            Call KWin.DrawBorder(Me, kbBorderButtonFocus, 0, 0, w, h)
+            Call KWin.DrawControlBorder(Me, kbBorderButtonPressed, 0, 0, w, h)
+            Call KWin.DrawControlBorder(Me, kbBorderButtonFocus, 0, 0, w, h)
         Else
-            Call KWin.DrawBorder(Me, kbBorderButtonPressed, 0, 0, w, h)
+            Call KWin.DrawControlBorder(Me, kbBorderButtonPressed, 0, 0, w, h)
             If UserControl.Enabled Then
                 UserControl.Line (4, 4)-(w - 5, h - 5), SystemColorConstants.vb3DDKShadow, B
             Else
-                KWin.DrawBorder Me, kbBorderGroove, 4, 4, w - 3, h - 3
+                KWin.DrawControlBorder Me, kbBorderGroove, 4, 4, w - 3, h - 3
             End If
         End If
     Else
         If m_hasFocus Then
-            Call KWin.DrawBorder(Me, kbBorderButtonOutsetBold, 0, 0, w, h)
-            Call KWin.DrawBorder(Me, kbBorderButtonFocus, 0, 0, w, h)
+            Call KWin.DrawControlBorder(Me, kbBorderButtonOutsetBold, 0, 0, w, h)
+            Call KWin.DrawControlBorder(Me, kbBorderButtonFocus, 0, 0, w, h)
         Else
-            Call KWin.DrawBorder(Me, kbBorderButtonOutset, 0, 0, w, h)
+            Call KWin.DrawControlBorder(Me, kbBorderButtonOutset, 0, 0, w, h)
         End If
     End If
 End Sub

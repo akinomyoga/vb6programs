@@ -265,13 +265,13 @@ Sub onPaint()
         UserControl.Print m_Caption
         
         If m_leftButton And m_hover Then
-            Call KWin.DrawBorder(Me, kbBorderButtonPressed, 0, 0, w, h)
-            Call KWin.DrawBorder(Me, kbBorderButtonFocus, 0, 0, w, h)
+            Call KWin.DrawControlBorder(Me, kbBorderButtonPressed, 0, 0, w, h)
+            Call KWin.DrawControlBorder(Me, kbBorderButtonFocus, 0, 0, w, h)
         ElseIf m_hasFocus Then
-            Call KWin.DrawBorder(Me, kbBorderButtonOutsetBold, 0, 0, w, h)
-            Call KWin.DrawBorder(Me, kbBorderButtonFocus, 0, 0, w, h)
+            Call KWin.DrawControlBorder(Me, kbBorderButtonOutsetBold, 0, 0, w, h)
+            Call KWin.DrawControlBorder(Me, kbBorderButtonFocus, 0, 0, w, h)
         Else
-            Call KWin.DrawBorder(Me, kbBorderButtonOutset, 0, 0, w, h)
+            Call KWin.DrawControlBorder(Me, kbBorderButtonOutset, 0, 0, w, h)
         End If
     Else
         oldForeColor = UserControl.ForeColor
@@ -287,7 +287,7 @@ Sub onPaint()
         UserControl.Print m_Caption
         UserControl.ForeColor = oldForeColor
         
-        Call KWin.DrawBorder(Me, kbBorderButtonOutset, 0, 0, w, h)
+        Call KWin.DrawControlBorder(Me, kbBorderButtonOutset, 0, 0, w, h)
     End If
 End Sub
 
