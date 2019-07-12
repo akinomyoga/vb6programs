@@ -1,6 +1,6 @@
 VERSION 5.00
 Object = "*\A％メーター.vbp"
-Begin VB.Form Form1 
+Begin VB.Form KProgressBarForm 
    Caption         =   "Form1"
    ClientHeight    =   3195
    ClientLeft      =   60
@@ -9,23 +9,23 @@ Begin VB.Form Form1
    LinkTopic       =   "Form1"
    ScaleHeight     =   3195
    ScaleWidth      =   4680
-   StartUpPosition =   3  'Windows の既定値
+   StartUpPosition =   3  'Windows Default
    Begin VB.Timer Timer1 
       Interval        =   100
       Left            =   720
       Top             =   960
    End
-   Begin Project1.UserControl1 UserControl11 
+   Begin KProgressBarProject.KProgressBar UserControl11 
       Height          =   495
       Left            =   240
       TabIndex        =   0
       Top             =   120
       Width           =   4215
-      _ExtentX        =   7435
-      _ExtentY        =   873
+      _extentx        =   7435
+      _extenty        =   873
    End
 End
-Attribute VB_Name = "Form1"
+Attribute VB_Name = "KProgressBarForm"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True

@@ -1,9 +1,9 @@
 Type=Control
-UserControl=ÅìÉÅÅ[É^Å[.ctl
+UserControl=KProgressBar.ctl
 Reference=*\G{00020430-0000-0000-C000-000000000046}#2.0#0#..\..\..\..\..\..\Windows\SysWOW64\stdole2.tlb#OLE Automation
 Startup="(None)"
 Command32=""
-Name="Project1"
+Name="KProgressBarProject"
 HelpContextID="0"
 CompatibleMode="1"
 MajorVer=1

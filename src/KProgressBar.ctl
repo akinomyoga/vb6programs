@@ -1,5 +1,5 @@
 VERSION 5.00
-Begin VB.UserControl UserControl1 
+Begin VB.UserControl KProgressBar 
    ClientHeight    =   675
    ClientLeft      =   0
    ClientTop       =   0
@@ -16,7 +16,7 @@ Begin VB.UserControl UserControl1
       Top             =   0
       Width           =   4935
       Begin VB.Label Label2 
-         Alignment       =   2  '’†‰›‘µ‚¦
+         Alignment       =   2  'Center
          BeginProperty Font 
             Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
             Size            =   9.75
@@ -52,7 +52,7 @@ Begin VB.UserControl UserControl1
       End
    End
 End
-Attribute VB_Name = "UserControl1"
+Attribute VB_Name = "KProgressBar"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = False

@@ -1,11 +1,11 @@
 Type=Exe
-Form=ééÇµÇP.frm
+Form=KProgressBarForm.frm
 Reference=*\G{00020430-0000-0000-C000-000000000046}#2.0#0#..\..\..\..\..\..\Windows\SysWOW64\stdole2.tlb#OLE Automation
-Object=*\AÅìÉÅÅ[É^Å[.vbp
-IconForm="Form1"
-Startup="Form1"
+Object=*\AKProgressBar.vbp
+IconForm="KProgressBarForm"
+Startup="KProgressBarForm"
 Command32=""
-Name="Project2"
+Name="ProgressBarTest"
 HelpContextID="0"
 CompatibleMode="0"
 MajorVer=1
