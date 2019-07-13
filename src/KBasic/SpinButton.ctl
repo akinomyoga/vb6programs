@@ -1,5 +1,6 @@
 VERSION 5.00
 Begin VB.UserControl SpinButton 
+   AutoRedraw      =   -1  'True
    CanGetFocus     =   0   'False
    ClientHeight    =   3600
    ClientLeft      =   0
@@ -9,6 +10,12 @@ Begin VB.UserControl SpinButton
    ScaleMode       =   3  'Pixel
    ScaleWidth      =   320
    ToolboxBitmap   =   "SpinButton.ctx":0000
+   Begin KBasic.KControlHelper Controller 
+      Left            =   600
+      Top             =   120
+      _extentx        =   661
+      _extenty        =   661
+   End
    Begin VB.Timer Timer1 
       Enabled         =   0   'False
       Left            =   120
@@ -80,9 +87,9 @@ Const default_Tag = ""
 Const default_MousePointer = MousePointerConstants.vbDefault
 Dim default_MouseIcon As IPictureDisp
 
-Public Event MouseDown(button As Integer, Shift As Integer, X As Single, Y As Single)
-Public Event MouseUp(button As Integer, Shift As Integer, X As Single, Y As Single)
-Public Event MouseMove(button As Integer, Shift As Integer, X As Single, Y As Single)
+Public Event MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Public Event MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Public Event MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
 Public Event KeyDown(KeyCode As Integer, Shift As Integer)
 Public Event KeyPress(KeyAscii As Integer)
 Public Event KeyUp(KeyCode As Integer, Shift As Integer)
@@ -205,7 +212,7 @@ End Property
 Public Property Let BackColor(ByVal new_BackColor As OLE_COLOR)
     If UserControl.BackColor <> new_BackColor Then
         UserControl.BackColor = new_BackColor
-        UserControl.Refresh
+        Controller.Refresh
         PropertyChanged "BackColor"
     End If
 End Property
@@ -217,7 +224,7 @@ End Property
 Public Property Let ForeColor(ByVal new_ForeColor As OLE_COLOR)
     If UserControl.ForeColor <> new_ForeColor Then
         UserControl.ForeColor = new_ForeColor
-        UserControl.Refresh
+        Controller.Refresh
         PropertyChanged "ForeColor"
     End If
 End Property
@@ -235,7 +242,7 @@ Public Property Let Enabled(ByVal new_Enabled As Boolean)
             m_hoverButton = 0
             Timer1.Interval = 0
         End If
-        UserControl.Refresh
+        Controller.Refresh
         PropertyChanged "Enabled"
     End If
 End Property
@@ -383,11 +390,11 @@ Sub leftButton_Update(ByVal state As Boolean, ByVal X As Long, ByVal Y As Long)
         Timer1.Interval = 0
     End If
     If m_button <> oldButton Then
-        UserControl.Refresh
+        Controller.Refresh
     End If
 End Sub
 
-Sub onMouseMove(ByVal X As Long, ByVal Y As Long)
+Sub OnMouseMove(ByVal X As Long, ByVal Y As Long)
     If Not UserControl.Enabled Then Exit Sub
     m_mouseX = X
     m_mouseY = Y
@@ -396,33 +403,62 @@ Sub onMouseMove(ByVal X As Long, ByVal Y As Long)
         m_hoverButton = hitTest(X, Y)
         newMatch = m_button = m_hoverButton
         If oldMatch <> newMatch Then
-            UserControl.Refresh
+            Controller.Refresh
         End If
     End If
 End Sub
 
-Sub onPaint_paintButton2(ByVal flags As Long, ByVal button As Long, _
+Sub doPaint_paintButton2(ByVal flags As Long, ByVal Button As Long, _
     ByVal x1 As Long, ByVal y1 As Long, ByVal x2 As Long, ByVal y2 As Long)
     
     flags = flags Or kbArrowButtonInset
-    pressed = m_button = button And m_button = m_hoverButton
+    pressed = m_button = Button And m_button = m_hoverButton
     If pressed Then flags = flags Or kbArrowPressed
     If Not UserControl.Enabled Then flags = flags Or kbArrowDisabled
     KWin.DrawArrowButton Me, flags, x1, y1, x2, y2, UserControl.ForeColor, 5, 1#
 End Sub
 
-Sub onPaint()
+Sub doPaint()
     w = KMath.FloorL(ScaleWidth, 2)
     h = KMath.FloorL(ScaleHeight, 2)
     If isHorizontal() Then
         m = Int(w / 2)
-        onPaint_paintButton2 kbArrowLeft, 1, 0, 0, m, h
-        onPaint_paintButton2 kbArrowRight, 2, m, 0, w, h
+        doPaint_paintButton2 kbArrowLeft, 1, 0, 0, m, h
+        doPaint_paintButton2 kbArrowRight, 2, m, 0, w, h
     Else
         m = Int(h / 2)
-        onPaint_paintButton2 kbArrowUp, 1, 0, 0, w, m
-        onPaint_paintButton2 kbArrowDown, 2, 0, m, w, h
+        doPaint_paintButton2 kbArrowUp, 1, 0, 0, w, m
+        doPaint_paintButton2 kbArrowDown, 2, 0, m, w, h
     End If
+End Sub
+
+''-----------------------------------------------------------------------------
+''
+'' ƒCƒxƒ“ƒg“o˜^ (Controller)
+''
+''-----------------------------------------------------------------------------
+
+Private Sub Controller_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    If Button = MouseButtonConstants.vbLeftButton Then
+        leftButton_Update True, X, Y
+    End If
+    RaiseEvent MouseDown(Button, Shift, X, Y)
+End Sub
+
+Private Sub Controller_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    OnMouseMove X, Y
+    RaiseEvent MouseMove(Button, Shift, X, Y)
+End Sub
+
+Private Sub Controller_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    If Button = MouseButtonConstants.vbLeftButton Then
+        leftButton_Update False, X, Y
+    End If
+    RaiseEvent MouseUp(Button, Shift, X, Y)
+End Sub
+
+Private Sub Controller_Paint()
+    doPaint
 End Sub
 
 ''-----------------------------------------------------------------------------
@@ -437,8 +473,7 @@ Private Sub Timer1_Timer()
 End Sub
 
 Private Sub UserControl_DblClick()
-    leftButton_Update True, m_mouseX, m_mouseY
-    KWin.SetCapture UserControl.hWnd
+    Controller.OnDblClick
 End Sub
 
 Private Sub UserControl_Initialize()
@@ -447,14 +482,14 @@ Private Sub UserControl_Initialize()
     m_mouseY = 0
     m_button = 0
     m_hoverButton = 0
-    Call delegateProperties_ctor
-    Call ownProperties_Initialize
-    Call delegateProperties_Initialize
+    delegateProperties_ctor
+    ownProperties_Initialize
+    delegateProperties_Initialize
 End Sub
 
 Private Sub UserControl_InitProperties()
-    Call ownProperties_Initialize
-    Call delegateProperties_Initialize
+    ownProperties_Initialize
+    delegateProperties_Initialize
 End Sub
 
 Private Sub UserControl_KeyDown(KeyCode As Integer, Shift As Integer)
@@ -469,33 +504,29 @@ Private Sub UserControl_KeyUp(KeyCode As Integer, Shift As Integer)
     RaiseEvent KeyUp(KeyCode, Shift)
 End Sub
 
-Private Sub UserControl_MouseDown(button As Integer, Shift As Integer, X As Single, Y As Single)
-    If button = MouseButtonConstants.vbLeftButton Then
-        leftButton_Update True, X, Y
-    End If
-    RaiseEvent MouseDown(button, Shift, X, Y)
+Private Sub UserControl_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    Controller.OnMouseDown Button, Shift, X, Y
 End Sub
 
-Private Sub UserControl_MouseMove(button As Integer, Shift As Integer, X As Single, Y As Single)
-    onMouseMove X, Y
-    RaiseEvent MouseMove(button, Shift, X, Y)
+Private Sub UserControl_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    Controller.OnMouseMove Button, Shift, X, Y
 End Sub
 
-Private Sub UserControl_MouseUp(button As Integer, Shift As Integer, X As Single, Y As Single)
-    KWin.ReleaseCapture
-    If button = MouseButtonConstants.vbLeftButton Then
-        leftButton_Update False, X, Y
-    End If
-    RaiseEvent MouseUp(button, Shift, X, Y)
+Private Sub UserControl_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    Controller.OnMouseUp Button, Shift, X, Y
 End Sub
 
 Private Sub UserControl_Paint()
-    onPaint
+    Controller.OnPaint
 End Sub
 
 Private Sub UserControl_ReadProperties(PropBag As PropertyBag)
     ownProperties_Read PropBag
     delegateProperties_Read PropBag
+End Sub
+
+Private Sub UserControl_Show()
+    Controller.OnShow
 End Sub
 
 Private Sub UserControl_WriteProperties(PropBag As PropertyBag)

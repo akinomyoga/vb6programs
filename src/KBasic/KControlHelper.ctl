@@ -14,7 +14,7 @@ Attribute VB_Name = "KControlHelper"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = False
-Attribute VB_Exposed = True
+Attribute VB_Exposed = False
 
 
 ''-----------------------------------------------------------------------------
@@ -44,6 +44,7 @@ Public Event MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Sing
 Public Event MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
 Public Event MouseEnter(Button As Integer, Shift As Integer, X As Single, Y As Single)
 Public Event MouseLeave(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Public Event Paint()
 
 ''-----------------------------------------------------------------------------
 ''
@@ -148,11 +149,22 @@ Private Sub processMouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVa
     End If
 End Sub
 
+Public Sub Refresh()
+    If user.AutoRedraw Then
+        user.Line (0, 0)-(ScaleWidth - 1, ScaleHeight - 1), user.BackColor, BF
+        RaiseEvent Paint
+    Else
+        user.Refresh
+    End If
+End Sub
+
 ''-----------------------------------------------------------------------------
 ''
 '' イベント登録 (Parent)
 ''
 ''-----------------------------------------------------------------------------
+' マウスイベントは MouseDown, MouseUp, Click / DblClick, MouseUp の順で発生するそうだ。
+' http://cya.sakura.ne.jp/vb/MSHFlexGrid_Event.htm
 
 Public Sub OnDblClick()
     initializeUserControl
@@ -174,6 +186,17 @@ Public Sub OnMouseUp(Button As Integer, Shift As Integer, X As Single, Y As Sing
     initializeUserControl
     processMouseMove Button, Shift, X, Y
     processMouseUp Button, Shift, X, Y
+End Sub
+
+Public Sub OnShow()
+    initializeUserControl
+    If user.AutoRedraw Then Refresh
+    Set user = Nothing ' 何故かこれがないとクラッシュする
+End Sub
+
+Public Sub OnPaint()
+    initializeUserControl
+    RaiseEvent Paint
 End Sub
 
 ''-----------------------------------------------------------------------------

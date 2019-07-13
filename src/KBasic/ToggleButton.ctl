@@ -8,6 +8,12 @@ Begin VB.UserControl ToggleButton
    ScaleMode       =   3  'Pixel
    ScaleWidth      =   301
    ToolboxBitmap   =   "ToggleButton.ctx":0000
+   Begin KBasic.KControlHelper Controller 
+      Left            =   120
+      Top             =   120
+      _ExtentX        =   661
+      _ExtentY        =   661
+   End
 End
 Attribute VB_Name = "ToggleButton"
 Attribute VB_GlobalNameSpace = False
@@ -22,7 +28,6 @@ Attribute VB_Exposed = True
 
 Dim m_hasFocus As Boolean
 Dim m_leftButton As Boolean
-Dim m_hover As Boolean
 
 ''-----------------------------------------------------------------------------
 ''
@@ -51,9 +56,9 @@ Const default_Tag = ""
 Const default_MousePointer = MousePointerConstants.vbDefault
 Dim default_MouseIcon As IPictureDisp
 
-Public Event MouseDown(button As Integer, Shift As Integer, X As Single, Y As Single)
-Public Event MouseUp(button As Integer, Shift As Integer, X As Single, Y As Single)
-Public Event MouseMove(button As Integer, Shift As Integer, X As Single, Y As Single)
+Public Event MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Public Event MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Public Event MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
 Public Event KeyDown(KeyCode As Integer, Shift As Integer)
 Public Event KeyPress(KeyAscii As Integer)
 Public Event KeyUp(KeyCode As Integer, Shift As Integer)
@@ -71,7 +76,7 @@ End Property
 Public Property Let Value(ByVal new_Value As Boolean)
     If m_Value <> new_Value Then
         m_Value = new_Value
-        UserControl.Refresh
+        Controller.Refresh
         PropertyChanged "Value"
     End If
 End Property
@@ -83,7 +88,7 @@ End Property
 Public Property Let Caption(ByVal new_Caption As String)
     If m_Caption <> new_Caption Then
         m_Caption = new_Caption
-        UserControl.Refresh
+        Controller.Refresh
         PropertyChanged "Caption"
     End If
 End Property
@@ -120,7 +125,7 @@ Public Property Let Enabled(ByVal new_Enabled As Boolean)
             m_hasFocus = False
             m_leftButton = False
         End If
-        UserControl.Refresh
+        Controller.Refresh
         PropertyChanged "Enabled"
     End If
 End Property
@@ -132,7 +137,7 @@ End Property
 Public Property Let BackColor(ByVal new_BackColor As OLE_COLOR)
     If UserControl.BackColor <> new_BackColor Then
         UserControl.BackColor = new_BackColor
-        UserControl.Refresh
+        Controller.Refresh
         PropertyChanged "BackColor"
     End If
 End Property
@@ -144,7 +149,7 @@ End Property
 Public Property Let ForeColor(ByVal new_ForeColor As OLE_COLOR)
     If UserControl.ForeColor <> new_ForeColor Then
         UserControl.ForeColor = new_ForeColor
-        UserControl.Refresh
+        Controller.Refresh
         PropertyChanged "ForeColor"
     End If
 End Property
@@ -156,7 +161,7 @@ End Property
 Public Property Set Font(ByRef new_Font As StdFont)
     If UserControl.Font <> new_Font Then
         Set UserControl.Font = new_Font
-        UserControl.Refresh
+        Controller.Refresh
         PropertyChanged "Font"
     End If
 End Property
@@ -249,16 +254,16 @@ Sub toggleState()
         m_Value = True
     End If
     RaiseEvent Click
-    UserControl.Refresh
+    Controller.Refresh
 End Sub
 
 Sub notifyLeftButton(ByVal state As Boolean)
     If m_leftButton <> state Then
         m_leftButton = state
-        If m_hover And Not state Then
+        If Controller.Hover And Not state Then
             Call toggleState
         Else
-            Call UserControl.Refresh
+            Call Controller.Refresh
         End If
     End If
 End Sub
@@ -266,19 +271,15 @@ End Sub
 Sub updateFocus(ByVal state As Boolean)
     If m_hasFocus <> state Then
         m_hasFocus = state
-        UserControl.Refresh
+        Controller.Refresh
     End If
 End Sub
 
-Sub hover_Update(ByVal X As Single, ByVal Y As Single)
-    oldHover = m_hover
-    m_hover = 0 <= X And X < ScaleWidth And 0 <= Y And Y < ScaleHeight
-    If m_leftButton And m_hover <> oldHover Then
-        UserControl.Refresh
-    End If
+Sub hover_Update()
+    If m_leftButton Then Controller.Refresh
 End Sub
 
-Sub onPaint()
+Sub doPaint()
     h = UserControl.ScaleHeight
     w = UserControl.ScaleWidth
     
@@ -286,7 +287,7 @@ Sub onPaint()
     text_height = UserControl.TextHeight(m_Caption)
     CurrentX = (w - text_width) / 2
     CurrentY = (h - text_height) / 2
-    If m_leftButton And m_hover Then
+    If m_leftButton And Controller.Hover Then
         CurrentX = CurrentX + 1
         CurrentY = CurrentY + 1
     End If
@@ -307,7 +308,7 @@ Sub onPaint()
         UserControl.Print m_Caption
     End If
 
-    If m_leftButton And m_hover Then
+    If m_leftButton And Controller.Hover Then
         If m_hasFocus Then
             Call KWin.DrawControlBorder(Me, kbBorderButtonInset, 0, 0, w, h)
             Call KWin.DrawControlBorder(Me, kbBorderButtonFocus, 0, 0, w, h)
@@ -339,6 +340,38 @@ End Sub
 
 ''-----------------------------------------------------------------------------
 ''
+'' イベント登録 (Controller)
+''
+''-----------------------------------------------------------------------------
+
+Private Sub Controller_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    If Button = vbLeftButton Then notifyLeftButton True
+    RaiseEvent MouseDown(Button, Shift, X, Y)
+End Sub
+
+Private Sub Controller_MouseEnter(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    hover_Update
+End Sub
+
+Private Sub Controller_MouseLeave(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    hover_Update
+End Sub
+
+Private Sub Controller_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    RaiseEvent MouseMove(Button, Shift, X, Y)
+End Sub
+
+Private Sub Controller_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    If Button = vbLeftButton Then notifyLeftButton False
+    RaiseEvent MouseUp(Button, Shift, X, Y)
+End Sub
+
+Private Sub Controller_Paint()
+    doPaint
+End Sub
+
+''-----------------------------------------------------------------------------
+''
 '' イベント登録
 ''
 ''-----------------------------------------------------------------------------
@@ -361,29 +394,25 @@ Private Sub UserControl_ReadProperties(PropBag As PropertyBag)
     delegateProperties_Read PropBag
 End Sub
 
+Private Sub UserControl_Show()
+    Controller.OnShow
+End Sub
+
 Private Sub UserControl_WriteProperties(PropBag As PropertyBag)
     ownProperties_Write PropBag
     delegateProperties_Write PropBag
 End Sub
 
-' イベントは MouseDown, MouseUp, Click / DblClick, MouseUp の順で発生するそうだ。
-' http://cya.sakura.ne.jp/vb/MSHFlexGrid_Event.htm
-Private Sub UserControl_MouseDown(button As Integer, Shift As Integer, X As Single, Y As Single)
-    hover_Update X, Y
-    If button = vbLeftButton Then notifyLeftButton True
-    RaiseEvent MouseDown(button, Shift, X, Y)
+Private Sub UserControl_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    Controller.OnMouseDown Button, Shift, X, Y
 End Sub
 
-Private Sub UserControl_MouseUp(button As Integer, Shift As Integer, X As Single, Y As Single)
-    KWin.ReleaseCapture
-    If button = vbLeftButton Then notifyLeftButton False
-    hover_Update X, Y
-    RaiseEvent MouseUp(button, Shift, X, Y)
+Private Sub UserControl_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    Controller.OnMouseUp Button, Shift, X, Y
 End Sub
 
-Private Sub UserControl_MouseMove(button As Integer, Shift As Integer, X As Single, Y As Single)
-    hover_Update X, Y
-    RaiseEvent MouseMove(button, Shift, X, Y)
+Private Sub UserControl_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    Controller.OnMouseMove Button, Shift, X, Y
 End Sub
 
 Private Sub UserControl_KeyDown(KeyCode As Integer, Shift As Integer)
@@ -399,8 +428,7 @@ Private Sub UserControl_KeyUp(KeyCode As Integer, Shift As Integer)
 End Sub
 
 Private Sub UserControl_DblClick()
-    notifyLeftButton True
-    KWin.SetCapture UserControl.hWnd
+    Controller.OnDblClick
 End Sub
 
 Private Sub UserControl_GotFocus()
@@ -412,6 +440,6 @@ Private Sub UserControl_LostFocus()
 End Sub
 
 Private Sub UserControl_Paint()
-    onPaint
+    Controller.OnPaint
 End Sub
 

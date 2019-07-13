@@ -1,5 +1,6 @@
 VERSION 5.00
 Begin VB.UserControl ScrollBar 
+   AutoRedraw      =   -1  'True
    CanGetFocus     =   0   'False
    ClientHeight    =   3600
    ClientLeft      =   0
@@ -149,7 +150,7 @@ Public Property Let Value(ByVal new_Value As Long)
         m_Value = new_Value
         PropertyChanged "Value"
         RaiseEvent Change
-        UserControl.Refresh
+        Controller.Refresh
     End If
 End Property
 
@@ -200,7 +201,7 @@ Public Property Let Orientation(ByVal new_Orientation As SpinButtonOrientation)
     If m_Orientation <> new_Orientation Then
         m_Orientation = new_Orientation
         PropertyChanged "Orientation"
-        UserControl.Refresh
+        Controller.Refresh
     End If
 End Property
 
@@ -230,7 +231,7 @@ Public Property Let BarSize(ByVal new_BarSize As Long)
     If m_BarSize <> new_BarSize Then
         m_BarSize = new_BarSize
         PropertyChanged "BarSize"
-        UserControl.Refresh
+        Controller.Refresh
     End If
 End Property
 
@@ -245,7 +246,7 @@ Public Property Let BarMinSize(ByVal new_BarMinSize As Long)
         m_BarMinSize = new_BarMinSize
         PropertyChanged "BarMinSize"
         Me.BarSize = m_BarSize
-        UserControl.Refresh
+        Controller.Refresh
     End If
 End Property
 
@@ -258,7 +259,7 @@ Public Property Let BarRange(ByVal new_BarRange As Long)
     If m_BarRange <> new_BarRange Then
         m_BarRange = new_BarRange
         PropertyChanged "BarRange"
-        UserControl.Refresh
+        Controller.Refresh
     End If
 End Property
 
@@ -288,7 +289,7 @@ Public Property Let ButtonSize(ByVal new_ButtonSize As Long)
     If m_ButtonSize <> new_ButtonSize Then
         m_ButtonSize = new_ButtonSize
         PropertyChanged "ButtonSize"
-        UserControl.Refresh
+        Controller.Refresh
     End If
 End Property
 
@@ -303,7 +304,7 @@ Public Property Let ButtonMinSize(ByVal new_ButtonMinSize As Long)
         m_ButtonMinSize = new_ButtonMinSize
         PropertyChanged "ButtonMinSize"
         Me.ButtonSize = m_ButtonSize
-        UserControl.Refresh
+        Controller.Refresh
     End If
 End Property
 
@@ -316,7 +317,7 @@ Public Property Let Appearance(ByVal new_Appearance As KScrollAppearance)
     If m_Appearance <> new_Appearance Then
         m_Appearance = new_Appearance
         PropertyChanged "Appearance"
-        UserControl.Refresh
+        Controller.Refresh
     End If
 End Property
 
@@ -382,7 +383,7 @@ End Property
 Public Property Let BackColor(ByVal new_BackColor As OLE_COLOR)
     If UserControl.BackColor <> new_BackColor Then
         UserControl.BackColor = new_BackColor
-        UserControl.Refresh
+        Controller.Refresh
         PropertyChanged "BackColor"
     End If
 End Property
@@ -395,7 +396,7 @@ End Property
 Public Property Let ForeColor(ByVal new_ForeColor As OLE_COLOR)
     If UserControl.ForeColor <> new_ForeColor Then
         UserControl.ForeColor = new_ForeColor
-        UserControl.Refresh
+        Controller.Refresh
         PropertyChanged "ForeColor"
     End If
 End Property
@@ -413,7 +414,7 @@ Public Property Let Enabled(ByVal new_Enabled As Boolean)
             m_button = 0
             m_hoverButton = 0
         End If
-        UserControl.Refresh
+        Controller.Refresh
         PropertyChanged "Enabled"
     End If
 End Property
@@ -597,7 +598,7 @@ Private Sub doScroll()
         End If
     End If
     If m_Value <> oldValue Then
-        UserControl.Refresh
+        Controller.Refresh
         RaiseEvent Scroll
         RaiseEvent Change
     End If
@@ -629,7 +630,7 @@ Sub leftButton_Update(ByVal state As Boolean, ByVal X As Long, ByVal Y As Long)
         Timer1.Interval = 0
     End If
     If m_button <> oldButton Then
-        UserControl.Refresh
+        Controller.Refresh
     End If
 End Sub
 
@@ -643,7 +644,7 @@ Sub OnMouseMove(ByVal X As Long, ByVal Y As Long)
     newMatch = m_button = m_hoverButton
     If m_button = 1 Or m_button = 2 Then
         If oldMatch <> newMatch Then
-            UserControl.Refresh
+            Controller.Refresh
         End If
     ElseIf m_button = 5 Then
         Dim delta As Long
@@ -658,7 +659,7 @@ Sub OnMouseMove(ByVal X As Long, ByVal Y As Long)
         new_Value = KMath.ClampL(new_Value, min_Value, max_Value)
         If new_Value <> m_Value Then
             m_Value = new_Value
-            UserControl.Refresh
+            Controller.Refresh
             RaiseEvent Scroll
             RaiseEvent Change
         End If
@@ -667,11 +668,11 @@ End Sub
 
 Private Sub process_Hover(X As Single, Y As Single)
     If UserControl.Enabled And m_Appearance = kbScrollFlat3D Then
-        UserControl.Refresh
+        Controller.Refresh
     End If
 End Sub
 
-Private Sub onPaint_paintButton(ByVal flags As Long, ByVal Button As Long, _
+Private Sub doPaint_paintButton(ByVal flags As Long, ByVal Button As Long, _
     ByVal x1 As Long, ByVal y1 As Long, ByVal x2 As Long, ByVal y2 As Long)
     
     pressed = m_button = Button And m_button = m_hoverButton
@@ -701,7 +702,7 @@ Private Sub onPaint_paintButton(ByVal flags As Long, ByVal Button As Long, _
     KWin.DrawArrowButton Me, flags, x1, y1, x2, y2, arrow_color, 5, 0.6
 End Sub
 
-Private Sub onPaint_paintBar(ByVal x1 As Long, ByVal y1 As Long, ByVal x2 As Long, ByVal y2 As Long)
+Private Sub doPaint_paintBar(ByVal x1 As Long, ByVal y1 As Long, ByVal x2 As Long, ByVal y2 As Long)
     Select Case m_Appearance
     Case kbScrollFlat
         KWin.DrawControlBorder Me, kbBorderSinglePressed, x1, y1, x2, y2
@@ -719,7 +720,7 @@ Private Sub onPaint_paintBar(ByVal x1 As Long, ByVal y1 As Long, ByVal x2 As Lon
     End Select
 End Sub
 
-Private Sub onPaint_drawLine(ByRef geo As ScrollBarGeometry, _
+Private Sub doPaint_drawLine(ByRef geo As ScrollBarGeometry, _
     ByVal x1 As Long, ByVal y1 As Long, ByVal x2 As Long, ByVal y2 As Long, _
     ByVal color As OLE_COLOR)
     If geo.geo_horizontal Then
@@ -729,7 +730,7 @@ Private Sub onPaint_drawLine(ByRef geo As ScrollBarGeometry, _
     End If
 End Sub
 
-Private Sub onPaint()
+Private Sub doPaint()
     Dim geo As ScrollBarGeometry
     determineGeometry geo
     
@@ -738,8 +739,8 @@ Private Sub onPaint()
     Dim v1 As Long: v1 = geo.geo_buttonSize
     Dim v4 As Long: v4 = geo.geo_height - geo.geo_buttonSize
     If geo.geo_trackSize > 0 Then
-        onPaint_drawLine geo, 0, v1, 0, v4, SystemColorConstants.vb3DShadow
-        onPaint_drawLine geo, w - 1, v1, w - 1, v4, SystemColorConstants.vb3DShadow
+        doPaint_drawLine geo, 0, v1, 0, v4, SystemColorConstants.vb3DShadow
+        doPaint_drawLine geo, w - 1, v1, w - 1, v4, SystemColorConstants.vb3DShadow
         If Not UserControl.Enabled Then
             If geo.geo_horizontal Then
                 KWin.FillChidori Me, v1, 1, v4, w - 1, SystemColorConstants.vb3DHighlight
@@ -750,22 +751,22 @@ Private Sub onPaint()
             Dim v2 As Long: v2 = v1 + geo.geo_barOffset
             Dim v3 As Long: v3 = v2 + geo.geo_barSize
             If geo.geo_horizontal Then
-                onPaint_paintBar v2, 0, v3, w
+                doPaint_paintBar v2, 0, v3, w
                 KWin.FillChidori Me, v1, 1, v2, w - 1, SystemColorConstants.vb3DHighlight
                 KWin.FillChidori Me, v3, 1, v4, w - 1, SystemColorConstants.vb3DHighlight
             Else
-                onPaint_paintBar 0, v2, w, v3
+                doPaint_paintBar 0, v2, w, v3
                 KWin.FillChidori Me, 1, v1, w - 1, v2, SystemColorConstants.vb3DHighlight
                 KWin.FillChidori Me, 1, v3, w - 1, v4, SystemColorConstants.vb3DHighlight
             End If
         End If
     End If
     If geo.geo_horizontal Then
-        onPaint_paintButton kbArrowLeft, 1, 0, 0, v1, w
-        onPaint_paintButton kbArrowRight, 2, v4, 0, h, w
+        doPaint_paintButton kbArrowLeft, 1, 0, 0, v1, w
+        doPaint_paintButton kbArrowRight, 2, v4, 0, h, w
     Else
-        onPaint_paintButton kbArrowUp, 1, 0, 0, w, v1
-        onPaint_paintButton kbArrowDown, 2, 0, v4, w, h
+        doPaint_paintButton kbArrowUp, 1, 0, 0, w, v1
+        doPaint_paintButton kbArrowDown, 2, 0, v4, w, h
     End If
 End Sub
 
@@ -796,6 +797,10 @@ End Sub
 Private Sub Controller_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
     If Button = vbLeftButton Then leftButton_Update False, X, Y
     RaiseEvent MouseUp(Button, Shift, X, Y)
+End Sub
+
+Private Sub Controller_Paint()
+    doPaint
 End Sub
 
 Private Sub Timer1_Timer()
@@ -850,7 +855,7 @@ Private Sub UserControl_MouseUp(Button As Integer, Shift As Integer, X As Single
 End Sub
 
 Private Sub UserControl_Paint()
-    onPaint
+    Controller.OnPaint
 End Sub
 
 Private Sub UserControl_ReadProperties(PropBag As PropertyBag)
@@ -858,9 +863,12 @@ Private Sub UserControl_ReadProperties(PropBag As PropertyBag)
     delegateProperties_Read PropBag
 End Sub
 
+Private Sub UserControl_Show()
+    Controller.OnShow
+End Sub
+
 Private Sub UserControl_WriteProperties(PropBag As PropertyBag)
     ownProperties_Write PropBag
     delegateProperties_Write PropBag
 End Sub
-
 
