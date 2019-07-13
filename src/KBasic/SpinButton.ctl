@@ -65,6 +65,7 @@ Dim m_Max As Long
 Dim m_SmallChange As Long
 Dim m_Orientation As KSpinOrientation
 Dim m_Delay As Long
+Dim m_Appearance As KControlAppearance
 
 Public Event SpinUp()
 Public Event SpinDown()
@@ -161,6 +162,18 @@ Public Property Let Delay(ByVal new_Delay As Long)
     End If
 End Property
 
+Public Property Get Appearance() As KControlAppearance
+    Appearance = m_Appearance
+End Property
+
+Public Property Let Appearance(ByVal new_Appearance As KControlAppearance)
+    If m_Appearance <> new_Appearance Then
+        m_Appearance = new_Appearance
+        PropertyChanged "Appearance"
+        Controller.Refresh
+    End If
+End Property
+
 Private Sub processOwnProperties(ByVal kind As PropertyOperation, PropBag As PropertyBag)
     Controller.DefineByValProperty kind, PropBag, "Value", m_Value, 0
     Controller.DefineByValProperty kind, PropBag, "Min", m_Min, 0
@@ -168,6 +181,7 @@ Private Sub processOwnProperties(ByVal kind As PropertyOperation, PropBag As Pro
     Controller.DefineByValProperty kind, PropBag, "SmallChange", m_SmallChange, 1
     Controller.DefineByValProperty kind, PropBag, "Orientation", m_Orientation, KSpinOrientation.kbOrientationAuto
     Controller.DefineByValProperty kind, PropBag, "Delay", m_Delay, 50
+    Controller.DefineByValProperty kind, PropBag, "Appearance", m_Appearance, KControlAppearance.kbAppearanceDefault
 End Sub
 
 ''-----------------------------------------------------------------------------
@@ -310,24 +324,44 @@ End Sub
 
 Private Sub doMouseMove(ByVal X As Long, ByVal Y As Long)
     If Not UserControl.Enabled Then Exit Sub
-    If m_button <> 0 Then
-        oldMatch = m_button = m_hoverButton
-        m_hoverButton = hitTest(X, Y)
-        newMatch = m_button = m_hoverButton
-        If oldMatch <> newMatch Then
+    Dim old_hoverButton As Long
+    old_hoverButton = m_hoverButton
+    m_hoverButton = hitTest(X, Y)
+    If m_hoverButton <> old_hoverButton Then
+        If m_button <> 0 And (m_button = old_hoverButton Or m_button = m_hoverButton) Then
             Controller.Refresh
         End If
     End If
 End Sub
 
-Private Sub doPaint_paintButton2(ByVal flags As Long, ByVal Button As Long, _
+Private Sub doHoverChanged()
+    If m_Appearance = kbAppearanceFlat3D Or m_Appearance = kbAppearanceToolButton Then
+        Controller.Refresh
+    End If
+End Sub
+
+Private Sub doPaint_paintButton2(ByVal arrow As Long, ByVal Button As Long, _
     ByVal x1 As Long, ByVal y1 As Long, ByVal x2 As Long, ByVal y2 As Long)
+    Dim is_pressed As Boolean, is_hovered As Boolean
+    is_pressed = m_button = Button And m_hoverButton = Button
+    is_hovered = m_button <> 0 Or Controller.Hover
     
-    flags = flags Or kbArrowButtonInset
-    pressed = m_button = Button And m_button = m_hoverButton
-    If pressed Then flags = flags Or kbArrowPressed
-    If Not UserControl.Enabled Then flags = flags Or kbArrowDisabled
-    KWin.DrawArrowButton Me, flags, x1, y1, x2, y2, UserControl.ForeColor, 5, 1#
+    Dim bflags As KButtonStateFlags
+    If Not UserControl.Enabled Then
+        bflags = kbButtonStateDisabled
+        flags = flags Or kbArrowDisabled
+    Else
+        If is_pressed Then bflags = bflags Or kbButtonStatePressed
+        If is_hovered Then bflags = bflags Or kbButtonStateHovered
+    End If
+    
+    Dim Appearance As KControlAppearance
+    Appearance = m_Appearance
+    If Appearance = kbAppearanceDefault Then Appearance = kbAppearance3D
+
+    Controller.DrawButtonBackground x1, y1, x2, y2, m_Appearance, bflags
+    Controller.DrawButtonArrow x1, y1, x2, y2, m_Appearance, bflags, arrow
+    Controller.DrawButtonBorder x1, y1, x2, y2, m_Appearance, bflags
 End Sub
 
 Private Sub doPaint()
@@ -356,6 +390,14 @@ Private Sub Controller_MouseDown(Button As Integer, Shift As Integer, X As Singl
         leftButton_Update True, X, Y
     End If
     RaiseEvent MouseDown(Button, Shift, X, Y)
+End Sub
+
+Private Sub Controller_MouseEnter(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    doHoverChanged
+End Sub
+
+Private Sub Controller_MouseLeave(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    doHoverChanged
 End Sub
 
 Private Sub Controller_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)

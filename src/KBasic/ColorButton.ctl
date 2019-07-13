@@ -11,15 +11,15 @@ Begin VB.UserControl ColorButton
    Begin KBasic.KControlHelper Controller 
       Left            =   120
       Top             =   120
-      _ExtentX        =   661
-      _ExtentY        =   661
-      ExportsEnabled  =   -1  'True
-      ExportsBackColor=   -1  'True
-      ExportsForeColor=   -1  'True
-      ExportsFont     =   -1  'True
-      ExportsMousePointer=   -1  'True
-      ExportsMouseIcon=   -1  'True
-      ExportsTag      =   -1  'True
+      _extentx        =   661
+      _extenty        =   661
+      exportsenabled  =   -1  'True
+      exportsbackcolor=   -1  'True
+      exportsforecolor=   -1  'True
+      exportsfont     =   -1  'True
+      exportsmousepointer=   -1  'True
+      exportsmouseicon=   -1  'True
+      exportstag      =   -1  'True
    End
 End
 Attribute VB_Name = "ColorButton"
@@ -28,18 +28,6 @@ Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = True
 Option Explicit
-
-Public Enum KControlAppearance
-    kbAppearanceDefault
-    kbAppearance3D
-    kbAppearance3DInset
-    kbAppearance3DSingle
-    kbAppearance3DButton
-    kbAppearanceFlat
-    kbAppearanceFlat3D
-    kbAppearanceToolButton
-    kbAppearanceGroove
-End Enum
 
 ''-----------------------------------------------------------------------------
 ''
@@ -77,13 +65,13 @@ Public Event KeyUp(KeyCode As Integer, Shift As Integer)
 ''
 ''-----------------------------------------------------------------------------
 
-Public Property Get Caption() As String
-Attribute Caption.VB_ProcData.VB_Invoke_Property = ";Appearance"
-Attribute Caption.VB_UserMemId = 0
-    Caption = m_Caption
+Public Property Get caption() As String
+Attribute caption.VB_ProcData.VB_Invoke_Property = ";Appearance"
+Attribute caption.VB_UserMemId = 0
+    caption = m_Caption
 End Property
 
-Public Property Let Caption(ByVal new_Caption As String)
+Public Property Let caption(ByVal new_Caption As String)
     If m_Caption <> new_Caption Then
         m_Caption = new_Caption
         Controller.Refresh
@@ -206,35 +194,23 @@ Private Sub doMouseUp(ByVal Button As Integer)
     End If
 End Sub
 
-Private Sub doPaint()
-    Dim h As Single, w As Single
-    h = UserControl.ScaleHeight
-    w = UserControl.ScaleWidth
-    
-    Dim pressed As Boolean, var_captionColor As OLE_COLOR, var_shiftText As Boolean
-    pressed = UserControl.Enabled And Controller.IsLeftPressed And Controller.Hover
-    var_captionColor = UserControl.ForeColor
-    var_shiftText = pressed
-    If m_Appearance = kbAppearanceFlat And pressed Then
-        Line (1, 1)-(w - 2, h - 2), var_captionColor, BF
-        var_captionColor = UserControl.BackColor
-        var_shiftText = False
-    End If
-    
+' DrawButtonText(x1,y1,x2,y2,color,is_pressed,is_enabled)
+Private Sub doPaint_fore(ByVal x1 As Single, ByVal y1 As Single, ByVal x2 As Single, ByVal y2 As Single, _
+ByVal color As OLE_COLOR, ByVal shift_text As Boolean)
     Dim text_width As Single, text_height As Single
     text_width = UserControl.TextWidth(m_Caption)
     text_height = UserControl.TextHeight(m_Caption)
-    CurrentX = (w - text_width) / 2
-    CurrentY = (h - text_height) / 2
-    If var_shiftText Then
+    CurrentX = x1 + Int((x2 - x1 - text_width) / 2)
+    CurrentY = y1 + Int((y2 - y1 - text_height) / 2)
+    If shift_text Then
         CurrentX = CurrentX + 1
         CurrentY = CurrentY + 1
     End If
-    
+
     Dim oldForeColor As OLE_COLOR
     oldForeColor = UserControl.ForeColor
     If UserControl.Enabled Then
-        UserControl.ForeColor = var_captionColor
+        UserControl.ForeColor = color
         UserControl.Print m_Caption
     Else
         Dim x0 As Single, y0 As Single
@@ -250,67 +226,30 @@ Private Sub doPaint()
         UserControl.Print m_Caption
     End If
     UserControl.ForeColor = oldForeColor
-        
-    Select Case m_Appearance
-    Case kbAppearance3D
-        If pressed Then
-            Call KWin.DrawControlBorder(Me, kbBorderSinglePressed, 0, 0, w, h)
-        Else
-            Call KWin.DrawControlBorder(Me, kbBorderControlOutset, 0, 0, w, h)
-        End If
-    Case kbAppearance3DInset
-        If pressed Then
-            Call KWin.DrawControlBorder(Me, kbBorderControlInset, 0, 0, w, h)
-        Else
-            Call KWin.DrawControlBorder(Me, kbBorderControlOutset, 0, 0, w, h)
-        End If
-    Case kbAppearance3DSingle
-        If pressed Then
-            Call KWin.DrawControlBorder(Me, kbBorderSingleInset, 0, 0, w, h)
-        Else
-            Call KWin.DrawControlBorder(Me, kbBorderSingleOutset, 0, 0, w, h)
-        End If
-    Case kbAppearanceGroove
-        If pressed Then
-            Call KWin.DrawControlBorder(Me, kbBorderControlInset, 0, 0, w, h)
-        Else
-            Call KWin.DrawControlBorder(Me, kbBorderGroove, 0, 0, w, h)
-        End If
-    Case kbAppearanceFlat
-        KWin.DrawControlBorder Me, kbBorderSinglePressed, 0, 0, w, h
-    Case kbAppearanceFlat3D
-        If UserControl.Enabled Then
-            If pressed Then
-                KWin.DrawControlBorder Me, kbBorderSingleInset, 0, 0, w, h
-            ElseIf Controller.IsLeftPressed Or Controller.Hover Then
-                KWin.DrawControlBorder Me, kbBorderSingleOutset, 0, 0, w, h
-            Else
-                KWin.DrawControlBorder Me, kbBorderSinglePressed, 0, 0, w, h
-            End If
-        Else
-            KWin.DrawControlBorder Me, kbBorderSinglePressed, 0, 0, w, h
-        End If
-    Case kbAppearanceToolButton
-        If UserControl.Enabled Then
-            If pressed Then
-                KWin.DrawControlBorder Me, kbBorderSingleInset, 0, 0, w, h
-            ElseIf Controller.IsLeftPressed Or Controller.Hover Then
-                KWin.DrawControlBorder Me, kbBorderSingleOutset, 0, 0, w, h
-            End If
-        End If
-    Case Else ' kbAppearance3DButton
-        If Not UserControl.Enabled Then
-            Call KWin.DrawControlBorder(Me, kbBorderButtonOutset, 0, 0, w, h)
-        ElseIf pressed Then
-            Call KWin.DrawControlBorder(Me, kbBorderButtonPressed, 0, 0, w, h)
-            Call KWin.DrawControlBorder(Me, kbBorderButtonFocus, 0, 0, w, h)
-        ElseIf Controller.HasFocus Then
-            Call KWin.DrawControlBorder(Me, kbBorderButtonOutsetBold, 0, 0, w, h)
-            Call KWin.DrawControlBorder(Me, kbBorderButtonFocus, 0, 0, w, h)
-        Else
-            Call KWin.DrawControlBorder(Me, kbBorderButtonOutset, 0, 0, w, h)
-        End If
-    End Select
+End Sub
+
+Private Sub doPaint()
+    Dim h As Single, w As Single
+    h = UserControl.ScaleHeight
+    w = UserControl.ScaleWidth
+    
+    Dim Appearance As KControlAppearance
+    Appearance = m_Appearance
+    If Appearance = kbAppearanceDefault Then Appearance = kbAppearance3DButton
+    
+    Dim bflags As KButtonStateFlags
+    If Not UserControl.Enabled Then
+        bflags = kbButtonStateDisabled
+    Else
+        bflags = 0
+        If Controller.IsLeftPressed And Controller.Hover Then bflags = bflags Or kbButtonStatePressed
+        If Controller.IsLeftPressed Or Controller.Hover Then bflags = bflags Or kbButtonStateHovered
+        If Controller.HasFocus Then bflags = bflags Or kbButtonStateFocused
+    End If
+
+    Controller.DrawButtonBackground 0, 0, w, h, Appearance, bflags
+    Controller.DrawButtonText 0, 0, w, h, Appearance, bflags, m_Caption
+    Controller.DrawButtonBorder 0, 0, w, h, Appearance, bflags
 End Sub
 
 ''-----------------------------------------------------------------------------

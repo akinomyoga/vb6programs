@@ -14,13 +14,33 @@ Attribute VB_Name = "KControlHelper"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = False
-Attribute VB_Exposed = False
+Attribute VB_Exposed = True
 Option Explicit
 
 Public Enum PropertyOperation
     kbPropertyInit
     kbPropertyRead
     kbPropertyWrite
+End Enum
+
+Public Enum KControlAppearance
+    kbAppearanceDefault
+    kbAppearance3D
+    kbAppearance3DInset
+    kbAppearance3DSingle
+    kbAppearance3DButton
+    kbAppearance3DGraphical
+    kbAppearanceFlat
+    kbAppearanceFlat3D
+    kbAppearanceToolButton
+    kbAppearanceGroove
+End Enum
+
+Public Enum KButtonStateFlags
+    kbButtonStatePressed = 1
+    kbButtonStateFocused = 2
+    kbButtonStateHovered = 4
+    kbButtonStateDisabled = 8
 End Enum
 
 ''-----------------------------------------------------------------------------
@@ -547,3 +567,165 @@ Private Sub UserControl_Resize()
     UserControl.Width = fixed_Width
     UserControl.Height = fixed_Height
 End Sub
+
+''-----------------------------------------------------------------------------
+''
+'' 描画用ユーティリティ
+''
+''-----------------------------------------------------------------------------
+
+Public Sub DrawButtonBackground(ByVal x1 As Single, ByVal y1 As Single, ByVal x2 As Single, ByVal y2 As Single, _
+ByVal Appearance As KControlAppearance, ByVal bstate As KButtonStateFlags)
+    If Appearance = kbAppearanceFlat And (bstate And kbButtonStatePressed) <> 0 Then
+        incrementUserControl
+        user.Line (x1 + 1, y1 + 1)-(x2 - 2, y2 - 2), user.ForeColor, BF
+        decrementUserControl
+    End If
+End Sub
+
+Public Sub DrawButtonText(ByVal x1 As Single, ByVal y1 As Single, ByVal x2 As Single, ByVal y2 As Single, _
+ByVal Appearance As KControlAppearance, ByVal bstate As KButtonStateFlags, ByVal button_text As String)
+    incrementUserControl
+    Dim is_pressed As Boolean
+    is_pressed = (bstate And kbButtonStatePressed) <> 0
+    
+    Dim text_color As OLE_COLOR, shift_text As Boolean
+    text_color = user.ForeColor
+    shift_text = is_pressed
+    If Appearance = kbAppearanceFlat And is_pressed Then
+        text_color = user.BackColor
+        shift_text = False
+    End If
+    
+    Dim text_width As Single, text_height As Single
+    text_width = user.TextWidth(button_text)
+    text_height = user.TextHeight(button_text)
+    Dim x0 As Single, y0 As Single
+    x0 = x1 + Int((x2 - x1 - text_width) / 2)
+    y0 = y1 + Int((y2 - y1 - text_height) / 2)
+    If shift_text Then
+        x0 = x0 + 1
+        y0 = y0 + 1
+    End If
+
+    Dim save_ForeColor As OLE_COLOR
+    save_ForeColor = user.ForeColor
+    If user.Enabled Then
+        user.CurrentX = x0
+        user.CurrentY = y0
+        user.ForeColor = text_color
+        user.Print button_text
+    Else
+        user.CurrentX = x0 + 1
+        user.CurrentY = y0 + 1
+        user.ForeColor = SystemColorConstants.vb3DHighlight
+        user.Print button_text
+        user.CurrentX = x0
+        user.CurrentY = y0
+        user.ForeColor = SystemColorConstants.vb3DShadow
+        user.Print button_text
+    End If
+    user.ForeColor = save_ForeColor
+    decrementUserControl
+End Sub
+
+Public Sub DrawButtonArrow(ByVal x1 As Single, ByVal y1 As Single, ByVal x2 As Single, ByVal y2 As Single, _
+ByVal Appearance As KControlAppearance, ByVal bstate As KButtonStateFlags, ByVal arrow As Long)
+    incrementUserControl
+    Dim is_pressed As Boolean
+    is_pressed = (bstate And kbButtonStatePressed) <> 0
+
+    Dim text_color As OLE_COLOR, shift_text As Boolean
+    text_color = user.ForeColor
+    shift_text = is_pressed
+    If Appearance = kbAppearanceFlat And is_pressed Then
+        text_color = user.BackColor
+        shift_text = False
+    End If
+    
+    arrow = arrow Or kbArrowButtonNoBorder
+    If shift_text Then arrow = arrow Or kbArrowPressed
+    If (bstate And kbButtonStateDisabled) <> 0 Then arrow = arrow Or kbArrowDisabled
+
+    KWin.DrawArrowButtonU user, arrow, x1, y1, x2, y2, text_color, 5, 1#
+    decrementUserControl
+End Sub
+
+Public Sub DrawButtonBorder(ByVal x1 As Single, ByVal y1 As Single, ByVal x2 As Single, ByVal y2 As Single, _
+ByVal Appearance As KControlAppearance, ByVal bstate As KButtonStateFlags)
+    incrementUserControl
+    Select Case Appearance
+    Case kbAppearance3D
+        If (bstate And kbButtonStatePressed) <> 0 Then
+            KWin.DrawControlBorderU user, kbBorderSinglePressed, x1, y1, x2, y2
+        Else
+            KWin.DrawControlBorderU user, kbBorderControlOutset, x1, y1, x2, y2
+        End If
+    Case kbAppearance3DInset
+        If (bstate And kbButtonStatePressed) <> 0 Then
+            KWin.DrawControlBorderU user, kbBorderControlInset, x1, y1, x2, y2
+        Else
+            KWin.DrawControlBorderU user, kbBorderControlOutset, x1, y1, x2, y2
+        End If
+    Case kbAppearance3DSingle
+        If (bstate And kbButtonStatePressed) <> 0 Then
+            KWin.DrawControlBorderU user, kbBorderSingleInset, x1, y1, x2, y2
+        Else
+            KWin.DrawControlBorderU user, kbBorderSingleOutset, x1, y1, x2, y2
+        End If
+    Case kbAppearanceGroove
+        If (bstate And kbButtonStatePressed) <> 0 Then
+            KWin.DrawControlBorderU user, kbBorderControlInset, x1, y1, x2, y2
+        Else
+            KWin.DrawControlBorderU user, kbBorderGroove, x1, y1, x2, y2
+        End If
+    Case kbAppearanceFlat
+        KWin.DrawControlBorderU user, kbBorderSinglePressed, x1, y1, x2, y2
+    Case kbAppearanceFlat3D
+        If (bstate And kbButtonStatePressed) <> 0 Then
+            KWin.DrawControlBorderU user, kbBorderSingleInset, x1, y1, x2, y2
+        ElseIf (bstate And kbButtonStateHovered) <> 0 Then
+            KWin.DrawControlBorderU user, kbBorderSingleOutset, x1, y1, x2, y2
+        Else
+            KWin.DrawControlBorderU user, kbBorderSinglePressed, x1, y1, x2, y2
+        End If
+    Case kbAppearanceToolButton
+        If (bstate And kbButtonStatePressed) <> 0 Then
+            KWin.DrawControlBorderU user, kbBorderSingleInset, x1, y1, x2, y2
+        ElseIf (bstate And kbButtonStateHovered) <> 0 Then
+            KWin.DrawControlBorderU user, kbBorderSingleOutset, x1, y1, x2, y2
+        End If
+    Case kbAppearance3DGraphical
+        If (bstate And kbButtonStatePressed) <> 0 Then
+            KWin.DrawControlBorderU user, kbBorderFramedInset, x1, y1, x2, y2
+            If (bstate And kbButtonStateFocused) <> 0 Then
+                KWin.DrawControlBorderU user, kbBorderButtonFocus, x1, y1, x2, y2
+            End If
+        Else
+            If (bstate And kbButtonStateFocused) <> 0 Then
+                KWin.DrawControlBorderU user, kbBorderFramedOutset, x1, y1, x2, y2
+                KWin.DrawControlBorderU user, kbBorderButtonFocus, x1, y1, x2, y2
+            Else
+                KWin.DrawControlBorderU user, kbBorderButtonOutset, x1, y1, x2, y2
+            End If
+        End If
+    Case kbAppearance3DButton
+        If (bstate And kbButtonStatePressed) <> 0 Then
+            KWin.DrawControlBorderU user, kbBorderButtonPressed, x1, y1, x2, y2
+            If (bstate And kbButtonStateFocused) <> 0 Then
+                KWin.DrawControlBorderU user, kbBorderButtonFocus, x1, y1, x2, y2
+            End If
+        Else
+            If (bstate And kbButtonStateFocused) <> 0 Then
+                KWin.DrawControlBorderU user, kbBorderButtonOutsetBold, x1, y1, x2, y2
+                KWin.DrawControlBorderU user, kbBorderButtonFocus, x1, y1, x2, y2
+            Else
+                KWin.DrawControlBorderU user, kbBorderButtonOutset, x1, y1, x2, y2
+            End If
+        End If
+    Case Else
+        DrawButtonBorder x1, y1, x2, y2, kbAppearance3D, bstate
+    End Select
+    decrementUserControl
+End Sub
+

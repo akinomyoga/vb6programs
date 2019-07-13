@@ -10,6 +10,8 @@ Public Enum KWinBorderStyle
     kbBorderButtonOutsetBold
     kbBorderButtonInsetBold
     kbBorderButtonFocus
+    kbBorderFramedOutset
+    kbBorderFramedInset
     kbBorderSingleOutset
     kbBorderSinglePressed
     kbBorderSingleInset
@@ -72,7 +74,7 @@ Private Sub drawBorder_single(ByRef user As UserControl, _
     user.Line (x2 - 1, y1)-(x2 - 1, y2), rb1
 End Sub
 
-Private Sub drawBorder_impl(ByRef user As UserControl, ByVal style As KWinBorderStyle, _
+Public Sub DrawControlBorderU(ByRef user As UserControl, ByVal style As KWinBorderStyle, _
     ByVal x1 As Single, ByVal y1 As Single, ByVal x2 As Single, ByVal y2 As Single)
 
     Select Case style
@@ -117,13 +119,25 @@ Private Sub drawBorder_impl(ByRef user As UserControl, ByVal style As KWinBorder
         user.FillStyle = FillStyleConstants.vbFSTransparent
         user.Line (x1, y1)-(x2 - 1, y2 - 1), SystemColorConstants.vb3DDKShadow, B
         user.FillStyle = fs
-        Call drawBorder_impl(user, kbBorderButtonInset, x1 + 1, y1 + 1, x2 - 1, y2 - 1)
+        Call DrawControlBorderU(user, kbBorderButtonInset, x1 + 1, y1 + 1, x2 - 1, y2 - 1)
     Case KWinBorderStyle.kbBorderButtonOutsetBold
         fs = user.FillStyle
         user.FillStyle = FillStyleConstants.vbFSTransparent
         user.Line (x1, y1)-(x2 - 1, y2 - 1), SystemColorConstants.vb3DDKShadow, B
         user.FillStyle = fs
-        Call drawBorder_impl(user, kbBorderButtonOutset, x1 + 1, y1 + 1, x2 - 1, y2 - 1)
+        Call DrawControlBorderU(user, kbBorderButtonOutset, x1 + 1, y1 + 1, x2 - 1, y2 - 1)
+    Case KWinBorderStyle.kbBorderFramedInset
+        fs = user.FillStyle
+        user.FillStyle = FillStyleConstants.vbFSTransparent
+        user.Line (x1, y1)-(x2 - 1, y2 - 1), user.ForeColor, B
+        user.FillStyle = fs
+        Call DrawControlBorderU(user, kbBorderButtonInset, x1 + 1, y1 + 1, x2 - 1, y2 - 1)
+    Case KWinBorderStyle.kbBorderFramedOutset
+        fs = user.FillStyle
+        user.FillStyle = FillStyleConstants.vbFSTransparent
+        user.Line (x1, y1)-(x2 - 1, y2 - 1), user.ForeColor, B
+        user.FillStyle = fs
+        Call DrawControlBorderU(user, kbBorderButtonOutset, x1 + 1, y1 + 1, x2 - 1, y2 - 1)
     Case KWinBorderStyle.kbBorderButtonFocus
         For X = x1 + 5 To x2 - 5 Step 2
             user.PSet (X, y1 + 4), user.ForeColor
@@ -153,7 +167,7 @@ Public Sub DrawControlBorder(ByRef ctrl As Object, ByVal style As KWinBorderStyl
 
     Dim user As UserControl
     Set user = GetUserControl(ctrl)
-    Call drawBorder_impl(user, style, x1, y1, x2, y2)
+    Call DrawControlBorderU(user, style, x1, y1, x2, y2)
 End Sub
 
 Private Sub drawArrowButton_arrow(ByRef user As UserControl, ByVal flags As KWinArrowButtonFlags, _
@@ -164,8 +178,8 @@ Private Sub drawArrowButton_arrow(ByRef user As UserControl, ByVal flags As KWin
     Dim h As Long: h = y2 - y1
     Dim x0 As Long: x0 = x1 + w / 2 - 1
     Dim y0 As Long: y0 = y1 + h / 2 - 1
-    pressed = (flags And KWinArrowButtonFlags.kbArrowPressed) <> 0
-    If pressed Then
+    Pressed = (flags And KWinArrowButtonFlags.kbArrowPressed) <> 0
+    If Pressed Then
         x0 = x0 + 1
         y0 = y0 + 1
     End If
@@ -203,7 +217,7 @@ Private Sub drawArrowButton_arrow(ByRef user As UserControl, ByVal flags As KWin
     Next i
 End Sub
 
-Private Sub drawArrowButton_impl(ByRef user As UserControl, ByVal flags As KWinArrowButtonFlags, _
+Public Sub DrawArrowButtonU(ByRef user As UserControl, ByVal flags As KWinArrowButtonFlags, _
     ByVal x1 As Long, ByVal y1 As Long, ByVal x2 As Long, ByVal y2 As Long, _
     ByVal color As OLE_COLOR, ByVal maxArrowSize As Long, ByVal maxArrowRate As Double)
 
@@ -242,7 +256,7 @@ Private Sub drawArrowButton_impl(ByRef user As UserControl, ByVal flags As KWinA
             kbb = KWinBorderStyle.kbBorderControlOutset
         End Select
     End If
-    KWin.drawBorder_impl user, kbb, x1, y1, x2, y2
+    KWin.DrawControlBorderU user, kbb, x1, y1, x2, y2
 End Sub
 
 Public Sub DrawArrowButton(ByRef ctrl As Object, ByVal flags As KWinArrowButtonFlags, _
@@ -250,7 +264,7 @@ Public Sub DrawArrowButton(ByRef ctrl As Object, ByVal flags As KWinArrowButtonF
     ByVal color As OLE_COLOR, ByVal maxArrowSize As Long, ByVal maxArrowRate As Double)
     Dim user As UserControl
     Set user = GetUserControl(ctrl)
-    drawArrowButton_impl user, flags, x1, y1, x2, y2, color, maxArrowSize, maxArrowRate
+    DrawArrowButtonU user, flags, x1, y1, x2, y2, color, maxArrowSize, maxArrowRate
 End Sub
 
 Private Sub FillChidori_impl(ByRef user As UserControl, _
