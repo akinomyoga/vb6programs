@@ -773,7 +773,7 @@ End Sub
 ''-----------------------------------------------------------------------------
 
 Private Sub Controller_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
-    If Button = vbLeftButton Then leftButton_Update True
+    If Button = vbLeftButton Then leftButton_Update True, X, Y
     RaiseEvent MouseDown(Button, Shift, X, Y)
 End Sub
 
@@ -791,7 +791,7 @@ Private Sub Controller_MouseMove(Button As Integer, Shift As Integer, X As Singl
 End Sub
 
 Private Sub Controller_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
-    If Button = vbLeftButton Then leftButton_Update False
+    If Button = vbLeftButton Then leftButton_Update False, X, Y
     RaiseEvent MouseUp(Button, Shift, X, Y)
 End Sub
 
