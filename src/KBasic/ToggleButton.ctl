@@ -33,8 +33,6 @@ Attribute VB_Exposed = True
 ''
 ''-----------------------------------------------------------------------------
 
-Dim m_hasFocus As Boolean
-
 ''-----------------------------------------------------------------------------
 ''
 '' 独自プロパティ (宣言)
@@ -162,7 +160,7 @@ End Property
 ''
 ''-----------------------------------------------------------------------------
 
-Sub toggleState()
+Private Sub toggleState()
     If m_Value Then
         m_Value = False
     Else
@@ -172,7 +170,7 @@ Sub toggleState()
     Controller.Refresh
 End Sub
 
-Sub notifyLeftButton(ByVal state As Boolean)
+Private Sub notifyLeftButton(ByVal state As Boolean)
     If Controller.Hover And Not state Then
         Call toggleState
     Else
@@ -180,18 +178,11 @@ Sub notifyLeftButton(ByVal state As Boolean)
     End If
 End Sub
 
-Sub updateFocus(ByVal state As Boolean)
-    If m_hasFocus <> state Then
-        m_hasFocus = state
-        Controller.Refresh
-    End If
-End Sub
-
-Sub hover_Update()
+Private Sub hover_Update()
     If Controller.IsLeftPressed Then Controller.Refresh
 End Sub
 
-Sub doPaint()
+Private Sub doPaint()
     h = UserControl.ScaleHeight
     w = UserControl.ScaleWidth
     
@@ -221,7 +212,7 @@ Sub doPaint()
     End If
 
     If Controller.IsLeftPressed And Controller.Hover Then
-        If m_hasFocus Then
+        If Controller.HasFocus Then
             Call KWin.DrawControlBorder(Me, kbBorderButtonInset, 0, 0, w, h)
             Call KWin.DrawControlBorder(Me, kbBorderButtonFocus, 0, 0, w, h)
         Else
@@ -229,7 +220,7 @@ Sub doPaint()
             If Value Then UserControl.Line (4, 4)-(w - 5, h - 5), SystemColorConstants.vb3DDKShadow, B
         End If
     ElseIf Value Then
-        If m_hasFocus Then
+        If Controller.HasFocus Then
             Call KWin.DrawControlBorder(Me, kbBorderButtonPressed, 0, 0, w, h)
             Call KWin.DrawControlBorder(Me, kbBorderButtonFocus, 0, 0, w, h)
         Else
@@ -241,7 +232,7 @@ Sub doPaint()
             End If
         End If
     Else
-        If m_hasFocus Then
+        If Controller.HasFocus Then
             Call KWin.DrawControlBorder(Me, kbBorderButtonOutsetBold, 0, 0, w, h)
             Call KWin.DrawControlBorder(Me, kbBorderButtonFocus, 0, 0, w, h)
         Else
@@ -252,7 +243,7 @@ End Sub
 
 ''-----------------------------------------------------------------------------
 ''
-'' イベント登録 (Controller)
+'' イベント登録
 ''
 ''-----------------------------------------------------------------------------
 
@@ -288,12 +279,11 @@ End Sub
 
 ''-----------------------------------------------------------------------------
 ''
-'' イベント登録
+'' イベント登録 (Controller Hook)
 ''
 ''-----------------------------------------------------------------------------
 
 Private Sub UserControl_Initialize()
-    m_hasFocus = False
     Controller.OnInitialize
 End Sub
 
@@ -342,11 +332,11 @@ Private Sub UserControl_DblClick()
 End Sub
 
 Private Sub UserControl_GotFocus()
-    updateFocus True
+    Controller.OnGotFocus
 End Sub
 
 Private Sub UserControl_LostFocus()
-    updateFocus False
+    Controller.OnLostFocus
 End Sub
 
 Private Sub UserControl_Paint()

@@ -47,8 +47,6 @@ End Enum
 ''
 ''-----------------------------------------------------------------------------
 
-Dim m_hasFocus As Boolean
-
 ''-----------------------------------------------------------------------------
 ''
 '' 独自プロパティ (宣言)
@@ -183,13 +181,6 @@ End Property
 ''
 ''-----------------------------------------------------------------------------
 
-Private Sub updateFocus(ByVal state As Boolean)
-    If m_hasFocus <> state Then
-        m_hasFocus = state
-        Controller.Refresh
-    End If
-End Sub
-
 Private Sub updateHover()
     If UserControl.Enabled Then
         If Controller.IsLeftPressed Then
@@ -311,7 +302,7 @@ Private Sub doPaint()
         ElseIf pressed Then
             Call KWin.DrawControlBorder(Me, kbBorderButtonPressed, 0, 0, w, h)
             Call KWin.DrawControlBorder(Me, kbBorderButtonFocus, 0, 0, w, h)
-        ElseIf m_hasFocus Then
+        ElseIf Controller.HasFocus Then
             Call KWin.DrawControlBorder(Me, kbBorderButtonOutsetBold, 0, 0, w, h)
             Call KWin.DrawControlBorder(Me, kbBorderButtonFocus, 0, 0, w, h)
         Else
@@ -322,7 +313,7 @@ End Sub
 
 ''-----------------------------------------------------------------------------
 ''
-'' イベント登録 (Controller)
+'' イベント登録
 ''
 ''-----------------------------------------------------------------------------
 
@@ -358,7 +349,7 @@ End Sub
 
 ''-----------------------------------------------------------------------------
 ''
-'' イベント登録
+'' イベント登録 (Controller Hook)
 ''
 ''-----------------------------------------------------------------------------
 
@@ -367,7 +358,6 @@ Private Sub UserControl_DblClick()
 End Sub
 
 Private Sub UserControl_Initialize()
-    m_hasFocus = False
     Controller.OnInitialize
 End Sub
 
@@ -412,11 +402,11 @@ Private Sub UserControl_KeyUp(KeyCode As Integer, Shift As Integer)
 End Sub
 
 Private Sub UserControl_GotFocus()
-    If UserControl.Enabled Then updateFocus True
+    Controller.OnGotFocus
 End Sub
 
 Private Sub UserControl_LostFocus()
-    If UserControl.Enabled Then updateFocus False
+    Controller.OnLostFocus
 End Sub
 
 Private Sub UserControl_Paint()

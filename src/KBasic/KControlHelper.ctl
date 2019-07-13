@@ -42,6 +42,7 @@ Dim m_mouseY As Single
 
 Dim m_button As Integer
 Dim m_hover As Boolean
+Dim m_hasFocus As Boolean
 
 ''-----------------------------------------------------------------------------
 ''
@@ -108,19 +109,23 @@ Attribute MouseButton.VB_MemberFlags = "400"
     MouseButton = m_button
 End Property
 
-Public Property Get MouseX() As Integer
+Public Property Get MouseX() As Single
 Attribute MouseX.VB_MemberFlags = "400"
     MouseX = m_mouseX
 End Property
 
-Public Property Get MouseY() As Integer
+Public Property Get MouseY() As Single
 Attribute MouseY.VB_MemberFlags = "400"
     MouseY = m_mouseY
 End Property
 
-Public Property Get Hover() As Integer
+Public Property Get Hover() As Boolean
 Attribute Hover.VB_MemberFlags = "400"
     Hover = m_hover
+End Property
+
+Public Property Get HasFocus() As Boolean
+    HasFocus = m_hasFocus
 End Property
 
 Public Property Get IsLeftPressed() As Boolean
@@ -353,6 +358,13 @@ Private Sub safeMouseRelease()
     End If
 End Sub
 
+Private Sub updateFocus(ByVal state As Boolean)
+    If m_hasFocus <> state Then
+        m_hasFocus = state
+        Me.Refresh
+    End If
+End Sub
+
 Private Function hitTest(ByVal X As Single, ByVal Y As Single) As Boolean
     hitTest = 0 <= X And X < user.ScaleWidth And 0 <= Y And Y < user.ScaleHeight
 End Function
@@ -485,6 +497,14 @@ Public Sub OnWriteProperties(ByRef PropBag As PropertyBag)
     decrementUserControl
 End Sub
 
+Public Sub OnGotFocus()
+    updateFocus True
+End Sub
+
+Public Sub OnLostFocus()
+    updateFocus False
+End Sub
+
 ''-----------------------------------------------------------------------------
 ''
 '' ƒCƒxƒ“ƒg“o˜^
@@ -493,8 +513,13 @@ End Sub
 
 Private Sub UserControl_Initialize()
     Set user = Nothing
+    m_mouseButton = 0
+    m_mouseShift = 0
+    m_mouseX = 0
+    m_mouseY = 0
     m_button = 0
     m_hover = False
+    m_hasFocus = False
     UserControl_InitProperties
 End Sub
 
