@@ -21,6 +21,18 @@ Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = True
 
+Public Enum KControlAppearance
+    kbAppearanceDefault
+    kbAppearance3D
+    kbAppearance3DInset
+    kbAppearance3DSingle
+    kbAppearance3DButton
+    kbAppearanceFlat
+    kbAppearanceFlat3D
+    kbAppearanceToolButton
+    kbAppearanceGroove
+End Enum
+
 ''-----------------------------------------------------------------------------
 ''
 '' ì‡ïîïœêî
@@ -29,7 +41,6 @@ Attribute VB_Exposed = True
 
 Dim m_hasFocus As Boolean
 Dim m_leftButton As Boolean
-Dim m_hover As Boolean
 
 ''-----------------------------------------------------------------------------
 ''
@@ -38,8 +49,10 @@ Dim m_hover As Boolean
 ''-----------------------------------------------------------------------------
 
 Const default_Caption = "ColorButton"
+Const default_Appearance = KControlAppearance.kbAppearanceDefault
 
 Dim m_Caption As String
+Dim m_Appearance As KControlAppearance
 
 Public Event Click()
 
@@ -71,26 +84,43 @@ Public Event KeyUp(KeyCode As Integer, Shift As Integer)
 ''-----------------------------------------------------------------------------
 
 Public Property Get Caption() As String
+Attribute Caption.VB_UserMemId = 0
     Caption = m_Caption
 End Property
 
 Public Property Let Caption(ByVal new_Caption As String)
     If m_Caption <> new_Caption Then
         m_Caption = new_Caption
+        UserControl.Refresh
         PropertyChanged "Caption"
+    End If
+End Property
+
+Public Property Get Appearance() As KControlAppearance
+    Appearance = m_Appearance
+End Property
+
+Public Property Let Appearance(ByVal new_Appearance As KControlAppearance)
+    If m_Appearance <> new_Appearance Then
+        m_Appearance = new_Appearance
+        UserControl.Refresh
+        PropertyChanged "Appearance"
     End If
 End Property
 
 Sub ownProperties_Initialize()
     m_Caption = default_Caption
+    m_Appearance = default_Appearance
 End Sub
 
 Sub ownProperties_Read(PropBag As PropertyBag)
     m_Caption = PropBag.ReadProperty("Caption", default_Caption)
+    m_Appearance = PropBag.ReadProperty("Appearance", default_Appearance)
 End Sub
 
 Sub ownProperties_Write(PropBag As PropertyBag)
     Call PropBag.WriteProperty("Caption", m_Caption, default_Caption)
+    Call PropBag.WriteProperty("Appearance", m_Appearance, default_Appearance)
 End Sub
 
 ''-----------------------------------------------------------------------------
@@ -236,7 +266,7 @@ Sub notifyLeftButton(ByVal state As Boolean)
     If m_leftButton <> state Then
         m_leftButton = state
         Call UserControl.Refresh
-        If Not m_leftButton And m_hover Then RaiseEvent Click
+        If Not m_leftButton And Controller.Hover Then RaiseEvent Click
     End If
 End Sub
 
@@ -247,40 +277,41 @@ Sub updateFocus(ByVal state As Boolean)
     End If
 End Sub
 
-Sub hover_Update(ByVal X As Single, ByVal Y As Single)
-    oldHover = m_hover
-    m_hover = 0 <= X And X < ScaleWidth And 0 <= Y And Y < ScaleHeight
-    If m_leftButton And m_hover <> oldHover Then
-        UserControl.Refresh
+Private Sub hover_Update()
+    If UserControl.Enabled Then
+        If m_leftButton Or m_Appearance = kbAppearanceToolButton Or m_Appearance = kbAppearanceFlat3D Then
+            UserControl.Refresh
+        End If
     End If
 End Sub
 
 Sub onPaint()
     h = UserControl.ScaleHeight
     w = UserControl.ScaleWidth
+    
+    pressed = UserControl.Enabled And m_leftButton And Controller.Hover
+    var_captionColor = UserControl.ForeColor
+    var_shiftText = pressed
+    If m_Appearance = kbAppearanceFlat And pressed Then
+        Line (1, 1)-(w - 2, h - 2), var_captionColor, BF
+        var_captionColor = UserControl.BackColor
+        var_shiftText = False
+    End If
+    
     text_width = UserControl.TextWidth(m_Caption)
     text_height = UserControl.TextHeight(m_Caption)
     CurrentX = (w - text_width) / 2
     CurrentY = (h - text_height) / 2
+    If var_shiftText Then
+        CurrentX = CurrentX + 1
+        CurrentY = CurrentY + 1
+    End If
     
+    oldForeColor = UserControl.ForeColor
     If UserControl.Enabled Then
-        If m_leftButton And m_hover Then
-            CurrentX = CurrentX + 1
-            CurrentY = CurrentY + 1
-        End If
+        UserControl.ForeColor = var_captionColor
         UserControl.Print m_Caption
-        
-        If m_leftButton And m_hover Then
-            Call KWin.DrawControlBorder(Me, kbBorderButtonPressed, 0, 0, w, h)
-            Call KWin.DrawControlBorder(Me, kbBorderButtonFocus, 0, 0, w, h)
-        ElseIf m_hasFocus Then
-            Call KWin.DrawControlBorder(Me, kbBorderButtonOutsetBold, 0, 0, w, h)
-            Call KWin.DrawControlBorder(Me, kbBorderButtonFocus, 0, 0, w, h)
-        Else
-            Call KWin.DrawControlBorder(Me, kbBorderButtonOutset, 0, 0, w, h)
-        End If
     Else
-        oldForeColor = UserControl.ForeColor
         x0 = CurrentX
         y0 = CurrentY
         CurrentX = x0 + 1
@@ -291,10 +322,69 @@ Sub onPaint()
         CurrentY = y0
         UserControl.ForeColor = SystemColorConstants.vb3DShadow
         UserControl.Print m_Caption
-        UserControl.ForeColor = oldForeColor
-        
-        Call KWin.DrawControlBorder(Me, kbBorderButtonOutset, 0, 0, w, h)
     End If
+    UserControl.ForeColor = oldForeColor
+        
+    Select Case m_Appearance
+    Case kbAppearance3D
+        If pressed Then
+            Call KWin.DrawControlBorder(Me, kbBorderSinglePressed, 0, 0, w, h)
+        Else
+            Call KWin.DrawControlBorder(Me, kbBorderControlOutset, 0, 0, w, h)
+        End If
+    Case kbAppearance3DInset
+        If pressed Then
+            Call KWin.DrawControlBorder(Me, kbBorderControlInset, 0, 0, w, h)
+        Else
+            Call KWin.DrawControlBorder(Me, kbBorderControlOutset, 0, 0, w, h)
+        End If
+    Case kbAppearance3DSingle
+        If pressed Then
+            Call KWin.DrawControlBorder(Me, kbBorderSingleInset, 0, 0, w, h)
+        Else
+            Call KWin.DrawControlBorder(Me, kbBorderSingleOutset, 0, 0, w, h)
+        End If
+    Case kbAppearanceGroove
+        If pressed Then
+            Call KWin.DrawControlBorder(Me, kbBorderControlInset, 0, 0, w, h)
+        Else
+            Call KWin.DrawControlBorder(Me, kbBorderGroove, 0, 0, w, h)
+        End If
+    Case kbAppearanceFlat
+        KWin.DrawControlBorder Me, kbBorderSinglePressed, 0, 0, w, h
+    Case kbAppearanceFlat3D
+        If UserControl.Enabled Then
+            If pressed Then
+                KWin.DrawControlBorder Me, kbBorderSingleInset, 0, 0, w, h
+            ElseIf m_leftButton Or Controller.Hover Then
+                KWin.DrawControlBorder Me, kbBorderSingleOutset, 0, 0, w, h
+            Else
+                KWin.DrawControlBorder Me, kbBorderSinglePressed, 0, 0, w, h
+            End If
+        Else
+            KWin.DrawControlBorder Me, kbBorderSinglePressed, 0, 0, w, h
+        End If
+    Case kbAppearanceToolButton
+        If UserControl.Enabled Then
+            If pressed Then
+                KWin.DrawControlBorder Me, kbBorderSingleInset, 0, 0, w, h
+            ElseIf m_leftButton Or Controller.Hover Then
+                KWin.DrawControlBorder Me, kbBorderSingleOutset, 0, 0, w, h
+            End If
+        End If
+    Case Else ' kbAppearance3DButton
+        If Not UserControl.Enabled Then
+            Call KWin.DrawControlBorder(Me, kbBorderButtonOutset, 0, 0, w, h)
+        ElseIf pressed Then
+            Call KWin.DrawControlBorder(Me, kbBorderButtonPressed, 0, 0, w, h)
+            Call KWin.DrawControlBorder(Me, kbBorderButtonFocus, 0, 0, w, h)
+        ElseIf m_hasFocus Then
+            Call KWin.DrawControlBorder(Me, kbBorderButtonOutsetBold, 0, 0, w, h)
+            Call KWin.DrawControlBorder(Me, kbBorderButtonFocus, 0, 0, w, h)
+        Else
+            Call KWin.DrawControlBorder(Me, kbBorderButtonOutset, 0, 0, w, h)
+        End If
+    End Select
 End Sub
 
 ''-----------------------------------------------------------------------------
@@ -303,10 +393,35 @@ End Sub
 ''
 ''-----------------------------------------------------------------------------
 
+Private Sub Controller_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    If UserControl.Enabled And Button = vbLeftButton Then notifyLeftButton True
+    RaiseEvent MouseDown(Button, Shift, X, Y)
+End Sub
+
+Private Sub Controller_MouseEnter(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    hover_Update
+End Sub
+
+Private Sub Controller_MouseLeave(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    hover_Update
+End Sub
+
+Private Sub Controller_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    RaiseEvent MouseMove(Button, Shift, X, Y)
+End Sub
+
+Private Sub Controller_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    If UserControl.Enabled And Button = vbLeftButton Then notifyLeftButton False
+    RaiseEvent MouseUp(Button, Shift, X, Y)
+End Sub
+
+Private Sub UserControl_DblClick()
+    Controller.OnDblClick
+End Sub
+
 Private Sub UserControl_Initialize()
     m_leftButton = False
     m_hasFocus = False
-    m_hover = False
     Call delegateProperties_ctor
     Call ownProperties_Initialize
     Call delegateProperties_Initialize
@@ -315,6 +430,18 @@ End Sub
 Private Sub UserControl_InitProperties()
     ownProperties_Initialize
     delegateProperties_Initialize
+End Sub
+
+Private Sub UserControl_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    Controller.OnMouseDown Button, Shift, X, Y
+End Sub
+
+Private Sub UserControl_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    Controller.OnMouseMove Button, Shift, X, Y
+End Sub
+
+Private Sub UserControl_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    Controller.OnMouseUp Button, Shift, X, Y
 End Sub
 
 Private Sub UserControl_ReadProperties(PropBag As PropertyBag)
@@ -327,24 +454,6 @@ Private Sub UserControl_WriteProperties(PropBag As PropertyBag)
     delegateProperties_Write PropBag
 End Sub
 
-Private Sub UserControl_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
-    hover_Update X, Y
-    If UserControl.Enabled And Button = vbLeftButton Then notifyLeftButton True
-    RaiseEvent MouseDown(Button, Shift, X, Y)
-End Sub
-
-Private Sub UserControl_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
-    KWin.ReleaseCapture
-    hover_Update X, Y
-    If UserControl.Enabled And Button = vbLeftButton Then notifyLeftButton False
-    RaiseEvent MouseUp(Button, Shift, X, Y)
-End Sub
-
-Private Sub UserControl_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
-    hover_Update X, Y
-    RaiseEvent MouseMove(Button, Shift, X, Y)
-End Sub
-
 Private Sub UserControl_KeyDown(KeyCode As Integer, Shift As Integer)
     RaiseEvent KeyDown(KeyCode, Shift)
 End Sub
@@ -355,11 +464,6 @@ End Sub
 
 Private Sub UserControl_KeyUp(KeyCode As Integer, Shift As Integer)
     RaiseEvent KeyUp(KeyCode, Shift)
-End Sub
-
-Private Sub UserControl_DblClick()
-    If UserControl.Enabled Then notifyLeftButton True
-    KWin.SetCapture UserControl.hWnd
 End Sub
 
 Private Sub UserControl_GotFocus()
