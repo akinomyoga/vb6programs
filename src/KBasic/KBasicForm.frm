@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{B30B7ED4-9187-4EC4-9CD3-5155839C07F7}#4.0#0"; "KBasic.ocx"
+Object = "{B30B7ED4-9187-4EC4-9CD3-5155839C07F7}#5.0#0"; "KBasic.ocx"
 Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomct2.ocx"
 Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TabCtl32.Ocx"
 Begin VB.Form KBasicForm 
@@ -87,17 +87,29 @@ Begin VB.Form KBasicForm
       TabCaption(2)   =   "Scroll"
       TabPicture(2)   =   "KBasicForm.frx":0038
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "ScrollBar2(2)"
-      Tab(2).Control(1)=   "ScrollBar2(1)"
-      Tab(2).Control(2)=   "ScrollBar3"
-      Tab(2).Control(3)=   "FlatScrollBar2"
-      Tab(2).Control(4)=   "FlatScrollBar1"
-      Tab(2).Control(5)=   "ScrollBar1"
-      Tab(2).Control(6)=   "ScrollBar2(0)"
-      Tab(2).Control(7)=   "HScroll1"
-      Tab(2).Control(8)=   "HScroll3"
-      Tab(2).Control(9)=   "HScroll2"
-      Tab(2).ControlCount=   10
+      Tab(2).Control(0)=   "ScrollBar2(3)"
+      Tab(2).Control(0).Enabled=   0   'False
+      Tab(2).Control(1)=   "ScrollBar2(2)"
+      Tab(2).Control(1).Enabled=   0   'False
+      Tab(2).Control(2)=   "ScrollBar2(1)"
+      Tab(2).Control(2).Enabled=   0   'False
+      Tab(2).Control(3)=   "ScrollBar3"
+      Tab(2).Control(3).Enabled=   0   'False
+      Tab(2).Control(4)=   "FlatScrollBar2"
+      Tab(2).Control(4).Enabled=   0   'False
+      Tab(2).Control(5)=   "FlatScrollBar1"
+      Tab(2).Control(5).Enabled=   0   'False
+      Tab(2).Control(6)=   "ScrollBar1"
+      Tab(2).Control(6).Enabled=   0   'False
+      Tab(2).Control(7)=   "ScrollBar2(0)"
+      Tab(2).Control(7).Enabled=   0   'False
+      Tab(2).Control(8)=   "HScroll1"
+      Tab(2).Control(8).Enabled=   0   'False
+      Tab(2).Control(9)=   "HScroll3"
+      Tab(2).Control(9).Enabled=   0   'False
+      Tab(2).Control(10)=   "HScroll2"
+      Tab(2).Control(10).Enabled=   0   'False
+      Tab(2).ControlCount=   11
       TabCaption(3)   =   "Tab 3"
       TabPicture(3)   =   "KBasicForm.frx":0054
       Tab(3).ControlEnabled=   0   'False
@@ -109,10 +121,18 @@ Begin VB.Form KBasicForm
          TabIndex        =   23
          Top             =   2640
          Width           =   375
-         _extentx        =   661
-         _extenty        =   661
-         caption         =   "A"
-         font            =   "KBasicForm.frx":0070
+         _ExtentX        =   661
+         _ExtentY        =   661
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Caption         =   "A"
       End
       Begin KBasic.ColorButton ColorButton4 
          Height          =   375
@@ -121,11 +141,19 @@ Begin VB.Form KBasicForm
          TabIndex        =   24
          Top             =   2640
          Width           =   375
-         _extentx        =   661
-         _extenty        =   661
-         caption         =   "A"
-         appearance      =   1
-         font            =   "KBasicForm.frx":009C
+         _ExtentX        =   661
+         _ExtentY        =   661
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Caption         =   "A"
+         Appearance      =   1
       End
       Begin KBasic.ColorButton ColorButton4 
          Height          =   375
@@ -134,11 +162,19 @@ Begin VB.Form KBasicForm
          TabIndex        =   25
          Top             =   2640
          Width           =   375
-         _extentx        =   661
-         _extenty        =   661
-         caption         =   "A"
-         appearance      =   2
-         font            =   "KBasicForm.frx":00C8
+         _ExtentX        =   661
+         _ExtentY        =   661
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Caption         =   "A"
+         Appearance      =   2
       End
       Begin KBasic.ColorButton ColorButton4 
          Height          =   375
@@ -147,11 +183,19 @@ Begin VB.Form KBasicForm
          TabIndex        =   26
          Top             =   2640
          Width           =   375
-         _extentx        =   661
-         _extenty        =   661
-         caption         =   "A"
-         appearance      =   3
-         font            =   "KBasicForm.frx":00F4
+         _ExtentX        =   661
+         _ExtentY        =   661
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Caption         =   "A"
+         Appearance      =   3
       End
       Begin KBasic.ColorButton ColorButton4 
          Height          =   375
@@ -160,11 +204,19 @@ Begin VB.Form KBasicForm
          TabIndex        =   27
          Top             =   2640
          Width           =   375
-         _extentx        =   661
-         _extenty        =   661
-         caption         =   "A"
-         appearance      =   5
-         font            =   "KBasicForm.frx":0120
+         _ExtentX        =   661
+         _ExtentY        =   661
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Caption         =   "A"
+         Appearance      =   5
       End
       Begin KBasic.ColorButton ColorButton4 
          Height          =   375
@@ -173,11 +225,19 @@ Begin VB.Form KBasicForm
          TabIndex        =   28
          Top             =   2640
          Width           =   375
-         _extentx        =   661
-         _extenty        =   661
-         caption         =   "A"
-         appearance      =   6
-         font            =   "KBasicForm.frx":014C
+         _ExtentX        =   661
+         _ExtentY        =   661
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Caption         =   "A"
+         Appearance      =   6
       End
       Begin KBasic.ColorButton ColorButton4 
          Height          =   375
@@ -186,11 +246,19 @@ Begin VB.Form KBasicForm
          TabIndex        =   29
          Top             =   2640
          Width           =   375
-         _extentx        =   661
-         _extenty        =   661
-         caption         =   "A"
-         appearance      =   7
-         font            =   "KBasicForm.frx":0178
+         _ExtentX        =   661
+         _ExtentY        =   661
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Caption         =   "A"
+         Appearance      =   7
       End
       Begin VB.CommandButton Command3 
          BackColor       =   &H00C0E0FF&
@@ -209,12 +277,20 @@ Begin VB.Form KBasicForm
          ToolTipText     =   "Toggle1"
          Top             =   1200
          Width           =   615
-         _extentx        =   1085
-         _extenty        =   661
-         caption         =   "XSE"
-         backcolor       =   12648447
-         forecolor       =   32896
-         font            =   "KBasicForm.frx":01A4
+         _ExtentX        =   1085
+         _ExtentY        =   661
+         BackColor       =   12648447
+         ForeColor       =   32896
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "‚l‚r ‚oƒSƒVƒbƒN"
+            Size            =   9
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Caption         =   "XSE"
       End
       Begin VB.CommandButton Command1 
          BackColor       =   &H00C0E0FF&
@@ -267,17 +343,17 @@ Begin VB.Form KBasicForm
          Left            =   -73320
          Top             =   1020
          Width           =   1335
-         _extentx        =   2355
-         _extenty        =   450
-         backcolor       =   12632319
+         _ExtentX        =   2355
+         _ExtentY        =   450
+         BackColor       =   12632319
       End
       Begin KBasic.ScrollBar ScrollBar1 
          Height          =   135
          Left            =   -73320
          Top             =   780
          Width           =   1335
-         _extentx        =   2355
-         _extenty        =   238
+         _ExtentX        =   2355
+         _ExtentY        =   238
       End
       Begin MSComCtl2.FlatScrollBar FlatScrollBar1 
          Height          =   255
@@ -311,12 +387,12 @@ Begin VB.Form KBasicForm
          Left            =   -73320
          Top             =   1380
          Width           =   1335
-         _extentx        =   2355
-         _extenty        =   661
-         max             =   5
-         backcolor       =   12648384
-         forecolor       =   32768
-         enabled         =   0   'False
+         _ExtentX        =   2355
+         _ExtentY        =   661
+         Enabled         =   0   'False
+         BackColor       =   12648384
+         ForeColor       =   32768
+         Max             =   5
       End
       Begin MSComCtl2.UpDown UpDown1 
          Height          =   255
@@ -369,59 +445,59 @@ Begin VB.Form KBasicForm
          Left            =   -73200
          Top             =   1620
          Width           =   375
-         _extentx        =   661
-         _extenty        =   661
-         enabled         =   0   'False
+         _ExtentX        =   661
+         _ExtentY        =   661
+         Enabled         =   0   'False
       End
       Begin KBasic.SpinButton SpinButton2 
          Height          =   255
          Left            =   -72840
          Top             =   780
          Width           =   255
-         _extentx        =   450
-         _extenty        =   450
-         orientation     =   1
+         _ExtentX        =   450
+         _ExtentY        =   450
+         Orientation     =   1
       End
       Begin KBasic.SpinButton SpinButton4 
          Height          =   375
          Left            =   -72840
          Top             =   1140
          Width           =   375
-         _extentx        =   661
-         _extenty        =   661
-         orientation     =   1
-         backcolor       =   12648384
-         forecolor       =   32768
+         _ExtentX        =   661
+         _ExtentY        =   661
+         Orientation     =   1
+         BackColor       =   12648384
+         ForeColor       =   32768
       End
       Begin KBasic.SpinButton SpinButton1 
          Height          =   255
          Left            =   -73200
          Top             =   780
          Width           =   255
-         _extentx        =   450
-         _extenty        =   450
+         _ExtentX        =   450
+         _ExtentY        =   450
       End
       Begin KBasic.SpinButton SpinButton3 
          Height          =   375
          Left            =   -73200
          Top             =   1140
          Width           =   375
-         _extentx        =   661
-         _extenty        =   661
-         backcolor       =   12632319
-         forecolor       =   128
+         _ExtentX        =   661
+         _ExtentY        =   661
+         BackColor       =   12632319
+         ForeColor       =   128
       End
       Begin KBasic.SpinButton SpinButton6 
          Height          =   375
          Left            =   -72840
          Top             =   1620
          Width           =   375
-         _extentx        =   661
-         _extenty        =   661
-         orientation     =   1
-         backcolor       =   12648384
-         forecolor       =   32768
-         enabled         =   0   'False
+         _ExtentX        =   661
+         _ExtentY        =   661
+         Orientation     =   1
+         BackColor       =   12648384
+         ForeColor       =   32768
+         Enabled         =   0   'False
       End
       Begin MSComCtl2.UpDown UpDown5 
          Height          =   375
@@ -452,11 +528,19 @@ Begin VB.Form KBasicForm
          TabIndex        =   13
          Top             =   1680
          Width           =   1215
-         _extentx        =   2143
-         _extenty        =   661
-         value           =   -1  'True
-         enabled         =   0   'False
-         font            =   "KBasicForm.frx":01D4
+         _ExtentX        =   2143
+         _ExtentY        =   661
+         Enabled         =   0   'False
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Value           =   -1  'True
       End
       Begin KBasic.ColorButton ColorButton1 
          Height          =   375
@@ -465,9 +549,17 @@ Begin VB.Form KBasicForm
          ToolTipText     =   "Color1"
          Top             =   720
          Width           =   1215
-         _extentx        =   2143
-         _extenty        =   661
-         font            =   "KBasicForm.frx":0200
+         _ExtentX        =   2143
+         _ExtentY        =   661
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
       End
       Begin KBasic.ToggleButton ToggleButton2 
          Height          =   375
@@ -476,9 +568,17 @@ Begin VB.Form KBasicForm
          ToolTipText     =   "Toggle2"
          Top             =   720
          Width           =   1215
-         _extentx        =   2143
-         _extenty        =   661
-         font            =   "KBasicForm.frx":022C
+         _ExtentX        =   2143
+         _ExtentY        =   661
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
       End
       Begin KBasic.ToggleButton ToggleButton1 
          Height          =   375
@@ -487,12 +587,20 @@ Begin VB.Form KBasicForm
          ToolTipText     =   "Toggle1"
          Top             =   1200
          Width           =   615
-         _extentx        =   1085
-         _extenty        =   661
-         caption         =   "XYZ"
-         backcolor       =   12648447
-         forecolor       =   32896
-         font            =   "KBasicForm.frx":0258
+         _ExtentX        =   1085
+         _ExtentY        =   661
+         BackColor       =   12648447
+         ForeColor       =   32896
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Caption         =   "XYZ"
       End
       Begin KBasic.ColorButton ColorButton2 
          Height          =   375
@@ -501,10 +609,19 @@ Begin VB.Form KBasicForm
          ToolTipText     =   "Color1"
          Top             =   1200
          Width           =   1215
-         _extentx        =   2143
-         _extenty        =   661
-         backcolor       =   16761024
-         font            =   "KBasicForm.frx":0284
+         _ExtentX        =   2143
+         _ExtentY        =   661
+         BackColor       =   16761024
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Caption         =   "Color2"
       End
       Begin KBasic.ColorButton ColorButton3 
          Height          =   375
@@ -513,11 +630,19 @@ Begin VB.Form KBasicForm
          ToolTipText     =   "Color1"
          Top             =   1680
          Width           =   1215
-         _extentx        =   2143
-         _extenty        =   661
-         enabled         =   0   'False
-         backcolor       =   16761024
-         font            =   "KBasicForm.frx":02B0
+         _ExtentX        =   2143
+         _ExtentY        =   661
+         Enabled         =   0   'False
+         BackColor       =   16761024
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
       End
       Begin KBasic.ScrollBar ScrollBar2 
          Height          =   255
@@ -525,10 +650,10 @@ Begin VB.Form KBasicForm
          Left            =   -73320
          Top             =   1920
          Width           =   1335
-         _extentx        =   2355
-         _extenty        =   450
-         appearance      =   1
-         backcolor       =   12632319
+         _ExtentX        =   2355
+         _ExtentY        =   450
+         BackColor       =   12632319
+         Appearance      =   1
       End
       Begin KBasic.ScrollBar ScrollBar2 
          Height          =   255
@@ -536,10 +661,11 @@ Begin VB.Form KBasicForm
          Left            =   -73320
          Top             =   2280
          Width           =   1335
-         _extentx        =   2355
-         _extenty        =   450
-         appearance      =   2
-         backcolor       =   12632319
+         _ExtentX        =   2355
+         _ExtentY        =   450
+         BackColor       =   12632319
+         Delay           =   100
+         Appearance      =   2
       End
       Begin KBasic.ColorButton ColorButton4 
          Height          =   375
@@ -548,11 +674,32 @@ Begin VB.Form KBasicForm
          TabIndex        =   31
          Top             =   2640
          Width           =   375
-         _extentx        =   661
-         _extenty        =   661
-         caption         =   "A"
-         appearance      =   8
-         font            =   "KBasicForm.frx":02DC
+         _ExtentX        =   661
+         _ExtentY        =   661
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Caption         =   "A"
+         Appearance      =   8
+      End
+      Begin KBasic.ScrollBar ScrollBar2 
+         Height          =   255
+         Index           =   3
+         Left            =   -73320
+         Top             =   2640
+         Width           =   1335
+         _ExtentX        =   2355
+         _ExtentY        =   450
+         BackColor       =   16761024
+         BarSize         =   20
+         ButtonSize      =   20
+         Appearance      =   2
       End
       Begin VB.Label Label2 
          Caption         =   "Button Appearances"

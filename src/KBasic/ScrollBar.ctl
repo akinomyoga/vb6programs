@@ -15,6 +15,12 @@ Begin VB.UserControl ScrollBar
       Top             =   120
       _ExtentX        =   661
       _ExtentY        =   661
+      ExportsEnabled  =   -1  'True
+      ExportsBackColor=   -1  'True
+      ExportsForeColor=   -1  'True
+      ExportsMousePointer=   -1  'True
+      ExportsMouseIcon=   -1  'True
+      ExportsTag      =   -1  'True
    End
    Begin VB.Timer Timer1 
       Enabled         =   0   'False
@@ -77,25 +83,11 @@ Const BAR_MIN_SIZE = 5
 Const BUTTON_MIN_SIZE = 9
 Const INITIAL_DELAY_FACTOR = 5
 
-Const default_Value = 0
-Const default_Min = 0
-Const default_Max = 10
-Const default_SmallChange = 1
-Const default_Orientation = -1
-Const default_Delay = 50
-Const default_BarSize = -1
-Const default_BarMinSize = BAR_MIN_SIZE
-Const default_BarRange = -1
-Const default_LargeChange = 1
-Const default_ButtonSize = -1
-Const default_ButtonMinSize = BUTTON_MIN_SIZE
-Const default_Appearance = KScrollAppearance.kbScroll3D
-
 Dim m_Value As Long
 Dim m_Min As Long
 Dim m_Max As Long
 Dim m_SmallChange As Long
-Dim m_Orientation As SpinButtonOrientation
+Dim m_Orientation As KSpinOrientation
 Dim m_Delay As Long
 Dim m_BarSize As Long
 Dim m_BarMinSize As Long
@@ -113,13 +105,6 @@ Public Event Change()
 '' 委譲プロパティ (宣言)
 ''
 ''-----------------------------------------------------------------------------
-
-Const default_BackColor = SystemColorConstants.vbButtonFace
-Const default_ForeColor = SystemColorConstants.vbButtonText
-Const default_Enabled = True
-Const default_Tag = ""
-Const default_MousePointer = MousePointerConstants.vbDefault
-Dim default_MouseIcon As IPictureDisp
 
 Public Event MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
 Public Event MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
@@ -191,12 +176,12 @@ Public Property Let SmallChange(ByVal new_SmallChange As Long)
     End If
 End Property
 
-Public Property Get Orientation() As SpinButtonOrientation
+Public Property Get Orientation() As KSpinOrientation
 Attribute Orientation.VB_ProcData.VB_Invoke_Property = ";Appearance"
     Orientation = m_Orientation
 End Property
 
-Public Property Let Orientation(ByVal new_Orientation As SpinButtonOrientation)
+Public Property Let Orientation(ByVal new_Orientation As KSpinOrientation)
     If m_Orientation <> new_Orientation Then
         m_Orientation = new_Orientation
         PropertyChanged "Orientation"
@@ -255,6 +240,7 @@ Attribute BarRange.VB_ProcData.VB_Invoke_Property = ";Appearance"
 End Property
 
 Public Property Let BarRange(ByVal new_BarRange As Long)
+    If new_BarRange <= 0 Then new_BarRange = -1
     If m_BarRange <> new_BarRange Then
         m_BarRange = new_BarRange
         PropertyChanged "BarRange"
@@ -320,52 +306,20 @@ Public Property Let Appearance(ByVal new_Appearance As KScrollAppearance)
     End If
 End Property
 
-Sub ownProperties_Initialize()
-    m_Value = default_Value
-    m_Min = 0
-    m_Max = default_Max
-    m_SmallChange = default_SmallChange
-    m_Orientation = default_Orientation
-    m_Delay = default_Delay
-    m_BarSize = default_BarSize
-    m_BarMinSize = default_BarMinSize
-    m_BarRange = default_BarRange
-    m_LargeChange = default_LargeChange
-    m_ButtonSize = default_ButtonSize
-    m_ButtonMinSize = default_ButtonMinSize
-    m_Appearance = default_Appearance
-End Sub
-
-Sub ownProperties_Read(PropBag As PropertyBag)
-    m_Value = PropBag.ReadProperty("Value", default_Value)
-    m_Min = PropBag.ReadProperty("Min", default_Min)
-    m_Max = PropBag.ReadProperty("Max", default_Max)
-    m_SmallChange = PropBag.ReadProperty("SmallChange", default_SmallChange)
-    m_Orientation = PropBag.ReadProperty("Orientation", default_Orientation)
-    m_Delay = PropBag.ReadProperty("Delay", default_Delay)
-    m_BarSize = PropBag.ReadProperty("BarSize", default_BarSize)
-    m_BarMinSize = PropBag.ReadProperty("BarMinSize", default_BarMinSize)
-    m_BarRange = PropBag.ReadProperty("BarRange", default_BarRange)
-    m_LargeChange = PropBag.ReadProperty("LargeChange", default_LargeChange)
-    m_ButtonSize = PropBag.ReadProperty("ButtonSize", default_ButtonSize)
-    m_ButtonMinSize = PropBag.ReadProperty("ButtonMinSize", default_ButtonMinSize)
-    m_Appearance = PropBag.ReadProperty("Appearance", default_Appearance)
-End Sub
-
-Sub ownProperties_Write(PropBag As PropertyBag)
-    Call PropBag.WriteProperty("Value", m_Value, default_Value)
-    Call PropBag.WriteProperty("Min", m_Min, default_Min)
-    Call PropBag.WriteProperty("Max", m_Max, default_Max)
-    Call PropBag.WriteProperty("SmallChange", m_SmallChange, default_SmallChange)
-    Call PropBag.WriteProperty("Orientation", m_Orientation, default_Orientation)
-    Call PropBag.WriteProperty("Delay", m_Delay, default_Delay)
-    Call PropBag.WriteProperty("BarSize", m_BarSize, default_BarSize)
-    Call PropBag.WriteProperty("BarMinSize", m_BarMinSize, default_BarMinSize)
-    Call PropBag.WriteProperty("BarRange", m_BarRange, default_BarRange)
-    Call PropBag.WriteProperty("LargeChange", m_LargeChange, default_LargeChange)
-    Call PropBag.WriteProperty("ButtonSize", m_ButtonSize, default_ButtonSize)
-    Call PropBag.WriteProperty("ButtonMinSize", m_ButtonMinSize, default_ButtonMinSize)
-    Call PropBag.WriteProperty("Appearance", m_Appearance, default_Appearance)
+Private Sub processOwnProperties(ByVal kind As PropertyOperation, PropBag As PropertyBag)
+    Controller.DefineByValProperty kind, PropBag, "Value", m_Value, 0
+    Controller.DefineByValProperty kind, PropBag, "Min", m_Min, 0
+    Controller.DefineByValProperty kind, PropBag, "Max", m_Max, 10
+    Controller.DefineByValProperty kind, PropBag, "SmallChange", m_SmallChange, 1
+    Controller.DefineByValProperty kind, PropBag, "Orientation", m_Orientation, KSpinOrientation.kbOrientationAuto
+    Controller.DefineByValProperty kind, PropBag, "Delay", m_Delay, 50
+    Controller.DefineByValProperty kind, PropBag, "BarSize", m_BarSize, -1
+    Controller.DefineByValProperty kind, PropBag, "BarMinSize", m_BarMinSize, BAR_MIN_SIZE
+    Controller.DefineByValProperty kind, PropBag, "BarRange", m_BarRange, -1
+    Controller.DefineByValProperty kind, PropBag, "LargeChange", m_LargeChange, 1
+    Controller.DefineByValProperty kind, PropBag, "ButtonSize", m_ButtonSize, -1
+    Controller.DefineByValProperty kind, PropBag, "ButtonMinSize", m_ButtonMinSize, BUTTON_MIN_SIZE
+    Controller.DefineByValProperty kind, PropBag, "Appearance", m_Appearance, KScrollAppearance.kbScroll3D
 End Sub
 
 ''-----------------------------------------------------------------------------
@@ -380,11 +334,7 @@ Attribute BackColor.VB_ProcData.VB_Invoke_Property = ";Appearance"
 End Property
 
 Public Property Let BackColor(ByVal new_BackColor As OLE_COLOR)
-    If UserControl.BackColor <> new_BackColor Then
-        UserControl.BackColor = new_BackColor
-        Controller.Refresh
-        PropertyChanged "BackColor"
-    End If
+    Controller.SetBackColor new_BackColor
 End Property
 
 Public Property Get ForeColor() As OLE_COLOR
@@ -393,11 +343,7 @@ Attribute ForeColor.VB_ProcData.VB_Invoke_Property = ";Appearance"
 End Property
 
 Public Property Let ForeColor(ByVal new_ForeColor As OLE_COLOR)
-    If UserControl.ForeColor <> new_ForeColor Then
-        UserControl.ForeColor = new_ForeColor
-        Controller.Refresh
-        PropertyChanged "ForeColor"
-    End If
+    Controller.SetForeColor new_ForeColor
 End Property
 
 Public Property Get Enabled() As Boolean
@@ -406,14 +352,9 @@ Attribute Enabled.VB_ProcData.VB_Invoke_Property = ";Behavior"
 End Property
 
 Public Property Let Enabled(ByVal new_Enabled As Boolean)
-    If UserControl.Enabled <> new_Enabled Then
-        UserControl.Enabled = new_Enabled
-        If Not new_Enabled Then
-            m_button = 0
-            m_hoverButton = 0
-        End If
-        Controller.Refresh
-        PropertyChanged "Enabled"
+    If Controller.SetEnabled(new_Enabled) And Not new_Enabled Then
+        m_button = 0
+        m_hoverButton = 0
     End If
 End Property
 
@@ -422,10 +363,7 @@ Public Property Get Tag() As String
 End Property
 
 Public Property Let Tag(ByVal new_Tag As String)
-    If UserControl.Tag <> new_Tag Then
-        UserControl.Tag = new_Tag
-        PropertyChanged "Tag"
-    End If
+    Controller.SetTag new_Tag
 End Property
 
 Public Property Get MousePointer() As Integer
@@ -433,10 +371,7 @@ Public Property Get MousePointer() As Integer
 End Property
 
 Public Property Let MousePointer(ByVal new_MousePointer As Integer)
-    If UserControl.MousePointer <> new_MousePointer Then
-        UserControl.MousePointer = new_MousePointer
-        PropertyChanged "MousePointer"
-    End If
+    Controller.SetMousePointer new_MousePointer
 End Property
 
 Public Property Get MouseIcon() As IPictureDisp
@@ -444,42 +379,8 @@ Public Property Get MouseIcon() As IPictureDisp
 End Property
 
 Public Property Set MouseIcon(ByRef new_MouseIcon As IPictureDisp)
-    If UserControl.MouseIcon <> new_MouseIcon Then
-        Set UserControl.MouseIcon = new_MouseIcon
-        PropertyChanged "MouseIcon"
-    End If
+    Controller.SetMouseIcon new_MouseIcon
 End Property
-
-Sub delegateProperties_ctor()
-    Set default_MouseIcon = Nothing
-End Sub
-
-Sub delegateProperties_Initialize()
-    UserControl.BackColor = default_BackColor
-    UserControl.ForeColor = default_ForeColor
-    UserControl.Enabled = default_Enabled
-    UserControl.Tag = default_Tag
-    UserControl.MousePointer = default_MousePointer
-    Set UserControl.MouseIcon = default_MouseIcon
-End Sub
-
-Sub delegateProperties_Read(PropBag As PropertyBag)
-    UserControl.BackColor = PropBag.ReadProperty("BackColor", default_BackColor)
-    UserControl.ForeColor = PropBag.ReadProperty("ForeColor", default_ForeColor)
-    UserControl.Enabled = PropBag.ReadProperty("Enabled", default_Enabled)
-    UserControl.Tag = PropBag.ReadProperty("Tag", default_Tag)
-    UserControl.MousePointer = PropBag.ReadProperty("MousePointer", default_MousePointer)
-    Set UserControl.MouseIcon = PropBag.ReadProperty("MouseIcon", default_MouseIcon)
-End Sub
-
-Sub delegateProperties_Write(PropBag As PropertyBag)
-    Call PropBag.WriteProperty("BackColor", UserControl.BackColor, default_BackColor)
-    Call PropBag.WriteProperty("ForeColor", UserControl.ForeColor, default_ForeColor)
-    Call PropBag.WriteProperty("Enabled", UserControl.Enabled, default_Enabled)
-    Call PropBag.WriteProperty("Tag", UserControl.Tag, default_Tag)
-    Call PropBag.WriteProperty("MousePointer", UserControl.MousePointer, default_MousePointer)
-    Call PropBag.WriteProperty("MouseIcon", UserControl.MouseIcon, default_MouseIcon)
-End Sub
 
 ''-----------------------------------------------------------------------------
 ''
@@ -489,9 +390,9 @@ End Sub
 
 Function isHorizontal() As Boolean
     Select Case m_Orientation
-    Case SpinButtonOrientation.kbOrientationHorizontal
+    Case KSpinOrientation.kbOrientationHorizontal
         isHorizontal = True
-    Case SpinButtonOrientation.kbOrientationVertical
+    Case KSpinOrientation.kbOrientationVertical
         isHorizontal = False
     Case Else
         isHorizontal = ScaleWidth > ScaleHeight
@@ -799,11 +700,9 @@ Private Sub Controller_Paint()
     doPaint
 End Sub
 
-''-----------------------------------------------------------------------------
-''
-'' イベント登録
-''
-''-----------------------------------------------------------------------------
+Private Sub Controller_ProcessProperties(ByVal kind As PropertyOperation, PropBag As PropertyBag)
+    processOwnProperties kind, PropBag
+End Sub
 
 Private Sub Timer1_Timer()
     m_hoverButton = hitTest(Controller.MouseX, Controller.MouseY)
@@ -811,24 +710,27 @@ Private Sub Timer1_Timer()
     Timer1.Interval = m_Delay
 End Sub
 
+''-----------------------------------------------------------------------------
+''
+'' イベント登録
+''
+''-----------------------------------------------------------------------------
+
 Private Sub UserControl_DblClick()
     Controller.OnDblClick
 End Sub
 
 Private Sub UserControl_Initialize()
+    m_button = 0
+    m_hoverButton = 0
     m_dragX = 0
     m_dragY = 0
     m_dragValue = 0
-    m_button = 0
-    m_hoverButton = 0
-    Call delegateProperties_ctor
-    Call ownProperties_Initialize
-    Call delegateProperties_Initialize
+    Controller.OnInitialize
 End Sub
 
 Private Sub UserControl_InitProperties()
-    Call ownProperties_Initialize
-    Call delegateProperties_Initialize
+    Controller.OnInitProperties
 End Sub
 
 Private Sub UserControl_KeyDown(KeyCode As Integer, Shift As Integer)
@@ -860,8 +762,7 @@ Private Sub UserControl_Paint()
 End Sub
 
 Private Sub UserControl_ReadProperties(PropBag As PropertyBag)
-    ownProperties_Read PropBag
-    delegateProperties_Read PropBag
+    Controller.OnReadProperties PropBag
 End Sub
 
 Private Sub UserControl_Show()
@@ -869,7 +770,5 @@ Private Sub UserControl_Show()
 End Sub
 
 Private Sub UserControl_WriteProperties(PropBag As PropertyBag)
-    ownProperties_Write PropBag
-    delegateProperties_Write PropBag
+    Controller.OnWriteProperties PropBag
 End Sub
-

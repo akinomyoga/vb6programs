@@ -15,6 +15,12 @@ Begin VB.UserControl SpinButton
       Top             =   120
       _ExtentX        =   661
       _ExtentY        =   661
+      ExportsEnabled  =   -1  'True
+      ExportsBackColor=   -1  'True
+      ExportsForeColor=   -1  'True
+      ExportsMousePointer=   -1  'True
+      ExportsMouseIcon=   -1  'True
+      ExportsTag      =   -1  'True
    End
    Begin VB.Timer Timer1 
       Enabled         =   0   'False
@@ -30,7 +36,7 @@ Attribute VB_Exposed = True
 '' SpinButton
 '' 参考 http://home.att.ne.jp/zeta/gen/excel/c04p38.htm
 
-Public Enum SpinButtonOrientation
+Public Enum KSpinOrientation
     kbOrientationAuto = -1
     kbOrientationVertical = 0
     kbOrientationHorizontal = 1
@@ -53,18 +59,11 @@ Dim m_hoverButton As Long
 
 Const INITIAL_DELAY_FACTOR = 5
 
-Const default_Value = 0
-Const default_Min = 0
-Const default_Max = 10
-Const default_SmallChange = 1
-Const default_Orientation = -1
-Const default_Delay = 100
-
 Dim m_Value As Long
 Dim m_Min As Long
 Dim m_Max As Long
 Dim m_SmallChange As Long
-Dim m_Orientation As SpinButtonOrientation
+Dim m_Orientation As KSpinOrientation
 Dim m_Delay As Long
 
 Public Event SpinUp()
@@ -76,13 +75,6 @@ Public Event Change()
 '' 委譲プロパティ (宣言)
 ''
 ''-----------------------------------------------------------------------------
-
-Const default_BackColor = SystemColorConstants.vbButtonFace
-Const default_ForeColor = SystemColorConstants.vbButtonText
-Const default_Enabled = True
-Const default_Tag = ""
-Const default_MousePointer = MousePointerConstants.vbDefault
-Dim default_MouseIcon As IPictureDisp
 
 Public Event MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
 Public Event MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
@@ -147,11 +139,11 @@ Public Property Let SmallChange(ByVal new_SmallChange As Long)
     End If
 End Property
 
-Public Property Get Orientation() As SpinButtonOrientation
+Public Property Get Orientation() As KSpinOrientation
     Orientation = m_Orientation
 End Property
 
-Public Property Let Orientation(ByVal new_Orientation As SpinButtonOrientation)
+Public Property Let Orientation(ByVal new_Orientation As KSpinOrientation)
     If m_Orientation <> new_Orientation Then
         m_Orientation = new_Orientation
         PropertyChanged "Orientation"
@@ -169,31 +161,13 @@ Public Property Let Delay(ByVal new_Delay As Long)
     End If
 End Property
 
-Sub ownProperties_Initialize()
-    m_Value = default_Value
-    m_Min = 0
-    m_Max = default_Max
-    m_SmallChange = default_SmallChange
-    m_Orientation = default_Orientation
-    m_Delay = default_Delay
-End Sub
-
-Sub ownProperties_Read(PropBag As PropertyBag)
-    m_Value = PropBag.ReadProperty("Value", default_Value)
-    m_Min = PropBag.ReadProperty("Min", default_Min)
-    m_Max = PropBag.ReadProperty("Max", default_Max)
-    m_SmallChange = PropBag.ReadProperty("SmallChange", default_SmallChange)
-    m_Orientation = PropBag.ReadProperty("Orientation", default_Orientation)
-    m_Delay = PropBag.ReadProperty("Delay", default_Delay)
-End Sub
-
-Sub ownProperties_Write(PropBag As PropertyBag)
-    Call PropBag.WriteProperty("Value", m_Value, default_Value)
-    Call PropBag.WriteProperty("Min", m_Min, default_Min)
-    Call PropBag.WriteProperty("Max", m_Max, default_Max)
-    Call PropBag.WriteProperty("SmallChange", m_SmallChange, default_SmallChange)
-    Call PropBag.WriteProperty("Orientation", m_Orientation, default_Orientation)
-    Call PropBag.WriteProperty("Delay", m_Delay, default_Delay)
+Private Sub processOwnProperties(ByVal kind As PropertyOperation, PropBag As PropertyBag)
+    Controller.DefineByValProperty kind, PropBag, "Value", m_Value, 0
+    Controller.DefineByValProperty kind, PropBag, "Min", m_Min, 0
+    Controller.DefineByValProperty kind, PropBag, "Max", m_Max, 10
+    Controller.DefineByValProperty kind, PropBag, "SmallChange", m_SmallChange, 1
+    Controller.DefineByValProperty kind, PropBag, "Orientation", m_Orientation, KSpinOrientation.kbOrientationAuto
+    Controller.DefineByValProperty kind, PropBag, "Delay", m_Delay, 50
 End Sub
 
 ''-----------------------------------------------------------------------------
@@ -207,11 +181,7 @@ Public Property Get BackColor() As OLE_COLOR
 End Property
 
 Public Property Let BackColor(ByVal new_BackColor As OLE_COLOR)
-    If UserControl.BackColor <> new_BackColor Then
-        UserControl.BackColor = new_BackColor
-        Controller.Refresh
-        PropertyChanged "BackColor"
-    End If
+    Controller.SetBackColor new_BackColor
 End Property
 
 Public Property Get ForeColor() As OLE_COLOR
@@ -219,11 +189,7 @@ Public Property Get ForeColor() As OLE_COLOR
 End Property
 
 Public Property Let ForeColor(ByVal new_ForeColor As OLE_COLOR)
-    If UserControl.ForeColor <> new_ForeColor Then
-        UserControl.ForeColor = new_ForeColor
-        Controller.Refresh
-        PropertyChanged "ForeColor"
-    End If
+    Controller.SetForeColor new_ForeColor
 End Property
 
 Public Property Get Enabled() As Boolean
@@ -231,15 +197,9 @@ Public Property Get Enabled() As Boolean
 End Property
 
 Public Property Let Enabled(ByVal new_Enabled As Boolean)
-    If UserControl.Enabled <> new_Enabled Then
-        UserControl.Enabled = new_Enabled
-        If Not new_Enabled Then
-            m_button = 0
-            m_hoverButton = 0
-            Timer1.Interval = 0
-        End If
-        Controller.Refresh
-        PropertyChanged "Enabled"
+    If Controller.SetEnabled(new_Enabled) And Not new_Enabled Then
+        m_button = 0
+        m_hoverButton = 0
     End If
 End Property
 
@@ -248,10 +208,7 @@ Public Property Get Tag() As String
 End Property
 
 Public Property Let Tag(ByVal new_Tag As String)
-    If UserControl.Tag <> new_Tag Then
-        UserControl.Tag = new_Tag
-        PropertyChanged "Tag"
-    End If
+    Controller.SetTag new_Tag
 End Property
 
 Public Property Get MousePointer() As Integer
@@ -259,10 +216,7 @@ Public Property Get MousePointer() As Integer
 End Property
 
 Public Property Let MousePointer(ByVal new_MousePointer As Integer)
-    If UserControl.MousePointer <> new_MousePointer Then
-        UserControl.MousePointer = new_MousePointer
-        PropertyChanged "MousePointer"
-    End If
+    Controller.SetMousePointer new_MousePointer
 End Property
 
 Public Property Get MouseIcon() As IPictureDisp
@@ -270,42 +224,8 @@ Public Property Get MouseIcon() As IPictureDisp
 End Property
 
 Public Property Set MouseIcon(ByRef new_MouseIcon As IPictureDisp)
-    If UserControl.MouseIcon <> new_MouseIcon Then
-        Set UserControl.MouseIcon = new_MouseIcon
-        PropertyChanged "MouseIcon"
-    End If
+    Controller.SetMouseIcon new_MouseIcon
 End Property
-
-Sub delegateProperties_ctor()
-    Set default_MouseIcon = Nothing
-End Sub
-
-Sub delegateProperties_Initialize()
-    UserControl.BackColor = default_BackColor
-    UserControl.ForeColor = default_ForeColor
-    UserControl.Enabled = default_Enabled
-    UserControl.Tag = default_Tag
-    UserControl.MousePointer = default_MousePointer
-    Set UserControl.MouseIcon = default_MouseIcon
-End Sub
-
-Sub delegateProperties_Read(PropBag As PropertyBag)
-    UserControl.BackColor = PropBag.ReadProperty("BackColor", default_BackColor)
-    UserControl.ForeColor = PropBag.ReadProperty("ForeColor", default_ForeColor)
-    UserControl.Enabled = PropBag.ReadProperty("Enabled", default_Enabled)
-    UserControl.Tag = PropBag.ReadProperty("Tag", default_Tag)
-    UserControl.MousePointer = PropBag.ReadProperty("MousePointer", default_MousePointer)
-    Set UserControl.MouseIcon = PropBag.ReadProperty("MouseIcon", default_MouseIcon)
-End Sub
-
-Sub delegateProperties_Write(PropBag As PropertyBag)
-    Call PropBag.WriteProperty("BackColor", UserControl.BackColor, default_BackColor)
-    Call PropBag.WriteProperty("ForeColor", UserControl.ForeColor, default_ForeColor)
-    Call PropBag.WriteProperty("Enabled", UserControl.Enabled, default_Enabled)
-    Call PropBag.WriteProperty("Tag", UserControl.Tag, default_Tag)
-    Call PropBag.WriteProperty("MousePointer", UserControl.MousePointer, default_MousePointer)
-    Call PropBag.WriteProperty("MouseIcon", UserControl.MouseIcon, default_MouseIcon)
-End Sub
 
 ''-----------------------------------------------------------------------------
 ''
@@ -315,9 +235,9 @@ End Sub
 
 Function isHorizontal() As Boolean
     Select Case m_Orientation
-    Case SpinButtonOrientation.kbOrientationHorizontal
+    Case KSpinOrientation.kbOrientationHorizontal
         isHorizontal = True
-    Case SpinButtonOrientation.kbOrientationVertical
+    Case KSpinOrientation.kbOrientationVertical
         isHorizontal = False
     Case Else
         isHorizontal = Width > Height
@@ -386,7 +306,7 @@ Sub leftButton_Update(ByVal state As Boolean, ByVal X As Long, ByVal Y As Long)
     End If
 End Sub
 
-Sub OnMouseMove(ByVal X As Long, ByVal Y As Long)
+Sub doMouseMove(ByVal X As Long, ByVal Y As Long)
     If Not UserControl.Enabled Then Exit Sub
     If m_button <> 0 Then
         oldMatch = m_button = m_hoverButton
@@ -424,7 +344,7 @@ End Sub
 
 ''-----------------------------------------------------------------------------
 ''
-'' イベント登録 (Controller)
+'' イベント登録
 ''
 ''-----------------------------------------------------------------------------
 
@@ -436,7 +356,7 @@ Private Sub Controller_MouseDown(Button As Integer, Shift As Integer, X As Singl
 End Sub
 
 Private Sub Controller_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
-    OnMouseMove X, Y
+    doMouseMove X, Y
     RaiseEvent MouseMove(Button, Shift, X, Y)
 End Sub
 
@@ -451,16 +371,20 @@ Private Sub Controller_Paint()
     doPaint
 End Sub
 
-''-----------------------------------------------------------------------------
-''
-'' イベント登録
-''
-''-----------------------------------------------------------------------------
+Private Sub Controller_ProcessProperties(ByVal kind As PropertyOperation, PropBag As PropertyBag)
+    processOwnProperties kind, PropBag
+End Sub
 
 Private Sub Timer1_Timer()
     If m_button <> 0 And m_button = m_hoverButton Then doSpin
     Timer1.Interval = m_Delay
 End Sub
+
+''-----------------------------------------------------------------------------
+''
+'' イベント登録 (Controller Hook)
+''
+''-----------------------------------------------------------------------------
 
 Private Sub UserControl_DblClick()
     Controller.OnDblClick
@@ -469,14 +393,11 @@ End Sub
 Private Sub UserControl_Initialize()
     m_button = 0
     m_hoverButton = 0
-    delegateProperties_ctor
-    ownProperties_Initialize
-    delegateProperties_Initialize
+    Controller.OnInitialize
 End Sub
 
 Private Sub UserControl_InitProperties()
-    ownProperties_Initialize
-    delegateProperties_Initialize
+    Controller.OnInitProperties
 End Sub
 
 Private Sub UserControl_KeyDown(KeyCode As Integer, Shift As Integer)
@@ -508,8 +429,7 @@ Private Sub UserControl_Paint()
 End Sub
 
 Private Sub UserControl_ReadProperties(PropBag As PropertyBag)
-    ownProperties_Read PropBag
-    delegateProperties_Read PropBag
+    Controller.OnReadProperties PropBag
 End Sub
 
 Private Sub UserControl_Show()
@@ -517,6 +437,5 @@ Private Sub UserControl_Show()
 End Sub
 
 Private Sub UserControl_WriteProperties(PropBag As PropertyBag)
-    ownProperties_Write PropBag
-    delegateProperties_Write PropBag
+    Controller.OnWriteProperties PropBag
 End Sub

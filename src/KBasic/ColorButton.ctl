@@ -55,9 +55,6 @@ Dim m_hasFocus As Boolean
 ''
 ''-----------------------------------------------------------------------------
 
-Const default_Caption = "ColorButton"
-Const default_Appearance = KControlAppearance.kbAppearanceDefault
-
 Dim m_Caption As String
 Dim m_Appearance As KControlAppearance
 
@@ -110,17 +107,8 @@ Public Property Let Appearance(ByVal new_Appearance As KControlAppearance)
 End Property
 
 Private Sub processOwnProperties(ByVal kind As PropertyOperation, PropBag As PropertyBag)
-    Select Case kind
-    Case kbPropertyInitialize
-        m_Caption = default_Caption
-        m_Appearance = default_Appearance
-    Case kbPropertyRead
-        m_Caption = PropBag.ReadProperty("Caption", default_Caption)
-        m_Appearance = PropBag.ReadProperty("Appearance", default_Appearance)
-    Case kbPropertyWrite
-        PropBag.WriteProperty "Caption", m_Caption, default_Caption
-        PropBag.WriteProperty "Appearance", m_Appearance, default_Appearance
-    End Select
+    Controller.DefineByValProperty kind, PropBag, "Caption", m_Caption, "ColorButton"
+    Controller.DefineByValProperty kind, PropBag, "Appearance", m_Appearance, KControlAppearance.kbAppearanceDefault
 End Sub
 
 ''-----------------------------------------------------------------------------
@@ -130,6 +118,7 @@ End Sub
 ''-----------------------------------------------------------------------------
 
 Public Property Get Enabled() As Boolean
+Attribute Enabled.VB_ProcData.VB_Invoke_Property = ";Behavior"
     Enabled = UserControl.Enabled
 End Property
 
@@ -138,6 +127,7 @@ Public Property Let Enabled(ByVal new_Enabled As Boolean)
 End Property
 
 Public Property Get BackColor() As OLE_COLOR
+Attribute BackColor.VB_ProcData.VB_Invoke_Property = ";Appearance"
     BackColor = UserControl.BackColor
 End Property
 
@@ -146,6 +136,7 @@ Public Property Let BackColor(ByVal new_BackColor As OLE_COLOR)
 End Property
 
 Public Property Get ForeColor() As OLE_COLOR
+Attribute ForeColor.VB_ProcData.VB_Invoke_Property = ";Appearance"
     ForeColor = UserControl.ForeColor
 End Property
 
@@ -154,6 +145,7 @@ Public Property Let ForeColor(ByVal new_ForeColor As OLE_COLOR)
 End Property
 
 Public Property Get Font() As StdFont
+Attribute Font.VB_ProcData.VB_Invoke_Property = ";Font"
     Set Font = UserControl.Font
 End Property
 

@@ -13,6 +13,13 @@ Begin VB.UserControl ToggleButton
       Top             =   120
       _ExtentX        =   661
       _ExtentY        =   661
+      ExportsEnabled  =   -1  'True
+      ExportsBackColor=   -1  'True
+      ExportsForeColor=   -1  'True
+      ExportsFont     =   -1  'True
+      ExportsMousePointer=   -1  'True
+      ExportsMouseIcon=   -1  'True
+      ExportsTag      =   -1  'True
    End
 End
 Attribute VB_Name = "ToggleButton"
@@ -34,8 +41,6 @@ Dim m_hasFocus As Boolean
 ''
 ''-----------------------------------------------------------------------------
 
-Const default_Caption = "ToggleButton"
-Const default_Value = False
 Dim m_Caption As String
 Dim m_Value As Boolean
 
@@ -46,14 +51,6 @@ Public Event Click()
 '' 委譲プロパティ (宣言)
 ''
 ''-----------------------------------------------------------------------------
-
-Const default_Enabled = True
-Const default_BackColor = SystemColorConstants.vbButtonFace
-Const default_ForeColor = SystemColorConstants.vbButtonText
-Dim default_Font As StdFont
-Const default_Tag = ""
-Const default_MousePointer = MousePointerConstants.vbDefault
-Dim default_MouseIcon As IPictureDisp
 
 Public Event MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
 Public Event MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
@@ -92,19 +89,9 @@ Public Property Let Caption(ByVal new_Caption As String)
     End If
 End Property
 
-Private Sub ownProperties_Initialize()
-    m_Value = default_Value
-    m_Caption = default_Caption
-End Sub
-
-Private Sub ownProperties_Read(PropBag As PropertyBag)
-    m_Caption = PropBag.ReadProperty("Caption", default_Caption)
-    m_Value = PropBag.ReadProperty("Value", default_Value)
-End Sub
-
-Private Sub ownProperties_Write(PropBag As PropertyBag)
-    Call PropBag.WriteProperty("Caption", m_Caption, default_Caption)
-    Call PropBag.WriteProperty("Value", m_Value, default_Value)
+Private Sub processOwnProperties(ByVal kind As PropertyOperation, PropBag As PropertyBag)
+    Controller.DefineByValProperty kind, PropBag, "Caption", m_Caption, "ToggleButton"
+    Controller.DefineByValProperty kind, PropBag, "Value", m_Value, False
 End Sub
 
 ''-----------------------------------------------------------------------------
@@ -118,14 +105,7 @@ Public Property Get Enabled() As Boolean
 End Property
 
 Public Property Let Enabled(ByVal new_Enabled As Boolean)
-    If UserControl.Enabled <> new_Enabled Then
-        UserControl.Enabled = new_Enabled
-        If Not new_Enabled Then
-            m_hasFocus = False
-        End If
-        Controller.Refresh
-        PropertyChanged "Enabled"
-    End If
+    Controller.SetEnabled new_Enabled
 End Property
 
 Public Property Get BackColor() As OLE_COLOR
@@ -133,11 +113,7 @@ Public Property Get BackColor() As OLE_COLOR
 End Property
 
 Public Property Let BackColor(ByVal new_BackColor As OLE_COLOR)
-    If UserControl.BackColor <> new_BackColor Then
-        UserControl.BackColor = new_BackColor
-        Controller.Refresh
-        PropertyChanged "BackColor"
-    End If
+    Controller.SetBackColor new_BackColor
 End Property
 
 Public Property Get ForeColor() As OLE_COLOR
@@ -145,11 +121,7 @@ Public Property Get ForeColor() As OLE_COLOR
 End Property
 
 Public Property Let ForeColor(ByVal new_ForeColor As OLE_COLOR)
-    If UserControl.ForeColor <> new_ForeColor Then
-        UserControl.ForeColor = new_ForeColor
-        Controller.Refresh
-        PropertyChanged "ForeColor"
-    End If
+    Controller.SetForeColor new_ForeColor
 End Property
 
 Public Property Get Font() As StdFont
@@ -157,30 +129,15 @@ Public Property Get Font() As StdFont
 End Property
 
 Public Property Set Font(ByRef new_Font As StdFont)
-    If UserControl.Font <> new_Font Then
-        Set UserControl.Font = new_Font
-        Controller.Refresh
-        PropertyChanged "Font"
-    End If
+    Controller.SetFont new_Font
 End Property
-
-Private Function getDefaultFont() As StdFont
-    If default_Font Is Nothing Then
-        Set getDefaultFont = Ambient.Font
-    Else
-        Set getDefaultFont = default_Font
-    End If
-End Function
 
 Public Property Get Tag() As String
     Tag = UserControl.Tag
 End Property
 
 Public Property Let Tag(ByVal new_Tag As String)
-    If UserControl.Tag <> new_Tag Then
-        UserControl.Tag = new_Tag
-        PropertyChanged "Tag"
-    End If
+    Controller.SetTag new_Tag
 End Property
 
 Public Property Get MousePointer() As Integer
@@ -188,10 +145,7 @@ Public Property Get MousePointer() As Integer
 End Property
 
 Public Property Let MousePointer(ByVal new_MousePointer As Integer)
-    If UserControl.MousePointer <> new_MousePointer Then
-        UserControl.MousePointer = new_MousePointer
-        PropertyChanged "MousePointer"
-    End If
+    Controller.SetMousePointer new_MousePointer
 End Property
 
 Public Property Get MouseIcon() As IPictureDisp
@@ -199,45 +153,8 @@ Public Property Get MouseIcon() As IPictureDisp
 End Property
 
 Public Property Set MouseIcon(ByRef new_MouseIcon As IPictureDisp)
-    If UserControl.MouseIcon <> new_MouseIcon Then
-        Set UserControl.MouseIcon = new_MouseIcon
-        PropertyChanged "MouseIcon"
-    End If
+    Controller.SetMouseIcon new_MouseIcon
 End Property
-
-Sub delegateProperties_ctor()
-    Set default_MouseIcon = Nothing
-End Sub
-
-Sub delegateProperties_Initialize()
-    UserControl.Enabled = default_Enabled
-    UserControl.BackColor = default_BackColor
-    UserControl.ForeColor = default_ForeColor
-    If default_Font Is Nothing Then Set default_Font = UserControl.Font
-    UserControl.Tag = default_Tag
-    UserControl.MousePointer = default_MousePointer
-    Set UserControl.MouseIcon = default_MouseIcon
-End Sub
-
-Sub delegateProperties_Read(PropBag As PropertyBag)
-    UserControl.Enabled = PropBag.ReadProperty("Enabled", default_Enabled)
-    UserControl.BackColor = PropBag.ReadProperty("BackColor", default_BackColor)
-    UserControl.ForeColor = PropBag.ReadProperty("ForeColor", default_ForeColor)
-    Set UserControl.Font = PropBag.ReadProperty("Font", getDefaultFont())
-    UserControl.Tag = PropBag.ReadProperty("Tag", default_Tag)
-    UserControl.MousePointer = PropBag.ReadProperty("MousePointer", default_MousePointer)
-    Set UserControl.MouseIcon = PropBag.ReadProperty("MouseIcon", default_MouseIcon)
-End Sub
-
-Sub delegateProperties_Write(PropBag As PropertyBag)
-    Call PropBag.WriteProperty("Enabled", UserControl.Enabled, default_Enabled)
-    Call PropBag.WriteProperty("BackColor", UserControl.BackColor, default_BackColor)
-    Call PropBag.WriteProperty("ForeColor", UserControl.ForeColor, default_ForeColor)
-    Call PropBag.WriteProperty("Font", UserControl.Font, getDefaultFont())
-    Call PropBag.WriteProperty("Tag", UserControl.Tag, default_Tag)
-    Call PropBag.WriteProperty("MousePointer", UserControl.MousePointer, default_MousePointer)
-    Call PropBag.WriteProperty("MouseIcon", UserControl.MouseIcon, default_MouseIcon)
-End Sub
 
 ''-----------------------------------------------------------------------------
 ''
@@ -365,6 +282,10 @@ Private Sub Controller_Paint()
     doPaint
 End Sub
 
+Private Sub Controller_ProcessProperties(ByVal kind As PropertyOperation, PropBag As PropertyBag)
+    processOwnProperties kind, PropBag
+End Sub
+
 ''-----------------------------------------------------------------------------
 ''
 '' イベント登録
@@ -373,19 +294,15 @@ End Sub
 
 Private Sub UserControl_Initialize()
     m_hasFocus = False
-    delegateProperties_ctor
-    ownProperties_Initialize
-    delegateProperties_Initialize
+    Controller.OnInitialize
 End Sub
 
 Private Sub UserControl_InitProperties()
-    ownProperties_Initialize
-    delegateProperties_Initialize
+    Controller.OnInitProperties
 End Sub
 
 Private Sub UserControl_ReadProperties(PropBag As PropertyBag)
-    ownProperties_Read PropBag
-    delegateProperties_Read PropBag
+    Controller.OnReadProperties PropBag
 End Sub
 
 Private Sub UserControl_Show()
@@ -393,8 +310,7 @@ Private Sub UserControl_Show()
 End Sub
 
 Private Sub UserControl_WriteProperties(PropBag As PropertyBag)
-    ownProperties_Write PropBag
-    delegateProperties_Write PropBag
+    Controller.OnWriteProperties PropBag
 End Sub
 
 Private Sub UserControl_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)

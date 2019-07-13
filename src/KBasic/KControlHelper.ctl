@@ -18,7 +18,7 @@ Attribute VB_Exposed = False
 Option Explicit
 
 Public Enum PropertyOperation
-    kbPropertyInitialize
+    kbPropertyInit
     kbPropertyRead
     kbPropertyWrite
 End Enum
@@ -28,6 +28,9 @@ End Enum
 '' 内部変数
 ''
 ''-----------------------------------------------------------------------------
+
+Const fixed_Width = 375
+Const fixed_Height = 375
 
 Dim user As UserControl
 Dim m_userDepth As Integer
@@ -60,11 +63,13 @@ Public Event ProcessProperties(ByVal kind As PropertyOperation, ByRef PropBag As
 ''
 ''-----------------------------------------------------------------------------
 
-Const fixed_Width = 375
-Const fixed_Height = 375
-
-
-'' UserControl
+Dim m_exportsEnabled As Boolean
+Dim m_exportsBackColor As Boolean
+Dim m_exportsForeColor As Boolean
+Dim m_exportsFont As Boolean
+Dim m_exportsTag As Boolean
+Dim m_exportsMousePointer As Boolean
+Dim m_exportsMouseIcon As Boolean
 
 Const default_Enabled = True
 Const default_BackColor = SystemColorConstants.vbButtonFace
@@ -74,13 +79,23 @@ Const default_Tag = ""
 Const default_MousePointer = MousePointerConstants.vbDefault
 Dim default_MouseIcon As IPictureDisp
 
-Dim m_exportsEnabled As Boolean
-Dim m_exportsBackColor As Boolean
-Dim m_exportsForeColor As Boolean
-Dim m_exportsFont As Boolean
-Dim m_exportsTag As Boolean
-Dim m_exportsMousePointer As Boolean
-Dim m_exportsMouseIcon As Boolean
+''-----------------------------------------------------------------------------
+''
+'' Utility
+''
+''-----------------------------------------------------------------------------
+
+Public Sub DefineByValProperty(ByVal kind As PropertyOperation, ByRef PropBag As PropertyBag, _
+ByVal Name As String, ByRef Variable, defaultValue)
+    Select Case kind
+    Case kbPropertyInit
+        Variable = defaultValue
+    Case kbPropertyRead
+        Variable = PropBag.ReadProperty(Name, defaultValue)
+    Case kbPropertyWrite
+        PropBag.WriteProperty Name, Variable, defaultValue
+    End Select
+End Sub
 
 ''-----------------------------------------------------------------------------
 ''
@@ -115,7 +130,7 @@ End Property
 
 ''-----------------------------------------------------------------------------
 ''
-'' 委譲プロパティ (実装)
+'' 委譲プロパティ (設定)
 ''
 ''-----------------------------------------------------------------------------
 
@@ -175,81 +190,97 @@ Public Property Let ExportsMouseIcon(ByVal newValue As Boolean)
     m_exportsMouseIcon = newValue
 End Property
 
+Private Sub processOwnProperties(ByVal kind As PropertyOperation, Optional ByRef PropBag As PropertyBag = Nothing)
+    DefineByValProperty kind, PropBag, "ExportsEnabled", m_exportsEnabled, False
+    DefineByValProperty kind, PropBag, "ExportsBackColor", m_exportsBackColor, False
+    DefineByValProperty kind, PropBag, "ExportsForeColor", m_exportsForeColor, False
+    DefineByValProperty kind, PropBag, "ExportsFont", m_exportsFont, False
+    DefineByValProperty kind, PropBag, "ExportsMousePointer", m_exportsMousePointer, False
+    DefineByValProperty kind, PropBag, "ExportsMouseIcon", m_exportsMouseIcon, False
+    DefineByValProperty kind, PropBag, "ExportsTag", m_exportsTag, False
+End Sub
+
+''-----------------------------------------------------------------------------
+''
+'' 委譲プロパティ (委譲)
+''
+''-----------------------------------------------------------------------------
+
 Public Function SetEnabled(ByVal new_Enabled As Boolean, Optional ByVal toRefresh = True) As Boolean
-    initializeUserControl
+    incrementUserControl
     SetEnabled = user.Enabled <> new_Enabled
     If SetEnabled Then
         user.Enabled = new_Enabled
         user.PropertyChanged "Enabled"
         If toRefresh Then Me.Refresh
     End If
-    finalizeUserControl
+    decrementUserControl
 End Function
 
 Public Function SetBackColor(ByVal new_BackColor As OLE_COLOR, Optional ByVal toRefresh = True) As Boolean
-    initializeUserControl
+    incrementUserControl
     SetBackColor = user.BackColor <> new_BackColor
     If SetBackColor Then
         user.BackColor = new_BackColor
         user.PropertyChanged "BackColor"
         If toRefresh Then Me.Refresh
     End If
-    finalizeUserControl
+    decrementUserControl
 End Function
 
 Public Function SetForeColor(ByVal new_ForeColor As OLE_COLOR, Optional ByVal toRefresh = True) As Boolean
-    initializeUserControl
+    incrementUserControl
     SetForeColor = user.ForeColor <> new_ForeColor
     If SetForeColor Then
         user.ForeColor = new_ForeColor
         user.PropertyChanged "ForeColor"
         If toRefresh Then Me.Refresh
     End If
-    finalizeUserControl
+    decrementUserControl
 End Function
 
 Public Function SetFont(ByRef new_Font As StdFont, Optional ByVal toRefresh = True) As Boolean
-    initializeUserControl
+    incrementUserControl
     SetFont = user.Font <> new_Font
     If SetFont Then
         Set user.Font = new_Font
         user.PropertyChanged "Font"
         If toRefresh Then Me.Refresh
     End If
-    finalizeUserControl
+    decrementUserControl
 End Function
 
 Public Function SetTag(ByVal new_Tag As String, Optional ByVal toRefresh = False) As Boolean
-    initializeUserControl
+    incrementUserControl
     SetTag = user.Tag <> new_Tag
     If SetTag Then
         user.Tag = new_Tag
         user.PropertyChanged "Tag"
         If toRefresh Then Me.Refresh
     End If
-    finalizeUserControl
+    decrementUserControl
 End Function
 
 Public Function SetMousePointer(ByVal new_MousePointer As Integer, Optional ByVal toRefresh = False) As Boolean
-    initializeUserControl
+    incrementUserControl
     SetMousePointer = user.MousePointer <> new_MousePointer
     If SetMousePointer Then
         user.MousePointer = new_MousePointer
         user.PropertyChanged "MousePointer"
         If toRefresh Then Me.Refresh
     End If
-    finalizeUserControl
+    decrementUserControl
 End Function
 
 Public Function SetMouseIcon(ByRef new_MouseIcon As IPictureDisp, Optional ByVal toRefresh = False) As Boolean
-    initializeUserControl
+    incrementUserControl
     SetMouseIcon = user.MouseIcon <> new_MouseIcon
     If SetMouseIcon Then
         Set user.MouseIcon = new_MouseIcon
         user.PropertyChanged "MouseIcon"
         If toRefresh Then Me.Refresh
     End If
-    finalizeUserControl
+    decrementUserControl
 End Function
 
 Private Function getDefaultFont() As StdFont
@@ -294,41 +325,18 @@ Private Sub delegateProperties_Write(PropBag As PropertyBag)
     If m_exportsMouseIcon Then PropBag.WriteProperty "MouseIcon", user.MouseIcon, default_MouseIcon
 End Sub
 
-Public Sub ProcessProperty(ByVal Name As String, ByRef Variable, defaultValue, _
-    ByVal kind As PropertyOperation, ByRef PropBag As PropertyBag)
-    
-    Select Case kind
-    Case kbPropertyInitialize
-        Variable = defaultValue
-    Case kbPropertyRead
-        Variable = PropBag.ReadProperty(Name, defaultValue)
-    Case kbPropertyWrite
-        PropBag.WriteProperty Name, Variable, defaultValue
-    End Select
-End Sub
-
-Private Sub processOwnProperties(ByVal kind As PropertyOperation, Optional ByRef PropBag As PropertyBag = Nothing)
-    ProcessProperty "ExportsEnabled", m_exportsEnabled, False, kind, PropBag
-    ProcessProperty "ExportsBackColor", m_exportsBackColor, False, kind, PropBag
-    ProcessProperty "ExportsForeColor", m_exportsForeColor, False, kind, PropBag
-    ProcessProperty "ExportsFont", m_exportsFont, False, kind, PropBag
-    ProcessProperty "ExportsMousePointer", m_exportsMousePointer, False, kind, PropBag
-    ProcessProperty "ExportsMouseIcon", m_exportsMouseIcon, False, kind, PropBag
-    ProcessProperty "ExportsTag", m_exportsTag, False, kind, PropBag
-End Sub
-
 ''-----------------------------------------------------------------------------
 ''
 '' 処理
 ''
 ''-----------------------------------------------------------------------------
 
-Private Sub initializeUserControl()
+Private Sub incrementUserControl()
     If m_userDepth = 0 Then Set user = KWin.GetUserControl(UserControl.Parent)
     m_userDepth = m_userDepth + 1
 End Sub
 
-Private Sub finalizeUserControl()
+Private Sub decrementUserControl()
     m_userDepth = m_userDepth - 1
     If m_userDepth = 0 Then Set user = Nothing ' 何故かこれがないとクラッシュする
 End Sub
@@ -392,14 +400,14 @@ Private Sub doMouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X A
 End Sub
 
 Public Sub Refresh()
-    initializeUserControl
+    incrementUserControl
     If user.AutoRedraw Then
         user.Line (0, 0)-(ScaleWidth - 1, ScaleHeight - 1), user.BackColor, BF
         RaiseEvent Paint
     Else
         user.Refresh
     End If
-    finalizeUserControl
+    decrementUserControl
 End Sub
 
 ''-----------------------------------------------------------------------------
@@ -411,70 +419,70 @@ End Sub
 ' http://cya.sakura.ne.jp/vb/MSHFlexGrid_Event.htm
 
 Public Sub OnDblClick()
-    initializeUserControl
+    incrementUserControl
     doMouseDown MouseButtonConstants.vbLeftButton, m_mouseShift, m_mouseX, m_mouseY
-    finalizeUserControl
+    decrementUserControl
 End Sub
 
 Public Sub OnMouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
-    initializeUserControl
+    incrementUserControl
     doMouseMove Button, Shift, X, Y
     doMouseDown Button, Shift, X, Y
-    finalizeUserControl
+    decrementUserControl
 End Sub
 
 Public Sub OnMouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
-    initializeUserControl
+    incrementUserControl
     doMouseMove Button, Shift, X, Y
-    finalizeUserControl
+    decrementUserControl
 End Sub
 
 Public Sub OnMouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
-    initializeUserControl
+    incrementUserControl
     doMouseMove Button, Shift, X, Y
     doMouseUp Button, Shift, X, Y
-    finalizeUserControl
+    decrementUserControl
 End Sub
 
 Public Sub OnShow()
-    initializeUserControl
+    incrementUserControl
     If user.AutoRedraw Then Refresh
-    finalizeUserControl
+    decrementUserControl
 End Sub
 
 Public Sub OnPaint()
-    initializeUserControl
+    incrementUserControl
     RaiseEvent Paint
-    finalizeUserControl
+    decrementUserControl
 End Sub
 
 Public Sub OnInitialize()
-    initializeUserControl
+    incrementUserControl
     delegateProperties_ctor
     delegateProperties_Init
-    RaiseEvent ProcessProperties(kbPropertyInitialize, Nothing)
-    finalizeUserControl
+    RaiseEvent ProcessProperties(kbPropertyInit, Nothing)
+    decrementUserControl
 End Sub
 
 Public Sub OnInitProperties()
-    initializeUserControl
+    incrementUserControl
     delegateProperties_Init
-    RaiseEvent ProcessProperties(kbPropertyInitialize, Nothing)
-    finalizeUserControl
+    RaiseEvent ProcessProperties(kbPropertyInit, Nothing)
+    decrementUserControl
 End Sub
 
 Public Sub OnReadProperties(ByRef PropBag As PropertyBag)
-    initializeUserControl
+    incrementUserControl
     delegateProperties_Read PropBag
     RaiseEvent ProcessProperties(kbPropertyRead, PropBag)
-    finalizeUserControl
+    decrementUserControl
 End Sub
 
 Public Sub OnWriteProperties(ByRef PropBag As PropertyBag)
-    initializeUserControl
+    incrementUserControl
     delegateProperties_Write PropBag
     RaiseEvent ProcessProperties(kbPropertyWrite, PropBag)
-    finalizeUserControl
+    decrementUserControl
 End Sub
 
 ''-----------------------------------------------------------------------------
@@ -493,7 +501,7 @@ End Sub
 Private Sub UserControl_InitProperties()
     UserControl.Width = fixed_Width
     UserControl.Height = fixed_Height
-    processOwnProperties kbPropertyInitialize
+    processOwnProperties kbPropertyInit
 End Sub
 
 Private Sub UserControl_ReadProperties(PropBag As PropertyBag)
