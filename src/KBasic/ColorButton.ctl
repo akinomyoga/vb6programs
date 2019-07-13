@@ -40,7 +40,6 @@ End Enum
 ''-----------------------------------------------------------------------------
 
 Dim m_hasFocus As Boolean
-Dim m_leftButton As Boolean
 
 ''-----------------------------------------------------------------------------
 ''
@@ -141,7 +140,6 @@ Public Property Let Enabled(ByVal new_Enabled As Boolean)
         UserControl.Enabled = new_Enabled
         If Not new_Enabled Then
             m_hasFocus = False
-            m_leftButton = False
         End If
         Controller.Refresh
         PropertyChanged "Enabled"
@@ -268,14 +266,6 @@ End Sub
 ''
 ''-----------------------------------------------------------------------------
 
-Private Sub notifyLeftButton(ByVal state As Boolean)
-    If m_leftButton <> state Then
-        m_leftButton = state
-        Controller.Refresh
-        If Not m_leftButton And Controller.Hover Then RaiseEvent Click
-    End If
-End Sub
-
 Private Sub updateFocus(ByVal state As Boolean)
     If m_hasFocus <> state Then
         m_hasFocus = state
@@ -283,11 +273,26 @@ Private Sub updateFocus(ByVal state As Boolean)
     End If
 End Sub
 
-Private Sub hover_Update()
+Private Sub updateHover()
     If UserControl.Enabled Then
-        If m_leftButton Or m_Appearance = kbAppearanceToolButton Or m_Appearance = kbAppearanceFlat3D Then
+        If Controller.IsLeftPressed Then
+            Controller.Refresh
+        ElseIf m_Appearance = kbAppearanceToolButton Or m_Appearance = kbAppearanceFlat3D Then
             Controller.Refresh
         End If
+    End If
+End Sub
+
+Private Sub doMouseDown(ByVal Button As Integer)
+    If UserControl.Enabled And Button = vbLeftButton Then
+        Controller.Refresh
+    End If
+End Sub
+
+Private Sub doMouseUp(ByVal Button As Integer)
+    If UserControl.Enabled And Button = vbLeftButton Then
+        Controller.Refresh
+        If Controller.Hover Then RaiseEvent Click
     End If
 End Sub
 
@@ -295,7 +300,7 @@ Private Sub doPaint()
     h = UserControl.ScaleHeight
     w = UserControl.ScaleWidth
     
-    pressed = UserControl.Enabled And m_leftButton And Controller.Hover
+    pressed = UserControl.Enabled And Controller.IsLeftPressed And Controller.Hover
     var_captionColor = UserControl.ForeColor
     var_shiftText = pressed
     If m_Appearance = kbAppearanceFlat And pressed Then
@@ -362,7 +367,7 @@ Private Sub doPaint()
         If UserControl.Enabled Then
             If pressed Then
                 KWin.DrawControlBorder Me, kbBorderSingleInset, 0, 0, w, h
-            ElseIf m_leftButton Or Controller.Hover Then
+            ElseIf Controller.IsLeftPressed Or Controller.Hover Then
                 KWin.DrawControlBorder Me, kbBorderSingleOutset, 0, 0, w, h
             Else
                 KWin.DrawControlBorder Me, kbBorderSinglePressed, 0, 0, w, h
@@ -374,7 +379,7 @@ Private Sub doPaint()
         If UserControl.Enabled Then
             If pressed Then
                 KWin.DrawControlBorder Me, kbBorderSingleInset, 0, 0, w, h
-            ElseIf m_leftButton Or Controller.Hover Then
+            ElseIf Controller.IsLeftPressed Or Controller.Hover Then
                 KWin.DrawControlBorder Me, kbBorderSingleOutset, 0, 0, w, h
             End If
         End If
@@ -395,21 +400,21 @@ End Sub
 
 ''-----------------------------------------------------------------------------
 ''
-'' ƒCƒxƒ“ƒg“o˜^
+'' ƒCƒxƒ“ƒg“o˜^ (Controller)
 ''
 ''-----------------------------------------------------------------------------
 
 Private Sub Controller_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
-    If UserControl.Enabled And Button = vbLeftButton Then notifyLeftButton True
+    doMouseDown Button
     RaiseEvent MouseDown(Button, Shift, X, Y)
 End Sub
 
 Private Sub Controller_MouseEnter(Button As Integer, Shift As Integer, X As Single, Y As Single)
-    hover_Update
+    updateHover
 End Sub
 
 Private Sub Controller_MouseLeave(Button As Integer, Shift As Integer, X As Single, Y As Single)
-    hover_Update
+    updateHover
 End Sub
 
 Private Sub Controller_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
@@ -417,7 +422,7 @@ Private Sub Controller_MouseMove(Button As Integer, Shift As Integer, X As Singl
 End Sub
 
 Private Sub Controller_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
-    If UserControl.Enabled And Button = vbLeftButton Then notifyLeftButton False
+    doMouseUp Button
     RaiseEvent MouseUp(Button, Shift, X, Y)
 End Sub
 
@@ -425,12 +430,17 @@ Private Sub Controller_Paint()
     doPaint
 End Sub
 
+''-----------------------------------------------------------------------------
+''
+'' ƒCƒxƒ“ƒg“o˜^
+''
+''-----------------------------------------------------------------------------
+
 Private Sub UserControl_DblClick()
     Controller.OnDblClick
 End Sub
 
 Private Sub UserControl_Initialize()
-    m_leftButton = False
     m_hasFocus = False
     Call delegateProperties_ctor
     Call ownProperties_Initialize

@@ -42,7 +42,6 @@ End Enum
 ''
 ''-----------------------------------------------------------------------------
 
-Dim m_leftButton As Long
 Dim m_dragX As Single
 Dim m_dragY As Single
 Dim m_dragValue As Long
@@ -410,7 +409,6 @@ Public Property Let Enabled(ByVal new_Enabled As Boolean)
     If UserControl.Enabled <> new_Enabled Then
         UserControl.Enabled = new_Enabled
         If Not new_Enabled Then
-            m_leftButton = False
             m_button = 0
             m_hoverButton = 0
         End If
@@ -607,11 +605,9 @@ End Sub
 Sub leftButton_Update(ByVal state As Boolean, ByVal X As Long, ByVal Y As Long)
     If Not UserControl.Enabled Then Exit Sub
 
-    If m_leftButton = state Then Exit Sub
-    m_leftButton = state
     oldButton = m_button
     If state Then
-        m_button = hitTest(X, Y)
+        m_button = hitTest(Controller.MouseX, Controller.MouseY)
         m_hoverButton = m_button
         If m_button <> 0 Then
             If m_button = 5 Then
@@ -772,12 +768,12 @@ End Sub
 
 ''-----------------------------------------------------------------------------
 ''
-'' ƒCƒxƒ“ƒg“o˜^
+'' ƒCƒxƒ“ƒg“o˜^ (Controller)
 ''
 ''-----------------------------------------------------------------------------
 
 Private Sub Controller_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
-    If Button = vbLeftButton Then leftButton_Update True, X, Y
+    If Button = vbLeftButton Then leftButton_Update True
     RaiseEvent MouseDown(Button, Shift, X, Y)
 End Sub
 
@@ -795,13 +791,19 @@ Private Sub Controller_MouseMove(Button As Integer, Shift As Integer, X As Singl
 End Sub
 
 Private Sub Controller_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
-    If Button = vbLeftButton Then leftButton_Update False, X, Y
+    If Button = vbLeftButton Then leftButton_Update False
     RaiseEvent MouseUp(Button, Shift, X, Y)
 End Sub
 
 Private Sub Controller_Paint()
     doPaint
 End Sub
+
+''-----------------------------------------------------------------------------
+''
+'' ƒCƒxƒ“ƒg“o˜^
+''
+''-----------------------------------------------------------------------------
 
 Private Sub Timer1_Timer()
     m_hoverButton = hitTest(Controller.MouseX, Controller.MouseY)
@@ -814,7 +816,6 @@ Private Sub UserControl_DblClick()
 End Sub
 
 Private Sub UserControl_Initialize()
-    m_leftButton = False
     m_dragX = 0
     m_dragY = 0
     m_dragValue = 0

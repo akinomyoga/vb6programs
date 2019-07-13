@@ -27,7 +27,6 @@ Attribute VB_Exposed = True
 ''-----------------------------------------------------------------------------
 
 Dim m_hasFocus As Boolean
-Dim m_leftButton As Boolean
 
 ''-----------------------------------------------------------------------------
 ''
@@ -123,7 +122,6 @@ Public Property Let Enabled(ByVal new_Enabled As Boolean)
         UserControl.Enabled = new_Enabled
         If Not new_Enabled Then
             m_hasFocus = False
-            m_leftButton = False
         End If
         Controller.Refresh
         PropertyChanged "Enabled"
@@ -258,13 +256,10 @@ Sub toggleState()
 End Sub
 
 Sub notifyLeftButton(ByVal state As Boolean)
-    If m_leftButton <> state Then
-        m_leftButton = state
-        If Controller.Hover And Not state Then
-            Call toggleState
-        Else
-            Call Controller.Refresh
-        End If
+    If Controller.Hover And Not state Then
+        Call toggleState
+    Else
+        Call Controller.Refresh
     End If
 End Sub
 
@@ -276,7 +271,7 @@ Sub updateFocus(ByVal state As Boolean)
 End Sub
 
 Sub hover_Update()
-    If m_leftButton Then Controller.Refresh
+    If Controller.IsLeftPressed Then Controller.Refresh
 End Sub
 
 Sub doPaint()
@@ -287,7 +282,7 @@ Sub doPaint()
     text_height = UserControl.TextHeight(m_Caption)
     CurrentX = (w - text_width) / 2
     CurrentY = (h - text_height) / 2
-    If m_leftButton And Controller.Hover Then
+    If Controller.IsLeftPressed And Controller.Hover Then
         CurrentX = CurrentX + 1
         CurrentY = CurrentY + 1
     End If
@@ -308,7 +303,7 @@ Sub doPaint()
         UserControl.Print m_Caption
     End If
 
-    If m_leftButton And Controller.Hover Then
+    If Controller.IsLeftPressed And Controller.Hover Then
         If m_hasFocus Then
             Call KWin.DrawControlBorder(Me, kbBorderButtonInset, 0, 0, w, h)
             Call KWin.DrawControlBorder(Me, kbBorderButtonFocus, 0, 0, w, h)
@@ -377,7 +372,6 @@ End Sub
 ''-----------------------------------------------------------------------------
 
 Private Sub UserControl_Initialize()
-    m_leftButton = False
     m_hasFocus = False
     delegateProperties_ctor
     ownProperties_Initialize

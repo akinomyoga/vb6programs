@@ -81,6 +81,10 @@ Attribute Hover.VB_MemberFlags = "400"
     Hover = m_hover
 End Property
 
+Public Property Get IsLeftPressed() As Boolean
+    hasLeftButton = (m_button And MouseButtonConstants.vbLeftButton) <> 0
+End Property
+
 ''-----------------------------------------------------------------------------
 ''
 '' 処理
@@ -107,7 +111,7 @@ Private Function hitTest(ByVal X As Single, ByVal Y As Single) As Boolean
     hitTest = 0 <= X And X < user.ScaleWidth And 0 <= Y And Y < user.ScaleHeight
 End Function
 
-Private Sub processMouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Private Sub doMouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
     If Button And Not (m_button And Button) Then
         m_button = m_button Or Button
         RaiseEvent MouseDown(Button, m_mouseShift, m_mouseX, m_mouseY)
@@ -115,7 +119,7 @@ Private Sub processMouseDown(ByVal Button As Integer, ByVal Shift As Integer, By
     safeMouseCapture
 End Sub
 
-Private Sub processMouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Private Sub doMouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
     If m_mouseX = X And m_mouseY = Y Then Exit Sub
 
     new_hover = hitTest(X, Y)
@@ -137,10 +141,10 @@ Private Sub processMouseMove(ByVal Button As Integer, ByVal Shift As Integer, By
     RaiseEvent MouseMove(m_button, m_mouseShift, m_mouseX, m_mouseY)
 End Sub
 
-Private Sub processMouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Private Sub doMouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
     If (m_button And Button) <> 0 Then
-        RaiseEvent MouseUp(m_button, m_mouseShift, m_mouseX, m_mouseY)
         m_button = m_button And Not Button
+        RaiseEvent MouseUp(Button, m_mouseShift, m_mouseX, m_mouseY)
     End If
     If hitTest(X, Y) Then
         safeMouseCapture ' VB6 が勝手に Release してしまう様なので
@@ -168,24 +172,28 @@ End Sub
 
 Public Sub OnDblClick()
     initializeUserControl
-    processMouseDown MouseButtonConstants.vbLeftButton, m_mouseShift, m_mouseX, m_mouseY
+    doMouseDown MouseButtonConstants.vbLeftButton, m_mouseShift, m_mouseX, m_mouseY
+    Set user = Nothing
 End Sub
 
 Public Sub OnMouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
     initializeUserControl
-    processMouseMove Button, Shift, X, Y
-    processMouseDown Button, Shift, X, Y
+    doMouseMove Button, Shift, X, Y
+    doMouseDown Button, Shift, X, Y
+    Set user = Nothing
 End Sub
 
 Public Sub OnMouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
     initializeUserControl
-    processMouseMove Button, Shift, X, Y
+    doMouseMove Button, Shift, X, Y
+    Set user = Nothing
 End Sub
 
 Public Sub OnMouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
     initializeUserControl
-    processMouseMove Button, Shift, X, Y
-    processMouseUp Button, Shift, X, Y
+    doMouseMove Button, Shift, X, Y
+    doMouseUp Button, Shift, X, Y
+    Set user = Nothing
 End Sub
 
 Public Sub OnShow()
@@ -197,6 +205,7 @@ End Sub
 Public Sub OnPaint()
     initializeUserControl
     RaiseEvent Paint
+    Set user = Nothing ' 何故かこれがないとクラッシュする
 End Sub
 
 ''-----------------------------------------------------------------------------

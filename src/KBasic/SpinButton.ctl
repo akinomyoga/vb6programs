@@ -13,8 +13,8 @@ Begin VB.UserControl SpinButton
    Begin KBasic.KControlHelper Controller 
       Left            =   600
       Top             =   120
-      _extentx        =   661
-      _extenty        =   661
+      _ExtentX        =   661
+      _ExtentY        =   661
    End
    Begin VB.Timer Timer1 
       Enabled         =   0   'False
@@ -42,9 +42,6 @@ End Enum
 ''
 ''-----------------------------------------------------------------------------
 
-Dim m_leftButton As Long
-Dim m_mouseX As Single
-Dim m_mouseY As Single
 Dim m_button As Long
 Dim m_hoverButton As Long
 
@@ -237,7 +234,6 @@ Public Property Let Enabled(ByVal new_Enabled As Boolean)
     If UserControl.Enabled <> new_Enabled Then
         UserControl.Enabled = new_Enabled
         If Not new_Enabled Then
-            m_leftButton = False
             m_button = 0
             m_hoverButton = 0
             Timer1.Interval = 0
@@ -372,11 +368,7 @@ End Sub
 
 Sub leftButton_Update(ByVal state As Boolean, ByVal X As Long, ByVal Y As Long)
     If Not UserControl.Enabled Then Exit Sub
-    m_mouseX = X
-    m_mouseY = Y
 
-    If m_leftButton = state Then Exit Sub
-    m_leftButton = state
     oldButton = m_button
     If state Then
         m_button = hitTest(X, Y)
@@ -396,8 +388,6 @@ End Sub
 
 Sub OnMouseMove(ByVal X As Long, ByVal Y As Long)
     If Not UserControl.Enabled Then Exit Sub
-    m_mouseX = X
-    m_mouseY = Y
     If m_button <> 0 Then
         oldMatch = m_button = m_hoverButton
         m_hoverButton = hitTest(X, Y)
@@ -477,9 +467,6 @@ Private Sub UserControl_DblClick()
 End Sub
 
 Private Sub UserControl_Initialize()
-    m_leftButton = False
-    m_mouseX = 0
-    m_mouseY = 0
     m_button = 0
     m_hoverButton = 0
     delegateProperties_ctor
