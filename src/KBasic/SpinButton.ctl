@@ -432,6 +432,10 @@ Private Sub UserControl_ReadProperties(PropBag As PropertyBag)
     Controller.OnReadProperties PropBag
 End Sub
 
+Private Sub UserControl_Resize()
+    Controller.OnResize
+End Sub
+
 Private Sub UserControl_Show()
     Controller.OnShow
 End Sub

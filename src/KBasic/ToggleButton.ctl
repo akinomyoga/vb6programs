@@ -283,36 +283,20 @@ End Sub
 ''
 ''-----------------------------------------------------------------------------
 
+Private Sub UserControl_DblClick()
+    Controller.OnDblClick
+End Sub
+
+Private Sub UserControl_GotFocus()
+    Controller.OnGotFocus
+End Sub
+
 Private Sub UserControl_Initialize()
     Controller.OnInitialize
 End Sub
 
 Private Sub UserControl_InitProperties()
     Controller.OnInitProperties
-End Sub
-
-Private Sub UserControl_ReadProperties(PropBag As PropertyBag)
-    Controller.OnReadProperties PropBag
-End Sub
-
-Private Sub UserControl_Show()
-    Controller.OnShow
-End Sub
-
-Private Sub UserControl_WriteProperties(PropBag As PropertyBag)
-    Controller.OnWriteProperties PropBag
-End Sub
-
-Private Sub UserControl_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
-    Controller.OnMouseDown Button, Shift, X, Y
-End Sub
-
-Private Sub UserControl_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
-    Controller.OnMouseUp Button, Shift, X, Y
-End Sub
-
-Private Sub UserControl_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
-    Controller.OnMouseMove Button, Shift, X, Y
 End Sub
 
 Private Sub UserControl_KeyDown(KeyCode As Integer, Shift As Integer)
@@ -327,19 +311,39 @@ Private Sub UserControl_KeyUp(KeyCode As Integer, Shift As Integer)
     RaiseEvent KeyUp(KeyCode, Shift)
 End Sub
 
-Private Sub UserControl_DblClick()
-    Controller.OnDblClick
-End Sub
-
-Private Sub UserControl_GotFocus()
-    Controller.OnGotFocus
-End Sub
-
 Private Sub UserControl_LostFocus()
     Controller.OnLostFocus
 End Sub
 
+Private Sub UserControl_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    Controller.OnMouseDown Button, Shift, X, Y
+End Sub
+
+Private Sub UserControl_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    Controller.OnMouseUp Button, Shift, X, Y
+End Sub
+
+Private Sub UserControl_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    Controller.OnMouseMove Button, Shift, X, Y
+End Sub
+
 Private Sub UserControl_Paint()
     Controller.OnPaint
+End Sub
+
+Private Sub UserControl_ReadProperties(PropBag As PropertyBag)
+    Controller.OnReadProperties PropBag
+End Sub
+
+Private Sub UserControl_Resize()
+    Controller.OnResize
+End Sub
+
+Private Sub UserControl_Show()
+    Controller.OnShow
+End Sub
+
+Private Sub UserControl_WriteProperties(PropBag As PropertyBag)
+    Controller.OnWriteProperties PropBag
 End Sub
 

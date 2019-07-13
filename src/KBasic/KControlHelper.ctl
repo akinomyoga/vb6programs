@@ -462,6 +462,12 @@ Public Sub OnShow()
     decrementUserControl
 End Sub
 
+Public Sub OnResize()
+    incrementUserControl
+    If user.AutoRedraw Then Refresh
+    decrementUserControl
+End Sub
+
 Public Sub OnPaint()
     incrementUserControl
     RaiseEvent Paint

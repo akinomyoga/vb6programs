@@ -66,60 +66,60 @@ Begin VB.Form KBasicForm
       Tab(0).Control(17).Enabled=   0   'False
       Tab(0).Control(18)=   "ColorButton4(0)"
       Tab(0).Control(18).Enabled=   0   'False
-      Tab(0).ControlCount=   19
+      Tab(0).Control(19)=   "TemplateControl1"
+      Tab(0).Control(19).Enabled=   0   'False
+      Tab(0).ControlCount=   20
       TabCaption(1)   =   "Spin"
       TabPicture(1)   =   "KBasicForm.frx":001C
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "UpDown1"
-      Tab(1).Control(1)=   "UpDown2"
-      Tab(1).Control(2)=   "UpDown3"
-      Tab(1).Control(3)=   "UpDown4"
-      Tab(1).Control(4)=   "SpinButton5"
-      Tab(1).Control(5)=   "SpinButton2"
+      Tab(1).Control(0)=   "Label1"
+      Tab(1).Control(1)=   "UpDown6"
+      Tab(1).Control(2)=   "UpDown5"
+      Tab(1).Control(3)=   "SpinButton6"
+      Tab(1).Control(4)=   "SpinButton3"
+      Tab(1).Control(5)=   "SpinButton1"
       Tab(1).Control(6)=   "SpinButton4"
-      Tab(1).Control(7)=   "SpinButton1"
-      Tab(1).Control(8)=   "SpinButton3"
-      Tab(1).Control(9)=   "SpinButton6"
-      Tab(1).Control(10)=   "UpDown5"
-      Tab(1).Control(11)=   "UpDown6"
-      Tab(1).Control(12)=   "Label1"
+      Tab(1).Control(7)=   "SpinButton2"
+      Tab(1).Control(8)=   "SpinButton5"
+      Tab(1).Control(9)=   "UpDown4"
+      Tab(1).Control(10)=   "UpDown3"
+      Tab(1).Control(11)=   "UpDown2"
+      Tab(1).Control(12)=   "UpDown1"
       Tab(1).ControlCount=   13
       TabCaption(2)   =   "Scroll"
       TabPicture(2)   =   "KBasicForm.frx":0038
       Tab(2).ControlEnabled=   0   'False
       Tab(2).Control(0)=   "ScrollBar2(3)"
-      Tab(2).Control(0).Enabled=   0   'False
       Tab(2).Control(1)=   "ScrollBar2(2)"
-      Tab(2).Control(1).Enabled=   0   'False
       Tab(2).Control(2)=   "ScrollBar2(1)"
-      Tab(2).Control(2).Enabled=   0   'False
       Tab(2).Control(3)=   "ScrollBar3"
-      Tab(2).Control(3).Enabled=   0   'False
       Tab(2).Control(4)=   "FlatScrollBar2"
-      Tab(2).Control(4).Enabled=   0   'False
       Tab(2).Control(5)=   "FlatScrollBar1"
-      Tab(2).Control(5).Enabled=   0   'False
       Tab(2).Control(6)=   "ScrollBar1"
-      Tab(2).Control(6).Enabled=   0   'False
       Tab(2).Control(7)=   "ScrollBar2(0)"
-      Tab(2).Control(7).Enabled=   0   'False
       Tab(2).Control(8)=   "HScroll1"
-      Tab(2).Control(8).Enabled=   0   'False
       Tab(2).Control(9)=   "HScroll3"
-      Tab(2).Control(9).Enabled=   0   'False
       Tab(2).Control(10)=   "HScroll2"
-      Tab(2).Control(10).Enabled=   0   'False
       Tab(2).ControlCount=   11
       TabCaption(3)   =   "Tab 3"
       TabPicture(3)   =   "KBasicForm.frx":0054
       Tab(3).ControlEnabled=   0   'False
       Tab(3).ControlCount=   0
+      Begin KBasic.TemplateControl TemplateControl1 
+         Height          =   375
+         Left            =   120
+         TabIndex        =   32
+         Top             =   2640
+         Width           =   735
+         _ExtentX        =   1296
+         _ExtentY        =   661
+      End
       Begin KBasic.ColorButton ColorButton4 
          Height          =   375
          Index           =   0
          Left            =   360
          TabIndex        =   23
-         Top             =   2640
+         Top             =   2160
          Width           =   375
          _ExtentX        =   661
          _ExtentY        =   661
@@ -139,7 +139,7 @@ Begin VB.Form KBasicForm
          Index           =   1
          Left            =   840
          TabIndex        =   24
-         Top             =   2640
+         Top             =   2160
          Width           =   375
          _ExtentX        =   661
          _ExtentY        =   661
@@ -160,7 +160,7 @@ Begin VB.Form KBasicForm
          Index           =   2
          Left            =   1320
          TabIndex        =   25
-         Top             =   2640
+         Top             =   2160
          Width           =   375
          _ExtentX        =   661
          _ExtentY        =   661
@@ -181,7 +181,7 @@ Begin VB.Form KBasicForm
          Index           =   3
          Left            =   1800
          TabIndex        =   26
-         Top             =   2640
+         Top             =   2160
          Width           =   375
          _ExtentX        =   661
          _ExtentY        =   661
@@ -202,7 +202,7 @@ Begin VB.Form KBasicForm
          Index           =   4
          Left            =   2280
          TabIndex        =   27
-         Top             =   2640
+         Top             =   2160
          Width           =   375
          _ExtentX        =   661
          _ExtentY        =   661
@@ -223,7 +223,7 @@ Begin VB.Form KBasicForm
          Index           =   5
          Left            =   2760
          TabIndex        =   28
-         Top             =   2640
+         Top             =   2160
          Width           =   375
          _ExtentX        =   661
          _ExtentY        =   661
@@ -244,7 +244,7 @@ Begin VB.Form KBasicForm
          Index           =   6
          Left            =   3240
          TabIndex        =   29
-         Top             =   2640
+         Top             =   2160
          Width           =   375
          _ExtentX        =   661
          _ExtentY        =   661
@@ -267,7 +267,7 @@ Begin VB.Form KBasicForm
          Left            =   120
          Style           =   1  'Graphical
          TabIndex        =   22
-         Top             =   1200
+         Top             =   960
          Width           =   1215
       End
       Begin KBasic.ToggleButton ToggleButton4 
@@ -275,7 +275,7 @@ Begin VB.Form KBasicForm
          Left            =   3360
          TabIndex        =   21
          ToolTipText     =   "Toggle1"
-         Top             =   1200
+         Top             =   960
          Width           =   615
          _ExtentX        =   1085
          _ExtentY        =   661
@@ -298,7 +298,7 @@ Begin VB.Form KBasicForm
          Height          =   375
          Left            =   120
          TabIndex        =   18
-         Top             =   720
+         Top             =   480
          Width           =   1215
       End
       Begin VB.CommandButton Command2 
@@ -309,7 +309,7 @@ Begin VB.Form KBasicForm
          Left            =   120
          Style           =   1  'Graphical
          TabIndex        =   14
-         Top             =   1680
+         Top             =   1440
          Width           =   1215
       End
       Begin VB.HScrollBar HScroll2 
@@ -465,9 +465,9 @@ Begin VB.Form KBasicForm
          Width           =   375
          _ExtentX        =   661
          _ExtentY        =   661
-         Orientation     =   1
          BackColor       =   12648384
          ForeColor       =   32768
+         Orientation     =   1
       End
       Begin KBasic.SpinButton SpinButton1 
          Height          =   255
@@ -494,10 +494,10 @@ Begin VB.Form KBasicForm
          Width           =   375
          _ExtentX        =   661
          _ExtentY        =   661
-         Orientation     =   1
+         Enabled         =   0   'False
          BackColor       =   12648384
          ForeColor       =   32768
-         Enabled         =   0   'False
+         Orientation     =   1
       End
       Begin MSComCtl2.UpDown UpDown5 
          Height          =   375
@@ -526,7 +526,7 @@ Begin VB.Form KBasicForm
          Height          =   375
          Left            =   2760
          TabIndex        =   13
-         Top             =   1680
+         Top             =   1440
          Width           =   1215
          _ExtentX        =   2143
          _ExtentY        =   661
@@ -547,7 +547,7 @@ Begin VB.Form KBasicForm
          Left            =   1440
          TabIndex        =   15
          ToolTipText     =   "Color1"
-         Top             =   720
+         Top             =   480
          Width           =   1215
          _ExtentX        =   2143
          _ExtentY        =   661
@@ -566,7 +566,7 @@ Begin VB.Form KBasicForm
          Left            =   2760
          TabIndex        =   16
          ToolTipText     =   "Toggle2"
-         Top             =   720
+         Top             =   480
          Width           =   1215
          _ExtentX        =   2143
          _ExtentY        =   661
@@ -585,7 +585,7 @@ Begin VB.Form KBasicForm
          Left            =   2760
          TabIndex        =   17
          ToolTipText     =   "Toggle1"
-         Top             =   1200
+         Top             =   960
          Width           =   615
          _ExtentX        =   1085
          _ExtentY        =   661
@@ -607,7 +607,7 @@ Begin VB.Form KBasicForm
          Left            =   1440
          TabIndex        =   19
          ToolTipText     =   "Color1"
-         Top             =   1200
+         Top             =   960
          Width           =   1215
          _ExtentX        =   2143
          _ExtentY        =   661
@@ -628,7 +628,7 @@ Begin VB.Form KBasicForm
          Left            =   1440
          TabIndex        =   20
          ToolTipText     =   "Color1"
-         Top             =   1680
+         Top             =   1440
          Width           =   1215
          _ExtentX        =   2143
          _ExtentY        =   661
@@ -672,7 +672,7 @@ Begin VB.Form KBasicForm
          Index           =   7
          Left            =   3720
          TabIndex        =   31
-         Top             =   2640
+         Top             =   2160
          Width           =   375
          _ExtentX        =   661
          _ExtentY        =   661
@@ -706,7 +706,7 @@ Begin VB.Form KBasicForm
          Height          =   255
          Left            =   120
          TabIndex        =   30
-         Top             =   2400
+         Top             =   1920
          Width           =   1935
       End
       Begin VB.Label Label1 
