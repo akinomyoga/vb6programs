@@ -64,6 +64,7 @@ Public Event KeyUp(KeyCode As Integer, Shift As Integer)
 ''-----------------------------------------------------------------------------
 
 Public Property Get Value() As Boolean
+Attribute Value.VB_ProcData.VB_Invoke_Property = ";Data"
     Value = m_Value
 End Property
 
@@ -76,6 +77,7 @@ Public Property Let Value(ByVal new_Value As Boolean)
 End Property
 
 Public Property Get Caption() As String
+Attribute Caption.VB_ProcData.VB_Invoke_Property = ";Appearance"
     Caption = m_Caption
 End Property
 
@@ -99,6 +101,7 @@ End Sub
 ''-----------------------------------------------------------------------------
 
 Public Property Get Enabled() As Boolean
+Attribute Enabled.VB_ProcData.VB_Invoke_Property = ";Behavior"
     Enabled = UserControl.Enabled
 End Property
 
@@ -107,6 +110,7 @@ Public Property Let Enabled(ByVal new_Enabled As Boolean)
 End Property
 
 Public Property Get BackColor() As OLE_COLOR
+Attribute BackColor.VB_ProcData.VB_Invoke_Property = ";Appearance"
     BackColor = UserControl.BackColor
 End Property
 
@@ -115,6 +119,7 @@ Public Property Let BackColor(ByVal new_BackColor As OLE_COLOR)
 End Property
 
 Public Property Get ForeColor() As OLE_COLOR
+Attribute ForeColor.VB_ProcData.VB_Invoke_Property = ";Appearance"
     ForeColor = UserControl.ForeColor
 End Property
 
@@ -123,6 +128,7 @@ Public Property Let ForeColor(ByVal new_ForeColor As OLE_COLOR)
 End Property
 
 Public Property Get Font() As StdFont
+Attribute Font.VB_ProcData.VB_Invoke_Property = ";Appearance"
     Set Font = UserControl.Font
 End Property
 
@@ -139,6 +145,7 @@ Public Property Let Tag(ByVal new_Tag As String)
 End Property
 
 Public Property Get MousePointer() As Integer
+Attribute MousePointer.VB_ProcData.VB_Invoke_Property = ";Behavior"
     MousePointer = UserControl.MousePointer
 End Property
 
@@ -147,6 +154,7 @@ Public Property Let MousePointer(ByVal new_MousePointer As Integer)
 End Property
 
 Public Property Get MouseIcon() As IPictureDisp
+Attribute MouseIcon.VB_ProcData.VB_Invoke_Property = ";Behavior"
     Set MouseIcon = UserControl.MouseIcon
 End Property
 

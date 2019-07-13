@@ -367,6 +367,7 @@ Public Property Let Tag(ByVal new_Tag As String)
 End Property
 
 Public Property Get MousePointer() As Integer
+Attribute MousePointer.VB_ProcData.VB_Invoke_Property = ";Behavior"
     MousePointer = UserControl.MousePointer
 End Property
 
@@ -375,6 +376,7 @@ Public Property Let MousePointer(ByVal new_MousePointer As Integer)
 End Property
 
 Public Property Get MouseIcon() As IPictureDisp
+Attribute MouseIcon.VB_ProcData.VB_Invoke_Property = ";Behavior"
     Set MouseIcon = UserControl.MouseIcon
 End Property
 
@@ -388,7 +390,7 @@ End Property
 ''
 ''-----------------------------------------------------------------------------
 
-Function isHorizontal() As Boolean
+Private Function isHorizontal() As Boolean
     Select Case m_Orientation
     Case KSpinOrientation.kbOrientationHorizontal
         isHorizontal = True
@@ -503,7 +505,7 @@ Private Sub doScroll()
     End If
 End Sub
 
-Sub leftButton_Update(ByVal state As Boolean, ByVal X As Long, ByVal Y As Long)
+Private Sub leftButton_Update(ByVal state As Boolean, ByVal X As Long, ByVal Y As Long)
     If Not UserControl.Enabled Then Exit Sub
 
     oldButton = m_button
@@ -531,7 +533,7 @@ Sub leftButton_Update(ByVal state As Boolean, ByVal X As Long, ByVal Y As Long)
     End If
 End Sub
 
-Sub OnMouseMove(ByVal X As Long, ByVal Y As Long)
+Private Sub doMouseMove(ByVal X As Long, ByVal Y As Long)
     If Not UserControl.Enabled Then Exit Sub
     
     Dim geo As ScrollBarGeometry
@@ -687,7 +689,7 @@ Private Sub Controller_MouseLeave(Button As Integer, Shift As Integer, X As Sing
 End Sub
 
 Private Sub Controller_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
-    OnMouseMove X, Y
+    doMouseMove X, Y
     RaiseEvent MouseMove(Button, Shift, X, Y)
 End Sub
 

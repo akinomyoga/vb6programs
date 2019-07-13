@@ -118,7 +118,7 @@ Public Property Let ForeColor(ByVal new_ForeColor As OLE_COLOR)
 End Property
 
 Public Property Get Font() As StdFont
-Attribute Font.VB_ProcData.VB_Invoke_Property = ";Font"
+Attribute Font.VB_ProcData.VB_Invoke_Property = ";Appearance"
     Set Font = UserControl.Font
 End Property
 
@@ -135,6 +135,7 @@ Public Property Let Tag(ByVal new_Tag As String)
 End Property
 
 Public Property Get MousePointer() As Integer
+Attribute MousePointer.VB_ProcData.VB_Invoke_Property = ";Behavior"
     MousePointer = UserControl.MousePointer
 End Property
 
@@ -143,6 +144,7 @@ Public Property Let MousePointer(ByVal new_MousePointer As Integer)
 End Property
 
 Public Property Get MouseIcon() As IPictureDisp
+Attribute MouseIcon.VB_ProcData.VB_Invoke_Property = ";Behavior"
     Set MouseIcon = UserControl.MouseIcon
 End Property
 

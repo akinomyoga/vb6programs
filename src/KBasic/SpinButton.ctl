@@ -212,6 +212,7 @@ Public Property Let Tag(ByVal new_Tag As String)
 End Property
 
 Public Property Get MousePointer() As Integer
+Attribute MousePointer.VB_ProcData.VB_Invoke_Property = ";Behavior"
     MousePointer = UserControl.MousePointer
 End Property
 
@@ -220,6 +221,7 @@ Public Property Let MousePointer(ByVal new_MousePointer As Integer)
 End Property
 
 Public Property Get MouseIcon() As IPictureDisp
+Attribute MouseIcon.VB_ProcData.VB_Invoke_Property = ";Behavior"
     Set MouseIcon = UserControl.MouseIcon
 End Property
 
@@ -233,7 +235,7 @@ End Property
 ''
 ''-----------------------------------------------------------------------------
 
-Function isHorizontal() As Boolean
+Private Function isHorizontal() As Boolean
     Select Case m_Orientation
     Case KSpinOrientation.kbOrientationHorizontal
         isHorizontal = True
@@ -244,7 +246,7 @@ Function isHorizontal() As Boolean
     End Select
 End Function
 
-Function hitTest(ByVal X As Single, ByVal Y As Single) As Long
+Private Function hitTest(ByVal X As Single, ByVal Y As Single) As Long
     Dim pos1 As Single, max1 As Single
     Dim pos2 As Single, max2 As Single
     If isHorizontal() Then
@@ -286,7 +288,7 @@ Private Sub doSpin()
     End If
 End Sub
 
-Sub leftButton_Update(ByVal state As Boolean, ByVal X As Long, ByVal Y As Long)
+Private Sub leftButton_Update(ByVal state As Boolean, ByVal X As Long, ByVal Y As Long)
     If Not UserControl.Enabled Then Exit Sub
 
     oldButton = m_button
@@ -306,7 +308,7 @@ Sub leftButton_Update(ByVal state As Boolean, ByVal X As Long, ByVal Y As Long)
     End If
 End Sub
 
-Sub doMouseMove(ByVal X As Long, ByVal Y As Long)
+Private Sub doMouseMove(ByVal X As Long, ByVal Y As Long)
     If Not UserControl.Enabled Then Exit Sub
     If m_button <> 0 Then
         oldMatch = m_button = m_hoverButton
@@ -318,7 +320,7 @@ Sub doMouseMove(ByVal X As Long, ByVal Y As Long)
     End If
 End Sub
 
-Sub doPaint_paintButton2(ByVal flags As Long, ByVal Button As Long, _
+Private Sub doPaint_paintButton2(ByVal flags As Long, ByVal Button As Long, _
     ByVal x1 As Long, ByVal y1 As Long, ByVal x2 As Long, ByVal y2 As Long)
     
     flags = flags Or kbArrowButtonInset
@@ -328,7 +330,7 @@ Sub doPaint_paintButton2(ByVal flags As Long, ByVal Button As Long, _
     KWin.DrawArrowButton Me, flags, x1, y1, x2, y2, UserControl.ForeColor, 5, 1#
 End Sub
 
-Sub doPaint()
+Private Sub doPaint()
     w = KMath.FloorL(ScaleWidth, 2)
     h = KMath.FloorL(ScaleHeight, 2)
     If isHorizontal() Then
