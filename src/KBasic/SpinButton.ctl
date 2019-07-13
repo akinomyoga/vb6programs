@@ -331,15 +331,16 @@ Private Sub doPaint_paintButton2(ByVal flags As Long, ByVal Button As Long, _
 End Sub
 
 Private Sub doPaint()
-    w = KMath.FloorL(ScaleWidth, 2)
-    h = KMath.FloorL(ScaleHeight, 2)
+    Dim w As Single, h As Single, m As Single
+    w = ScaleWidth
+    h = ScaleHeight
     If isHorizontal() Then
         m = Int(w / 2)
-        doPaint_paintButton2 kbArrowLeft, 1, 0, 0, m, h
+        doPaint_paintButton2 kbArrowLeft, 1, 0, 0, w - m, h
         doPaint_paintButton2 kbArrowRight, 2, m, 0, w, h
     Else
         m = Int(h / 2)
-        doPaint_paintButton2 kbArrowUp, 1, 0, 0, w, m
+        doPaint_paintButton2 kbArrowUp, 1, 0, 0, w, h - m
         doPaint_paintButton2 kbArrowDown, 2, 0, m, w, h
     End If
 End Sub
