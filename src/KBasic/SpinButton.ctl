@@ -23,6 +23,12 @@ Attribute VB_Exposed = True
 '' SpinButton
 '' 参考 http://home.att.ne.jp/zeta/gen/excel/c04p38.htm
 
+Public Enum SpinButtonOrientation
+    kbOrientationAuto = -1
+    kbOrientationVertical = 0
+    kbOrientationHorizontal = 1
+End Enum
+
 ''-----------------------------------------------------------------------------
 ''
 '' 内部変数
@@ -40,12 +46,6 @@ Dim m_hoverButton As Long
 '' 独自プロパティ (宣言)
 ''
 ''-----------------------------------------------------------------------------
-
-Public Enum SpinButtonOrientation
-    kbOrientationAuto = -1
-    kbOrientationVertical = 0
-    kbOrientationHorizontal = 1
-End Enum
 
 Const INITIAL_DELAY_FACTOR = 5
 
@@ -404,7 +404,7 @@ End Sub
 Sub onPaint_paintButton2(ByVal flags As Long, ByVal button As Long, _
     ByVal x1 As Long, ByVal y1 As Long, ByVal x2 As Long, ByVal y2 As Long)
     
-    flags = flags Or kbArrowInset
+    flags = flags Or kbArrowButtonInset
     pressed = m_button = button And m_button = m_hoverButton
     If pressed Then flags = flags Or kbArrowPressed
     If Not UserControl.Enabled Then flags = flags Or kbArrowDisabled

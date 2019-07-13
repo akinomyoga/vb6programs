@@ -77,31 +77,22 @@ UserControl を自分で作るという事。
   ToDo
 ------------------------------------------------------------------------------
 
+2019-07-13
+
+* 各コントロールでプロパティ一覧での設定
+
+* 各コントロールのマウス関係の処理を統一する?
+  これは KControlHelper に実装した。
+
+* 何と今気づいたのだが標準のボタンでも Style を Graphical にすれば
+  ちゃんと背景色を使って描画してくれる様になるようだ…。
+
 2019-07-12
 
 * KBasic: Spin と Scroll はコード的に似通っている。
   共通部分を抽出してコードを共有する様にできないだろうか。
 
   これも実行する事に意義を感じられないので放棄するべき。
-
-* KBasic: ScrollBar として Flat version も作成する。
-  Flat な ScrollBar にある機能を観察して便利そうな物があれば追加する。
-
-  VB6 にはクラスの継承の仕組みなどはないのだろうか。
-  UserControl から更に派生してという事はできない様なので、
-  メンバに機能を委譲する事によって何とか実現する事はできないだろうか。
-  検索するとあるようなないような。
-
-  http://www016.upp.so-net.ne.jp/garger-studio/gameprog/vb0084.html
-  http://blogs.wankuma.com/rti/archive/2008/01/16/117716.aspx
-  http://uno036.starfree.jp/PRGmanual/vb_class/class1.html
-
-  というか VB6 のコントロール等作っている場合ではないという気がする。
-  Flat な version を作ったとして使う人がいるのだろうか?
-  或いは自分で使うとしても公開して配布する事も難しい VB6 の
-  プログラムを今更作っていく事に意味があるのだろうか。
-  その様に考えると取り敢えずこれで完成という事にして、
-  このリポジトリは停止するのが適当の様に思われる。
 
 * やはり色々触ってみて VB6 には限界があるのだという事を感じた。
   というより昔 C# に移行した時の気持ちを思い出したというべきか。
@@ -156,6 +147,76 @@ UserControl を自分で作るという事。
 ------------------------------------------------------------------------------
   Done
 ------------------------------------------------------------------------------
+
+2019-07-13
+
+* KBasic: ScrollBar として Flat version も作成する。
+  Flat な ScrollBar にある機能を観察して便利そうな物があれば追加する。
+
+  VB6 にはクラスの継承の仕組みなどはないのだろうか。
+  UserControl から更に派生してという事はできない様なので、
+  メンバに機能を委譲する事によって何とか実現する事はできないだろうか。
+  検索するとあるようなないような。
+
+  http://www016.upp.so-net.ne.jp/garger-studio/gameprog/vb0084.html
+  http://blogs.wankuma.com/rti/archive/2008/01/16/117716.aspx
+  http://uno036.starfree.jp/PRGmanual/vb_class/class1.html
+
+  * というか VB6 のコントロール等作っている場合ではないという気がする。
+    Flat な version を作ったとして使う人がいるのだろうか?
+    或いは自分で使うとしても公開して配布する事も難しい VB6 の
+    プログラムを今更作っていく事に意味があるのだろうか。
+    その様に考えると取り敢えずこれで完成という事にして、
+    このリポジトリは停止するのが適当の様に思われる。
+
+  * 結局辛いので対応に向かってしまう。
+    調べてみた所 FlatScrollBar には Appearance というプロパティがあって、
+    それで Flat3D 的な物もあるという事が分かった。
+    その場合には hover している時に single 3D になるという事。
+    所が VB6 で hover というより mouseenter mouseleave を検出する方法がない。
+    mousemove を使うにしてもキャプチャでもしていなければならない。
+
+    と思って検索したら親コントロールの mousemove で頑張るか、
+    或いはやはりキャプチャして対応するしかない様である。
+    キャプチャしていると当然 mousemove 一回分吸収してしまう事になるのには注意する。
+    http://hanatyan.sakura.ne.jp/patio/read.cgi?no=248
+
+    ここでもやはりキャプチャを使って実装している。
+    https://blogs.yahoo.co.jp/chuo_kobe/27312499.html その1
+    https://blogs.yahoo.co.jp/chuo_kobe/27312523.html その2
+
+    でも関係ない事で気になる記述が幾つか在る。
+    Attribute Enabled.VB_Description = "..." これは何だろう。
+    'MappingInfo=UserControl,UserControl,-1,Enabled
+    'MemberInfo=23,0,0,TopLeft 更にプロパティにこの様な記述がある。
+    調べてみた。
+
+    * Attribute プロパティ名.VB_UserMemId = 0
+      http://note.phyllo.net/?eid=1106050
+      これはそのプロパティがそのクラスを何らかの値にキャストする時に
+      使われるメンバである事を指定するらしい。
+      更に、これは構文上はエラーになるが無視して良いらしい。
+
+      というかVB6の画面でプロシージャ属性というので設定できるらしい。
+
+    * Attribute プロパティ名.VB_ProcData.VB_Invoke_Property = "プロパティページ名;カテゴリ名"
+      これはプロパティページでのカテゴリ。
+      プロパティページは標準で用意されている物の他に、
+      自分で作成した物を利用する事も可能である。
+
+    * Attribute プロパティ名.VB_Description = "説明文"
+      これはプロパティページでの説明文
+
+    * MappingInfo のコメントに関しては
+      そもそもこれは VB6 のウィザードによって生成される様だ。
+      http://www.vbforums.com/showthread.php?141975-How-can-I-give-a-usercontrol-an-Enable-property
+
+  * さておき hover を実装する事にする。
+    取り敢えずダミーのコントロールで hover を作ってみる。
+
+    問題点に気づいた…。もし他のコントロールがキャプチャを持っていたら、
+    この操作によってそれを奪ってしまう事になる…。
+    従って SetCapture する時は既にキャプチャしていたらしない様にする必要がある。
 
 2019-07-12
 

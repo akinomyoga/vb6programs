@@ -1,6 +1,7 @@
 Attribute VB_Name = "KWin"
 
 Public Enum KWinBorderStyle
+    kbBorderNone
     kbBorderControlInset
     kbBorderControlOutset
     kbBorderButtonOutset
@@ -17,19 +18,26 @@ Public Enum KWinBorderStyle
 End Enum
 
 Public Enum KWinArrowButtonFlags
+    kbArrowDirectionMask = 3
     kbArrowUp = 0
     kbArrowDown = 1
     kbArrowRight = 2
     kbArrowLeft = 3
-    kbArrowDirectionMask = 3
     
     kbArrowDisabled = 4
     kbArrowPressed = 8
-    kbArrowInset = 16
+    
+    kbArrowButtonMask = &H700
+    kbArrowButtonDefault = &H0
+    kbArrowButtonInset = &H100
+    kbArrowButtonFlat = &H200
+    kbArrowButtonSingle = &H300
+    kbArrowButtonNoBorder = &H400
 End Enum
 
 
 Public Declare Function SetCapture Lib "user32" (ByVal hWnd As Long) As Long
+Public Declare Function GetCapture Lib "user32" () As Long
 Public Declare Function ReleaseCapture Lib "user32" () As Long
 
 Declare Sub CopyMemory Lib "kernel32" Alias "RtlMoveMemory" (Destination As Any, Source As Any, ByVal Length As Long)
@@ -164,20 +172,20 @@ Private Sub drawArrowButton_arrow(ByRef user As UserControl, ByVal flags As KWin
 
     Dim aw As Long
     Dim vx As Long, vy As Long, vm As Long
-    Dim ux As Long, uy As Long, um As Long
+    Dim Ux As Long, uy As Long, um As Long
     Select Case flags And KWinArrowButtonFlags.kbArrowDirectionMask
     Case kbArrowUp
         vm = h: um = w
-        vx = 0: vy = 1: ux = 1: uy = 0
+        vx = 0: vy = 1: Ux = 1: uy = 0
     Case kbArrowDown
         vm = h: um = w
-        vx = 0: vy = -1: ux = 1: uy = 0
+        vx = 0: vy = -1: Ux = 1: uy = 0
     Case kbArrowLeft
         vm = w: um = h
-        vx = 1: vy = 0: ux = 0: uy = 1
+        vx = 1: vy = 0: Ux = 0: uy = 1
     Case kbArrowRight
         vm = w: um = h
-        vx = -1: vy = 0: ux = 0: uy = 1
+        vx = -1: vy = 0: Ux = 0: uy = 1
     End Select
     aw = KMath.MinL(vm - 6, KMath.MinL((um - 7) / 2, CLng((um - 4) * maxArrowRate / 2)))
     aw = KMath.ClampL(aw, 2, maxArrowSize)
@@ -189,8 +197,8 @@ Private Sub drawArrowButton_arrow(ByRef user As UserControl, ByVal flags As KWin
         py = y0 + i * vy
         user.PSet (px, py), color
         For j = 1 To i
-            user.PSet (px + j * ux, py + j * uy), color
-            user.PSet (px - j * ux, py - j * uy), color
+            user.PSet (px + j * Ux, py + j * uy), color
+            user.PSet (px - j * Ux, py - j * uy), color
         Next j
     Next i
 End Sub
@@ -207,18 +215,32 @@ Private Sub drawArrowButton_impl(ByRef user As UserControl, ByVal flags As KWinA
     End If
     
     Dim kbb As KWinBorderStyle
-    If (flags And KWinArrowButtonFlags.kbArrowPressed) <> 0 Then
-        If (flags And KWinArrowButtonFlags.kbArrowInset) <> 0 Then
+    If (flags And kbArrowPressed) <> 0 Then
+        Select Case flags And kbArrowButtonMask
+        Case kbArrowButtonInset
             kbb = KWinBorderStyle.kbBorderButtonInset
-        Else
+        Case kbArrowButtonFlat
             kbb = KWinBorderStyle.kbBorderSinglePressed
-        End If
+        Case kbArrowButtonSingle
+            kbb = KWinBorderStyle.kbBorderSingleInset
+        Case kbArrowButtonNoBorder
+            kbb = kbBorderNone
+        Case Else
+            kbb = KWinBorderStyle.kbBorderSinglePressed
+        End Select
     Else
-        If (flags And KWinArrowButtonFlags.kbArrowInset) <> 0 Then
+        Select Case flags And kbArrowButtonMask
+        Case kbArrowButtonInset
             kbb = KWinBorderStyle.kbBorderButtonOutset
-        Else
+        Case kbArrowButtonFlat
+            kbb = KWinBorderStyle.kbBorderSinglePressed
+        Case kbArrowButtonSingle
+            kbb = KWinBorderStyle.kbBorderSingleOutset
+        Case kbArrowButtonNoBorder
+            kbb = kbBorderNone
+        Case Else
             kbb = KWinBorderStyle.kbBorderControlOutset
-        End If
+        End Select
     End If
     KWin.drawBorder_impl user, kbb, x1, y1, x2, y2
 End Sub

@@ -8,6 +8,12 @@ Begin VB.UserControl ColorButton
    ScaleMode       =   3  'Pixel
    ScaleWidth      =   320
    ToolboxBitmap   =   "ColorButton.ctx":0000
+   Begin KBasic.KControlHelper Controller 
+      Left            =   120
+      Top             =   120
+      _ExtentX        =   661
+      _ExtentY        =   661
+   End
 End
 Attribute VB_Name = "ColorButton"
 Attribute VB_GlobalNameSpace = False
@@ -51,9 +57,9 @@ Const default_Tag = ""
 Const default_MousePointer = MousePointerConstants.vbDefault
 Dim default_MouseIcon As IPictureDisp
 
-Public Event MouseDown(button As Integer, Shift As Integer, X As Single, Y As Single)
-Public Event MouseUp(button As Integer, Shift As Integer, X As Single, Y As Single)
-Public Event MouseMove(button As Integer, Shift As Integer, X As Single, Y As Single)
+Public Event MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Public Event MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Public Event MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
 Public Event KeyDown(KeyCode As Integer, Shift As Integer)
 Public Event KeyPress(KeyAscii As Integer)
 Public Event KeyUp(KeyCode As Integer, Shift As Integer)
@@ -114,7 +120,7 @@ Public Property Get BackColor() As OLE_COLOR
 End Property
 
 Public Property Let BackColor(ByVal new_BackColor As OLE_COLOR)
-    If UserControl.BackColor <> BackColor Then
+    If UserControl.BackColor <> new_BackColor Then
         UserControl.BackColor = new_BackColor
         UserControl.Refresh
         PropertyChanged "BackColor"
@@ -321,22 +327,22 @@ Private Sub UserControl_WriteProperties(PropBag As PropertyBag)
     delegateProperties_Write PropBag
 End Sub
 
-Private Sub UserControl_MouseDown(button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub UserControl_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
     hover_Update X, Y
-    If UserControl.Enabled And button = vbLeftButton Then notifyLeftButton True
-    RaiseEvent MouseDown(button, Shift, X, Y)
+    If UserControl.Enabled And Button = vbLeftButton Then notifyLeftButton True
+    RaiseEvent MouseDown(Button, Shift, X, Y)
 End Sub
 
-Private Sub UserControl_MouseUp(button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub UserControl_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
     KWin.ReleaseCapture
     hover_Update X, Y
-    If UserControl.Enabled And button = vbLeftButton Then notifyLeftButton False
-    RaiseEvent MouseUp(button, Shift, X, Y)
+    If UserControl.Enabled And Button = vbLeftButton Then notifyLeftButton False
+    RaiseEvent MouseUp(Button, Shift, X, Y)
 End Sub
 
-Private Sub UserControl_MouseMove(button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub UserControl_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
     hover_Update X, Y
-    RaiseEvent MouseMove(button, Shift, X, Y)
+    RaiseEvent MouseMove(Button, Shift, X, Y)
 End Sub
 
 Private Sub UserControl_KeyDown(KeyCode As Integer, Shift As Integer)
