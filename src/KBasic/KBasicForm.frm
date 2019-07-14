@@ -142,19 +142,29 @@ Begin VB.Form KBasicForm
       TabCaption(3)   =   "Tab 3"
       TabPicture(3)   =   "KBasicForm.frx":0054
       Tab(3).ControlEnabled=   0   'False
-      Tab(3).Control(0)=   "Check1(2)"
-      Tab(3).Control(1)=   "Check1(1)"
-      Tab(3).Control(2)=   "Check1(0)"
-      Tab(3).Control(3)=   "TemplateControl2"
-      Tab(3).Control(4)=   "ScrollBar4"
-      Tab(3).Control(5)=   "SpinButton7"
-      Tab(3).Control(6)=   "ToggleButton5"
-      Tab(3).Control(7)=   "KButton5"
-      Tab(3).Control(8)=   "ToggleButton4"
-      Tab(3).Control(9)=   "ToggleButton3"
-      Tab(3).Control(10)=   "ToggleButton2"
-      Tab(3).Control(11)=   "ToggleButton1"
-      Tab(3).ControlCount=   12
+      Tab(3).Control(0)=   "ToggleButton1"
+      Tab(3).Control(0).Enabled=   0   'False
+      Tab(3).Control(1)=   "ToggleButton2"
+      Tab(3).Control(1).Enabled=   0   'False
+      Tab(3).Control(2)=   "ToggleButton3"
+      Tab(3).Control(2).Enabled=   0   'False
+      Tab(3).Control(3)=   "ToggleButton4"
+      Tab(3).Control(3).Enabled=   0   'False
+      Tab(3).Control(4)=   "KButton5"
+      Tab(3).Control(4).Enabled=   0   'False
+      Tab(3).Control(5)=   "ToggleButton5"
+      Tab(3).Control(5).Enabled=   0   'False
+      Tab(3).Control(6)=   "SpinButton7"
+      Tab(3).Control(6).Enabled=   0   'False
+      Tab(3).Control(7)=   "ScrollBar4"
+      Tab(3).Control(7).Enabled=   0   'False
+      Tab(3).Control(8)=   "Check1(0)"
+      Tab(3).Control(8).Enabled=   0   'False
+      Tab(3).Control(9)=   "Check1(1)"
+      Tab(3).Control(9).Enabled=   0   'False
+      Tab(3).Control(10)=   "Check1(2)"
+      Tab(3).Control(10).Enabled=   0   'False
+      Tab(3).ControlCount=   11
       Begin VB.CheckBox Check1 
          BackColor       =   &H00C0C0FF&
          Caption         =   "Check1"
@@ -164,7 +174,7 @@ Begin VB.Form KBasicForm
          Index           =   2
          Left            =   -74880
          Style           =   1  'Graphical
-         TabIndex        =   40
+         TabIndex        =   39
          Top             =   1440
          Width           =   1215
       End
@@ -176,7 +186,7 @@ Begin VB.Form KBasicForm
          Index           =   1
          Left            =   -74880
          Style           =   1  'Graphical
-         TabIndex        =   39
+         TabIndex        =   38
          Top             =   960
          Width           =   1215
       End
@@ -186,7 +196,7 @@ Begin VB.Form KBasicForm
          Index           =   0
          Left            =   -74880
          Style           =   1  'Graphical
-         TabIndex        =   38
+         TabIndex        =   37
          Top             =   480
          Width           =   1215
       End
@@ -205,7 +215,7 @@ Begin VB.Form KBasicForm
          Height          =   1095
          Left            =   -74400
          Max             =   10
-         TabIndex        =   31
+         TabIndex        =   30
          Top             =   480
          Width           =   375
       End
@@ -213,7 +223,7 @@ Begin VB.Form KBasicForm
          Height          =   1095
          Left            =   -74640
          Max             =   10
-         TabIndex        =   30
+         TabIndex        =   29
          Top             =   480
          Width           =   255
       End
@@ -221,7 +231,7 @@ Begin VB.Form KBasicForm
          Height          =   1095
          Left            =   -74880
          Max             =   10
-         TabIndex        =   29
+         TabIndex        =   28
          Top             =   480
          Width           =   135
       End
@@ -235,15 +245,6 @@ Begin VB.Form KBasicForm
          _ExtentY        =   661
          BackColor       =   16761024
          ForeColor       =   16711680
-      End
-      Begin KBasic.TemplateControl TemplateControl2 
-         Height          =   495
-         Left            =   -72960
-         TabIndex        =   26
-         Top             =   2520
-         Width           =   495
-         _ExtentX        =   873
-         _ExtentY        =   873
       End
       Begin KBasic.ScrollBar ScrollBar4 
          Height          =   495
@@ -780,7 +781,7 @@ Begin VB.Form KBasicForm
          Height          =   375
          Index           =   17
          Left            =   2280
-         TabIndex        =   27
+         TabIndex        =   26
          Top             =   2640
          Width           =   375
          _ExtentX        =   661
@@ -1018,7 +1019,7 @@ Begin VB.Form KBasicForm
       Begin MSComCtl2.FlatScrollBar FlatScrollBar2 
          Height          =   1095
          Left            =   -73680
-         TabIndex        =   33
+         TabIndex        =   32
          Top             =   480
          Width           =   255
          _ExtentX        =   450
@@ -1031,7 +1032,7 @@ Begin VB.Form KBasicForm
       Begin KBasic.ToggleButton ToggleButton4 
          Height          =   375
          Left            =   -72960
-         TabIndex        =   34
+         TabIndex        =   33
          ToolTipText     =   "Toggle1"
          Top             =   960
          Width           =   615
@@ -1053,7 +1054,7 @@ Begin VB.Form KBasicForm
       Begin KBasic.ToggleButton ToggleButton3 
          Height          =   375
          Left            =   -73560
-         TabIndex        =   35
+         TabIndex        =   34
          Top             =   1440
          Width           =   1215
          _ExtentX        =   2143
@@ -1073,7 +1074,7 @@ Begin VB.Form KBasicForm
       Begin KBasic.ToggleButton ToggleButton2 
          Height          =   375
          Left            =   -73560
-         TabIndex        =   36
+         TabIndex        =   35
          ToolTipText     =   "Toggle2"
          Top             =   480
          Width           =   1215
@@ -1092,7 +1093,7 @@ Begin VB.Form KBasicForm
       Begin KBasic.ToggleButton ToggleButton1 
          Height          =   375
          Left            =   -73560
-         TabIndex        =   37
+         TabIndex        =   36
          ToolTipText     =   "Toggle1"
          Top             =   960
          Width           =   615
@@ -1115,7 +1116,7 @@ Begin VB.Form KBasicForm
          Height          =   375
          Index           =   8
          Left            =   2280
-         TabIndex        =   41
+         TabIndex        =   40
          Top             =   2160
          Width           =   375
          _ExtentX        =   661
@@ -1138,7 +1139,7 @@ Begin VB.Form KBasicForm
          Caption         =   "ScrollBar Appearances"
          Height          =   255
          Left            =   -74880
-         TabIndex        =   32
+         TabIndex        =   31
          Top             =   1800
          Width           =   1935
       End
@@ -1146,7 +1147,7 @@ Begin VB.Form KBasicForm
          Caption         =   "SpinButton Appearances"
          Height          =   255
          Left            =   -74880
-         TabIndex        =   28
+         TabIndex        =   27
          Top             =   1920
          Width           =   1935
       End

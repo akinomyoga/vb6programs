@@ -9,6 +9,7 @@ Begin VB.UserControl KControlHelper
    Picture         =   "KControlHelper.ctx":0000
    ScaleHeight     =   375
    ScaleWidth      =   375
+   ToolboxBitmap   =   "KControlHelper.ctx":07AE
 End
 Attribute VB_Name = "KControlHelper"
 Attribute VB_GlobalNameSpace = False
@@ -644,11 +645,10 @@ ByVal arrow As Long, ByVal maxArrowSize As Long, ByVal maxArrowRate As Single)
         shift_text = False
     End If
     
-    arrow = arrow Or kbArrowButtonNoBorder
     If shift_text Then arrow = arrow Or kbArrowPressed
     If (bstate And kbButtonStateDisabled) <> 0 Then arrow = arrow Or kbArrowDisabled
 
-    KWin.DrawArrowButtonU user, arrow, x1, y1, x2, y2, text_color, maxArrowSize, maxArrowRate
+    KWin.DrawControlArrowU user, arrow, x1, y1, x2, y2, text_color, maxArrowSize, maxArrowRate
     decrementUserControl
 End Sub
 

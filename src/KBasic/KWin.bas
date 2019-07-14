@@ -19,7 +19,7 @@ Public Enum KWinBorderStyle
     kbBorderRidge
 End Enum
 
-Public Enum KWinArrowButtonFlags
+Public Enum KWinArrowFlags
     kbArrowDirectionMask = 3
     kbArrowUp = 0
     kbArrowDown = 1
@@ -28,13 +28,6 @@ Public Enum KWinArrowButtonFlags
     
     kbArrowDisabled = 4
     kbArrowPressed = 8
-    
-    kbArrowButtonMask = &H700
-    kbArrowButtonDefault = &H0
-    kbArrowButtonInset = &H100
-    kbArrowButtonFlat = &H200
-    kbArrowButtonSingle = &H300
-    kbArrowButtonNoBorder = &H400
 End Enum
 
 
@@ -170,7 +163,7 @@ Public Sub DrawControlBorder(ByRef ctrl As Object, ByVal style As KWinBorderStyl
     Call DrawControlBorderU(user, style, x1, y1, x2, y2)
 End Sub
 
-Private Sub drawArrowButton_arrow(ByRef user As UserControl, ByVal flags As KWinArrowButtonFlags, _
+Private Sub DrawControlArrow_arrow(ByRef user As UserControl, ByVal flags As KWinArrowFlags, _
     ByVal x1 As Long, ByVal y1 As Long, ByVal x2 As Long, ByVal y2 As Long, _
     ByVal color As OLE_COLOR, ByVal maxArrowSize As Long, ByVal maxArrowRate As Single)
 
@@ -178,7 +171,7 @@ Private Sub drawArrowButton_arrow(ByRef user As UserControl, ByVal flags As KWin
     Dim h As Long: h = y2 - y1
     Dim x0 As Long: x0 = x1 + w / 2 - 1
     Dim y0 As Long: y0 = y1 + h / 2 - 1
-    pressed = (flags And KWinArrowButtonFlags.kbArrowPressed) <> 0
+    pressed = (flags And KWinArrowFlags.kbArrowPressed) <> 0
     If pressed Then
         x0 = x0 + 1
         y0 = y0 + 1
@@ -187,7 +180,7 @@ Private Sub drawArrowButton_arrow(ByRef user As UserControl, ByVal flags As KWin
     Dim aw As Long
     Dim vx As Long, vy As Long, vm As Long
     Dim Ux As Long, uy As Long, um As Long
-    Select Case flags And KWinArrowButtonFlags.kbArrowDirectionMask
+    Select Case flags And KWinArrowFlags.kbArrowDirectionMask
     Case kbArrowUp
         vm = h: um = w
         vx = 0: vy = 1: Ux = 1: uy = 0
@@ -217,57 +210,27 @@ Private Sub drawArrowButton_arrow(ByRef user As UserControl, ByVal flags As KWin
     Next i
 End Sub
 
-Public Sub DrawArrowButtonU(ByRef user As UserControl, ByVal flags As KWinArrowButtonFlags, _
+Public Sub DrawControlArrowU(ByRef user As UserControl, ByVal flags As KWinArrowFlags, _
     ByVal x1 As Long, ByVal y1 As Long, ByVal x2 As Long, ByVal y2 As Long, _
     ByVal color As OLE_COLOR, ByVal maxArrowSize As Long, ByVal maxArrowRate As Double)
 
-    If (flags And KWinArrowButtonFlags.kbArrowDisabled) <> 0 Then
-        drawArrowButton_arrow user, flags Or kbArrowPressed, x1, y1, x2, y2, SystemColorConstants.vb3DHighlight, maxArrowSize, maxArrowRate
-        drawArrowButton_arrow user, flags And Not kbArrowPressed, x1, y1, x2, y2, SystemColorConstants.vb3DShadow, maxArrowSize, maxArrowRate
+    If (flags And KWinArrowFlags.kbArrowDisabled) <> 0 Then
+        DrawControlArrow_arrow user, flags Or kbArrowPressed, x1, y1, x2, y2, SystemColorConstants.vb3DHighlight, maxArrowSize, maxArrowRate
+        DrawControlArrow_arrow user, flags And Not kbArrowPressed, x1, y1, x2, y2, SystemColorConstants.vb3DShadow, maxArrowSize, maxArrowRate
     Else
-        drawArrowButton_arrow user, flags, x1, y1, x2, y2, color, maxArrowSize, maxArrowRate
+        DrawControlArrow_arrow user, flags, x1, y1, x2, y2, color, maxArrowSize, maxArrowRate
     End If
-    
-    Dim kbb As KWinBorderStyle
-    If (flags And kbArrowPressed) <> 0 Then
-        Select Case flags And kbArrowButtonMask
-        Case kbArrowButtonInset
-            kbb = KWinBorderStyle.kbBorderButtonInset
-        Case kbArrowButtonFlat
-            kbb = KWinBorderStyle.kbBorderSinglePressed
-        Case kbArrowButtonSingle
-            kbb = KWinBorderStyle.kbBorderSingleInset
-        Case kbArrowButtonNoBorder
-            kbb = kbBorderNone
-        Case Else
-            kbb = KWinBorderStyle.kbBorderSinglePressed
-        End Select
-    Else
-        Select Case flags And kbArrowButtonMask
-        Case kbArrowButtonInset
-            kbb = KWinBorderStyle.kbBorderButtonOutset
-        Case kbArrowButtonFlat
-            kbb = KWinBorderStyle.kbBorderSinglePressed
-        Case kbArrowButtonSingle
-            kbb = KWinBorderStyle.kbBorderSingleOutset
-        Case kbArrowButtonNoBorder
-            kbb = kbBorderNone
-        Case Else
-            kbb = KWinBorderStyle.kbBorderControlOutset
-        End Select
-    End If
-    KWin.DrawControlBorderU user, kbb, x1, y1, x2, y2
 End Sub
 
-Public Sub DrawArrowButton(ByRef ctrl As Object, ByVal flags As KWinArrowButtonFlags, _
+Public Sub DrawControlArrow(ByRef ctrl As Object, ByVal flags As KWinArrowFlags, _
     ByVal x1 As Single, ByVal y1 As Single, ByVal x2 As Single, ByVal y2 As Single, _
     ByVal color As OLE_COLOR, ByVal maxArrowSize As Long, ByVal maxArrowRate As Double)
     Dim user As UserControl
     Set user = GetUserControl(ctrl)
-    DrawArrowButtonU user, flags, x1, y1, x2, y2, color, maxArrowSize, maxArrowRate
+    DrawControlArrowU user, flags, x1, y1, x2, y2, color, maxArrowSize, maxArrowRate
 End Sub
 
-Private Sub FillChidori_impl(ByRef user As UserControl, _
+Public Sub FillChidoriU(ByRef user As UserControl, _
     ByVal x1 As Long, ByVal y1 As Long, ByVal x2 As Long, ByVal y2 As Long, ByVal color As OLE_COLOR)
     If x1 >= x2 Then Exit Sub
     If y1 >= y2 Then Exit Sub
@@ -285,7 +248,7 @@ Public Sub FillChidori(ByRef ctrl As Object, _
     ByVal x1 As Long, ByVal y1 As Long, ByVal x2 As Long, ByVal y2 As Long, ByVal color As OLE_COLOR)
     Dim user As UserControl
     Set user = GetUserControl(ctrl)
-    FillChidori_impl user, x1, y1, x2, y2, color
+    FillChidoriU user, x1, y1, x2, y2, color
 End Sub
 
 
