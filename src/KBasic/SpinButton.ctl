@@ -35,6 +35,7 @@ Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = True
 '' SpinButton
 '' éQçl http://home.att.ne.jp/zeta/gen/excel/c04p38.htm
+Option Explicit
 
 Public Enum KSpinOrientation
     kbOrientationAuto = -1
@@ -58,6 +59,7 @@ Dim m_hoverButton As Long
 ''-----------------------------------------------------------------------------
 
 Const INITIAL_DELAY_FACTOR = 5
+Const APPEARANCE_DEFAULT = KControlAppearance.kbAppearance3DInset
 
 Dim m_Value As Long
 Dim m_Min As Long
@@ -95,6 +97,7 @@ Public Property Get Value() As Long
 End Property
 
 Public Property Let Value(ByVal new_Value As Long)
+    Dim min_Value As Long, max_Value As Long
     min_Value = KMath.MinL(m_Min, m_Max)
     max_Value = KMath.MaxL(m_Min, m_Max)
     new_Value = KMath.ClampL(new_Value, min_Value, max_Value)
@@ -274,7 +277,7 @@ Private Function hitTest(ByVal X As Single, ByVal Y As Single) As Long
         pos2 = X
         max2 = ScaleWidth
     End If
-    histTest = 0
+    hitTest = 0
     If 0 <= pos1 And pos1 < max1 And 0 <= pos2 And pos2 < max2 Then
         If pos1 < Int(max1 / 2) Then
             hitTest = 1
@@ -285,9 +288,10 @@ Private Function hitTest(ByVal X As Single, ByVal Y As Single) As Long
 End Function
 
 Private Sub doSpin()
+    Dim oldValue As Long, is_reverted As Boolean
     oldValue = m_Value
-    isReverted = m_Min > m_Max
-    If m_button = 1 Xor isHorizontal() Xor isReverted Then
+    is_reverted = m_Min > m_Max
+    If m_button = 1 Xor isHorizontal() Xor is_reverted Then
         m_Value = KMath.MinL(m_Value + m_SmallChange, KMath.MaxL(m_Min, m_Max))
     Else
         m_Value = KMath.MaxL(m_Value - m_SmallChange, KMath.MinL(m_Min, m_Max))
@@ -305,6 +309,7 @@ End Sub
 Private Sub leftButton_Update(ByVal state As Boolean, ByVal X As Long, ByVal Y As Long)
     If Not UserControl.Enabled Then Exit Sub
 
+    Dim oldButton As Long
     oldButton = m_button
     If state Then
         m_button = hitTest(X, Y)
@@ -349,7 +354,6 @@ Private Sub doPaint_paintButton2(ByVal arrow As Long, ByVal Button As Long, _
     Dim bflags As KButtonStateFlags
     If Not UserControl.Enabled Then
         bflags = kbButtonStateDisabled
-        flags = flags Or kbArrowDisabled
     Else
         If is_pressed Then bflags = bflags Or kbButtonStatePressed
         If is_hovered Then bflags = bflags Or kbButtonStateHovered
@@ -357,11 +361,11 @@ Private Sub doPaint_paintButton2(ByVal arrow As Long, ByVal Button As Long, _
     
     Dim Appearance As KControlAppearance
     Appearance = m_Appearance
-    If Appearance = kbAppearanceDefault Then Appearance = kbAppearance3D
+    If Appearance = kbAppearanceDefault Then Appearance = APPEARANCE_DEFAULT
 
-    Controller.DrawButtonBackground x1, y1, x2, y2, m_Appearance, bflags
-    Controller.DrawButtonArrow x1, y1, x2, y2, m_Appearance, bflags, arrow
-    Controller.DrawButtonBorder x1, y1, x2, y2, m_Appearance, bflags
+    Controller.DrawButtonBackground x1, y1, x2, y2, Appearance, bflags
+    Controller.DrawButtonArrow x1, y1, x2, y2, Appearance, bflags, arrow, 5, 1#
+    Controller.DrawButtonBorder x1, y1, x2, y2, Appearance, bflags
 End Sub
 
 Private Sub doPaint()

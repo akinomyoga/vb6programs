@@ -172,14 +172,14 @@ End Sub
 
 Private Sub drawArrowButton_arrow(ByRef user As UserControl, ByVal flags As KWinArrowButtonFlags, _
     ByVal x1 As Long, ByVal y1 As Long, ByVal x2 As Long, ByVal y2 As Long, _
-    ByVal color As OLE_COLOR, ByVal maxArrowSize As Long, ByVal maxArrowRate As Double)
+    ByVal color As OLE_COLOR, ByVal maxArrowSize As Long, ByVal maxArrowRate As Single)
 
     Dim w As Long: w = x2 - x1
     Dim h As Long: h = y2 - y1
     Dim x0 As Long: x0 = x1 + w / 2 - 1
     Dim y0 As Long: y0 = y1 + h / 2 - 1
-    Pressed = (flags And KWinArrowButtonFlags.kbArrowPressed) <> 0
-    If Pressed Then
+    pressed = (flags And KWinArrowButtonFlags.kbArrowPressed) <> 0
+    If pressed Then
         x0 = x0 + 1
         y0 = y0 + 1
     End If

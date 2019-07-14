@@ -36,12 +36,6 @@ Attribute VB_Exposed = True
 '' ScrollBar
 '' éQçl http://home.att.ne.jp/zeta/gen/excel/c04p38.htm
 
-Public Enum KScrollAppearance
-    kbScroll3D
-    kbScrollFlat
-    kbScrollFlat3D
-End Enum
-
 ''-----------------------------------------------------------------------------
 ''
 '' ì‡ïîïœêî
@@ -82,6 +76,7 @@ End Type
 Const BAR_MIN_SIZE = 5
 Const BUTTON_MIN_SIZE = 9
 Const INITIAL_DELAY_FACTOR = 5
+Const APPEARANCE_DEFAULT = KControlAppearance.kbAppearance3D
 
 Dim m_Value As Long
 Dim m_Min As Long
@@ -95,7 +90,7 @@ Dim m_BarRange As Long
 Dim m_LargeChange As Long
 Dim m_ButtonSize As Long
 Dim m_ButtonMinSize As Long
-Dim m_Appearance As KScrollAppearance
+Dim m_Appearance As KControlAppearance
 
 Public Event Scroll()
 Public Event Change()
@@ -127,6 +122,7 @@ Attribute Value.VB_UserMemId = 0
 End Property
 
 Public Property Let Value(ByVal new_Value As Long)
+    Dim min_Value As Long, max_Value As Long
     min_Value = KMath.MinL(m_Min, m_Max)
     max_Value = KMath.MaxL(m_Min, m_Max)
     new_Value = KMath.ClampL(new_Value, min_Value, max_Value)
@@ -293,12 +289,12 @@ Public Property Let ButtonMinSize(ByVal new_ButtonMinSize As Long)
     End If
 End Property
 
-Public Property Get Appearance() As KScrollAppearance
+Public Property Get Appearance() As KControlAppearance
 Attribute Appearance.VB_ProcData.VB_Invoke_Property = ";Appearance"
     Appearance = m_Appearance
 End Property
 
-Public Property Let Appearance(ByVal new_Appearance As KScrollAppearance)
+Public Property Let Appearance(ByVal new_Appearance As KControlAppearance)
     If m_Appearance <> new_Appearance Then
         m_Appearance = new_Appearance
         PropertyChanged "Appearance"
@@ -319,7 +315,7 @@ Private Sub processOwnProperties(ByVal kind As PropertyOperation, PropBag As Pro
     Controller.DefineByValProperty kind, PropBag, "LargeChange", m_LargeChange, 1
     Controller.DefineByValProperty kind, PropBag, "ButtonSize", m_ButtonSize, -1
     Controller.DefineByValProperty kind, PropBag, "ButtonMinSize", m_ButtonMinSize, BUTTON_MIN_SIZE
-    Controller.DefineByValProperty kind, PropBag, "Appearance", m_Appearance, KScrollAppearance.kbScroll3D
+    Controller.DefineByValProperty kind, PropBag, "Appearance", m_Appearance, KControlAppearance.kbAppearanceDefault
 End Sub
 
 ''-----------------------------------------------------------------------------
@@ -423,7 +419,7 @@ Private Sub determineGeometry(ByRef geo As ScrollBarGeometry)
 
     geo.geo_trackSize = geo.geo_height - 2 * geo.geo_buttonSize
     If geo.geo_trackSize < BAR_MIN_SIZE Then
-        geo.geo_buttonSize = geo.geo_buttonSize + CLng(geo.geo_trackSize / 2)
+        geo.geo_buttonSize = geo.geo_buttonSize + CLng((geo.geo_trackSize + 1) / 2)
         geo.geo_trackSize = geo.geo_height - 2 * geo.geo_buttonSize
         geo.geo_barSize = 0
         geo.geo_barOffset = 0
@@ -462,10 +458,10 @@ Private Function hitTestG(ByVal X As Single, ByVal Y As Single, ByRef geo As Scr
     End If
     hitTestG = 0
     If 0 <= v And v < geo.geo_height And 0 <= u And u < geo.geo_width Then
-        If v < geo.geo_buttonSize Then
-            hitTestG = 1
-        ElseIf v >= geo.geo_height - geo.geo_buttonSize Then
+        If v >= geo.geo_height - geo.geo_buttonSize Then
             hitTestG = 2
+        ElseIf v < geo.geo_buttonSize Then
+            hitTestG = 1
         ElseIf v < geo.geo_buttonSize + geo.geo_barOffset Then
             hitTestG = 3
         ElseIf v >= geo.geo_buttonSize + geo.geo_barOffset + geo.geo_barSize Then
@@ -483,16 +479,17 @@ Private Function hitTest(ByVal X As Single, ByVal Y As Single) As Long
 End Function
 
 Private Sub doScroll()
+    Dim oldValue As Long, is_reverted As Boolean
     oldValue = m_Value
-    isReverted = m_Min > m_Max
+    is_reverted = m_Min > m_Max
     If m_button = 1 Or m_button = 2 Then
-        If m_button = 1 Xor isReverted Then
+        If m_button = 1 Xor is_reverted Then
             m_Value = KMath.MaxL(m_Value - m_SmallChange, KMath.MinL(m_Min, m_Max))
         Else
             m_Value = KMath.MinL(m_Value + m_SmallChange, KMath.MaxL(m_Min, m_Max))
         End If
     ElseIf m_button = 3 Or m_button = 4 Then
-        If m_button = 3 Xor isReverted Then
+        If m_button = 3 Xor is_reverted Then
             m_Value = KMath.MaxL(m_Value - m_LargeChange, KMath.MinL(m_Min, m_Max))
         Else
             m_Value = KMath.MinL(m_Value + m_LargeChange, KMath.MaxL(m_Min, m_Max))
@@ -508,6 +505,7 @@ End Sub
 Private Sub leftButton_Update(ByVal state As Boolean, ByVal X As Long, ByVal Y As Long)
     If Not UserControl.Enabled Then Exit Sub
 
+    Dim oldButton As Long
     oldButton = m_button
     If state Then
         m_button = hitTest(Controller.MouseX, Controller.MouseY)
@@ -552,6 +550,7 @@ Private Sub doMouseMove(ByVal X As Long, ByVal Y As Long)
         Else
             delta = Controller.MouseY - m_dragY
         End If
+        Dim new_Value As Long, min_Value As Long, max_Value As Long
         new_Value = m_dragValue + CLng((m_Max - m_Min) * delta / (geo.geo_trackSize - geo.geo_barSize))
         min_Value = KMath.MinL(m_Min, m_Max)
         max_Value = KMath.MaxL(m_Min, m_Max)
@@ -566,57 +565,65 @@ Private Sub doMouseMove(ByVal X As Long, ByVal Y As Long)
 End Sub
 
 Private Sub process_Hover(X As Single, Y As Single)
-    If UserControl.Enabled And m_Appearance = kbScrollFlat3D Then
+    If UserControl.Enabled And (m_Appearance = kbAppearanceFlat3D Or m_Appearance = kbAppearanceToolButton) Then
         Controller.Refresh
     End If
 End Sub
 
-Private Sub doPaint_paintButton(ByVal flags As Long, ByVal Button As Long, _
+Private Sub doPaint_paintButton(ByVal arrow As Long, ByVal Button As Long, _
     ByVal x1 As Long, ByVal y1 As Long, ByVal x2 As Long, ByVal y2 As Long)
     
-    pressed = m_button = Button And m_button = m_hoverButton
-    arrow_color = UserControl.ForeColor
-    Select Case m_Appearance
-    Case kbScrollFlat
-        flags = flags Or kbArrowButtonFlat
-        If m_button = Button Then
-            If m_button = m_hoverButton Then
-                Line (x1 + 1, y1 + 1)-(x2 - 2, y2 - 2), UserControl.ForeColor, BF
-            Else
-                Line (x1 + 1, y1 + 1)-(x2 - 2, y2 - 2), SystemColorConstants.vb3DShadow, BF
-            End If
-            arrow_color = UserControl.BackColor
-            pressed = False
+    Dim is_pressed As Boolean, is_hovered As Boolean
+    is_pressed = UserControl.Enabled And m_button = Button And m_hoverButton = Button
+    is_hovered = UserControl.Enabled And (m_button <> 0 Or m_hoverButton <> 0)
+    
+    Dim Appearance As KControlAppearance
+    Appearance = m_Appearance
+    If Appearance = kbAppearanceDefault Then Appearance = APPEARANCE_DEFAULT
+    
+    Dim bflags As KButtonStateFlags
+    If Not UserControl.Enabled Then
+        bflags = kbButtonStateDisabled
+    Else
+        bflags = 0
+        If is_pressed Then bflags = bflags Or kbButtonStatePressed
+        If m_button <> 0 Or Controller.Hover Then bflags = bflags Or kbButtonStateHovered
+    End If
+    
+    save_ForeColor = UserControl.ForeColor
+    If Appearance = kbAppearanceFlat Then
+        If UserControl.Enabled And Button = m_button And Button <> m_hoverButton Then
+            bflags = bflags Or kbButtonStatePressed
+            UserControl.ForeColor = SystemColorConstants.vb3DShadow
         End If
-    Case kbScrollFlat3D
-        If Controller.Hover Or m_button <> 0 Then
-            flags = flags Or kbArrowButtonSingle
-        Else
-            flags = flags Or kbArrowButtonFlat
-        End If
-    End Select
-    If pressed Then flags = flags Or kbArrowPressed
-    If Not UserControl.Enabled Then flags = flags Or kbArrowDisabled
-
-    KWin.DrawArrowButton Me, flags, x1, y1, x2, y2, arrow_color, 5, 0.6
+    End If
+    Controller.DrawButtonBackground x1, y1, x2, y2, Appearance, bflags
+    Controller.DrawButtonArrow x1, y1, x2, y2, Appearance, bflags, arrow, 5, 0.6
+    Controller.DrawButtonBorder x1, y1, x2, y2, Appearance, bflags
+    UserControl.ForeColor = save_ForeColor
 End Sub
 
 Private Sub doPaint_paintBar(ByVal x1 As Long, ByVal y1 As Long, ByVal x2 As Long, ByVal y2 As Long)
-    Select Case m_Appearance
-    Case kbScrollFlat
-        KWin.DrawControlBorder Me, kbBorderSinglePressed, x1, y1, x2, y2
-        If m_button = 5 Then
-            Line (x1 + 1, y1 + 1)-(x2 - 2, y2 - 2), SystemColorConstants.vb3DShadow, BF
+    Dim Appearance As KControlAppearance
+    Appearance = m_Appearance
+    If Appearance = kbAppearanceDefault Then Appearance = APPEARANCE_DEFAULT
+    
+    Dim bflags As KButtonStateFlags
+    bflags = 0
+    If UserControl.Enabled And (Controller.Hover Or m_button <> 0) Then
+        bflags = bflags Or kbButtonStateHovered
+    End If
+    If Appearance = kbAppearanceFlat Then
+        If UserControl.Enabled And m_button = 5 Then
+            save_ForeColor = UserControl.ForeColor
+            bflags = bflags Or kbButtonStatePressed
+            UserControl.ForeColor = SystemColorConstants.vb3DShadow
+            Controller.DrawButtonBackground x1, y1, x2, y2, Appearance, bflags
+            UserControl.ForeColor = save_ForeColor
         End If
-    Case kbScrollFlat3D
-        If Controller.Hover Or m_button <> 0 Then
-            KWin.DrawControlBorder Me, kbBorderSingleOutset, x1, y1, x2, y2
-        Else
-            KWin.DrawControlBorder Me, kbBorderSinglePressed, x1, y1, x2, y2
-        End If
-    Case Else
-        KWin.DrawControlBorder Me, kbBorderControlOutset, x1, y1, x2, y2
-    End Select
+    End If
+    
+    Controller.DrawButtonBorder x1, y1, x2, y2, Appearance, bflags
 End Sub
 
 Private Sub doPaint_drawLine(ByRef geo As ScrollBarGeometry, _
@@ -638,8 +645,19 @@ Private Sub doPaint()
     Dim v1 As Long: v1 = geo.geo_buttonSize
     Dim v4 As Long: v4 = geo.geo_height - geo.geo_buttonSize
     If geo.geo_trackSize > 0 Then
-        doPaint_drawLine geo, 0, v1, 0, v4, SystemColorConstants.vb3DShadow
-        doPaint_drawLine geo, w - 1, v1, w - 1, v4, SystemColorConstants.vb3DShadow
+        If m_Appearance = kbAppearanceToolButton Then
+            If UserControl.Enabled And m_buttion <> 0 Or Controller.Hover Then
+                doPaint_drawLine geo, 0, v1, 0, v4, SystemColorConstants.vb3DShadow
+                doPaint_drawLine geo, w - 1, v1, w - 1, v4, SystemColorConstants.vb3DShadow
+            End If
+        ElseIf m_Appearance = kbAppearanceGroove Then
+            doPaint_drawLine geo, 0, v1, 0, v4, SystemColorConstants.vb3DShadow
+            doPaint_drawLine geo, w - 1, v1, w - 1, v4, SystemColorConstants.vb3DHighlight
+        Else
+            doPaint_drawLine geo, 0, v1, 0, v4, SystemColorConstants.vb3DShadow
+            doPaint_drawLine geo, w - 1, v1, w - 1, v4, SystemColorConstants.vb3DShadow
+        End If
+
         If Not UserControl.Enabled Then
             If geo.geo_horizontal Then
                 KWin.FillChidori Me, v1, 1, v4, w - 1, SystemColorConstants.vb3DHighlight

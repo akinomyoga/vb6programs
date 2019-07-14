@@ -630,7 +630,8 @@ ByVal Appearance As KControlAppearance, ByVal bstate As KButtonStateFlags, ByVal
 End Sub
 
 Public Sub DrawButtonArrow(ByVal x1 As Single, ByVal y1 As Single, ByVal x2 As Single, ByVal y2 As Single, _
-ByVal Appearance As KControlAppearance, ByVal bstate As KButtonStateFlags, ByVal arrow As Long)
+ByVal Appearance As KControlAppearance, ByVal bstate As KButtonStateFlags, _
+ByVal arrow As Long, ByVal maxArrowSize As Long, ByVal maxArrowRate As Single)
     incrementUserControl
     Dim is_pressed As Boolean
     is_pressed = (bstate And kbButtonStatePressed) <> 0
@@ -647,7 +648,7 @@ ByVal Appearance As KControlAppearance, ByVal bstate As KButtonStateFlags, ByVal
     If shift_text Then arrow = arrow Or kbArrowPressed
     If (bstate And kbButtonStateDisabled) <> 0 Then arrow = arrow Or kbArrowDisabled
 
-    KWin.DrawArrowButtonU user, arrow, x1, y1, x2, y2, text_color, 5, 1#
+    KWin.DrawArrowButtonU user, arrow, x1, y1, x2, y2, text_color, maxArrowSize, maxArrowRate
     decrementUserControl
 End Sub
 
