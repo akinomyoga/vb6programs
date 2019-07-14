@@ -11,15 +11,15 @@ Begin VB.UserControl KButton
    Begin KBasic.KControlHelper Controller 
       Left            =   120
       Top             =   120
-      _extentx        =   661
-      _extenty        =   661
-      exportsenabled  =   -1  'True
-      exportsbackcolor=   -1  'True
-      exportsforecolor=   -1  'True
-      exportsfont     =   -1  'True
-      exportsmousepointer=   -1  'True
-      exportsmouseicon=   -1  'True
-      exportstag      =   -1  'True
+      _ExtentX        =   661
+      _ExtentY        =   661
+      ExportsEnabled  =   -1  'True
+      ExportsBackColor=   -1  'True
+      ExportsForeColor=   -1  'True
+      ExportsFont     =   -1  'True
+      ExportsMousePointer=   -1  'True
+      ExportsMouseIcon=   -1  'True
+      ExportsTag      =   -1  'True
    End
 End
 Attribute VB_Name = "KButton"
@@ -27,6 +27,7 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = True
+'' KButton.ctl
 Option Explicit
 
 ''-----------------------------------------------------------------------------
@@ -65,13 +66,13 @@ Public Event KeyUp(KeyCode As Integer, Shift As Integer)
 ''
 ''-----------------------------------------------------------------------------
 
-Public Property Get caption() As String
-Attribute caption.VB_ProcData.VB_Invoke_Property = ";Appearance"
-Attribute caption.VB_UserMemId = 0
-    caption = m_Caption
+Public Property Get Caption() As String
+Attribute Caption.VB_ProcData.VB_Invoke_Property = ";Appearance"
+Attribute Caption.VB_UserMemId = 0
+    Caption = m_Caption
 End Property
 
-Public Property Let caption(ByVal new_Caption As String)
+Public Property Let Caption(ByVal new_Caption As String)
     If m_Caption <> new_Caption Then
         m_Caption = new_Caption
         Controller.Refresh

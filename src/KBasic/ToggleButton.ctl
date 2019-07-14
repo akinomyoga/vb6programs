@@ -27,6 +27,9 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = True
+'' ToggleButton
+Option Explicit
+
 ''-----------------------------------------------------------------------------
 ''
 '' ì‡ïîïœêî
@@ -191,31 +194,35 @@ Private Sub hover_Update()
 End Sub
 
 Private Sub doPaint()
+    Dim h As Single, w As Single
     h = UserControl.ScaleHeight
     w = UserControl.ScaleWidth
     
+    Dim text_width As Single, text_height As Single
     text_width = UserControl.TextWidth(m_Caption)
     text_height = UserControl.TextHeight(m_Caption)
-    CurrentX = (w - text_width) / 2
-    CurrentY = (h - text_height) / 2
+    Dim x0 As Single, y0 As Single
+    x0 = Int((w - text_width) / 2)
+    y0 = Int((h - text_height) / 2)
     If Controller.IsLeftPressed And Controller.Hover Then
-        CurrentX = CurrentX + 1
-        CurrentY = CurrentY + 1
+        x0 = x0 + 1
+        y0 = y0 + 1
     End If
     If Not UserControl.Enabled Then
+        Dim saveForeColor As OLE_COLOR
         saveForeColor = UserControl.ForeColor
-        saveX = CurrentX
-        saveY = CurrentY
         UserControl.ForeColor = SystemColorConstants.vb3DHighlight
-        CurrentX = saveX + 1
-        CurrentY = saveY + 1
+        UserControl.CurrentX = x0 + 1
+        UserControl.CurrentY = y0 + 1
         UserControl.Print m_Caption
         UserControl.ForeColor = SystemColorConstants.vb3DShadow
-        CurrentX = saveX
-        CurrentY = saveY
+        UserControl.CurrentX = x0
+        UserControl.CurrentY = y0
         UserControl.Print m_Caption
         UserControl.ForeColor = saveForeColor
     Else
+        UserControl.CurrentX = x0
+        UserControl.CurrentY = y0
         UserControl.Print m_Caption
     End If
 

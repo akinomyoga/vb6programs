@@ -35,6 +35,7 @@ Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = True
 '' ScrollBar
 '' éQçl http://home.att.ne.jp/zeta/gen/excel/c04p38.htm
+Option Explicit
 
 ''-----------------------------------------------------------------------------
 ''
@@ -536,6 +537,7 @@ Private Sub doMouseMove(ByVal X As Long, ByVal Y As Long)
     
     Dim geo As ScrollBarGeometry
     determineGeometry geo
+    Dim oldMatch As Boolean, newMatch As Boolean
     oldMatch = m_button = m_hoverButton
     m_hoverButton = hitTestG(X, Y, geo)
     newMatch = m_button = m_hoverButton
@@ -571,7 +573,7 @@ Private Sub process_Hover(X As Single, Y As Single)
 End Sub
 
 Private Sub doPaint_paintButton(ByVal arrow As Long, ByVal Button As Long, _
-    ByVal x1 As Long, ByVal y1 As Long, ByVal x2 As Long, ByVal y2 As Long)
+ByVal x1 As Long, ByVal y1 As Long, ByVal x2 As Long, ByVal y2 As Long)
     
     Dim is_pressed As Boolean, is_hovered As Boolean
     is_pressed = UserControl.Enabled And m_button = Button And m_hoverButton = Button
@@ -589,7 +591,8 @@ Private Sub doPaint_paintButton(ByVal arrow As Long, ByVal Button As Long, _
         If is_pressed Then bflags = bflags Or kbButtonStatePressed
         If m_button <> 0 Or Controller.Hover Then bflags = bflags Or kbButtonStateHovered
     End If
-    
+
+    Dim save_ForeColor As OLE_COLOR
     save_ForeColor = UserControl.ForeColor
     If Appearance = kbAppearanceFlat Then
         If UserControl.Enabled And Button = m_button And Button <> m_hoverButton Then
@@ -615,6 +618,7 @@ Private Sub doPaint_paintBar(ByVal x1 As Long, ByVal y1 As Long, ByVal x2 As Lon
     End If
     If Appearance = kbAppearanceFlat Then
         If UserControl.Enabled And m_button = 5 Then
+            Dim save_ForeColor As OLE_COLOR
             save_ForeColor = UserControl.ForeColor
             bflags = bflags Or kbButtonStatePressed
             UserControl.ForeColor = SystemColorConstants.vb3DShadow
@@ -627,8 +631,8 @@ Private Sub doPaint_paintBar(ByVal x1 As Long, ByVal y1 As Long, ByVal x2 As Lon
 End Sub
 
 Private Sub doPaint_drawLine(ByRef geo As ScrollBarGeometry, _
-    ByVal x1 As Long, ByVal y1 As Long, ByVal x2 As Long, ByVal y2 As Long, _
-    ByVal color As OLE_COLOR)
+ByVal x1 As Long, ByVal y1 As Long, ByVal x2 As Long, ByVal y2 As Long, _
+ByVal color As OLE_COLOR)
     If geo.geo_horizontal Then
         Line (y1, x1)-(y2, x2), color
     Else
@@ -646,7 +650,7 @@ Private Sub doPaint()
     Dim v4 As Long: v4 = geo.geo_height - geo.geo_buttonSize
     If geo.geo_trackSize > 0 Then
         If m_Appearance = kbAppearanceToolButton Then
-            If UserControl.Enabled And m_buttion <> 0 Or Controller.Hover Then
+            If UserControl.Enabled And m_button <> 0 Or Controller.Hover Then
                 doPaint_drawLine geo, 0, v1, 0, v4, SystemColorConstants.vb3DShadow
                 doPaint_drawLine geo, w - 1, v1, w - 1, v4, SystemColorConstants.vb3DShadow
             End If
