@@ -977,7 +977,7 @@ Begin VB.Form Form1
       DeviceType      =   ""
       FileName        =   "C:\WINDOWS\ÃÞ½¸Ä¯Ìß\Œ÷ˆê\My documents\‰¹\do.wav"
    End
-   Begin KBasic.ColorButton CommandButton1 
+   Begin KBasic.KButton CommandButton1 
       Height          =   735
       Index           =   29
       Left            =   6240
@@ -1000,7 +1000,7 @@ Begin VB.Form Form1
          Strikethrough   =   0   'False
       EndProperty
    End
-   Begin KBasic.ColorButton CommandButton1 
+   Begin KBasic.KButton CommandButton1 
       Height          =   735
       Index           =   27
       Left            =   5880
@@ -1023,7 +1023,7 @@ Begin VB.Form Form1
          Strikethrough   =   0   'False
       EndProperty
    End
-   Begin KBasic.ColorButton CommandButton1 
+   Begin KBasic.KButton CommandButton1 
       Height          =   735
       Index           =   25
       Left            =   5520
@@ -1046,7 +1046,7 @@ Begin VB.Form Form1
          Strikethrough   =   0   'False
       EndProperty
    End
-   Begin KBasic.ColorButton CommandButton1 
+   Begin KBasic.KButton CommandButton1 
       Height          =   1095
       Index           =   31
       Left            =   6720
@@ -1069,7 +1069,7 @@ Begin VB.Form Form1
          Strikethrough   =   0   'False
       EndProperty
    End
-   Begin KBasic.ColorButton CommandButton1 
+   Begin KBasic.KButton CommandButton1 
       Height          =   1095
       Index           =   30
       Left            =   6360
@@ -1092,7 +1092,7 @@ Begin VB.Form Form1
          Strikethrough   =   0   'False
       EndProperty
    End
-   Begin KBasic.ColorButton CommandButton1 
+   Begin KBasic.KButton CommandButton1 
       Height          =   1095
       Index           =   28
       Left            =   6000
@@ -1115,7 +1115,7 @@ Begin VB.Form Form1
          Strikethrough   =   0   'False
       EndProperty
    End
-   Begin KBasic.ColorButton CommandButton1 
+   Begin KBasic.KButton CommandButton1 
       Height          =   1095
       Index           =   26
       Left            =   5640
@@ -1138,7 +1138,7 @@ Begin VB.Form Form1
          Strikethrough   =   0   'False
       EndProperty
    End
-   Begin KBasic.ColorButton CommandButton1 
+   Begin KBasic.KButton CommandButton1 
       Height          =   1095
       Index           =   24
       Left            =   5280
@@ -1161,7 +1161,7 @@ Begin VB.Form Form1
          Strikethrough   =   0   'False
       EndProperty
    End
-   Begin KBasic.ColorButton CommandButton1 
+   Begin KBasic.KButton CommandButton1 
       Height          =   735
       Index           =   22
       Left            =   4800
@@ -1184,7 +1184,7 @@ Begin VB.Form Form1
          Strikethrough   =   0   'False
       EndProperty
    End
-   Begin KBasic.ColorButton CommandButton1 
+   Begin KBasic.KButton CommandButton1 
       Height          =   735
       Index           =   20
       Left            =   4440
@@ -1207,7 +1207,7 @@ Begin VB.Form Form1
          Strikethrough   =   0   'False
       EndProperty
    End
-   Begin KBasic.ColorButton CommandButton1 
+   Begin KBasic.KButton CommandButton1 
       Height          =   1095
       Index           =   23
       Left            =   4920
@@ -1230,7 +1230,7 @@ Begin VB.Form Form1
          Strikethrough   =   0   'False
       EndProperty
    End
-   Begin KBasic.ColorButton CommandButton1 
+   Begin KBasic.KButton CommandButton1 
       Height          =   1095
       Index           =   21
       Left            =   4560
@@ -1253,7 +1253,7 @@ Begin VB.Form Form1
          Strikethrough   =   0   'False
       EndProperty
    End
-   Begin KBasic.ColorButton CommandButton1 
+   Begin KBasic.KButton CommandButton1 
       Height          =   735
       Index           =   17
       Left            =   3720
@@ -1276,7 +1276,7 @@ Begin VB.Form Form1
          Strikethrough   =   0   'False
       EndProperty
    End
-   Begin KBasic.ColorButton CommandButton1 
+   Begin KBasic.KButton CommandButton1 
       Height          =   735
       Index           =   15
       Left            =   3360
@@ -1299,7 +1299,7 @@ Begin VB.Form Form1
          Strikethrough   =   0   'False
       EndProperty
    End
-   Begin KBasic.ColorButton CommandButton1 
+   Begin KBasic.KButton CommandButton1 
       Height          =   1095
       Index           =   19
       Left            =   4200
@@ -1322,7 +1322,7 @@ Begin VB.Form Form1
          Strikethrough   =   0   'False
       EndProperty
    End
-   Begin KBasic.ColorButton CommandButton1 
+   Begin KBasic.KButton CommandButton1 
       Height          =   1095
       Index           =   18
       Left            =   3840
@@ -1345,7 +1345,7 @@ Begin VB.Form Form1
          Strikethrough   =   0   'False
       EndProperty
    End
-   Begin KBasic.ColorButton CommandButton1 
+   Begin KBasic.KButton CommandButton1 
       Height          =   1095
       Index           =   16
       Left            =   3480
@@ -1368,7 +1368,7 @@ Begin VB.Form Form1
          Strikethrough   =   0   'False
       EndProperty
    End
-   Begin KBasic.ColorButton CommandButton1 
+   Begin KBasic.KButton CommandButton1 
       Height          =   735
       Index           =   13
       Left            =   3000
@@ -1391,7 +1391,7 @@ Begin VB.Form Form1
          Strikethrough   =   0   'False
       EndProperty
    End
-   Begin KBasic.ColorButton CommandButton1 
+   Begin KBasic.KButton CommandButton1 
       Height          =   1095
       Index           =   14
       Left            =   3120
@@ -1414,7 +1414,7 @@ Begin VB.Form Form1
          Strikethrough   =   0   'False
       EndProperty
    End
-   Begin KBasic.ColorButton CommandButton1 
+   Begin KBasic.KButton CommandButton1 
       Height          =   735
       Index           =   10
       Left            =   2280
@@ -1437,7 +1437,7 @@ Begin VB.Form Form1
          Strikethrough   =   0   'False
       EndProperty
    End
-   Begin KBasic.ColorButton CommandButton1 
+   Begin KBasic.KButton CommandButton1 
       Height          =   735
       Index           =   8
       Left            =   1920
@@ -1460,7 +1460,7 @@ Begin VB.Form Form1
          Strikethrough   =   0   'False
       EndProperty
    End
-   Begin KBasic.ColorButton CommandButton1 
+   Begin KBasic.KButton CommandButton1 
       Height          =   1095
       Index           =   12
       Left            =   2760
@@ -1483,7 +1483,7 @@ Begin VB.Form Form1
          Strikethrough   =   0   'False
       EndProperty
    End
-   Begin KBasic.ColorButton CommandButton1 
+   Begin KBasic.KButton CommandButton1 
       Height          =   1095
       Index           =   11
       Left            =   2400
@@ -1506,7 +1506,7 @@ Begin VB.Form Form1
          Strikethrough   =   0   'False
       EndProperty
    End
-   Begin KBasic.ColorButton CommandButton1 
+   Begin KBasic.KButton CommandButton1 
       Height          =   1095
       Index           =   9
       Left            =   2040
@@ -1529,7 +1529,7 @@ Begin VB.Form Form1
          Strikethrough   =   0   'False
       EndProperty
    End
-   Begin KBasic.ColorButton CommandButton1 
+   Begin KBasic.KButton CommandButton1 
       Height          =   1095
       Index           =   7
       Left            =   1680
@@ -1552,7 +1552,7 @@ Begin VB.Form Form1
          Strikethrough   =   0   'False
       EndProperty
    End
-   Begin KBasic.ColorButton CommandButton1 
+   Begin KBasic.KButton CommandButton1 
       Height          =   735
       Index           =   5
       Left            =   1200
@@ -1575,7 +1575,7 @@ Begin VB.Form Form1
          Strikethrough   =   0   'False
       EndProperty
    End
-   Begin KBasic.ColorButton CommandButton1 
+   Begin KBasic.KButton CommandButton1 
       Height          =   1095
       Index           =   6
       Left            =   1320
@@ -1598,7 +1598,7 @@ Begin VB.Form Form1
          Strikethrough   =   0   'False
       EndProperty
    End
-   Begin KBasic.ColorButton CommandButton1 
+   Begin KBasic.KButton CommandButton1 
       Height          =   735
       Index           =   3
       Left            =   840
@@ -1621,7 +1621,7 @@ Begin VB.Form Form1
          Strikethrough   =   0   'False
       EndProperty
    End
-   Begin KBasic.ColorButton CommandButton1 
+   Begin KBasic.KButton CommandButton1 
       Height          =   735
       Index           =   1
       Left            =   480
@@ -1644,7 +1644,7 @@ Begin VB.Form Form1
          Strikethrough   =   0   'False
       EndProperty
    End
-   Begin KBasic.ColorButton CommandButton1 
+   Begin KBasic.KButton CommandButton1 
       Height          =   1095
       Index           =   4
       Left            =   960
@@ -1667,7 +1667,7 @@ Begin VB.Form Form1
          Strikethrough   =   0   'False
       EndProperty
    End
-   Begin KBasic.ColorButton CommandButton1 
+   Begin KBasic.KButton CommandButton1 
       Height          =   1095
       Index           =   2
       Left            =   600
@@ -1690,7 +1690,7 @@ Begin VB.Form Form1
          Strikethrough   =   0   'False
       EndProperty
    End
-   Begin KBasic.ColorButton CommandButton1 
+   Begin KBasic.KButton CommandButton1 
       Height          =   1095
       Index           =   0
       Left            =   240

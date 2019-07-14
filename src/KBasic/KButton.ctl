@@ -1,5 +1,5 @@
 VERSION 5.00
-Begin VB.UserControl ColorButton 
+Begin VB.UserControl KButton 
    ClientHeight    =   3600
    ClientLeft      =   0
    ClientTop       =   0
@@ -7,7 +7,7 @@ Begin VB.UserControl ColorButton
    ScaleHeight     =   240
    ScaleMode       =   3  'Pixel
    ScaleWidth      =   320
-   ToolboxBitmap   =   "ColorButton.ctx":0000
+   ToolboxBitmap   =   "KButton.ctx":0000
    Begin KBasic.KControlHelper Controller 
       Left            =   120
       Top             =   120
@@ -22,7 +22,7 @@ Begin VB.UserControl ColorButton
       exportstag      =   -1  'True
    End
 End
-Attribute VB_Name = "ColorButton"
+Attribute VB_Name = "KButton"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = False
@@ -93,7 +93,7 @@ Public Property Let Appearance(ByVal new_Appearance As KControlAppearance)
 End Property
 
 Private Sub processOwnProperties(ByVal kind As PropertyOperation, PropBag As PropertyBag)
-    Controller.DefineByValProperty kind, PropBag, "Caption", m_Caption, "ColorButton"
+    Controller.DefineByValProperty kind, PropBag, "Caption", m_Caption, "KButton"
     Controller.DefineByValProperty kind, PropBag, "Appearance", m_Appearance, KControlAppearance.kbAppearanceDefault
 End Sub
 

@@ -30,17 +30,17 @@ Begin VB.Form KBasicForm
       Tab(0).ControlEnabled=   -1  'True
       Tab(0).Control(0)=   "Label2"
       Tab(0).Control(0).Enabled=   0   'False
-      Tab(0).Control(1)=   "ColorButton4(8)"
+      Tab(0).Control(1)=   "KButton4(8)"
       Tab(0).Control(1).Enabled=   0   'False
-      Tab(0).Control(2)=   "ColorButton4(17)"
+      Tab(0).Control(2)=   "KButton4(17)"
       Tab(0).Control(2).Enabled=   0   'False
-      Tab(0).Control(3)=   "ColorButton4(7)"
+      Tab(0).Control(3)=   "KButton4(7)"
       Tab(0).Control(3).Enabled=   0   'False
-      Tab(0).Control(4)=   "ColorButton3"
+      Tab(0).Control(4)=   "KButton3"
       Tab(0).Control(4).Enabled=   0   'False
-      Tab(0).Control(5)=   "ColorButton2"
+      Tab(0).Control(5)=   "KButton2"
       Tab(0).Control(5).Enabled=   0   'False
-      Tab(0).Control(6)=   "ColorButton1"
+      Tab(0).Control(6)=   "KButton1"
       Tab(0).Control(6).Enabled=   0   'False
       Tab(0).Control(7)=   "Command2"
       Tab(0).Control(7).Enabled=   0   'False
@@ -48,19 +48,19 @@ Begin VB.Form KBasicForm
       Tab(0).Control(8).Enabled=   0   'False
       Tab(0).Control(9)=   "Command3"
       Tab(0).Control(9).Enabled=   0   'False
-      Tab(0).Control(10)=   "ColorButton4(6)"
+      Tab(0).Control(10)=   "KButton4(6)"
       Tab(0).Control(10).Enabled=   0   'False
-      Tab(0).Control(11)=   "ColorButton4(5)"
+      Tab(0).Control(11)=   "KButton4(5)"
       Tab(0).Control(11).Enabled=   0   'False
-      Tab(0).Control(12)=   "ColorButton4(4)"
+      Tab(0).Control(12)=   "KButton4(4)"
       Tab(0).Control(12).Enabled=   0   'False
-      Tab(0).Control(13)=   "ColorButton4(3)"
+      Tab(0).Control(13)=   "KButton4(3)"
       Tab(0).Control(13).Enabled=   0   'False
-      Tab(0).Control(14)=   "ColorButton4(2)"
+      Tab(0).Control(14)=   "KButton4(2)"
       Tab(0).Control(14).Enabled=   0   'False
-      Tab(0).Control(15)=   "ColorButton4(1)"
+      Tab(0).Control(15)=   "KButton4(1)"
       Tab(0).Control(15).Enabled=   0   'False
-      Tab(0).Control(16)=   "ColorButton4(0)"
+      Tab(0).Control(16)=   "KButton4(0)"
       Tab(0).Control(16).Enabled=   0   'False
       Tab(0).ControlCount=   17
       TabCaption(1)   =   "Spin"
@@ -149,7 +149,7 @@ Begin VB.Form KBasicForm
       Tab(3).Control(4)=   "ScrollBar4"
       Tab(3).Control(5)=   "SpinButton7"
       Tab(3).Control(6)=   "ToggleButton5"
-      Tab(3).Control(7)=   "ColorButton5"
+      Tab(3).Control(7)=   "KButton5"
       Tab(3).Control(8)=   "ToggleButton4"
       Tab(3).Control(9)=   "ToggleButton3"
       Tab(3).Control(10)=   "ToggleButton2"
@@ -271,7 +271,7 @@ Begin VB.Form KBasicForm
          _ExtentY        =   873
          Caption         =   "TB"
       End
-      Begin KBasic.ColorButton ColorButton4 
+      Begin KBasic.KButton KButton4 
          Height          =   375
          Index           =   0
          Left            =   360
@@ -293,7 +293,7 @@ Begin VB.Form KBasicForm
          EndProperty
          Caption         =   "A"
       End
-      Begin KBasic.ColorButton ColorButton4 
+      Begin KBasic.KButton KButton4 
          Height          =   375
          Index           =   1
          Left            =   840
@@ -316,7 +316,7 @@ Begin VB.Form KBasicForm
          Caption         =   "A"
          Appearance      =   1
       End
-      Begin KBasic.ColorButton ColorButton4 
+      Begin KBasic.KButton KButton4 
          Height          =   375
          Index           =   2
          Left            =   1320
@@ -339,7 +339,7 @@ Begin VB.Form KBasicForm
          Caption         =   "A"
          Appearance      =   2
       End
-      Begin KBasic.ColorButton ColorButton4 
+      Begin KBasic.KButton KButton4 
          Height          =   375
          Index           =   3
          Left            =   1800
@@ -362,7 +362,7 @@ Begin VB.Form KBasicForm
          Caption         =   "A"
          Appearance      =   3
       End
-      Begin KBasic.ColorButton ColorButton4 
+      Begin KBasic.KButton KButton4 
          Height          =   375
          Index           =   4
          Left            =   360
@@ -385,7 +385,7 @@ Begin VB.Form KBasicForm
          Caption         =   "A"
          Appearance      =   5
       End
-      Begin KBasic.ColorButton ColorButton4 
+      Begin KBasic.KButton KButton4 
          Height          =   375
          Index           =   5
          Left            =   840
@@ -408,7 +408,7 @@ Begin VB.Form KBasicForm
          Caption         =   "A"
          Appearance      =   6
       End
-      Begin KBasic.ColorButton ColorButton4 
+      Begin KBasic.KButton KButton4 
          Height          =   375
          Index           =   6
          Left            =   1320
@@ -633,7 +633,7 @@ Begin VB.Form KBasicForm
          Orientation     =   1
          Enabled         =   0   'False
       End
-      Begin KBasic.ColorButton ColorButton1 
+      Begin KBasic.KButton KButton1 
          Height          =   375
          Left            =   1440
          TabIndex        =   10
@@ -652,7 +652,7 @@ Begin VB.Form KBasicForm
             Strikethrough   =   0   'False
          EndProperty
       End
-      Begin KBasic.ColorButton ColorButton2 
+      Begin KBasic.KButton KButton2 
          Height          =   375
          Left            =   1440
          TabIndex        =   12
@@ -673,7 +673,7 @@ Begin VB.Form KBasicForm
          EndProperty
          Caption         =   "Color2"
       End
-      Begin KBasic.ColorButton ColorButton3 
+      Begin KBasic.KButton KButton3 
          Height          =   375
          Left            =   1440
          TabIndex        =   13
@@ -707,7 +707,7 @@ Begin VB.Form KBasicForm
          Delay           =   100
          Appearance      =   1
       End
-      Begin KBasic.ColorButton ColorButton4 
+      Begin KBasic.KButton KButton4 
          Height          =   375
          Index           =   7
          Left            =   1800
@@ -756,7 +756,7 @@ Begin VB.Form KBasicForm
          ButtonSize      =   15
          Appearance      =   3
       End
-      Begin KBasic.ColorButton ColorButton5 
+      Begin KBasic.KButton KButton5 
          Height          =   495
          Left            =   -74880
          TabIndex        =   24
@@ -776,7 +776,7 @@ Begin VB.Form KBasicForm
          EndProperty
          Caption         =   "CB"
       End
-      Begin KBasic.ColorButton ColorButton4 
+      Begin KBasic.KButton KButton4 
          Height          =   375
          Index           =   17
          Left            =   2280
@@ -1111,7 +1111,7 @@ Begin VB.Form KBasicForm
          EndProperty
          Caption         =   "XYZ"
       End
-      Begin KBasic.ColorButton ColorButton4 
+      Begin KBasic.KButton KButton4 
          Height          =   375
          Index           =   8
          Left            =   2280
