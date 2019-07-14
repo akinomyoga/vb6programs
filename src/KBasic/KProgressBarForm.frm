@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "*\AKProgressBar.vbp"
+Object = "{B30B7ED4-9187-4EC4-9CD3-5155839C07F7}#5.0#0"; "KBasic.ocx"
 Begin VB.Form KProgressBarForm 
    Caption         =   "Test KProgressBar"
    ClientHeight    =   3195
@@ -15,7 +15,7 @@ Begin VB.Form KProgressBarForm
       Left            =   240
       Top             =   720
    End
-   Begin KProgressBarProject.KProgressBar UserControl11 
+   Begin KBasic.KProgressBar UserControl11 
       Height          =   495
       Left            =   240
       TabIndex        =   0

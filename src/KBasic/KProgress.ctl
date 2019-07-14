@@ -1,9 +1,9 @@
 VERSION 5.00
 Begin VB.UserControl KProgressBar 
-   ClientHeight    =   1890
+   ClientHeight    =   1230
    ClientLeft      =   0
    ClientTop       =   0
-   ClientWidth     =   2820
+   ClientWidth     =   1740
    BeginProperty Font 
       Name            =   "MS UI Gothic"
       Size            =   11.25
@@ -14,8 +14,8 @@ Begin VB.UserControl KProgressBar
       Strikethrough   =   0   'False
    EndProperty
    ForeColor       =   &H80000002&
-   ScaleHeight     =   1890
-   ScaleWidth      =   2820
+   ScaleHeight     =   1230
+   ScaleWidth      =   1740
    Tag             =   "0"
    Begin VB.PictureBox Picture1 
       BackColor       =   &H00FFC0C0&
@@ -29,11 +29,11 @@ Begin VB.UserControl KProgressBar
          Strikethrough   =   0   'False
       EndProperty
       Height          =   975
-      Left            =   0
+      Left            =   120
       ScaleHeight     =   915
       ScaleWidth      =   1395
       TabIndex        =   0
-      Top             =   0
+      Top             =   120
       Width           =   1455
       Begin VB.PictureBox Picture2 
          BackColor       =   &H00C0C0FF&
