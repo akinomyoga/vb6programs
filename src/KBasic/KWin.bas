@@ -30,12 +30,29 @@ Public Enum KWinArrowFlags
     kbArrowPressed = 8
 End Enum
 
+Public Enum Win32_CombineRgn_Mode
+    RGN_AND = 1
+    RGN_OR = 2
+    RGN_XOR = 3
+    RGN_DIFF = 4
+    RGN_COPY = 5
+    RGN_MIN = RGN_AND
+    RGN_MAX = RGN_COPY
+End Enum
 
+Public Declare Sub CopyMemory Lib "kernel32" Alias "RtlMoveMemory" (Destination As Any, Source As Any, ByVal Length As Long)
 Public Declare Function SetCapture Lib "user32" (ByVal hWnd As Long) As Long
 Public Declare Function GetCapture Lib "user32" () As Long
 Public Declare Function ReleaseCapture Lib "user32" () As Long
-
-Declare Sub CopyMemory Lib "kernel32" Alias "RtlMoveMemory" (Destination As Any, Source As Any, ByVal Length As Long)
+Public Declare Function CreateRectRgn Lib "gdi32" _
+    (ByVal x1 As Long, ByVal y1 As Long, ByVal x2 As Long, ByVal y2 As Long) As Long
+Public Declare Function SelectClipRgn Lib "gdi32" (ByVal hDC As Long, ByVal hRgn As Long) As Long
+Public Declare Function DeleteObject Lib "gdi32" (ByVal hObject As Long) As Long
+Public Declare Function GetClipRgn Lib "gdi32" (ByVal hDC As Long, ByVal hRgn As Long) As Long
+Public Declare Function SetRectRgn Lib "gdi32" _
+    (ByVal hRgn As Long, ByVal x1 As Long, ByVal y1 As Long, ByVal x2 As Long, ByVal y2 As Long) As Long
+Public Declare Function CombineRgn Lib "gdi32" _
+    (ByVal hDestRgn As Long, ByVal hSrcRgn1 As Long, ByVal hSrcRgn2 As Long, ByVal nCombineMode As Long) As Long
 
 ' https://stackoverflow.com/questions/863039/problems-passing-in-a-usercontrol-as-a-parameter-in-vb6
 Public Function GetUserControl(ByRef oObj As Object) As UserControl

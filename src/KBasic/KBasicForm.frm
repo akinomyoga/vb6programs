@@ -1,8 +1,11 @@
 VERSION 5.00
 Object = "{B30B7ED4-9187-4EC4-9CD3-5155839C07F7}#5.0#0"; "KBasic.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "mscomctl.OCX"
 Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomct2.ocx"
 Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TabCtl32.Ocx"
 Begin VB.Form KBasicForm 
+   Appearance      =   0  'Flat
+   BackColor       =   &H80000005&
    Caption         =   "Test KBasic Controls"
    ClientHeight    =   3360
    ClientLeft      =   120
@@ -22,8 +25,8 @@ Begin VB.Form KBasicForm
       _ExtentY        =   5530
       _Version        =   393216
       Style           =   1
-      Tabs            =   4
-      TabsPerRow      =   4
+      Tabs            =   5
+      TabsPerRow      =   5
       TabHeight       =   520
       TabCaption(0)   =   "Button"
       TabPicture(0)   =   "KBasicForm.frx":0000
@@ -66,105 +69,93 @@ Begin VB.Form KBasicForm
       TabCaption(1)   =   "Spin"
       TabPicture(1)   =   "KBasicForm.frx":001C
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "SpinButton8(0)"
-      Tab(1).Control(1)=   "UpDown1"
-      Tab(1).Control(2)=   "UpDown2"
-      Tab(1).Control(3)=   "UpDown3"
-      Tab(1).Control(4)=   "UpDown4"
-      Tab(1).Control(5)=   "SpinButton5"
-      Tab(1).Control(6)=   "SpinButton2"
-      Tab(1).Control(7)=   "SpinButton4"
-      Tab(1).Control(8)=   "SpinButton1"
-      Tab(1).Control(9)=   "SpinButton3(0)"
-      Tab(1).Control(10)=   "SpinButton6"
-      Tab(1).Control(11)=   "UpDown5"
-      Tab(1).Control(12)=   "UpDown6"
-      Tab(1).Control(13)=   "SpinButton8(1)"
-      Tab(1).Control(14)=   "SpinButton8(2)"
-      Tab(1).Control(15)=   "SpinButton8(3)"
-      Tab(1).Control(16)=   "SpinButton8(4)"
-      Tab(1).Control(17)=   "SpinButton8(5)"
-      Tab(1).Control(18)=   "SpinButton8(6)"
-      Tab(1).Control(19)=   "SpinButton8(7)"
-      Tab(1).Control(20)=   "SpinButton8(8)"
-      Tab(1).Control(21)=   "SpinButton8(9)"
-      Tab(1).Control(22)=   "Label3"
-      Tab(1).Control(23)=   "Label1"
+      Tab(1).Control(0)=   "Label1"
+      Tab(1).Control(1)=   "Label3"
+      Tab(1).Control(2)=   "SpinButton8(9)"
+      Tab(1).Control(3)=   "SpinButton8(8)"
+      Tab(1).Control(4)=   "SpinButton8(7)"
+      Tab(1).Control(5)=   "SpinButton8(6)"
+      Tab(1).Control(6)=   "SpinButton8(5)"
+      Tab(1).Control(7)=   "SpinButton8(4)"
+      Tab(1).Control(8)=   "SpinButton8(3)"
+      Tab(1).Control(9)=   "SpinButton8(2)"
+      Tab(1).Control(10)=   "SpinButton8(1)"
+      Tab(1).Control(11)=   "UpDown6"
+      Tab(1).Control(12)=   "UpDown5"
+      Tab(1).Control(13)=   "SpinButton6"
+      Tab(1).Control(14)=   "SpinButton3(0)"
+      Tab(1).Control(15)=   "SpinButton1"
+      Tab(1).Control(16)=   "SpinButton4"
+      Tab(1).Control(17)=   "SpinButton2"
+      Tab(1).Control(18)=   "SpinButton5"
+      Tab(1).Control(19)=   "UpDown4"
+      Tab(1).Control(20)=   "UpDown3"
+      Tab(1).Control(21)=   "UpDown2"
+      Tab(1).Control(22)=   "UpDown1"
+      Tab(1).Control(23)=   "SpinButton8(0)"
       Tab(1).ControlCount=   24
       TabCaption(2)   =   "Scroll"
       TabPicture(2)   =   "KBasicForm.frx":0038
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "Label4"
-      Tab(2).Control(0).Enabled=   0   'False
-      Tab(2).Control(1)=   "FlatScrollBar2"
-      Tab(2).Control(1).Enabled=   0   'False
-      Tab(2).Control(2)=   "ScrollBar6(9)"
-      Tab(2).Control(2).Enabled=   0   'False
-      Tab(2).Control(3)=   "ScrollBar6(8)"
-      Tab(2).Control(3).Enabled=   0   'False
-      Tab(2).Control(4)=   "ScrollBar6(7)"
-      Tab(2).Control(4).Enabled=   0   'False
-      Tab(2).Control(5)=   "ScrollBar6(4)"
-      Tab(2).Control(5).Enabled=   0   'False
-      Tab(2).Control(6)=   "ScrollBar6(6)"
-      Tab(2).Control(6).Enabled=   0   'False
-      Tab(2).Control(7)=   "ScrollBar6(5)"
-      Tab(2).Control(7).Enabled=   0   'False
-      Tab(2).Control(8)=   "ScrollBar6(3)"
-      Tab(2).Control(8).Enabled=   0   'False
-      Tab(2).Control(9)=   "ScrollBar6(2)"
-      Tab(2).Control(9).Enabled=   0   'False
-      Tab(2).Control(10)=   "ScrollBar6(1)"
-      Tab(2).Control(10).Enabled=   0   'False
-      Tab(2).Control(11)=   "ScrollBar2(4)"
-      Tab(2).Control(11).Enabled=   0   'False
-      Tab(2).Control(12)=   "ScrollBar2(3)"
-      Tab(2).Control(12).Enabled=   0   'False
-      Tab(2).Control(13)=   "ScrollBar2(1)"
-      Tab(2).Control(13).Enabled=   0   'False
-      Tab(2).Control(14)=   "ScrollBar3"
-      Tab(2).Control(14).Enabled=   0   'False
-      Tab(2).Control(15)=   "FlatScrollBar1"
-      Tab(2).Control(15).Enabled=   0   'False
-      Tab(2).Control(16)=   "ScrollBar1"
-      Tab(2).Control(16).Enabled=   0   'False
-      Tab(2).Control(17)=   "ScrollBar2(0)"
-      Tab(2).Control(17).Enabled=   0   'False
-      Tab(2).Control(18)=   "VScroll1"
-      Tab(2).Control(18).Enabled=   0   'False
-      Tab(2).Control(19)=   "VScroll2"
-      Tab(2).Control(19).Enabled=   0   'False
-      Tab(2).Control(20)=   "VScroll3"
-      Tab(2).Control(20).Enabled=   0   'False
-      Tab(2).Control(21)=   "ScrollBar6(0)"
-      Tab(2).Control(21).Enabled=   0   'False
+      Tab(2).Control(0)=   "ScrollBar6(0)"
+      Tab(2).Control(1)=   "VScroll3"
+      Tab(2).Control(2)=   "VScroll2"
+      Tab(2).Control(3)=   "VScroll1"
+      Tab(2).Control(4)=   "ScrollBar2(0)"
+      Tab(2).Control(5)=   "ScrollBar1"
+      Tab(2).Control(6)=   "FlatScrollBar1"
+      Tab(2).Control(7)=   "ScrollBar3"
+      Tab(2).Control(8)=   "ScrollBar2(1)"
+      Tab(2).Control(9)=   "ScrollBar2(3)"
+      Tab(2).Control(10)=   "ScrollBar2(4)"
+      Tab(2).Control(11)=   "ScrollBar6(1)"
+      Tab(2).Control(12)=   "ScrollBar6(2)"
+      Tab(2).Control(13)=   "ScrollBar6(3)"
+      Tab(2).Control(14)=   "ScrollBar6(5)"
+      Tab(2).Control(15)=   "ScrollBar6(6)"
+      Tab(2).Control(16)=   "ScrollBar6(4)"
+      Tab(2).Control(17)=   "ScrollBar6(7)"
+      Tab(2).Control(18)=   "ScrollBar6(8)"
+      Tab(2).Control(19)=   "ScrollBar6(9)"
+      Tab(2).Control(20)=   "FlatScrollBar2"
+      Tab(2).Control(21)=   "Label4"
       Tab(2).ControlCount=   22
-      TabCaption(3)   =   "Tab 3"
+      TabCaption(3)   =   "Toggle"
       TabPicture(3)   =   "KBasicForm.frx":0054
       Tab(3).ControlEnabled=   0   'False
-      Tab(3).Control(0)=   "ToggleButton1"
-      Tab(3).Control(0).Enabled=   0   'False
-      Tab(3).Control(1)=   "ToggleButton2"
-      Tab(3).Control(1).Enabled=   0   'False
-      Tab(3).Control(2)=   "ToggleButton3"
-      Tab(3).Control(2).Enabled=   0   'False
-      Tab(3).Control(3)=   "ToggleButton4"
-      Tab(3).Control(3).Enabled=   0   'False
-      Tab(3).Control(4)=   "KButton5"
-      Tab(3).Control(4).Enabled=   0   'False
+      Tab(3).Control(0)=   "Check1(2)"
+      Tab(3).Control(1)=   "Check1(1)"
+      Tab(3).Control(2)=   "Check1(0)"
+      Tab(3).Control(3)=   "ScrollBar4"
+      Tab(3).Control(4)=   "SpinButton7"
       Tab(3).Control(5)=   "ToggleButton5"
-      Tab(3).Control(5).Enabled=   0   'False
-      Tab(3).Control(6)=   "SpinButton7"
-      Tab(3).Control(6).Enabled=   0   'False
-      Tab(3).Control(7)=   "ScrollBar4"
-      Tab(3).Control(7).Enabled=   0   'False
-      Tab(3).Control(8)=   "Check1(0)"
-      Tab(3).Control(8).Enabled=   0   'False
-      Tab(3).Control(9)=   "Check1(1)"
-      Tab(3).Control(9).Enabled=   0   'False
-      Tab(3).Control(10)=   "Check1(2)"
-      Tab(3).Control(10).Enabled=   0   'False
+      Tab(3).Control(6)=   "KButton5"
+      Tab(3).Control(7)=   "ToggleButton4"
+      Tab(3).Control(8)=   "ToggleButton3"
+      Tab(3).Control(9)=   "ToggleButton2"
+      Tab(3).Control(10)=   "ToggleButton1"
       Tab(3).ControlCount=   11
+      TabCaption(4)   =   "Progress"
+      TabPicture(4)   =   "KBasicForm.frx":0070
+      Tab(4).ControlEnabled=   0   'False
+      Tab(4).Control(0)=   "Timer1"
+      Tab(4).Control(1)=   "KProgressBar1"
+      Tab(4).Control(2)=   "ProgressBar1"
+      Tab(4).ControlCount=   3
+      Begin VB.Timer Timer1 
+         Interval        =   100
+         Left            =   -72840
+         Top             =   840
+      End
+      Begin KBasic.KProgressBar KProgressBar1 
+         Height          =   255
+         Left            =   -74880
+         TabIndex        =   42
+         Top             =   840
+         Width           =   1935
+         _ExtentX        =   3413
+         _ExtentY        =   450
+      End
       Begin VB.CheckBox Check1 
          BackColor       =   &H00C0C0FF&
          Caption         =   "Check1"
@@ -1135,6 +1126,18 @@ Begin VB.Form KBasicForm
          Caption         =   "A"
          Appearance      =   4
       End
+      Begin MSComctlLib.ProgressBar ProgressBar1 
+         Height          =   255
+         Left            =   -74880
+         TabIndex        =   41
+         Top             =   480
+         Width           =   1935
+         _ExtentX        =   3413
+         _ExtentY        =   450
+         _Version        =   393216
+         Appearance      =   1
+         Max             =   10
+      End
       Begin VB.Label Label4 
          Caption         =   "ScrollBar Appearances"
          Height          =   255
@@ -1174,7 +1177,30 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+Private Sub increment_ProgressBar1()
+    Dim new_Value As Long
+    new_Value = ProgressBar1.Value + 1
+    If new_Value > ProgressBar1.Max Then
+        ProgressBar1.Value = ProgressBar1.Min
+    Else
+        ProgressBar1.Value = new_Value
+    End If
+End Sub
+
+Private Sub increment_KProgressBar1()
+    If KProgressBar1.Value < KProgressBar1.Max Then
+        KProgressBar1.Value = KProgressBar1.Value + 3
+    Else
+        KProgressBar1.Value = KProgressBar1.Min
+    End If
+    KProgressBar1.Caption = KProgressBar1.Value & "%"
+End Sub
+
 Private Sub SpinButton4_Change()
     Label1.Caption = SpinButton4.Value
 End Sub
 
+Private Sub Timer1_Timer()
+    increment_ProgressBar1
+    increment_KProgressBar1
+End Sub

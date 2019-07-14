@@ -75,8 +75,8 @@ End Property
 Public Property Let Caption(ByVal new_Caption As String)
     If m_Caption <> new_Caption Then
         m_Caption = new_Caption
-        Controller.Refresh
         PropertyChanged "Caption"
+        Controller.Refresh
     End If
 End Property
 

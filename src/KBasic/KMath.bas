@@ -47,6 +47,16 @@ Public Function MaxL(ByVal X As Long, ByVal Y As Long) As Long
     End If
 End Function
 
+Public Function Clamp(ByVal Value As Double, ByVal Min As Double, ByVal Max As Double) As Double
+    If Value < Min Then
+        Clamp = Min
+    ElseIf Value > Max Then
+        Clamp = Max
+    Else
+        Clamp = Value
+    End If
+End Function
+
 Public Function ClampI(ByVal Value As Integer, ByVal Min As Integer, ByVal Max As Integer) As Integer
     If Value < Min Then
         ClampI = Min
