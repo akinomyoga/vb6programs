@@ -1,7 +1,7 @@
 VERSION 5.00
-Object = "*\A計算ctl.vbp"
+Object = "{16A10515-4811-4195-9646-638EC1F09FF9}#6.0#0"; "kmath.ocx"
 Begin VB.Form Form1 
-   Caption         =   "計算機"
+   Caption         =   "計算機2"
    ClientHeight    =   4005
    ClientLeft      =   60
    ClientTop       =   345
@@ -9,7 +9,7 @@ Begin VB.Form Form1
    LinkTopic       =   "Form1"
    ScaleHeight     =   4005
    ScaleWidth      =   6240
-   StartUpPosition =   3  'Windows の既定値
+   StartUpPosition =   3  'Windows Default
    Begin 功一関数.MathF2 MathF21 
       Height          =   255
       Left            =   5760
@@ -60,10 +60,3 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
-Private Sub Form_Load()
-
-End Sub
-
-Private Sub MathF21_GotFocus()
-
-End Sub

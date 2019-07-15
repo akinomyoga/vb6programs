@@ -5,7 +5,35 @@
   VB6 Note
 ------------------------------------------------------------------------------
 
-UserControl を自分で作るという事。
+2019-07-15
+
+* 描画領域を Clip するには Win32 API を呼び出すしかない。
+
+* AutoRedraw の時は UserControl.hDC はバックバッファの DC を返してくれる。
+  途中で一回でも Line や Print 等を呼び出していれば VB の側で
+  バックバッファから表への描画は適用してくれる。
+  何も呼び出していなければ Refresh を呼び出しておけば良い。
+  或いは UserControl.Cls を呼び出せばその場で反映してくれる様だ。
+
+* Long の定数は整数の末尾に & をつける。
+  Double の定数は数値の末尾に # をつける。
+
+2019-07-14
+
+* 定期的にチェックする項目
+
+  - 各コントロールでプロパティ一覧での設定
+  - 各コントロールのメンバの Private 付け忘れがないか
+
+* Enum 項目一覧をプログラム的に列挙する方法 (一種のリフレクション)
+  http://www.vbforums.com/showthread.php?814149-VB6-Look-up-Enum-value-names
+  http://hanatyan.sakura.ne.jp/vb60bbs/wforum.cgi?mode=allread&no=16458&page=0
+
+* 標準のボタン (Command) でも Style を Graphical にすれば背景色を描画してくれる。
+
+* 何と ToggleButton は標準の CheckBox で Style を Graphical にすれば実現できた…。
+
+2019-07-07 UserControl を自分で作るという事。
 
 * 描画処理は UserControl_Paint にかけば良い。
   表示内容の変化があったら UserControl.Refresh() を呼び出す。
@@ -72,71 +100,10 @@ UserControl を自分で作るという事。
         Call PropBag.WriteProperty("Font", UserControl.Font, getDefaultFont())
     End Sub
 
-2019-07-14
-
-* 定期的にチェックする項目
-
-  - 各コントロールでプロパティ一覧での設定
-  - 各コントロールのメンバの Private 付け忘れがないか
-
-* Enum 項目一覧をプログラム的に列挙する方法 (一種のリフレクション)
-  http://www.vbforums.com/showthread.php?814149-VB6-Look-up-Enum-value-names
-  http://hanatyan.sakura.ne.jp/vb60bbs/wforum.cgi?mode=allread&no=16458&page=0
-
-* 標準のボタン (Command) でも Style を Graphical にすれば背景色を描画してくれる。
-
-* 何と ToggleButton は標準の CheckBox で Style を Graphical にすれば実現できた…。
-
 
 ------------------------------------------------------------------------------
   ToDo
 ------------------------------------------------------------------------------
-
-2019-07-14
-
-* Progress について。
-
-  文字列の一部を或る色で塗って、
-  文字列の他の部分を別の色で塗る方法に関して。
-  PictureBox 等を重ねて内部で描画させるという方法もなくはない。
-  "％メーター.frm" と称していた物はこれを実践しようとしていた。
-  しかし、描画のためだけにウィンドウを4つも生成するのは変な気がする。
-
-  もっと良い方法はないのだろうか。例えば Clip 等ができれば良いのだが。
-  UserControl のメンバを見る限りはどうも難しい様な気がする。
-  ClipControls というプロパティはあるが、これは部分描画か全体描画か、
-  というのを成業する物の様に思われる。
-  http://www.gizcollabo.jp/vbtomo/boards/vbqanda_spread_6030.html
-  このページを観察すると ClipControls = True になっていると、
-  そのコントロールの上に別のコントロールが載っている時に、
-  その別のコントロールの上に変な物が描かれてしまわない様にする効果があるらしい。
-  ClipControls = False になっていると別のコントロールの上に上書きしてしまう。
-
-  どうもVB6の範囲ではClipを実行する方法はないのではないかという気がする。
-
-  Win32 API に頼らざるを得ないのだろうか。
-  何れにしてもよく考えてみれば VB6 は Win 上でしか動かないので、
-  まあ Win32 API に依存しても仕方がないのである。
-  或いは、既に色々依存しているのだから諦めるのである。
-
-  http://wisdom.sakura.ne.jp/system/winapi/win32/win134.html
-  https://www.codeproject.com/Articles/2095/A-Guide-to-WIN32-Clipping-Regions
-  http://note.phyllo.net/?eid=1106224
-
-  https://stackoverflow.com/questions/3478180/correct-usage-of-getcliprgn
-  此処で具体的に保存してそれから復元する方法が書かれている。
-  これで正しいのか、という質問だがこれで正しいのだろう。
-  答えとして SaveDC RestoreDC という関数が紹介されているが overspec な気がする。
-
-  然し、問題は、VB6 で AutoRedraw を使っている時に裏で使っている DC が分からないという事である。
-  表面で使っている DC に対して Clip を実行しても意味がないのである。
-  http://www016.upp.so-net.ne.jp/garger-studio/gameprog/vb0152.html
-  どうもこのページによると AutoRedraw の時は hDC はちゃんとバックバッファの hDC になっている。
-  Refresh を呼び出すと実際に画面への描画が実施されるという事らしい。
-  というか実は Cls はバックバッファにあるデータを反映させるという関数なのでは?
-
-  Long の定数を定義できないと思ったら実は末尾に & をつけると Long の定数になるそうだ。
-  https://stackoverflow.com/questions/28162693/const-long-translation-issue-h99ff-with-visual-basic-6-0
 
 2019-07-12
 
@@ -200,6 +167,50 @@ UserControl を自分で作るという事。
 ------------------------------------------------------------------------------
 
 2019-07-14
+
+* Progress について。
+
+  文字列の一部を或る色で塗って、
+  文字列の他の部分を別の色で塗る方法に関して。
+  PictureBox 等を重ねて内部で描画させるという方法もなくはない。
+  "％メーター.frm" と称していた物はこれを実践しようとしていた。
+  しかし、描画のためだけにウィンドウを4つも生成するのは変な気がする。
+
+  もっと良い方法はないのだろうか。例えば Clip 等ができれば良いのだが。
+  UserControl のメンバを見る限りはどうも難しい様な気がする。
+  ClipControls というプロパティはあるが、これは部分描画か全体描画か、
+  というのを成業する物の様に思われる。
+  http://www.gizcollabo.jp/vbtomo/boards/vbqanda_spread_6030.html
+  このページを観察すると ClipControls = True になっていると、
+  そのコントロールの上に別のコントロールが載っている時に、
+  その別のコントロールの上に変な物が描かれてしまわない様にする効果があるらしい。
+  ClipControls = False になっていると別のコントロールの上に上書きしてしまう。
+
+  どうもVB6の範囲ではClipを実行する方法はないのではないかという気がする。
+
+  Win32 API に頼らざるを得ないのだろうか。
+  何れにしてもよく考えてみれば VB6 は Win 上でしか動かないので、
+  まあ Win32 API に依存しても仕方がないのである。
+  或いは、既に色々依存しているのだから諦めるのである。
+
+  http://wisdom.sakura.ne.jp/system/winapi/win32/win134.html
+  https://www.codeproject.com/Articles/2095/A-Guide-to-WIN32-Clipping-Regions
+  http://note.phyllo.net/?eid=1106224
+
+  * https://stackoverflow.com/questions/3478180/correct-usage-of-getcliprgn
+    此処で具体的に保存してそれから復元する方法が書かれている。
+    これで正しいのか、という質問だがこれで正しいのだろう。
+    答えとして SaveDC RestoreDC という関数が紹介されているが overspec な気がする。
+
+  ? 然し、問題は、VB6 で AutoRedraw を使っている時に裏で使っている DC が分からないという事である。
+    表面で使っている DC に対して Clip を実行しても意味がないのである。
+    http://www016.upp.so-net.ne.jp/garger-studio/gameprog/vb0152.html
+    どうもこのページによると AutoRedraw の時は hDC はちゃんとバックバッファの hDC になっている。
+    Refresh を呼び出すと実際に画面への描画が実施されるという事らしい。
+    というか実は Cls はバックバッファにあるデータを反映させるという関数なのでは?
+
+  ? Long の定数を定義できないと思ったら実は末尾に & をつけると Long の定数になるそうだ。
+    https://stackoverflow.com/questions/28162693/const-long-translation-issue-h99ff-with-visual-basic-6-0
 
 * KBasic: ScrollBar も Appearance に対応する。
 
