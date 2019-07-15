@@ -10,14 +10,14 @@ Begin VB.Form KSColorForm
    ScaleHeight     =   3015
    ScaleWidth      =   4560
    StartUpPosition =   3  'Windows Default
-   Begin êF1.KSColor KSColor1 
+   Begin êF1.KColor KSColor1 
       Height          =   1455
       Left            =   120
       TabIndex        =   0
       Top             =   120
       Width           =   3495
-      _ExtentX        =   6165
-      _ExtentY        =   2566
+      _extentx        =   6165
+      _extenty        =   2566
    End
 End
 Attribute VB_Name = "KSColorForm"
@@ -26,5 +26,5 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Private Sub KSColor1_GotFocus()
-    a = MinI(10, 20)
+    'a = KMath.MinI(10, 20)
 End Sub

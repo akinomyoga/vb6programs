@@ -1,8 +1,9 @@
 Type=Exe
 Form=KSColorForm.frm
 Reference=*\G{00020430-0000-0000-C000-000000000046}#2.0#0#..\..\..\..\..\..\Windows\SysWOW64\stdole2.tlb#OLE Automation
-Object={B30B7ED4-9187-4EC4-9CD3-5155839C07F7}#4.0#0; KBasic.ocx
+Object={B30B7ED4-9187-4EC4-9CD3-5155839C07F7}#9.0#0; KBasic.ocx
 Object={187D7972-603A-48B3-BC07-7813ABE687AF}#4.0#0; êF1.ocx
+IconForm="KSColorForm"
 Startup="KSColorForm"
 Command32=""
 Name="êF1Test"

@@ -44,6 +44,7 @@ Public Declare Sub CopyMemory Lib "kernel32" Alias "RtlMoveMemory" (Destination 
 Public Declare Function SetCapture Lib "user32" (ByVal hWnd As Long) As Long
 Public Declare Function GetCapture Lib "user32" () As Long
 Public Declare Function ReleaseCapture Lib "user32" () As Long
+Public Declare Function GetSysColor Lib "User32.dll" (ByVal nIndex As Long) As Long
 Public Declare Function CreateRectRgn Lib "gdi32" _
     (ByVal x1 As Long, ByVal y1 As Long, ByVal x2 As Long, ByVal y2 As Long) As Long
 Public Declare Function SelectClipRgn Lib "gdi32" (ByVal hDC As Long, ByVal hRgn As Long) As Long
