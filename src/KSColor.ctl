@@ -198,9 +198,9 @@ Begin VB.UserControl KColor
          Strikethrough   =   0   'False
       EndProperty
       Height          =   255
-      Left            =   0
+      Left            =   120
       TabIndex        =   2
-      Top             =   1080
+      Top             =   0
       Width           =   1095
    End
 End
@@ -209,18 +209,13 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = True
-
-Private Enum ChangedControlType
-    ChangedTextH
-    ChangedTextD
-    ChangedScroll
-    ChangedSpin
-End Enum
+Dim m_currentControl As Control
+Dim m_rgbValue(3) As Integer
 
 Private Declare Function GetSysColor Lib "User32.dll" (ByVal nIndex As Long) As Long
  
 Public Property Get Color() As OLE_COLOR
-    Color = RGB(ScrollRGB(0).Value, ScrollRGB(1).Value, ScrollRGB(2).Value)
+    Color = RGB(m_rgbValue(0), m_rgbValue(1), m_rgbValue(2))
 End Property
 
 Public Property Let Color(ByVal new_Color As OLE_COLOR)
@@ -229,35 +224,64 @@ Public Property Let Color(ByVal new_Color As OLE_COLOR)
     If (new_Color And &H80000000) <> 0 Then
         new_Color = GetSysColor(new_Color)
     End If
-    ScrollRGB(1).Value = new_Color And &HFF&
-    ScrollRGB(2).Value = (new_Color \ &H80&) And &HFF&
-    ScrollRGB(3).Value = (new_Color \ &H8000&) And &HFF&
+    setRGBComponent 0, new_Color And &HFF&
+    setRGBComponent 1, (new_Color \ &H80&) And &HFF&
+    setRGBComponent 2, (new_Color \ &H8000&) And &HFF&
 End Property
 
 Private Function Hex2(ByVal Value As Integer) As String
     Hex2 = Right("0" & Hex$(Value), 2)
 End Function
 
+''-----------------------------------------------------------------------------
+''
+'' èàóù
+''
+''-----------------------------------------------------------------------------
+
+Private Sub setCurrentControl(ByRef new_currentControl As Control)
+    Set m_currentControl = new_currentControl
+End Sub
+
+Private Sub resetCurrentControl(ByRef old_currentControl As Control)
+    If m_currentControl Is old_currentControl Then
+        Set m_currentControl = Nothing
+    End If
+End Sub
+
 Private Sub updateLabel()
-    Label1.Caption = "#" & Hex2(ScrollRGB(0).Value) & Hex2(ScrollRGB(1).Value) & Hex2(ScrollRGB(2).Value)
+    Label1.Caption = "#" & Hex2(m_rgbValue(0)) & Hex2(m_rgbValue(1)) & Hex2(m_rgbValue(2))
     Picture1.BackColor = Me.Color
 End Sub
 
-Private Sub setRGBComponent(ByVal Index As Integer, ByVal Value As Integer, ByVal a_changed As ChangedControlType)
-    If a_changed <> ChangedScroll And ScrollRGB(Index).Value = Value Then Exit Sub
+Private Sub setRGBComponent(ByVal Index As Integer, ByVal Value As Integer)
+    If Value < 0 Then
+        Value = 0
+    ElseIf Value > 255 Then
+        Value = 255
+    End If
+    If m_rgbValue(Index) = Value Then Exit Sub
+
+    m_rgbValue(Index) = Value
     ScrollRGB(Index).Value = Value
     SpinRGB(Index).Value = Value
-    If a_changed <> ChangedTextD Then TextD(Index).Text = Value
-    If a_changed <> ChangedTextH Then TextH(Index).Text = Hex2(Value)
+    If Not (m_currentControl Is TextD(Index)) Then TextD(Index).Text = Value
+    If Not (m_currentControl Is TextH(Index)) Then TextH(Index).Text = Hex2(Value)
     updateLabel
 End Sub
 
+''-----------------------------------------------------------------------------
+''
+'' ÉCÉxÉìÉgìoò^
+''
+''-----------------------------------------------------------------------------
+
 Private Sub ScrollRGB_Scroll(Index As Integer)
-    setRGBComponent Index, ScrollRGB(Index).Value, ChangedScroll
+    setRGBComponent Index, ScrollRGB(Index).Value
 End Sub
 
 Private Sub SpinRGB_Change(Index As Integer)
-    setRGBComponent Index, SpinRGB(Index).Value, ChangedSpin
+    setRGBComponent Index, SpinRGB(Index).Value
 End Sub
 
 Private Sub TextD_Change(Index As Integer)
@@ -266,12 +290,17 @@ Private Sub TextD_Change(Index As Integer)
     l_value = CInt(TextD(Index).Text)
     On Error GoTo 0
     
-    setRGBComponent Index, l_value, ChangedTextD
+    setRGBComponent Index, l_value
 label_IgnoreError:
 End Sub
 
+Private Sub TextD_GotFocus(Index As Integer)
+    setCurrentControl TextD(Index)
+End Sub
+
 Private Sub TextD_LostFocus(Index As Integer)
-    TextD(Index).Text = ScrollRGB(Index).Value
+    resetCurrentControl TextD(Index)
+    TextD(Index).Text = m_rgbValue(Index)
 End Sub
 
 Private Sub TextH_Change(Index As Integer)
@@ -280,10 +309,15 @@ Private Sub TextH_Change(Index As Integer)
     l_value = CInt("&H" & TextH(Index).Text)
     On Error GoTo 0
     
-    setRGBComponent Index, l_value, ChangedTextH
+    setRGBComponent Index, l_value
 label_IgnoreError:
 End Sub
 
+Private Sub TextH_GotFocus(Index As Integer)
+    setCurrentControl TextH(Index)
+End Sub
+
 Private Sub TextH_LostFocus(Index As Integer)
-    TextH(Index).Text = Hex2(ScrollRGB(Index).Value)
+    resetCurrentControl TextH(Index)
+    TextH(Index).Text = Hex2(m_rgbValue(Index))
 End Sub
